@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -72,7 +73,7 @@ export default function ProductsPage() {
               <span className="material-symbols-outlined text-primary">menu</span>
             </button>
             <Link className="flex items-center gap-3" href="/">
-              <img alt="MolaPlus Africa logo" className="h-10 w-10 rounded-full object-contain" src="/molaplus/logo.png" />
+              <Image alt="MolaPlus Africa logo" className="h-10 w-10 rounded-full object-contain" height={40} src="/molaplus/logo.png" width={40} />
               <h1 className="font-headline-md text-headline-md font-extrabold tracking-tight text-primary">
                 MolaPlus Africa
               </h1>
@@ -147,16 +148,18 @@ export default function ProductsPage() {
                 Advanced formula for enhanced milk production in dairy animals, ensuring optimal nutritional balance.
               </p>
             </div>
-            <div className="flex gap-gutter overflow-x-auto pb-4 md:grid md:grid-cols-3 md:overflow-visible">
+            <div className="grid grid-cols-1 gap-gutter pb-4 md:grid-cols-3">
               {milkBoosterSizes.map((size) => (
                 <div
-                  className="group min-w-[280px] overflow-hidden rounded-xl border border-outline-variant bg-white transition-shadow hover:shadow-lg"
+                  className="group min-w-0 overflow-hidden rounded-xl border border-outline-variant bg-white transition-shadow hover:shadow-lg"
                   key={size.name}
                 >
                   <div className="relative h-56 bg-surface-container">
-                    <img
+                    <Image
                       alt={`Super Milk Booster ${size.name}`}
-                      className="h-full w-full object-contain p-4 transition-transform group-hover:scale-110"
+                      className="object-contain p-4 transition-transform group-hover:scale-110"
+                      fill
+                      sizes="(min-width: 768px) 33vw, 280px"
                       src={size.image}
                     />
                     {size.badge && (
@@ -195,8 +198,8 @@ export default function ProductsPage() {
             <div className="grid grid-cols-1 gap-gutter md:grid-cols-3">
               {poultrySizes.map((size) => (
                 <div className="flex items-center gap-4 rounded-xl border border-outline-variant bg-white p-4" key={size.name}>
-                  <div className="h-24 w-24 flex-shrink-0 rounded-lg bg-surface-container p-2">
-                    <img alt={`Poultry Microbes ${size.name}`} className="h-full w-full object-contain" src={size.image} />
+                  <div className="relative h-24 w-24 flex-shrink-0 rounded-lg bg-surface-container p-2">
+                    <Image alt={`Poultry Microbes ${size.name}`} className="object-contain p-2" fill sizes="96px" src={size.image} />
                   </div>
                   <div className="flex-grow">
                     <h4 className="font-headline-md text-body-lg text-ink-black">{size.name}</h4>
@@ -220,10 +223,12 @@ export default function ProductsPage() {
             <div className="grid grid-cols-1 gap-gutter md:grid-cols-3">
               {pigSizes.map((size) => (
                 <div className="group cursor-pointer" key={size.name}>
-                  <div className="relative mb-4 overflow-hidden rounded-2xl border border-outline-variant bg-surface-container">
-                    <img
+                  <div className="relative mb-4 aspect-square overflow-hidden rounded-2xl border border-outline-variant bg-surface-container">
+                    <Image
                       alt={`Pig Microbes ${size.name}`}
-                      className="aspect-square w-full object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                      className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
                       src={size.image}
                     />
                     <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent p-6 opacity-0 transition-opacity group-hover:opacity-100">
@@ -267,11 +272,8 @@ export default function ProductsPage() {
             <p className="font-body-md text-on-surface">© 2026 MolaPlus Africa. Scientific Nutrition for Growth.</p>
           </div>
           <div className="flex flex-wrap gap-x-gutter gap-y-stack-sm md:justify-end">
-            <Link className="font-label-md text-on-surface-variant underline hover:text-primary" href="/resources">
-              Lab Results
-            </Link>
-            <Link className="font-label-md text-on-surface-variant underline hover:text-primary" href="/outlets">
-              Find an Outlet
+            <Link className="font-label-md text-on-surface-variant underline hover:text-primary" href="/distributors">
+              Find a Distributor
             </Link>
             <Link className="font-label-md text-on-surface-variant underline hover:text-primary" href="/contact">
               Technical Support

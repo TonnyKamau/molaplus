@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 const heroImage =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuAwRvcWiP9YQFEBPyxVFkGP4uzsHdrUbBoftg7o3sEKB610PJGuEuz4sFdqMhecXUAoORpmcSX1DPFv1XUdouj9U8WRBxYElMdET6ZjR1aDUcW5sHklOSt2VWNBn9Y5Q6-csKZte1cQSTJ6gintVVj8oDszi5uDZuBcutpvXG2UBEfYd899fNSA_qvHRuBlEs2kwf11M23Be146oIAJNITK7igMd3IivsOrgE0oflDjSG03lHMdDptInrLdDgwiKe0Evcw3BKc3SDrf";
 
@@ -13,38 +16,30 @@ export default function Home() {
             <button className="rounded-full p-2 transition-colors hover:bg-surface-container-high active:opacity-80 md:hidden">
               <span className="material-symbols-outlined text-primary">menu</span>
             </button>
-            <a className="flex items-center gap-3" href="/">
-              <img alt="MolaPlus Africa logo" className="h-10 w-10 rounded-full object-contain" src="/molaplus/logo.png" />
+            <Link className="flex items-center gap-3" href="/">
+              <Image alt="MolaPlus Africa logo" className="h-10 w-10 rounded-full object-contain" height={40} src="/molaplus/logo.png" width={40} />
               <h1 className="font-headline-md text-headline-md font-extrabold tracking-tight text-primary">
                 MolaPlus Africa
               </h1>
-            </a>
+            </Link>
           </div>
           <nav className="hidden items-center gap-8 md:flex">
-            <a className="font-label-md text-label-md font-bold text-primary transition-colors" href="/">
+            <Link className="font-label-md text-label-md font-bold text-primary transition-colors" href="/">
               Home
-            </a>
-            <a className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/products">
+            </Link>
+            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/products">
               Products
-            </a>
-            <a className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="#services">
-              Services
-            </a>
-            <a className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/consultancy">
+            </Link>
+            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/consultancy">
               Consultancy
-            </a>
-            <a className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/contact">
+            </Link>
+            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/contact">
               Contact
-            </a>
+            </Link>
           </nav>
-          <div className="flex items-center gap-2">
-            <button className="rounded-full p-2 transition-colors hover:bg-surface-container-high active:opacity-80">
-              <span className="material-symbols-outlined text-primary">search</span>
-            </button>
-            <button className="rounded-full p-2 transition-colors hover:bg-surface-container-high active:opacity-80">
-              <span className="material-symbols-outlined text-primary">account_circle</span>
-            </button>
-          </div>
+          <Link className="hidden rounded-full bg-primary px-5 py-2 font-label-md text-sm font-bold text-white transition-colors hover:bg-primary-container md:inline-flex" href="/distributors">
+            Find Distributors
+          </Link>
         </div>
       </header>
 
@@ -52,9 +47,12 @@ export default function Home() {
         <section className="relative flex h-[85vh] items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 z-10 bg-gradient-to-r from-ink-black/80 via-ink-black/40 to-transparent" />
-            <img
+            <Image
               alt="A lush green modern dairy farm with healthy cows grazing"
               className="h-full w-full object-cover"
+              fill
+              priority
+              sizes="100vw"
               src={heroImage}
             />
           </div>
@@ -106,16 +104,16 @@ export default function Home() {
                   Scientifically formulated additives designed to maximize health, productivity, and profitability across different livestock sectors.
                 </p>
               </div>
-              <a className="flex items-center gap-1 font-bold text-primary underline-offset-4 hover:underline" href="/products">
+              <Link className="flex items-center gap-1 font-bold text-primary underline-offset-4 hover:underline" href="/products">
                 View Product Catalog <span className="material-symbols-outlined">arrow_outward</span>
-              </a>
+              </Link>
             </div>
 
             <div className="grid grid-cols-1 gap-gutter md:grid-cols-12">
               <div className="group relative overflow-hidden rounded-xl border border-outline-variant bg-white p-6 transition-all hover:border-primary/20 hover:shadow-xl md:col-span-7">
                 <div className="flex flex-col items-center gap-8 md:flex-row">
-                  <div className="aspect-[1.5] w-full overflow-hidden rounded-lg border border-surface-container md:w-1/2">
-                    <img alt="Super Milk Booster" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" src="/molaplus/milkbooster-2kg.png" />
+                  <div className="relative aspect-[1.5] w-full overflow-hidden rounded-lg border border-surface-container md:w-1/2">
+                    <Image alt="Super Milk Booster" className="object-contain transition-transform duration-500 group-hover:scale-105" fill sizes="(min-width: 768px) 320px, 100vw" src="/molaplus/milkbooster-2kg.png" />
                   </div>
                   <div className="w-full md:w-1/2">
                     <span className="mb-4 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase text-primary">Best Seller</span>
@@ -123,24 +121,24 @@ export default function Home() {
                     <p className="font-body-md text-body-md mb-6 text-on-surface-variant">
                       Enhance milk production and quality in dairy cows with our signature mineral and probiotic blend.
                     </p>
-                    <a className="inline-flex items-center gap-2 font-bold text-secondary transition-all hover:gap-3" href="/products/super-milk-booster">
+                    <Link className="inline-flex items-center gap-2 font-bold text-secondary transition-all hover:gap-3" href="/products/super-milk-booster">
                       View Products <span className="material-symbols-outlined">trending_flat</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
 
               <div className="group relative flex flex-col overflow-hidden rounded-xl border border-outline-variant bg-white p-6 transition-all hover:border-primary/20 hover:shadow-xl md:col-span-5">
-                <div className="mb-6 aspect-[1.5] w-full overflow-hidden rounded-lg border border-surface-container">
-                  <img alt="Poultry Microbes" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" src="/molaplus/poultry-5ltr.png" />
+                <div className="relative mb-6 aspect-[1.5] w-full overflow-hidden rounded-lg border border-surface-container">
+                  <Image alt="Poultry Microbes" className="object-contain transition-transform duration-500 group-hover:scale-105" fill sizes="(min-width: 768px) 420px, 100vw" src="/molaplus/poultry-5ltr.png" />
                 </div>
                 <h3 className="font-headline-md text-headline-md mb-2 text-ink-black">Poultry Microbes</h3>
                 <p className="font-body-md text-body-md mb-6 flex-grow text-on-surface-variant">
                   Improve intestinal health and feed conversion rates in broilers and layers naturally.
                 </p>
-                <a className="inline-flex items-center gap-2 font-bold text-secondary transition-all hover:gap-3" href="/products#poultry-microbes">
+                <Link className="inline-flex items-center gap-2 font-bold text-secondary transition-all hover:gap-3" href="/products#poultry-microbes">
                   View Products <span className="material-symbols-outlined">trending_flat</span>
-                </a>
+                </Link>
               </div>
 
               <div className="group relative overflow-hidden rounded-xl border border-outline-variant bg-white p-8 transition-all hover:border-primary/20 hover:shadow-xl md:col-span-12">
@@ -156,12 +154,12 @@ export default function Home() {
                       <span className="rounded-lg bg-surface-container-high px-4 py-2 font-label-md text-xs">SHEEP</span>
                       <span className="rounded-lg bg-surface-container-high px-4 py-2 font-label-md text-xs">BEEF</span>
                     </div>
-                    <a className="mt-10 inline-flex items-center gap-2 font-bold text-secondary transition-all hover:gap-3" href="/products#pig-microbes">
+                    <Link className="mt-10 inline-flex items-center gap-2 font-bold text-secondary transition-all hover:gap-3" href="/products#pig-microbes">
                       View Products <span className="material-symbols-outlined">trending_flat</span>
-                    </a>
+                    </Link>
                   </div>
-                  <div className="order-1 aspect-[1.5] w-full overflow-hidden rounded-lg border border-surface-container md:order-2 md:w-2/5">
-                    <img alt="Livestock Microbes" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105" src="/molaplus/pig-20ltr.png" />
+                  <div className="relative order-1 aspect-[1.5] w-full overflow-hidden rounded-lg border border-surface-container md:order-2 md:w-2/5">
+                    <Image alt="Livestock Microbes" className="object-contain transition-transform duration-500 group-hover:scale-105" fill sizes="(min-width: 768px) 420px, 100vw" src="/molaplus/pig-20ltr.png" />
                   </div>
                 </div>
               </div>
@@ -179,8 +177,8 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
               <div className="group text-center">
-                <div className="mx-auto mb-6 h-24 w-24 overflow-hidden rounded-2xl ring-4 ring-primary/5 transition-all duration-300 group-hover:ring-primary/20">
-                  <img alt="Expert Consultancy" className="h-full w-full object-cover" src="/molaplus/service-cows.png" />
+                <div className="relative mx-auto mb-6 h-24 w-24 overflow-hidden rounded-2xl ring-4 ring-primary/5 transition-all duration-300 group-hover:ring-primary/20">
+                  <Image alt="Expert Consultancy" className="object-cover" fill sizes="96px" src="/molaplus/service-cows.png" />
                 </div>
                 <h3 className="font-headline-md text-headline-md mb-3 text-primary">Expert Consultancy</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant">
@@ -188,8 +186,8 @@ export default function Home() {
                 </p>
               </div>
               <div className="group text-center">
-                <div className="mx-auto mb-6 h-24 w-24 overflow-hidden rounded-2xl ring-4 ring-primary/5 transition-all duration-300 group-hover:ring-primary/20">
-                  <img alt="Training Programs" className="h-full w-full object-cover" src="/molaplus/service-poultry.png" />
+                <div className="relative mx-auto mb-6 h-24 w-24 overflow-hidden rounded-2xl ring-4 ring-primary/5 transition-all duration-300 group-hover:ring-primary/20">
+                  <Image alt="Training Programs" className="object-cover" fill sizes="96px" src="/molaplus/service-poultry.png" />
                 </div>
                 <h3 className="font-headline-md text-headline-md mb-3 text-primary">Training Programs</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant">
@@ -197,8 +195,8 @@ export default function Home() {
                 </p>
               </div>
               <div className="group text-center">
-                <div className="mx-auto mb-6 h-24 w-24 overflow-hidden rounded-2xl ring-4 ring-primary/5 transition-all duration-300 group-hover:ring-primary/20">
-                  <img alt="Technical Support" className="h-full w-full object-cover" src="/molaplus/service-pigs.png" />
+                <div className="relative mx-auto mb-6 h-24 w-24 overflow-hidden rounded-2xl ring-4 ring-primary/5 transition-all duration-300 group-hover:ring-primary/20">
+                  <Image alt="Technical Support" className="object-cover" fill sizes="96px" src="/molaplus/service-pigs.png" />
                 </div>
                 <h3 className="font-headline-md text-headline-md mb-3 text-primary">Technical Support</h3>
                 <p className="font-body-md text-body-md text-on-surface-variant">
@@ -276,8 +274,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative">
-                <div className="aspect-square overflow-hidden rounded-[2rem] bg-primary-container">
-                  <img alt="Scientist examining a feed sample in a laboratory" className="h-full w-full object-cover opacity-60 mix-blend-overlay" src={labImage} />
+                <div className="relative aspect-square overflow-hidden rounded-[2rem] bg-primary-container">
+                  <Image alt="Scientist examining a feed sample in a laboratory" className="object-cover opacity-60 mix-blend-overlay" fill sizes="(min-width: 1024px) 50vw, 100vw" src={labImage} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="max-w-xs rounded-2xl border border-white bg-white/90 p-8 text-center shadow-2xl backdrop-blur-md">
                       <div className="font-headline-xl mb-2 text-5xl text-primary">15+</div>
@@ -331,31 +329,23 @@ export default function Home() {
               <p className="font-body-md mb-6 text-on-surface-variant">
                 Leaders in modern animal nutrition, biotech solutions, and sustainable farming practices across the continent.
               </p>
-              <div className="flex gap-4">
-                <a className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary hover:text-white" href="https://molaplusafrica.com" rel="noopener" target="_blank">
-                  <span className="material-symbols-outlined">public</span>
-                </a>
-                <a className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors hover:bg-primary hover:text-white" href="mailto:info@molaplusafrica.com">
-                  <span className="material-symbols-outlined">mail</span>
-                </a>
-              </div>
             </div>
             <div className="grid grid-cols-2 gap-12 md:grid-cols-3">
               <FooterColumn
                 title="Products"
                 items={[
+                  ["All Products", "/products"],
                   ["Milk Booster", "/products/super-milk-booster"],
-                  ["Poultry Care", "/products#poultry-microbes"],
-                  ["Swine Nutrition", "/products#pig-microbes"],
-                  ["Aquaculture", "/products"],
+                  ["Compare Products", "/product-comparison"],
                 ]}
               />
               <FooterColumn
                 title="Company"
                 items={[
                   ["About Us", "/about-us"],
-                  ["Research Lab", "/resources"],
-                  ["Careers", "/contact"],
+                  ["Resources", "/resources"],
+                  ["Distributors", "/distributors"],
+                  ["Contact", "/contact"],
                 ]}
               />
               <FooterColumn
@@ -363,9 +353,6 @@ export default function Home() {
                 items={[
                   ["Privacy Policy", "/privacy"],
                   ["Terms of Service", "/terms"],
-                  ["Distributor Portal", "/outlets"],
-                  ["Lab Results", "/resources"],
-                  ["Feeding Manuals", "/resources"],
                 ]}
                 className="hidden md:block"
               />
@@ -373,10 +360,6 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center justify-between gap-4 border-t border-outline-variant pt-8 md:flex-row">
             <p className="font-label-md text-label-md text-on-surface-variant">© 2026 MolaPlus Africa. Advanced Animal Nutrition.</p>
-            <div className="flex gap-8">
-              <a className="font-label-md text-label-md text-on-surface-variant underline hover:text-primary" href="/privacy">Privacy Policy</a>
-              <a className="font-label-md text-label-md text-on-surface-variant underline hover:text-primary" href="/terms">Terms of Service</a>
-            </div>
           </div>
         </div>
       </footer>
@@ -399,9 +382,9 @@ function FooterColumn({
       <ul className="space-y-4 font-label-md text-on-surface-variant">
         {items.map(([label, href]) => (
           <li key={label}>
-            <a className="transition-colors hover:text-primary" href={href}>
+            <Link className="transition-colors hover:text-primary" href={href}>
               {label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

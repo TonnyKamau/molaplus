@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function LegalPage({ title, children }: { title: string; children: React.ReactNode }) {
@@ -6,7 +7,7 @@ export function LegalPage({ title, children }: { title: string; children: React.
       <header className="fixed top-0 z-50 w-full border-b border-outline-variant bg-surface">
         <div className="mx-auto flex h-16 w-full max-w-container-max-width items-center justify-between px-margin-mobile md:px-margin-desktop">
           <Link className="flex items-center gap-3" href="/">
-            <img alt="MolaPlus Africa logo" className="h-10 w-10 rounded-full object-contain" src="/molaplus/logo.png" />
+            <Image alt="MolaPlus Africa logo" className="h-10 w-10 rounded-full object-contain" height={40} src="/molaplus/logo.png" width={40} />
             <span className="font-headline-md text-headline-md font-extrabold tracking-tight text-primary">
               MolaPlus Africa
             </span>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -11,7 +12,7 @@ const drawerLinks = [
   { href: "/product-comparison", label: "Compare Products", icon: "compare_arrows" },
   { href: "/consultancy", label: "Consultancy", icon: "model_training" },
   { href: "/resources", label: "Resources", icon: "library_books" },
-  { href: "/outlets", label: "Outlets", icon: "location_on" },
+  { href: "/distributors", label: "Distributors", icon: "location_on" },
   { href: "/about-us", label: "About Us", icon: "info" },
   { href: "/contact", label: "Contact", icon: "contact_support" },
 ];
@@ -20,17 +21,13 @@ const bottomLinks = [
   { href: "/", label: "Home", icon: "home" },
   { href: "/products", label: "Products", icon: "inventory_2" },
   { href: "/resources", label: "Resources", icon: "library_books" },
-  { href: "/outlets", label: "Outlets", icon: "location_on" },
+  { href: "/distributors", label: "Distributors", icon: "location_on" },
   { href: "/about-us", label: "About", icon: "info" },
 ];
 
 export function MobileNav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
@@ -62,8 +59,8 @@ export function MobileNav() {
         <div className="overflow-y-auto p-6">
           <div className="mb-8 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <img alt="MolaPlus Africa logo" className="h-9 w-9 rounded-full object-contain" src="/molaplus/logo.png" />
-              <h2 className="font-headline-md text-headline-md text-primary">MolaPlus Solutions</h2>
+              <Image alt="MolaPlus Africa logo" className="h-9 w-9 rounded-full object-contain" height={36} src="/molaplus/logo.png" width={36} />
+              <h2 className="font-headline-md text-headline-md text-primary">MolaPlus Africa</h2>
             </div>
             <button
               aria-label="Close menu"
@@ -85,6 +82,7 @@ export function MobileNav() {
                         : "mx-2 flex items-center gap-4 px-4 py-3 text-on-surface-variant transition-all hover:bg-surface-container-high"
                     }
                     href={link.href}
+                    onClick={() => setOpen(false)}
                   >
                     <span className="material-symbols-outlined">{link.icon}</span>
                     {link.label}
@@ -110,6 +108,7 @@ export function MobileNav() {
               }
               href={link.href}
               key={link.href}
+              onClick={() => setOpen(false)}
             >
               <span
                 className="material-symbols-outlined"

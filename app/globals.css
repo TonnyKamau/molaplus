@@ -113,6 +113,17 @@ html {
   color-scheme: only light;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   background-color: #f7fbf4;
   color: #181d19;
@@ -123,17 +134,54 @@ a {
   text-decoration: none;
 }
 
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+  max-width: 100%;
+}
+
+.text-headline-xl {
+  font-size: 48px;
+  line-height: 56px;
+}
+
+.text-headline-lg {
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+}
+
 .material-symbols-outlined {
   display: inline-block;
   font-family: "Material Symbols Outlined";
+  font-size: 24px;
   font-style: normal;
   font-variation-settings:
     "FILL" 0,
     "wght" 400,
     "GRAD" 0,
     "opsz" 24;
+  height: 1em;
   line-height: 1;
+  max-width: 1em;
+  min-width: 1em;
+  overflow: hidden;
+  text-transform: none;
   vertical-align: middle;
+  white-space: nowrap;
 }
 
 .glass-effect {
@@ -153,14 +201,205 @@ a {
     scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.static-html-page {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.static-html-page * {
+  min-width: 0;
+}
+
+.static-html-page p,
+.static-html-page h1,
+.static-html-page h2,
+.static-html-page h3,
+.static-html-page h4,
+.static-html-page a,
+.static-html-page span,
+.static-html-page label {
+  overflow-wrap: anywhere;
+}
+
+.static-html-page a,
+.static-html-page button {
+  min-height: 40px;
+}
+
+.static-html-page [class*="inline-flex"],
+.static-html-page [class*="flex"] {
+  min-width: 0;
+}
+
+.static-html-page a[class*="flex"],
+.static-html-page a[class*="inline-flex"],
+.static-html-page button[class*="flex"],
+.static-html-page button[class*="inline-flex"] {
+  flex-wrap: wrap;
+}
+
+.static-html-page [class*="max-w-container-max-width"] {
+  width: 100%;
+}
+
+.static-html-page [class*="grid-cols-12"] > * {
+  min-width: 0;
+}
+
+.static-html-page iframe,
+.static-html-page table {
+  max-width: 100%;
+}
+
 @media (max-width: 767px) {
   .text-headline-xl {
-    font-size: 40px;
-    line-height: 48px;
+    font-size: 34px;
+    line-height: 42px;
+  }
+
+  .text-headline-lg {
+    font-size: 28px;
+    line-height: 36px;
+  }
+
+  .text-headline-md {
+    font-size: 21px;
+    line-height: 28px;
   }
 
   /* keep page content clear of the fixed BottomNavBar */
   body {
     padding-bottom: 64px;
+  }
+
+  .static-html-page [class*="px-margin-desktop"] {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .static-html-page [class*="py-24"] {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+
+  .static-html-page [class*="p-12"] {
+    padding: 24px;
+  }
+
+  .static-html-page [class*="p-10"],
+  .static-html-page [class*="p-8"] {
+    padding: 20px;
+  }
+
+  .static-html-page [class*="gap-16"] {
+    gap: 32px;
+  }
+
+  .static-html-page [class*="gap-12"],
+  .static-html-page [class*="gap-10"],
+  .static-html-page [class*="gap-8"] {
+    gap: 24px;
+  }
+
+  .static-html-page [class*="h-[80vh]"],
+  .static-html-page [class*="h-[600px]"] {
+    min-height: 520px;
+    height: auto;
+  }
+
+  .static-html-page [class*="h-[700px]"],
+  .static-html-page [class*="h-[500px]"],
+  .static-html-page .map-container {
+    min-height: 0;
+    height: auto;
+  }
+
+  .static-html-page [class*="grid-cols-12"],
+  .static-html-page [class*="grid-cols-4"],
+  .static-html-page [class*="grid-cols-3"],
+  .static-html-page [class*="grid-cols-2"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .static-html-page [class*="col-span-"],
+  .static-html-page [class*="md:col-span-"],
+  .static-html-page [class*="lg:col-span-"] {
+    grid-column: auto;
+  }
+
+  .static-html-page [class*="md:flex-row"],
+  .static-html-page [class*="lg:flex-row"] {
+    flex-direction: column;
+  }
+
+  .static-html-page [class*="md:w-1/2"],
+  .static-html-page [class*="lg:w-1/2"],
+  .static-html-page [class*="w-1/2"],
+  .static-html-page [class*="w-96"] {
+    width: 100%;
+  }
+
+  .static-html-page [class*="max-w-[240px]"],
+  .static-html-page [class*="max-w-xs"] {
+    max-width: 100%;
+  }
+
+  .static-html-page [class*="absolute"][class*="-bottom-"],
+  .static-html-page [class*="absolute"][class*="-left-"],
+  .static-html-page [class*="absolute"][class*="-right-"] {
+    position: static;
+    margin-top: 16px;
+  }
+
+  .static-html-page [class*="rotate-3"] {
+    transform: none;
+  }
+
+  .static-html-page [class*="rounded-3xl"] {
+    border-radius: 16px;
+  }
+
+  .static-html-page a[class*="px-8"],
+  .static-html-page button[class*="px-8"],
+  .static-html-page a[class*="px-12"],
+  .static-html-page button[class*="px-12"] {
+    justify-content: center;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+  }
+
+  .static-html-page header [class*="px-margin-desktop"],
+  .static-html-page header [class*="px-margin-mobile"] {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .static-html-page header nav,
+  .static-html-page header [class*="account_circle"],
+  .static-html-page header [class*="search"] {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .text-headline-xl {
+    font-size: 42px;
+    line-height: 50px;
+  }
+
+  .static-html-page [class*="px-margin-desktop"] {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .static-html-page [class*="grid-cols-12"] {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .static-html-page [class*="md:grid-cols-3"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
