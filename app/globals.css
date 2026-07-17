@@ -252,6 +252,10 @@ button {
   max-width: 100%;
 }
 
+.static-html-page .material-symbols-outlined {
+  display: none;
+}
+
 .static-html-page .comparison-grid,
 .static-html-page .comparison-grid *,
 .static-html-page aside,
@@ -461,6 +465,19 @@ button {
   .static-html-page header [class*="search"] {
     display: none;
   }
+
+  .static-html-page header button:first-of-type {
+    color: var(--color-primary);
+  }
+
+  .static-html-page header button:first-of-type::before {
+    content: "";
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    box-shadow: 0 7px 0 currentColor, 0 14px 0 currentColor;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -484,6 +501,7 @@ button {
 }
 
 @media (min-width: 768px) {
+  .static-html-page header button,
   .static-html-page header button.material-symbols-outlined,
   .static-html-page header .material-symbols-outlined.cursor-pointer {
     display: none !important;
