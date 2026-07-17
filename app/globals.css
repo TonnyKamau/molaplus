@@ -252,6 +252,85 @@ button {
   max-width: 100%;
 }
 
+.static-html-page .comparison-grid,
+.static-html-page .comparison-grid *,
+.static-html-page aside,
+.static-html-page aside * {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.static-html-page .comparison-grid {
+  grid-template-columns: minmax(230px, 0.9fr) repeat(
+      3,
+      minmax(210px, 1fr)
+    ) !important;
+}
+
+.static-html-page [class*="min-w-[900px]"]:has(.comparison-grid) {
+  min-width: 860px;
+}
+
+.static-html-page .comparison-grid > div {
+  padding-left: clamp(0.75rem, 1.1vw, 1.25rem);
+  padding-right: clamp(0.75rem, 1.1vw, 1.25rem);
+}
+
+.static-html-page .comparison-grid h3 {
+  font-size: clamp(1.45rem, 1.85vw, 2rem);
+  line-height: 1.15;
+  hyphens: none;
+}
+
+.static-html-page .comparison-grid a[href="/contact"] {
+  width: auto;
+  min-width: 100%;
+  padding: 0.65rem 0.8rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.static-html-page .comparison-grid span[class*="rounded-full"] {
+  display: inline-flex;
+  width: auto;
+  max-width: 100%;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.45rem 0.85rem;
+  line-height: 1.2;
+}
+
+.static-html-page .comparison-grid .material-symbols-outlined,
+.static-html-page aside .material-symbols-outlined {
+  display: none;
+}
+
+.static-html-page
+  .bg-secondary-container.rounded-xl.flex.items-center.justify-between {
+  gap: 24px;
+}
+
+.static-html-page
+  .bg-secondary-container.rounded-xl.flex.items-center.justify-between
+  button {
+  flex: 0 0 auto;
+  min-width: 220px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  .static-html-page [class*="lg:flex-row"]:has(.comparison-grid) {
+    flex-direction: column;
+  }
+
+  .static-html-page aside[class*="lg:w-[320px]"] {
+    width: 100%;
+  }
+}
+
 @media (max-width: 767px) {
   .text-headline-xl {
     font-size: 34px;
