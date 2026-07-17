@@ -403,3 +403,10 @@ button {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
+
+@media (min-width: 768px) {
+  .static-html-page header button.material-symbols-outlined,
+  .static-html-page header .material-symbols-outlined.cursor-pointer {
+    display: none !important;
+  }
+}

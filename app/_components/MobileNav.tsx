@@ -31,6 +31,11 @@ export function MobileNav() {
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
+      if (!window.matchMedia("(max-width: 767px)").matches) {
+        setOpen(false);
+        return;
+      }
+
       const target = event.target as HTMLElement | null;
       const trigger = target?.closest("button, .material-symbols-outlined");
       if (trigger?.textContent?.trim() === "menu") {
@@ -45,14 +50,14 @@ export function MobileNav() {
   return (
     <>
       <div
-        className={`fixed inset-0 z-[55] bg-black/40 transition-opacity duration-300 ${
+        className={`fixed inset-0 z-[55] bg-black/40 transition-opacity duration-300 md:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setOpen(false)}
       />
       <nav
         aria-label="Main menu"
-        className={`fixed inset-y-0 left-0 z-[60] flex h-full w-80 flex-col rounded-r-xl bg-surface-container-lowest shadow-lg transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 left-0 z-[60] flex h-full w-80 flex-col rounded-r-xl bg-surface-container-lowest shadow-lg transition-transform duration-300 ease-in-out md:hidden ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -60,7 +65,9 @@ export function MobileNav() {
           <div className="mb-8 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Image alt="MolaPlus Africa logo" className="h-9 w-9 rounded-full object-contain" height={36} src="/molaplus/logo.png" width={36} />
-              <h2 className="font-headline-md text-headline-md text-primary">MolaPlus Africa</h2>
+              <h2 className="font-headline-md text-headline-md text-primary" suppressHydrationWarning>
+                MolaPlus Africa
+              </h2>
             </div>
             <button
               aria-label="Close menu"
