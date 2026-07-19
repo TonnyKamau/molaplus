@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const drawerLinks = [
@@ -56,27 +55,26 @@ export function MobileNav() {
         }`}
         onClick={() => setOpen(false)}
       />
-      <motion.nav
+      <nav
         aria-label="Main menu"
-        animate={{ x: open ? 0 : "-100%" }}
-        className="fixed inset-y-0 left-0 z-[60] flex h-full w-[min(21rem,88vw)] flex-col rounded-r-2xl border-r border-white/10 bg-[#07130c] text-white shadow-2xl md:hidden"
-        initial={false}
-        transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+        className={`fixed inset-y-0 left-0 z-[60] flex h-full w-80 flex-col rounded-r-xl bg-surface-container-lowest shadow-lg transition-transform duration-300 ease-in-out md:hidden ${
+          open ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <div className="overflow-y-auto p-6">
           <div className="mb-8 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Image alt="MolaPlus Africa logo" className="h-9 w-9 rounded-full object-contain" height={36} src="/molaplus/logo.png" width={36} />
-              <h2 className="font-headline-md text-headline-md text-primary-fixed" suppressHydrationWarning>
+              <h2 className="font-headline-md text-headline-md text-primary" suppressHydrationWarning>
                 MolaPlus Africa
               </h2>
             </div>
             <button
               aria-label="Close menu"
-              className="rounded-full border border-white/10 bg-white/10 p-2 transition-colors hover:bg-white/15"
+              className="rounded-full p-2 transition-colors hover:bg-surface-container-high"
               onClick={() => setOpen(false)}
             >
-              <span className="material-symbols-outlined text-primary-fixed">close</span>
+              <span className="material-symbols-outlined text-primary">close</span>
             </button>
           </div>
           <ul className="flex flex-col gap-2">
@@ -87,8 +85,8 @@ export function MobileNav() {
                   <Link
                     className={
                       active
-                        ? "mx-1 flex items-center gap-4 rounded-full bg-white px-4 py-3 font-bold text-primary"
-                        : "mx-1 flex items-center gap-4 rounded-full px-4 py-3 text-white/72 transition-all hover:bg-white/10 hover:text-white"
+                        ? "mx-2 flex items-center gap-4 rounded-full bg-primary-container px-4 py-3 font-bold text-on-primary-container"
+                        : "mx-2 flex items-center gap-4 px-4 py-3 text-on-surface-variant transition-all hover:bg-surface-container-high"
                     }
                     href={link.href}
                     onClick={() => setOpen(false)}
@@ -101,10 +99,10 @@ export function MobileNav() {
             })}
           </ul>
         </div>
-      </motion.nav>
+      </nav>
       <nav
         aria-label="Bottom navigation"
-        className="fixed bottom-3 left-1/2 z-50 flex w-[calc(100%-1.5rem)] -translate-x-1/2 items-center justify-between rounded-2xl border border-white/10 bg-[#07130c]/92 px-2 py-2 text-white shadow-[0_18px_60px_rgba(0,0,0,0.28)] backdrop-blur-xl md:hidden"
+        className="fixed bottom-0 left-0 z-50 flex w-full items-center justify-around rounded-t-xl border-t border-outline-variant bg-surface-container-lowest px-2 py-2 shadow-lg md:hidden"
       >
         {bottomLinks.map((link) => {
           const active = pathname === link.href;
@@ -112,8 +110,8 @@ export function MobileNav() {
             <Link
               className={
                 active
-                  ? "flex min-w-0 flex-1 flex-col items-center justify-center rounded-xl bg-white px-1 py-2 text-primary"
-                  : "flex min-w-0 flex-1 flex-col items-center justify-center rounded-xl px-1 py-2 text-white/65 transition-colors hover:text-white"
+                  ? "flex flex-col items-center justify-center rounded-full bg-primary-container px-4 py-1 text-on-primary-container"
+                  : "flex flex-col items-center justify-center text-on-surface-variant"
               }
               href={link.href}
               key={link.href}
@@ -125,7 +123,7 @@ export function MobileNav() {
               >
                 {link.icon}
               </span>
-              <span className="max-w-full truncate text-[10px] font-bold leading-4">{link.label}</span>
+              <span className="text-[10px] font-bold">{link.label}</span>
             </Link>
           );
         })}
