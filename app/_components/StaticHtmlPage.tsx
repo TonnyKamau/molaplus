@@ -20,6 +20,13 @@ export function StaticHtmlPage({ html }: { html: string }) {
       image.fetchPriority = index === 0 ? "high" : "low";
     });
 
+    // These legacy utility classes hid sections permanently (they were meant
+    // for a scroll animation that never ran). Strip them — ScrollReveal now
+    // drives the reveal via [data-reveal].
+    root.querySelectorAll(".opacity-0.translate-y-10, .translate-y-10").forEach((el) => {
+      el.classList.remove("opacity-0", "translate-y-10");
+    });
+
     const onClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
         return;

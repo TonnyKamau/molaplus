@@ -190,15 +190,102 @@ button {
   -webkit-backdrop-filter: blur(12px);
 }
 
-.static-html-page .opacity-0 {
-  opacity: 1;
+/* ---------------------------------------------------------------------------
+   Motion system
+   --------------------------------------------------------------------------- */
+/* Transform-only so content is never invisible if the animation can't run
+   (background tabs, frozen compositor, etc.). */
+@keyframes mp-page-in {
+  from {
+    transform: translateY(14px);
+  }
+  to {
+    transform: none;
+  }
 }
 
-.static-html-page .translate-y-10 {
-  --tw-translate-y: 0;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
-    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+/* Smooth micro-interactions on every interactive element */
+a,
+button,
+summary,
+[role="button"] {
+  transition-property: color, background-color, border-color, box-shadow,
+    transform, opacity, filter;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:active,
+button:active,
+[role="button"]:active {
+  transform: translateY(1px);
+}
+
+/* Page enter animation (runs on every route change via app/template.tsx).
+   No fill mode — the element's resting state stays fully visible. */
+.mp-page-enter {
+  animation: mp-page-in 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Scroll reveal — elements tagged [data-reveal] by ScrollReveal */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-reveal].mp-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Staggered children reveal for grids/cards inside a revealed block */
+[data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal-stagger].mp-in > * {
+  opacity: 1;
+  transform: none;
+}
+
+[data-reveal-stagger].mp-in > *:nth-child(2) {
+  transition-delay: 80ms;
+}
+[data-reveal-stagger].mp-in > *:nth-child(3) {
+  transition-delay: 160ms;
+}
+[data-reveal-stagger].mp-in > *:nth-child(4) {
+  transition-delay: 240ms;
+}
+[data-reveal-stagger].mp-in > *:nth-child(5) {
+  transition-delay: 320ms;
+}
+[data-reveal-stagger].mp-in > *:nth-child(n + 6) {
+  transition-delay: 400ms;
+}
+
+/* Reduced-motion users: never animate, never hide content behind a reveal */
+@media (prefers-reduced-motion: reduce) {
+  .mp-page-enter {
+    animation: none;
+  }
+  a:active,
+  button:active,
+  [role="button"]:active {
+    transform: none;
+  }
+  [data-reveal],
+  [data-reveal-stagger] > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .static-html-page {
@@ -351,11 +438,6 @@ button {
     line-height: 28px;
   }
 
-  /* keep page content clear of the fixed BottomNavBar */
-  body {
-    padding-bottom: 64px;
-  }
-
   .static-html-page [class*="px-margin-desktop"] {
     padding-left: 16px;
     padding-right: 16px;
@@ -453,31 +535,6 @@ button {
     padding-right: 20px;
     text-align: center;
   }
-
-  .static-html-page header [class*="px-margin-desktop"],
-  .static-html-page header [class*="px-margin-mobile"] {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .static-html-page header nav,
-  .static-html-page header [class*="account_circle"],
-  .static-html-page header [class*="search"] {
-    display: none;
-  }
-
-  .static-html-page header button:first-of-type {
-    color: var(--color-primary);
-  }
-
-  .static-html-page header button:first-of-type::before {
-    content: "";
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: currentColor;
-    box-shadow: 0 7px 0 currentColor, 0 14px 0 currentColor;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -500,10 +557,9 @@ button {
   }
 }
 
-@media (min-width: 768px) {
-  .static-html-page header button,
-  .static-html-page header button.material-symbols-outlined,
-  .static-html-page header .material-symbols-outlined.cursor-pointer {
-    display: none !important;
+/* keep page content clear of the fixed bottom navigation (shown below lg) */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 72px;
   }
 }

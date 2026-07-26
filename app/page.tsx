@@ -10,40 +10,7 @@ const labImage =
 export default function Home() {
   return (
     <div className="overflow-x-hidden bg-surface text-on-surface">
-      <header className="fixed top-0 z-50 w-full border-b border-outline-variant bg-surface">
-        <div className="mx-auto flex h-16 w-full max-w-container-max-width items-center justify-between px-margin-mobile md:px-margin-desktop">
-          <div className="flex items-center gap-4">
-            <button className="rounded-full p-2 transition-colors hover:bg-surface-container-high active:opacity-80 md:hidden">
-              <span className="material-symbols-outlined text-primary">menu</span>
-            </button>
-            <Link className="flex items-center gap-3" href="/">
-              <Image alt="MolaPlus Africa logo" className="h-10 w-10 rounded-full object-contain" height={40} src="/molaplus/logo.png" width={40} />
-              <h1 className="font-headline-md text-headline-md font-extrabold tracking-tight text-primary">
-                MolaPlus Africa
-              </h1>
-            </Link>
-          </div>
-          <nav className="hidden items-center gap-8 md:flex">
-            <Link className="font-label-md text-label-md font-bold text-primary transition-colors" href="/">
-              Home
-            </Link>
-            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/products">
-              Products
-            </Link>
-            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/consultancy">
-              Consultancy
-            </Link>
-            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/contact">
-              Contact
-            </Link>
-          </nav>
-          <Link className="hidden rounded-full bg-primary px-5 py-2 font-label-md text-sm font-bold text-white transition-colors hover:bg-primary-container md:inline-flex" href="/distributors">
-            Find Distributors
-          </Link>
-        </div>
-      </header>
-
-      <main className="pt-16">
+      <main>
         <section className="relative flex h-[85vh] items-center overflow-hidden">
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 z-10 bg-gradient-to-r from-ink-black/80 via-ink-black/40 to-transparent" />
@@ -77,20 +44,6 @@ export default function Home() {
                   Our Services
                 </a>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="border-b border-outline-variant/30 bg-surface-container-low py-12">
-          <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-            <p className="mb-8 text-center font-label-md text-xs uppercase tracking-[0.2em] text-on-surface-variant">
-              As featured and trusted by
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-12 opacity-60 grayscale transition-all duration-500 hover:grayscale-0 md:gap-24">
-              <span className="font-headline-md font-extrabold text-on-surface-variant">African Farming</span>
-              <span className="font-headline-md font-extrabold text-on-surface-variant">Farmbiz</span>
-              <span className="font-headline-md font-extrabold text-on-surface-variant">Business Daily</span>
-              <span className="font-headline-md font-extrabold text-on-surface-variant">KNA</span>
             </div>
           </div>
         </section>
@@ -251,15 +204,14 @@ export default function Home() {
                 </p>
                 <div className="space-y-4">
                   {[
-                    ["description", "Probiotic Efficacy Report 2023", "PDF - 4.2 MB", "download", "/resources"],
-                    ["science", "Dairy Performance Analysis", "External Link - Scientific Journal", "open_in_new", "https://www.sciencedirect.com/science/article/pii/S2405654518300726"],
-                    ["analytics", "Feed Conversion Ratio Calculator", "Web Tool - Interactive", "arrow_forward", "/product-comparison"],
+                    ["library_books", "Resources & Guides", "Feeding guides and product information", "arrow_forward", "/resources"],
+                    ["analytics", "Compare Our Products", "See the full product range side by side", "arrow_forward", "/product-comparison"],
+                    ["support_agent", "Talk to Our Technical Team", "Get tailored advice for your farm", "arrow_forward", "/contact"],
                   ].map(([icon, title, meta, action, href]) => (
-                    <a
+                    <Link
                       className="group flex items-center justify-between rounded-xl border border-outline-variant bg-white p-4 transition-all hover:border-primary hover:shadow-md"
                       href={href}
                       key={title}
-                      {...(href.startsWith("http") ? { target: "_blank", rel: "noopener" } : {})}
                     >
                       <div className="flex items-center gap-4">
                         <span className="material-symbols-outlined text-3xl text-primary">{icon}</span>
@@ -269,7 +221,7 @@ export default function Home() {
                         </div>
                       </div>
                       <span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary">{action}</span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -278,10 +230,12 @@ export default function Home() {
                   <Image alt="Scientist examining a feed sample in a laboratory" className="object-cover opacity-60 mix-blend-overlay" fill sizes="(min-width: 1024px) 50vw, 100vw" src={labImage} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="max-w-xs rounded-2xl border border-white bg-white/90 p-8 text-center shadow-2xl backdrop-blur-md">
-                      <div className="font-headline-xl mb-2 text-5xl text-primary">15+</div>
-                      <p className="mb-4 text-xs font-bold uppercase tracking-widest text-ink-black">Years of Research</p>
+                      <span className="material-symbols-outlined mb-2 text-5xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>
+                        biotech
+                      </span>
+                      <p className="mb-4 text-xs font-bold uppercase tracking-widest text-ink-black">Evidence-Based Nutrition</p>
                       <p className="text-sm text-on-surface-variant">
-                        Pioneering probiotic feed additives across the East African region since 2009.
+                        Feed supplements and probiotics formulated for productive livestock across East Africa.
                       </p>
                     </div>
                   </div>
@@ -320,74 +274,6 @@ export default function Home() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-outline-variant bg-surface-container-highest pb-stack-md pt-stack-lg">
-        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-          <div className="mb-16 flex flex-col items-start justify-between gap-12 text-left md:flex-row">
-            <div className="max-w-xs">
-              <h2 className="font-headline-md text-headline-md mb-6 font-bold text-primary">MolaPlus Africa</h2>
-              <p className="font-body-md mb-6 text-on-surface-variant">
-                Leaders in modern animal nutrition, biotech solutions, and sustainable farming practices across the continent.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-12 md:grid-cols-3">
-              <FooterColumn
-                title="Products"
-                items={[
-                  ["All Products", "/products"],
-                  ["Milk Booster", "/products/super-milk-booster"],
-                  ["Compare Products", "/product-comparison"],
-                ]}
-              />
-              <FooterColumn
-                title="Company"
-                items={[
-                  ["About Us", "/about-us"],
-                  ["Resources", "/resources"],
-                  ["Distributors", "/distributors"],
-                  ["Contact", "/contact"],
-                ]}
-              />
-              <FooterColumn
-                title="Legal"
-                items={[
-                  ["Privacy Policy", "/privacy"],
-                  ["Terms of Service", "/terms"],
-                ]}
-                className="hidden md:block"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-between gap-4 border-t border-outline-variant pt-8 md:flex-row">
-            <p className="font-label-md text-label-md text-on-surface-variant">© 2026 MolaPlus Africa. Advanced Animal Nutrition.</p>
-          </div>
-        </div>
-      </footer>
-    </div>
-  );
-}
-
-function FooterColumn({
-  title,
-  items,
-  className = "",
-}: {
-  title: string;
-  items: [string, string][];
-  className?: string;
-}) {
-  return (
-    <div className={className}>
-      <h4 className="mb-6 font-bold text-ink-black">{title}</h4>
-      <ul className="space-y-4 font-label-md text-on-surface-variant">
-        {items.map(([label, href]) => (
-          <li key={label}>
-            <Link className="transition-colors hover:text-primary" href={href}>
-              {label}
-            </Link>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

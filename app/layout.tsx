@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { MobileNav } from "./_components/MobileNav";
+import { SiteHeader } from "./_components/SiteHeader";
+import { SiteFooter } from "./_components/SiteFooter";
+import { BottomNav } from "./_components/BottomNav";
+import { ScrollReveal } from "./_components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "MolaPlus Africa | Advanced Animal Nutrition",
@@ -25,8 +28,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {children}
-        <MobileNav />
+        <SiteHeader />
+        <div className="flex min-h-[60vh] flex-col overflow-x-clip">{children}</div>
+        <SiteFooter />
+        <BottomNav />
+        <ScrollReveal />
       </body>
     </html>
   );

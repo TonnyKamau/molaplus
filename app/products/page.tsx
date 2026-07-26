@@ -66,46 +66,7 @@ const pigSizes = [
 export default function ProductsPage() {
   return (
     <div className="overflow-x-hidden bg-surface text-on-surface">
-      <header className="fixed top-0 z-50 w-full border-b border-outline-variant bg-surface">
-        <div className="mx-auto flex h-16 w-full max-w-container-max-width items-center justify-between px-margin-mobile md:px-margin-desktop">
-          <div className="flex items-center gap-4">
-            <button className="rounded-full p-2 transition-colors hover:bg-surface-container-high active:opacity-80 md:hidden">
-              <span className="material-symbols-outlined text-primary">menu</span>
-            </button>
-            <Link className="flex items-center gap-3" href="/">
-              <Image alt="MolaPlus Africa logo" className="h-10 w-10 rounded-full object-contain" height={40} src="/molaplus/logo.png" width={40} />
-              <h1 className="font-headline-md text-headline-md font-extrabold tracking-tight text-primary">
-                MolaPlus Africa
-              </h1>
-            </Link>
-          </div>
-          <nav className="hidden items-center gap-8 md:flex">
-            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/">
-              Home
-            </Link>
-            <Link className="font-label-md text-label-md font-bold text-primary transition-colors" href="/products">
-              Products
-            </Link>
-            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/consultancy">
-              Consultancy
-            </Link>
-            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/resources">
-              Resources
-            </Link>
-            <Link className="font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary" href="/contact">
-              Contact
-            </Link>
-          </nav>
-          <Link
-            className="hidden rounded-full bg-secondary px-6 py-2 font-label-md text-label-md font-bold text-on-secondary transition-opacity hover:opacity-90 md:inline-block"
-            href="/product-comparison"
-          >
-            Compare Products
-          </Link>
-        </div>
-      </header>
-
-      <main className="pt-16">
+      <main>
         <section className="border-b border-outline-variant bg-surface-container-low py-stack-lg">
           <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
             <h1 className="font-headline-xl text-headline-xl mb-4 text-ink-black">Our Products</h1>
@@ -264,23 +225,6 @@ export default function ProductsPage() {
           </div>
         </section>
       </main>
-
-      <footer className="border-t border-outline-variant bg-surface-container-highest py-stack-lg">
-        <div className="mx-auto grid max-w-container-max-width grid-cols-1 items-center gap-6 px-margin-mobile md:grid-cols-2 md:px-margin-desktop">
-          <div>
-            <div className="font-headline-md text-headline-md mb-2 text-primary">MolaPlus Africa</div>
-            <p className="font-body-md text-on-surface">© 2026 MolaPlus Africa. Scientific Nutrition for Growth.</p>
-          </div>
-          <div className="flex flex-wrap gap-x-gutter gap-y-stack-sm md:justify-end">
-            <Link className="font-label-md text-on-surface-variant underline hover:text-primary" href="/distributors">
-              Find a Distributor
-            </Link>
-            <Link className="font-label-md text-on-surface-variant underline hover:text-primary" href="/contact">
-              Technical Support
-            </Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
