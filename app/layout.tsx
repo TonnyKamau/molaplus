@@ -2,7 +2,6 @@
 import "./globals.css";
 import { SiteHeader } from "./_components/SiteHeader";
 import { SiteFooter } from "./_components/SiteFooter";
-import { BottomNav } from "./_components/BottomNav";
 import { ScrollReveal } from "./_components/ScrollReveal";
 
 export const metadata: Metadata = {
@@ -36,9 +35,8 @@ export default function RootLayout({
       </head>
       <body>
         <SiteHeader />
-        <div className="flex min-h-[60vh] flex-col overflow-x-clip pb-24 lg:pb-0">{children}</div>
+        <div className="flex min-h-[60vh] flex-col overflow-x-clip">{children}</div>
         <SiteFooter />
-        <BottomNav />
         <ScrollReveal />
       </body>
     </html>

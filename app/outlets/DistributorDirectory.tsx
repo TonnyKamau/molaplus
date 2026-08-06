@@ -103,7 +103,7 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
       (err) => {
         setGeoState(err.code === err.PERMISSION_DENIED ? "denied" : "error");
       },
-      { enableHighAccuracy: false, timeout: 10000, maximumAge: 600000 }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 600000 }
     );
   };
 
@@ -113,6 +113,11 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
   };
 
   const nearestTown = userLoc && townOptions.length > 0 ? townOptions[0] : null;
+  const nearestDist =
+    userLoc && nearestTown ? distanceKm(userLoc, nearestTown.town) : null;
+  // Kenya's classified towns are dense; a nearest town >400km away means the
+  // browser returned a location outside the country (desktop wifi / VPN / IP).
+  const locationOutOfRange = nearestDist !== null && nearestDist > 400;
 
   return (
     <div className="min-h-screen bg-surface text-on-surface">
@@ -224,7 +229,15 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
               ) : null}
             </div>
 
-            {userLoc && nearestTown ? (
+            {userLoc && locationOutOfRange ? (
+              <p className="mt-3 flex items-start gap-2 rounded-2xl bg-error-container px-4 py-2.5 font-label-md text-label-md text-on-error-container">
+                <span className="material-symbols-outlined text-[18px]">location_off</span>
+                <span>
+                  We couldn&apos;t pinpoint your location inside Kenya (it looks about {Math.round(nearestDist!).toLocaleString()} km away). This usually happens on a desktop browser or over a VPN &mdash; please pick your town from the list above for accurate results.
+                </span>
+              </p>
+            ) : null}
+            {userLoc && nearestTown && !locationOutOfRange ? (
               <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-primary-container/40 px-4 py-1.5 font-label-md text-label-md text-primary">
                 <span className="material-symbols-outlined text-[18px]">where_to_vote</span>
                 Sorted by distance — nearest town is {nearestTown.town.name} (~{Math.round(distanceKm(userLoc, nearestTown.town))} km)
