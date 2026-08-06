@@ -1,7 +1,118 @@
-import { StaticHtmlPage } from "../_components/StaticHtmlPage";
+﻿import Link from "next/link";
 
-const html = "\n\n<!-- Top Navigation Bar -->\n\n<main class=\"max-w-container-max-width mx-auto px-margin-desktop py-16\">\n<!-- Trust Bar -->\n<div class=\"mb-12 flex items-center justify-center\">\n<div class=\"bg-primary-container/10 border border-primary/20 rounded-full px-6 py-2 flex items-center gap-3\">\n<span class=\"material-symbols-outlined text-primary\" style=\"font-variation-settings: 'FILL' 1;\">timer</span>\n<span class=\"text-primary font-label-md\">Our technical experts respond within 24 hours.</span>\n</div>\n</div>\n<!-- Main Layout: 2-Column Grid -->\n<div class=\"grid grid-cols-1 lg:grid-cols-12 gap-12 items-start\">\n<!-- Left Side: Connection Info -->\n<div class=\"lg:col-span-5 space-y-10\">\n<div class=\"space-y-4\">\n<h1 class=\"font-headline-xl text-headline-xl text-ink-black leading-tight\">\n                        Connect with our <span class=\"text-primary\">Experts</span>\n</h1>\n<p class=\"text-body-lg text-on-surface-variant\">\n                        Our scientific nutrition team is ready to help you optimize growth and maximize yield for your livestock operations.\n                    </p>\n</div>\n<!-- Info Cards -->\n<div class=\"space-y-6\">\n<div class=\"flex items-start gap-4\">\n<div class=\"w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0\">\n<span class=\"material-symbols-outlined text-primary\">location_on</span>\n</div>\n<div>\n<h3 class=\"font-headline-md text-headline-md mb-1\">Head Office</h3>\n<p class=\"text-on-surface-variant\">Kenya</p>\n</div>\n</div>\n<div class=\"flex items-start gap-4\">\n<div class=\"w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0\">\n<span class=\"material-symbols-outlined text-primary\">schedule</span>\n</div>\n<div>\n<h3 class=\"font-headline-md text-headline-md mb-1\">Office Hours</h3>\n<p class=\"text-on-surface-variant\">Reach us any time by phone, WhatsApp or email.</p>\n</div>\n</div>\n<div class=\"flex items-start gap-4\">\n<div class=\"w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center flex-shrink-0\">\n<span class=\"material-symbols-outlined text-primary\">call</span>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 w-full\">\n<div>\n<h3 class=\"font-label-md text-primary uppercase tracking-wider\">Technical Support</h3>\n<p class=\"font-bold text-body-lg text-ink-black\">+254 724 968 847</p>\n</div>\n<div class=\"\">\n<h3 class=\"font-label-md text-primary uppercase tracking-wider\">Sales Inquiry</h3>\n<p class=\"font-bold text-body-lg text-ink-black\">+254 724 968 847</p>\n</div>\n</div>\n</div>\n</div>\n\n</div>\n<!-- Right Side: Contact Form Card -->\n<div class=\"lg:col-span-7\">\n<div class=\"bg-surface-container-lowest border border-outline-variant rounded-xl p-8 md:p-12 shadow-sm\">\n<form class=\"space-y-6\" onsubmit=\"event.preventDefault();\">\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-ink-black\" for=\"full_name\">Contact Name</label>\n<input class=\"w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all\" id=\"full_name\" placeholder=\"John Doe\" type=\"text\">\n</div>\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-ink-black\" for=\"org\">Farm or Business Name</label>\n<input class=\"w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all\" id=\"org\" placeholder=\"Green Valley Dairy\" type=\"text\">\n</div>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-ink-black\" for=\"email\">Email Address</label>\n<input class=\"w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all\" id=\"email\" placeholder=\"john@example.com\" type=\"email\">\n</div>\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-ink-black\" for=\"phone\">Phone Number</label>\n<input class=\"w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all\" id=\"phone\" placeholder=\"+254 --- --- ---\" type=\"tel\">\n</div>\n</div>\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-ink-black\" for=\"category\">Inquiry Category</label>\n<select class=\"w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none cursor-pointer\" id=\"category\"><option disabled=\"\" selected=\"\" value=\"\" class=\"\">Select a category</option><option value=\"nutrition\" class=\"\">Livestock Nutrition Advice</option><option value=\"bulk\" class=\"\">Bulk Product Inquiry</option><option value=\"distributor\" class=\"\">Distributor Partnership</option><option value=\"support\" class=\"\">Technical Support</option><option value=\"other\" class=\"\">Other</option></select>\n</div>\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-ink-black\" for=\"message\">Your Message</label>\n<textarea class=\"w-full px-4 py-3 bg-white border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none\" id=\"message\" placeholder=\"Describe your livestock challenges or product interests...\" rows=\"5\"></textarea>\n</div>\n<div class=\"flex items-center gap-4 pt-4\">\n<button class=\"bg-primary text-on-primary px-10 py-4 rounded-lg font-bold text-body-md hover:scale-[1.02] active:scale-95 transition-all w-full md:w-auto shadow-md\" type=\"submit\">\n                                Send Message\n                            </button>\n<p class=\"text-label-md text-on-surface-variant italic\">Your data is handled securely and used only for expert consultation.</p>\n</div>\n</form>\n</div>\n<!-- Quick Actions -->\n<div class=\"mt-8 bg-surface-container-low border border-outline-variant rounded-xl p-6\">\n<h3 class=\"font-label-md text-label-md text-primary mb-4 tracking-wider uppercase\">Direct Response</h3>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-3\">\n<a href=\"tel:+254724968847\" class=\"flex items-center gap-4 p-4 bg-surface-container-highest rounded-lg hover:bg-primary-fixed transition-colors\"><span class=\"material-symbols-outlined text-primary\">call</span><span class=\"font-bold text-on-surface\">Call Support</span></a>\n<a href=\"https://wa.me/254724968847\" class=\"flex items-center gap-4 p-4 bg-surface-container-highest rounded-lg hover:bg-primary-fixed transition-colors\"><span class=\"material-symbols-outlined text-growth-green\">chat</span><span class=\"font-bold text-on-surface\">WhatsApp Expert</span></a>\n<a href=\"mailto:info@molaplusafrica.com\" class=\"flex items-center gap-4 p-4 bg-surface-container-highest rounded-lg hover:bg-primary-fixed transition-colors\"><span class=\"material-symbols-outlined text-primary\">mail</span><span class=\"font-bold text-on-surface\">Email Sales</span></a>\n</div>\n</div>\n<!-- Secondary Support Blocks -->\n<div class=\"mt-8 grid grid-cols-1 md:grid-cols-2 gap-6\">\n<div class=\"p-6 bg-surface-container border border-outline-variant rounded-xl flex items-center gap-4\">\n<span class=\"material-symbols-outlined text-secondary\" style=\"font-variation-settings: 'FILL' 1;\">help_center</span>\n<div>\n<p class=\"font-bold text-ink-black\">FAQ Center</p>\n<p class=\"text-label-md text-on-surface-variant\">Quick answers to common queries.</p>\n</div>\n</div>\n<div class=\"p-6 bg-surface-container border border-outline-variant rounded-xl flex items-center gap-4\">\n<span class=\"material-symbols-outlined text-primary\" style=\"font-variation-settings: 'FILL' 1;\">description</span>\n<div>\n<p class=\"font-bold text-ink-black\">Technical Sheets</p>\n<p class=\"text-label-md text-on-surface-variant\">Download our product data guides.</p>\n</div>\n</div>\n</div>\n</div>\n</div>\n</main>\n<!-- Footer Section -->\n\n<!-- Micro-interaction Script -->\n\n\n";
+const departments = [
+  ["engineering", "Technical Support", "Product usage, dosage and livestock nutrition advice.", "+254 724 968 847", "tel:+254724968847"],
+  ["sell", "Sales & Bulk Orders", "Pricing, bulk quantities and delivery logistics.", "+254 724 968 847", "tel:+254724968847"],
+  ["handshake", "Distributor Partnership", "Become a stockist and join our nationwide network.", "Browse the directory", "/distributors"],
+];
 
-export default function Page() {
-  return <StaticHtmlPage html={html} />;
+export default function ContactPage() {
+  return (
+    <div className="overflow-x-hidden bg-surface text-on-surface">
+      {/* Hero */}
+      <section className="mp-scene mp-grain relative overflow-hidden">
+        <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
+          <span className="mp-eyebrow inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-white/90">
+            <span className="h-1.5 w-1.5 rounded-full bg-growth-green" />
+            We respond within 24 hours
+          </span>
+          <h1 className="mp-display mt-6 max-w-3xl">Get in touch</h1>
+          <p className="text-pretty mt-5 max-w-2xl text-base text-white/80 sm:text-lg md:text-xl">
+            Our scientific nutrition team is ready to help you optimize growth and
+            maximize yield. Reach us any time by WhatsApp, phone or email.
+          </p>
+        </div>
+      </section>
+
+      {/* Primary channels */}
+      <section className="bg-surface py-14 md:py-20">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="grid grid-cols-1 gap-gutter lg:grid-cols-3" data-reveal data-reveal-stagger>
+            {/* WhatsApp (recommended) */}
+            <a
+              className="mp-hover-lift group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-secondary-container p-8 text-white sm:col-span-2 lg:col-span-1"
+              href="https://wa.me/254724968847"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <div>
+                <span className="mp-eyebrow rounded-full bg-white/20 px-3 py-1.5">Recommended</span>
+                <span className="material-symbols-outlined mt-6 block text-5xl" style={{ fontVariationSettings: "'FILL' 1" }}>chat</span>
+                <h2 className="mt-4 text-2xl font-extrabold tracking-tight">Chat on WhatsApp</h2>
+                <p className="mt-2 text-white/85">Message a real person on our team. Fastest way to get answers or place an order.</p>
+              </div>
+              <span className="mt-6 inline-flex items-center gap-2 font-bold transition-all group-hover:gap-3">
+                Start chat
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </span>
+            </a>
+
+            {/* Call */}
+            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="tel:+254724968847">
+              <div>
+                <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
+                <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-black">Call us</h2>
+                <p className="mt-2 text-on-surface-variant">Speak directly with our technical and sales team.</p>
+              </div>
+              <span className="mt-6 text-lg font-extrabold text-primary">+254 724 968 847</span>
+            </a>
+
+            {/* Email */}
+            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="mailto:info@molaplusafrica.com">
+              <div>
+                <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
+                <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-black">Email us</h2>
+                <p className="mt-2 text-on-surface-variant">For detailed enquiries and documentation.</p>
+              </div>
+              <span className="mt-6 break-all text-lg font-extrabold text-primary">info@molaplusafrica.com</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Office + M-Pesa */}
+      <section className="bg-surface-container-low py-14 md:py-20">
+        <div className="mx-auto grid max-w-container-max-width grid-cols-1 gap-gutter px-margin-mobile sm:grid-cols-3 md:px-margin-desktop" data-reveal>
+          <div className="rounded-3xl border border-outline-variant bg-white p-7">
+            <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
+            <p className="mp-eyebrow mt-3 text-on-surface-variant">Head Office</p>
+            <p className="text-xl font-extrabold text-ink-black">Kenya</p>
+          </div>
+          <div className="rounded-3xl border border-outline-variant bg-white p-7">
+            <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>schedule</span>
+            <p className="mp-eyebrow mt-3 text-on-surface-variant">Office Hours</p>
+            <p className="text-base font-semibold text-ink-black">Reach us any time by phone, WhatsApp or email.</p>
+          </div>
+          <div className="rounded-3xl border border-outline-variant bg-white p-7">
+            <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>payments</span>
+            <p className="mp-eyebrow mt-3 text-on-surface-variant">Lipa na M-Pesa</p>
+            <p className="text-xl font-extrabold text-secondary">Till No: 906520</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Departments */}
+      <section className="bg-surface py-14 md:py-20">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mb-10 max-w-2xl" data-reveal>
+            <span className="mp-eyebrow text-secondary">Who to talk to</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">Reach the right team</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
+            {departments.map(([icon, title, body, cta, href]) => (
+              <Link className="mp-hover-lift group flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-7" href={href} key={title}>
+                <span className="material-symbols-outlined text-3xl text-primary">{icon}</span>
+                <h3 className="mt-4 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
+                <p className="mt-2 flex-1 text-on-surface-variant">{body}</p>
+                <span className="mt-5 inline-flex items-center gap-2 font-bold text-primary transition-all group-hover:gap-3">
+                  {cta}
+                  <span className="material-symbols-outlined text-[20px]">trending_flat</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }

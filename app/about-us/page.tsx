@@ -1,7 +1,165 @@
-import { StaticHtmlPage } from "../_components/StaticHtmlPage";
+﻿import Link from "next/link";
 
-const html = "<style>\n        .material-symbols-outlined {\n            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;\n        }\n        body {\n            background-color: #f7fbf4;\n            color: #181d19;\n            overflow-x: hidden;\n        }\n        .bento-grid {\n            display: grid;\n            grid-template-columns: repeat(12, 1fr);\n            gap: 24px;\n        }\n        .parallax-hero {\n            background-attachment: scroll;\n            background-position: center;\n            background-repeat: no-repeat;\n            background-size: cover;\n        }\n    </style>\n\n\n<main class=\"\">\n<!-- Immersive Hero Section -->\n<section class=\"relative h-[80vh] flex items-center overflow-hidden transition-all duration-700 ease-out opacity-0 translate-y-10\">\n<div class=\"absolute inset-0 z-0 parallax-hero\" data-alt=\"A breathtaking landscape of sprawling, rolling green hills in the East African Highlands during golden hour. Sunlight filters through light clouds, illuminating patchworked commercial farms and dairy pastures with a warm, amber glow. In the distance, silhouetted mountains meet a soft blue sky. The visual style is high-resolution, professional travel photography with a clean, light-mode aesthetic and natural, vibrant green tones.\" style=\"background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC26F7DmcXtWmMLB1T3Gk6atv-Lkg-F1Xb2WqxUFsauI0qsvpY2MwE_mqXT3zeh7wtMfHD67uqNvdfnqLQOZiUqnqfTkeoOFyBQd0QBFLCqNTRN_eKRm_80_sVczHnVKK0Ug3kehO_GUiyKs7USjs7X7mCAGjT9CZXiHhQxdcrTyK8Xz-2A67uUmlglLBGGNhOYTCR0yFWluu2H-I9N-tjs9UmPFW60fsfL_pMub2yhJ2JOa0yXoCVi59O-yp8qMo1txNRSRMhGwFCl')\">\n<div class=\"absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent\"></div>\n</div>\n<div class=\"relative z-10 w-full max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop\">\n<div class=\"max-w-2xl\">\n<h2 class=\"font-headline-xl text-headline-xl text-white mb-6\">Science-Driven Nutrition for a Sustainable Future</h2>\n<p class=\"font-body-lg text-body-lg text-white/90 mb-8\">Pioneering biotechnology and probiotic solutions to empower East Africa's livestock industry.</p>\n<div class=\"flex gap-4\">\n<a class=\"bg-growth-green text-white px-8 py-3 rounded-full font-bold hover:scale-105 transition-transform inline-flex items-center justify-center gap-2\" href=\"/products\">Explore Solutions</a>\n<a class=\"border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-primary transition-all inline-flex items-center justify-center gap-2\" href=\"/resources\">Our Research</a>\n</div>\n</div>\n</div>\n</section>\n<!-- The MolaPlus Story -->\n<section class=\"py-stack-lg bg-surface transition-all duration-700 ease-out opacity-0 translate-y-10\">\n<div class=\"max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop\">\n<div class=\"flex flex-col md:flex-row gap-16 items-center\">\n<div class=\"w-full md:w-1/2\">\n<span class=\"text-secondary font-bold font-label-md tracking-widest uppercase mb-4 block\">Our Evolution</span>\n<h2 class=\"font-headline-lg text-headline-lg text-primary mb-6\">Innovation in Animal Nutrition</h2>\n<div class=\"space-y-4 text-on-surface-variant font-body-md leading-relaxed\">\n<p class=\"\">MolaPlus Africa emerged from a critical need to address nutritional gaps in regional livestock production. What started as a local initiative has evolved into a leading biotechnology powerhouse, specializing in high-performance probiotic feed additives.</p>\n<p class=\"\">Our journey has been defined by a commitment to the 'One Health' approach—optimizing animal health to ensure human food security and environmental sustainability. By leveraging indigenous micro-organisms and modern fermentation science, we've revolutionized how farmers across the continent approach feed efficiency.</p>\n</div>\n</div>\n<div class=\"w-full md:w-1/2 grid grid-cols-2 gap-4\">\n<div class=\"rounded-xl overflow-hidden h-64 shadow-md transition-hover hover:shadow-lg\">\n<img class=\"w-full h-full object-cover\" data-alt=\"A modern, high-tech laboratory setting featuring a scientist in a white coat examining a Petri dish containing microbial cultures. The background shows sterile equipment and glowing monitors displaying data graphs. The lighting is cool-toned and professional, emphasizing a biotechnology-forward and precise industrial environment.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuCr_bt6yZ5rdwl0iKMipDtQ8PgEw3SvyF47Q_dmg24aKbp0zO8JBVn_Hum3rTeRvC-vX1TpkRrHBk1vt6b8TTst6Meo-NrCzQqGTPAeiJLds0seBbOd1D5SZ38_MgGNU-sBs__Bm3rvjbnevBIq4w8O2Ip2OQQByPFOUM4r7K5YXl6aHFWXnj-LTmo9rvnDVDiTSurM52uwshaoHt2e7wUCYafI3CA1m1jmGm_c8ar3pybhRT9l5ZE1VpVdROkggwpjv_468kiRi6YU\">\n</div>\n<div class=\"rounded-xl overflow-hidden h-64 mt-8 shadow-md\">\n<img class=\"w-full h-full object-cover\" data-alt=\"A group of smiling East African commercial farmers standing in a lush, green pasture beside healthy dairy cows. They are looking at a tablet together, showcasing technology in agriculture. The setting is bright and sun-drenched, conveying success, community, and the real-world impact of agricultural innovation.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuBKnAjjcLfYn6LOQ1_HWDXG4VlNR6cCzCVKtl9E8ZTNY0Io-h8mGWFQvZWJ0NEEnF7xEl6hKs9O33hV0rD2Unb9UAJ9AFXcejQcJUYMhrJweyl1c9MVG3HLoWQ2jWY33FIj-Y5G5nueYXZe5Vkc8167rQblonjFbd-DoBZlCRj9jNiyUi3N-YQ3lBwy5TMa0GIMLh1p3okHV-r0Y5HRn0bGeeQOWNoDPyDJy65QbVAkoDicd9HsUf7kZyHYJUJAUYkYYAH9b3eIz36V\">\n</div>\n</div>\n</div>\n</div>\n</section>\n<!-- Mission, Vision & Values -->\n<section class=\"py-stack-lg bg-surface-container-low transition-all duration-700 ease-out opacity-0 translate-y-10\">\n<div class=\"max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop\">\n<div class=\"text-center mb-16\">\n<h2 class=\"font-headline-lg text-headline-lg text-primary mb-2\">Our Core Pillars</h2>\n<p class=\"text-on-surface-variant font-body-md max-w-xl mx-auto\">The principles that guide our research, production, and partnerships.</p>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n<!-- Mission -->\n<div class=\"bg-white p-8 rounded-xl border border-outline-variant hover:border-growth-green transition-colors group\">\n<div class=\"w-12 h-12 bg-primary-fixed-dim rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform\">\n<span class=\"material-symbols-outlined text-primary\">rocket_launch</span>\n</div>\n<h3 class=\"font-headline-md text-headline-md text-primary mb-4\">Our Mission</h3>\n<p class=\"text-on-surface-variant font-body-md\">To provide innovative, cost-effective, and scientifically-proven nutritional solutions that enhance livestock productivity and farmer livelihoods.</p>\n</div>\n<!-- Vision -->\n<div class=\"bg-white p-8 rounded-xl border border-outline-variant hover:border-growth-green transition-colors group\">\n<div class=\"w-12 h-12 bg-primary-fixed-dim rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform\">\n<span class=\"material-symbols-outlined text-primary\">visibility</span>\n</div>\n<h3 class=\"font-headline-md text-headline-md text-primary mb-4\">Our Vision</h3>\n<p class=\"text-on-surface-variant font-body-md\">To be the foremost provider of biotechnology-driven animal health solutions in Africa, setting the standard for sustainable agriculture.</p>\n</div>\n<!-- Values -->\n<div class=\"bg-white p-8 rounded-xl border border-outline-variant hover:border-growth-green transition-colors group\">\n<div class=\"w-12 h-12 bg-primary-fixed-dim rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform\">\n<span class=\"material-symbols-outlined text-primary\">verified</span>\n</div>\n<h3 class=\"font-headline-md text-headline-md text-primary mb-4\">Core Values</h3>\n<ul class=\"text-on-surface-variant font-body-md space-y-2\">\n<li class=\"flex items-center gap-2\"><span class=\"w-1.5 h-1.5 bg-growth-green rounded-full\"></span> Scientific Rigor</li>\n<li class=\"flex items-center gap-2\"><span class=\"w-1.5 h-1.5 bg-growth-green rounded-full\"></span> Farmer-Centricity</li>\n<li class=\"flex items-center gap-2\"><span class=\"w-1.5 h-1.5 bg-growth-green rounded-full\"></span> Integrity &amp; Transparency</li>\n</ul>\n</div>\n</div>\n</div>\n</section>\n<!-- Global Standards, Local Impact -->\n<section class=\"py-stack-lg bg-surface transition-all duration-700 ease-out opacity-0 translate-y-10\">\n<div class=\"max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop\">\n<div class=\"flex flex-col md:flex-row-reverse gap-16 items-center\">\n<div class=\"w-full md:w-1/2\">\n<h2 class=\"font-headline-lg text-headline-lg text-primary mb-6\">Global Standards, Local Impact</h2>\n<p class=\"text-on-surface-variant font-body-lg mb-8\">While we adhere to strict manufacturing and biotechnology safety practices, our focus remains localized. We understand the specific challenges of East African climates, forages, and breeds.</p>\n<div class=\"space-y-6\">\n<div class=\"flex gap-4\">\n<span class=\"material-symbols-outlined text-growth-green\">public</span>\n<div>\n<h4 class=\"font-bold text-primary\">Import Substitution</h4>\n<p class=\"text-on-surface-variant\">Reducing reliance on expensive imported additives with high-performance local alternatives.</p>\n</div>\n</div>\n<div class=\"flex gap-4\">\n<span class=\"material-symbols-outlined text-growth-green\">eco</span>\n<div>\n<h4 class=\"font-bold text-primary\">Sustainability</h4>\n<p class=\"text-on-surface-variant\">Promoting animal health through natural probiotics rather than prophylactic antibiotics.</p>\n</div>\n</div>\n</div>\n</div>\n<div class=\"w-full md:w-1/2\">\n<div class=\"aspect-square rounded-2xl overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500\">\n<img class=\"w-full h-full object-cover\" data-alt=\"A clean, aerial map-style visualization of East Africa focusing on Kenya, Uganda, and Tanzania. The map is rendered in a minimalist white and soft green palette with subtle icons of farms and research centers dotted across the landscape, symbolizing MolaPlus's widespread regional footprint and impact.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuCtzBH5hHiknePLzE4rR6HypuJNzeisUwU8DmZk3kZWpQdukO7hHPGhh_53od3RF03SbQRY4zEfW2mXVz8rg5HFQGnNiD5h1dvsaS1XpdpIVMi-YWueKKMMpT7QSrgbS6V0wkCRmEk2sB6lAgEdr25vvXGbxcBK77DJJKDNTh4SdZma0UQRa2OSr_v04tifwVZ1KJLjxTLIjWaoiJBVafgjHjZJixihr5mrX0bCff31CV_AqNE5cB3yrb7CrYO8VDCDOC7cGqBxCqxm\">\n</div>\n</div>\n</div>\n</div>\n</section>\n<!-- CTA Section -->\n<section class=\"py-stack-lg transition-all duration-700 ease-out opacity-0 translate-y-10\">\n<div class=\"max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop\">\n<div class=\"bg-secondary-container rounded-3xl p-12 text-center text-on-secondary-container\">\n<h2 class=\"font-headline-lg text-headline-lg mb-4\">Partner with the Pioneers</h2>\n<p class=\"font-body-lg text-body-lg mb-8 opacity-90 max-w-2xl mx-auto\">Ready to experience the science of superior nutrition? Connect with our technical experts today.</p>\n<a class=\"bg-primary text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-on-primary-fixed-variant transition-colors inline-flex items-center justify-center gap-2\" href=\"/contact\">Request a Consultation</a>\n</div>\n</div>\n</section>\n</main>\n<!-- Footer -->\n\n\n\n\n\n";
+const values = [
+  ["science", "Scientific Rigor", "Every formulation is grounded in research, fermentation science and testing."],
+  ["diversity_3", "Farmer-Centricity", "Solutions designed around the real needs of East African farmers."],
+  ["verified", "Integrity & Transparency", "Honest guidance and dependable products, season after season."],
+];
 
-export default function Page() {
-  return <StaticHtmlPage html={html} />;
+const impact = [
+  ["swap_horiz", "Import Substitution", "Reducing reliance on expensive imported additives with high-performance local alternatives."],
+  ["eco", "Sustainability", "Promoting animal health through natural probiotics rather than prophylactic antibiotics."],
+];
+
+export default function AboutPage() {
+  return (
+    <div className="overflow-x-hidden bg-surface text-on-surface">
+      {/* Hero */}
+      <section className="mp-scene mp-grain relative overflow-hidden">
+        <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
+          <span className="mp-eyebrow text-primary-fixed-dim">About MolaPlus</span>
+          <h1 className="mp-display mt-5 max-w-4xl">
+            Science-driven nutrition for a sustainable future
+          </h1>
+          <p className="text-pretty mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
+            Pioneering biotechnology and probiotic solutions to empower East
+            Africa&apos;s livestock industry.
+          </p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Link className="inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white transition-all hover:bg-secondary" href="/products">
+              Explore Solutions
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </Link>
+            <Link className="glass-effect inline-flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="/resources">
+              Our Research
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Evolution */}
+      <section className="bg-surface py-20 md:py-28">
+        <div className="mx-auto grid max-w-container-max-width grid-cols-1 gap-12 px-margin-mobile lg:grid-cols-12 md:px-margin-desktop">
+          <div className="lg:col-span-4" data-reveal>
+            <span className="mp-eyebrow text-secondary">Our Evolution</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">Innovation in animal nutrition</h2>
+          </div>
+          <div className="space-y-6 text-lg text-on-surface-variant lg:col-span-8" data-reveal>
+            <p>
+              MolaPlus Africa emerged from a critical need to address nutritional
+              gaps in regional livestock production. What started as a local
+              initiative has evolved into a leading biotechnology powerhouse,
+              specializing in high-performance probiotic feed additives.
+            </p>
+            <p>
+              Our journey has been defined by a commitment to the &apos;One
+              Health&apos; approach&mdash;optimizing animal health to ensure human
+              food security and environmental sustainability. By leveraging
+              indigenous micro-organisms and modern fermentation science, we&apos;ve
+              revolutionized how farmers across the continent approach feed
+              efficiency.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission / Vision */}
+      <section className="bg-surface-container-low py-20 md:py-28">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mb-12 max-w-2xl" data-reveal>
+            <span className="mp-eyebrow text-secondary">Our Core Pillars</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">
+              The principles that guide our research, production, and partnerships
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-gutter md:grid-cols-2" data-reveal data-reveal-stagger>
+            <div className="rounded-3xl border border-outline-variant bg-white p-8">
+              <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>flag</span>
+              <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-ink-black">Our Mission</h3>
+              <p className="mt-3 text-on-surface-variant">
+                To provide innovative, cost-effective, and scientifically-proven
+                nutritional solutions that enhance livestock productivity and
+                farmer livelihoods.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-outline-variant bg-white p-8">
+              <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>visibility</span>
+              <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-ink-black">Our Vision</h3>
+              <p className="mt-3 text-on-surface-variant">
+                To be the foremost provider of biotechnology-driven animal health
+                solutions in Africa, setting the standard for sustainable
+                agriculture.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Core values */}
+      <section className="bg-surface py-20 md:py-28">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mb-12 text-center" data-reveal>
+            <span className="mp-eyebrow text-secondary">Core Values</span>
+            <h2 className="mp-display-sm mx-auto mt-3 max-w-2xl text-ink-black">What we stand for</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
+            {values.map(([icon, title, body]) => (
+              <div className="rounded-3xl border border-outline-variant bg-surface-container-lowest p-8 text-center" key={title}>
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
+                  <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                </div>
+                <h3 className="mt-5 text-xl font-extrabold tracking-tight text-primary">{title}</h3>
+                <p className="mt-3 text-on-surface-variant">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Local impact */}
+      <section className="bg-surface-container-low py-20 md:py-28">
+        <div className="mx-auto grid max-w-container-max-width grid-cols-1 gap-12 px-margin-mobile lg:grid-cols-2 md:px-margin-desktop">
+          <div data-reveal>
+            <span className="mp-eyebrow text-secondary">Global standards, local impact</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">Built for East African farming</h2>
+            <p className="mt-5 text-lg text-on-surface-variant">
+              While we adhere to strict manufacturing and biotechnology safety
+              practices, our focus remains localized. We understand the specific
+              challenges of East African climates, forages, and breeds.
+            </p>
+          </div>
+          <div className="space-y-4" data-reveal>
+            {impact.map(([icon, title, body]) => (
+              <div className="flex items-start gap-4 rounded-2xl border border-outline-variant bg-white p-6" key={title}>
+                <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                <div>
+                  <p className="text-lg font-extrabold text-ink-black">{title}</p>
+                  <p className="mt-1 text-on-surface-variant">{body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="pb-20 pt-4 md:pb-28">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mp-scene mp-grain relative overflow-hidden rounded-[2.5rem] p-8 text-center text-white md:p-16" data-reveal>
+            <div className="relative z-10 mx-auto max-w-2xl">
+              <h2 className="mp-display-sm">Partner with the pioneers</h2>
+              <p className="text-pretty mx-auto mt-5 max-w-xl text-lg text-white/80">
+                Ready to experience the science of superior nutrition? Connect with
+                our technical experts today.
+              </p>
+              <Link className="mt-9 inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white shadow-xl transition-all hover:bg-secondary" href="/contact">
+                Request a Consultation
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }

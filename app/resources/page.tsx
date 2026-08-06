@@ -1,7 +1,105 @@
-import { StaticHtmlPage } from "../_components/StaticHtmlPage";
+﻿import Link from "next/link";
 
-const html = "<style>\n        .material-symbols-outlined {\n            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;\n        }\n        .fill-icon {\n            font-variation-settings: 'FILL' 1;\n        }\n        .bento-grid {\n            display: grid;\n            grid-template-columns: repeat(12, 1fr);\n            gap: 24px;\n        }\n        .glass-card {\n            background: rgba(255, 255, 255, 0.8);\n            backdrop-filter: blur(8px);\n            border: 1px solid #E1E4E1;\n        }\n    </style>\n\n\n<main class=\"pb-stack-lg\">\n<!-- Hero Section -->\n<section class=\"max-w-container-max-width mx-auto px-margin-mobile mb-24 relative overflow-hidden rounded-xl\">\n<div class=\"absolute inset-0 z-0 bg-primary opacity-5 pointer-events-none\"></div>\n<div class=\"relative z-10 py-20 px-8 flex flex-col items-center text-center\">\n<span class=\"font-label-md text-secondary uppercase tracking-widest mb-4\">Scientific Animal Nutrition</span>\n<h2 class=\"font-headline-xl text-headline-xl text-ink-black mb-6\">Knowledge Hub</h2>\n<p class=\"font-body-lg text-body-lg text-on-surface-variant max-w-3xl\">\n                    Empowering farmers and livestock professionals through science-backed nutrition strategies, rigorous laboratory analysis, and industry-leading technical documentation.\n                </p>\n\n</div>\n</section>\n<!-- Technical Downloads Section -->\n<section class=\"max-w-container-max-width mx-auto px-margin-mobile mb-24\"><div class=\"flex items-center justify-between mb-stack-lg\">\n    <h3 class=\"font-headline-lg text-headline-lg text-ink-black flex items-center gap-3\">\n        <span class=\"material-symbols-outlined text-primary text-3xl\">library_books</span> Technical Documentation\n    </h3>\n    <a class=\"text-primary font-label-md hover:underline flex items-center gap-1\" href=\"/resources\">View All Resources <span class=\"material-symbols-outlined text-sm\">open_in_new</span></a>\n</div>\n\n<div class=\"grid grid-cols-1 md:grid-cols-12 gap-gutter\">\n    <!-- Featured Resource Card -->\n    <div class=\"md:col-span-12 lg:col-span-5 bg-primary rounded-xl p-8 flex flex-col justify-between text-white relative overflow-hidden group\">\n        <div class=\"absolute -right-12 -top-12 w-64 h-64 bg-primary-container rounded-full opacity-20 transition-transform group-hover:scale-110\"></div>\n        <div class=\"relative z-10\">\n            <div class=\"flex justify-between items-start mb-6\">\n                <span class=\"inline-block px-3 py-1 bg-secondary rounded-full font-label-md text-[10px] uppercase tracking-wider\">Feeding Guide</span>\n                <span class=\"bg-white/20 backdrop-blur-sm text-white px-2 py-1 rounded text-[10px] font-bold border border-white/30\">TECHNICAL GUIDE</span>\n            </div>\n            <div class=\"flex gap-6 mb-8\">\n                <div class=\"hidden sm:block w-24 h-32 bg-white/10 rounded border border-white/20 flex-shrink-0 overflow-hidden\">\n                    <div class=\"w-full h-full bg-surface-container-high flex items-center justify-center\">\n                        <span class=\"material-symbols-outlined text-primary text-4xl opacity-50\">menu_book</span>\n                    </div>\n                </div>\n                <div>\n                    <h4 class=\"font-headline-md text-headline-md mb-2\">Simply Feeding Dairy</h4>\n                    <p class=\"font-body-md text-primary-fixed opacity-90 line-clamp-3\">\n                        The comprehensive 2024 manual on maximizing milk yield through precision probiotic supplementation and microbial balance. Includes updated dosage charts for Holstein and Jersey breeds.\n                    </p>\n                </div>\n            </div>\n        </div>\n        <div class=\"relative z-10 flex flex-wrap items-end justify-between gap-4\">\n            <div class=\"flex flex-col gap-1\">\n                <div class=\"flex items-center gap-2 text-xs font-label-md opacity-80\">\n                    <span class=\"material-symbols-outlined text-sm\">verified</span> Feeding Guide\n                </div>\n                <div class=\"text-[10px] opacity-60 uppercase tracking-tighter\"></div>\n            </div>\n            <a class=\"bg-white text-primary px-6 py-2.5 rounded-full font-label-md font-bold hover:bg-surface-off-white transition-colors flex items-center gap-2 active:scale-95\" href=\"/resources\" target=\"_blank\" rel=\"noopener\">\n                Read the guide <span class=\"material-symbols-outlined text-lg\">download</span>\n            </a>\n        </div>\n    </div>\n\n    <!-- Category Grid -->\n    <div class=\"md:col-span-12 lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-stack-md\">\n        <!-- Dairy Category -->\n        <div class=\"bg-white border border-outline-variant rounded-xl p-6 hover:shadow-md transition-all cursor-pointer flex flex-col\">\n            <div class=\"flex justify-between items-start mb-4\">\n                <div class=\"p-2 bg-primary/5 rounded-lg text-primary\">\n                    <span class=\"material-symbols-outlined\">pets</span>\n                </div>\n                <span class=\"text-[10px] font-bold text-primary border border-primary/20 px-2 py-0.5 rounded uppercase\">Dairy</span>\n            </div>\n            <h5 class=\"font-headline-md text-lg mb-1 text-ink-black\">Calf Rearing Guide</h5>\n            <p class=\"text-on-surface-variant font-body-md text-sm mb-6\">Early stage nutritional protocols for optimal growth.</p>\n            <div class=\"mt-auto pt-4 border-t border-outline-variant flex items-center justify-between\">\n                <div class=\"flex flex-col\">\n                    \n                    \n                </div>\n                <span class=\"material-symbols-outlined text-primary\">download</span>\n            </div>\n        </div>\n\n        <!-- Poultry Category -->\n        <div class=\"bg-white border border-outline-variant rounded-xl p-6 hover:shadow-md transition-all cursor-pointer flex flex-col\">\n            <div class=\"flex justify-between items-start mb-4\">\n                <div class=\"p-2 bg-primary/5 rounded-lg text-primary\">\n                    <span class=\"material-symbols-outlined\">egg</span>\n                </div>\n                <span class=\"text-[10px] font-bold text-secondary border border-secondary/20 px-2 py-0.5 rounded uppercase\">Poultry</span>\n            </div>\n            <h5 class=\"font-headline-md text-lg mb-1 text-ink-black\">Layer Performance</h5>\n            <p class=\"text-on-surface-variant font-body-md text-sm mb-6\">Maximizing egg quality through microbial gut health.</p>\n            <div class=\"mt-auto pt-4 border-t border-outline-variant flex items-center justify-between\">\n                <div class=\"flex flex-col\">\n                    \n                    \n                </div>\n                <span class=\"material-symbols-outlined text-primary\">download</span>\n            </div>\n        </div>\n\n        <!-- Livestock Category -->\n        <div class=\"bg-white border border-outline-variant rounded-xl p-6 hover:shadow-md transition-all cursor-pointer flex flex-col\">\n            <div class=\"flex justify-between items-start mb-4\">\n                <div class=\"p-2 bg-primary/5 rounded-lg text-primary\">\n                    <span class=\"material-symbols-outlined\">agriculture</span>\n                </div>\n                <span class=\"text-[10px] font-bold text-tertiary border border-tertiary/20 px-2 py-0.5 rounded uppercase\">Livestock</span>\n            </div>\n            <h5 class=\"font-headline-md text-lg mb-1 text-ink-black\">Microbial Strains</h5>\n            <p class=\"text-on-surface-variant font-body-md text-sm mb-6\">Technical specifications of MolaPlus unique cultures.</p>\n            <div class=\"mt-auto pt-4 border-t border-outline-variant flex items-center justify-between\">\n                <div class=\"flex flex-col\">\n                    \n                    \n                </div>\n                <span class=\"material-symbols-outlined text-primary\">download</span>\n            </div>\n        </div>\n\n        <!-- General Category -->\n        <div class=\"bg-white border border-outline-variant rounded-xl p-6 hover:shadow-md transition-all cursor-pointer flex flex-col\">\n            <div class=\"flex justify-between items-start mb-4\">\n                <div class=\"p-2 bg-primary/5 rounded-lg text-primary\">\n                    <span class=\"material-symbols-outlined\">biotech</span>\n                </div>\n                <span class=\"text-[10px] font-bold text-growth-green border border-growth-green/20 px-2 py-0.5 rounded uppercase\">Research</span>\n            </div>\n            <h5 class=\"font-headline-md text-lg mb-1 text-ink-black\">Feed Analysis Guide</h5>\n            <p class=\"text-on-surface-variant font-body-md text-sm mb-6\">How to interpret laboratory nutritional reports.</p>\n            <div class=\"mt-auto pt-4 border-t border-outline-variant flex items-center justify-between\">\n                <div class=\"flex flex-col\">\n                    \n                    \n                </div>\n                <span class=\"material-symbols-outlined text-primary\">download</span>\n            </div>\n        </div>\n    </div>\n</div></section>\n<!-- CTA Section -->\n<section class=\"max-w-container-max-width mx-auto px-margin-mobile\">\n<div class=\"bg-ink-black rounded-3xl p-12 md:p-20 text-center relative overflow-hidden\">\n<div class=\"absolute inset-0 z-0 opacity-10 pointer-events-none\">\n<div class=\"absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,var(--tw-gradient-stops))] from-primary via-transparent to-transparent\"></div>\n</div>\n<div class=\"relative z-10\">\n<h3 class=\"font-headline-lg text-headline-xl text-white mb-6\">Need Expert Guidance?</h3>\n<p class=\"font-body-lg text-primary-fixed mb-12 max-w-2xl mx-auto opacity-80\">\n                        Connect with our livestock specialists to develop a tailored nutritional strategy for your farm.\n                    </p>\n<div class=\"flex flex-col sm:flex-row items-center justify-center gap-stack-md\">\n<a class=\"w-full sm:w-auto bg-primary text-white px-10 py-4 rounded-full font-label-md font-bold hover:bg-primary-container transition-all active:scale-95 flex items-center justify-center gap-2\" href=\"/contact\">\n                            Contact for Support <span class=\"material-symbols-outlined\">support_agent</span>\n</a>\n<a class=\"w-full sm:w-auto bg-secondary text-white px-10 py-4 rounded-full font-label-md font-bold hover:opacity-90 transition-all active:scale-95 flex items-center justify-center gap-2\" href=\"/distributors\">\n                            Find a Distributor <span class=\"material-symbols-outlined\">location_on</span>\n</a>\n</div>\n</div>\n</div>\n</section>\n</main>\n<!-- Footer -->\n\n<!-- Simple Navigation Interaction -->\n\n\n\n\n";
+const guides = [
+  ["DAIRY", "Calf Rearing Guide", "Early stage nutritional protocols for optimal growth.", "pets"],
+  ["POULTRY", "Layer Performance", "Maximizing egg quality through microbial gut health.", "egg"],
+  ["LIVESTOCK", "Microbial Strains", "Technical specifications of MolaPlus unique cultures.", "biotech"],
+  ["RESEARCH", "Feed Analysis Guide", "How to interpret laboratory nutritional reports.", "analytics"],
+];
 
-export default function Page() {
-  return <StaticHtmlPage html={html} />;
+export default function ResourcesPage() {
+  return (
+    <div className="overflow-x-hidden bg-surface text-on-surface">
+      {/* Hero */}
+      <section className="mp-scene mp-grain relative overflow-hidden">
+        <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
+          <span className="mp-eyebrow text-primary-fixed-dim">Scientific Animal Nutrition</span>
+          <h1 className="mp-display mt-5 max-w-3xl">Knowledge Hub</h1>
+          <p className="text-pretty mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
+            Empowering farmers and livestock professionals through science-backed
+            nutrition strategies, rigorous laboratory analysis, and industry-leading
+            technical documentation.
+          </p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+            <a className="inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white transition-all hover:bg-secondary" href="#library">
+              Technical Documentation
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </a>
+            <a className="glass-effect inline-flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="#library">
+              View All Resources
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured */}
+      <section className="bg-surface py-16 md:py-24" id="library">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <Link className="mp-hover-lift group relative block overflow-hidden rounded-[2rem]" data-reveal href="/contact">
+            <div className="mp-scene mp-grain absolute inset-0" />
+            <div className="relative z-10 flex flex-col justify-between gap-8 p-8 md:flex-row md:items-end md:p-12">
+              <div className="max-w-xl text-white">
+                <div className="flex flex-wrap gap-2">
+                  <span className="mp-eyebrow rounded-full bg-secondary-container px-3 py-1.5 text-white">Feeding Guide</span>
+                  <span className="mp-eyebrow rounded-full bg-white/15 px-3 py-1.5 text-white">Technical Guide</span>
+                </div>
+                <h2 className="mp-display-sm mt-5">Simply Feeding Dairy</h2>
+                <p className="mt-4 text-white/80">
+                  The comprehensive 2024 manual on maximizing milk yield through
+                  precision probiotic supplementation and microbial balance. Includes
+                  updated dosage charts for Holstein and Jersey breeds.
+                </p>
+              </div>
+              <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-primary transition-all group-hover:gap-3">
+                Read the guide
+                <span className="material-symbols-outlined">arrow_forward</span>
+              </span>
+            </div>
+          </Link>
+
+          <div className="mt-10 grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-4" data-reveal data-reveal-stagger>
+            {guides.map(([tag, title, body, icon]) => (
+              <Link className="mp-hover-lift group flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-7" href="/contact" key={title}>
+                <div className="flex items-center justify-between">
+                  <span className="mp-eyebrow rounded-full bg-primary/10 px-3 py-1.5 text-primary">{tag}</span>
+                  <span className="material-symbols-outlined text-2xl text-primary">{icon}</span>
+                </div>
+                <h3 className="mt-5 text-lg font-extrabold tracking-tight text-ink-black">{title}</h3>
+                <p className="mt-2 flex-1 text-sm text-on-surface-variant">{body}</p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary transition-all group-hover:gap-3">
+                  Request access
+                  <span className="material-symbols-outlined text-[18px]">trending_flat</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-surface-container-low py-16 md:py-24">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="flex flex-col items-center justify-between gap-8 rounded-3xl border border-outline-variant bg-white p-8 text-center md:flex-row md:p-12 md:text-left" data-reveal>
+            <div className="max-w-xl">
+              <span className="mp-eyebrow text-secondary">Support</span>
+              <h2 className="mp-display-sm mt-3 text-ink-black">Need expert guidance?</h2>
+              <p className="mt-4 text-on-surface-variant">
+                Connect with our livestock specialists to develop a tailored
+                nutritional strategy for your farm.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-bold text-white transition-all hover:bg-primary-container" href="/contact">
+                Contact for Support
+              </Link>
+              <Link className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-7 py-3.5 font-bold text-primary transition-colors hover:bg-surface-container-high" href="/distributors">
+                <span className="material-symbols-outlined text-[20px]">location_on</span>
+                Find a Distributor
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }

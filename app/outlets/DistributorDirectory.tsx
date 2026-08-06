@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import type { Distributor } from "./distributors";
@@ -117,34 +117,32 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
   return (
     <div className="min-h-screen bg-surface text-on-surface">
       <main className="mx-auto w-full max-w-container-max-width px-margin-mobile py-stack-lg md:px-margin-desktop">
-        <section className="mb-stack-lg grid grid-cols-1 gap-gutter lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
+        <section className="mb-10 grid grid-cols-1 gap-gutter lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
           <div>
-            <p className="mb-3 font-label-md text-label-md font-bold uppercase tracking-widest text-secondary">
-              Distributor Directory
-            </p>
-            <h1 className="font-headline-xl text-headline-xl mb-4 text-primary">Find a MolaPlus distributor</h1>
-            <p className="max-w-2xl text-body-lg text-on-surface-variant">
+            <span className="mp-eyebrow text-secondary">Distributor Directory</span>
+            <h1 className="mp-display-sm mt-4 text-ink-black">Find a MolaPlus distributor</h1>
+            <p className="mt-4 max-w-2xl text-lg text-on-surface-variant">
               Search by name or phone, filter by town, or share your location to see the distributors nearest to you.
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-stack-sm rounded-xl border border-outline-variant bg-surface-container-low p-4">
+          <div className="grid grid-cols-3 gap-3 rounded-3xl border border-outline-variant bg-surface-container-low p-5">
             <div>
-              <p className="font-label-md text-label-md text-on-surface-variant">Distributors</p>
-              <p className="font-headline-md text-headline-md text-primary">{distributors.length.toLocaleString()}</p>
+              <p className="mp-eyebrow text-on-surface-variant">Outlets</p>
+              <p className="text-2xl font-extrabold text-primary">{distributors.length.toLocaleString()}</p>
             </div>
             <div>
-              <p className="font-label-md text-label-md text-on-surface-variant">Towns</p>
-              <p className="font-headline-md text-headline-md text-primary">{townOptions.length.toLocaleString()}</p>
+              <p className="mp-eyebrow text-on-surface-variant">Towns</p>
+              <p className="text-2xl font-extrabold text-primary">{townOptions.length.toLocaleString()}</p>
             </div>
             <div>
-              <p className="font-label-md text-label-md text-on-surface-variant">Mapped</p>
-              <p className="font-headline-md text-headline-md text-primary">{classifiedCount.toLocaleString()}</p>
+              <p className="mp-eyebrow text-on-surface-variant">Mapped</p>
+              <p className="text-2xl font-extrabold text-primary">{classifiedCount.toLocaleString()}</p>
             </div>
           </div>
         </section>
 
-        <section className="rounded-xl border border-outline-variant bg-surface-container-lowest">
+        <section className="rounded-3xl border border-outline-variant bg-surface-container-lowest">
           <div className="border-b border-outline-variant p-4 md:p-6">
             {/* Search + filters */}
             <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,1fr)_auto_auto] md:items-center">
@@ -405,3 +403,4 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
     </div>
   );
 }
+

@@ -1,7 +1,174 @@
-import { StaticHtmlPage } from "../../_components/StaticHtmlPage";
+﻿"use client";
 
-const html = "<style>\n        .material-symbols-outlined {\n            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;\n            vertical-align: middle;\n        }\n        .filled-icon {\n            font-variation-settings: 'FILL' 1;\n        }\n        .bento-card {\n            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);\n        }\n        .bento-card:hover {\n            box-shadow: 0 10px 30px -10px rgba(76, 175, 80, 0.15);\n            transform: translateY(-2px);\n        }\n    </style>\n\n\n<main class=\"pb-stack-lg px-margin-mobile max-w-container-max-width mx-auto\">\n<div class=\"grid grid-cols-1 lg:grid-cols-12 gap-gutter\">\n<!-- Left: Product Image Area -->\n<div class=\"lg:col-span-7 flex flex-col gap-stack-md\">\n<div class=\"bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden relative group aspect-square flex items-center justify-center p-8\">\n<img alt=\"Super Milk Booster 2kg Packaging\" class=\"w-full h-full object-contain transition-transform duration-500 group-hover:scale-105\" id=\"main-product-image\" src=\"/molaplus/milkbooster-2kg.png\">\n<div class=\"absolute top-4 right-4 bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full font-label-md shadow-sm\">\n                        Best Seller\n                    </div>\n</div>\n<div class=\"grid grid-cols-3 gap-stack-sm\">\n<button class=\"border-2 border-primary rounded-lg overflow-hidden bg-white p-2\" onclick=\"updateProductImage('https://lh3.googleusercontent.com/aida/AP1WRLsSPANchzaP9em27b5ll2Ji6X6LDuzu86Z0kBMfSLN0IhejyC7KY9EIfUddRxDPxWfO6Ges7SVgX1T4oudS2lQ-ICQWFpjpDlGJJ64sj1BBF_GjUfZBCRlJV4Kvyd6lk932gH48b3PHbGQQSILxBe5mFFR_aEY0lrH4LCzRUMwHU-mkj1q6fgl0Q5pcFOLtk3ypzcRbyRBF5L0Xe7CzqRmtnZJq9GuKocHdRP-hagdRIhCu_8VGG4g2dLA', '1kg')\">\n<img alt=\"1kg thumbnail\" class=\"w-full h-20 object-contain\" src=\"/molaplus/milkbooster-1kg.png\">\n</button>\n<button class=\"border border-outline-variant hover:border-primary rounded-lg overflow-hidden bg-white p-2 transition-colors\" onclick=\"updateProductImage('https://lh3.googleusercontent.com/aida/AP1WRLsNzda7nTBfCH3Hi-SJZ1afTmiC7-stiEZOOixzYXLfgGC2v_DQcXm2d84z7jDv2v2ltRVk5LXIlU0f9Du1N9vpfHS86VftMqzdcH7eYSeIEUTe_szUJUqSCdLtHUCBkCwHLLPIuqPpbHrgVli8teJg08LIBO2JhEhJLXtUjFyNwOousC4wb7uJ2Cex0og4ORzpyaotEoMvzLOk8Cd407hstYvck-t98wjruhnU_KRhS3tk150KdtL5sfLH', '2kg')\">\n<img alt=\"2kg thumbnail\" class=\"w-full h-20 object-contain\" src=\"/molaplus/milkbooster-2kg.png\">\n</button>\n<button class=\"border border-outline-variant hover:border-primary rounded-lg overflow-hidden bg-white p-2 transition-colors\" onclick=\"updateProductImage('https://lh3.googleusercontent.com/aida/AP1WRLtapGMM0sSPxWOcIqUiNZHgEmESRD5MvsaRFcqwdZZyptoOyUVeFNjJy_TnR1nACoLNkwv0J62V9whnav9y4DHjEt7-MKEC3Ob99w_-DWHtDHd7fb69cc2INaHEod95zkEx8Dh821B_eCuPj5ivCvd4FPvDQVnMAvDd4tnx6gMfN44WyxpaSit15FN7Rc83UKCrZOgPqUOte0XHoVwz_v6lFsfmPaWhriPCXNiAumFIosjHmtW3IcZ_tU3-', '5kg')\">\n<img alt=\"5kg thumbnail\" class=\"w-full h-20 object-contain\" src=\"/molaplus/milkbooster-5kg.png\">\n</button>\n</div>\n</div>\n<!-- Right: Product Summary & Selection -->\n<div class=\"lg:col-span-5 flex flex-col gap-stack-md\">\n<nav class=\"flex text-on-surface-variant font-label-md gap-2\">\n<a class=\"hover:text-primary\" href=\"/products\">Products</a>\n<span class=\"\">/</span>\n<a class=\"hover:text-primary\" href=\"/products\">Dairy Nutrition</a>\n</nav>\n<div>\n<h1 class=\"font-headline-xl text-headline-xl text-primary mb-2\">Super Milk Booster</h1>\n<div class=\"flex items-center gap-4 mb-4\">\n\n</div>\n\n</div>\n<div class=\"p-6 bg-surface-container-low rounded-xl border border-outline-variant\">\n<label class=\"block font-label-md text-on-surface mb-4\">Select Package Size</label>\n<div class=\"flex gap-4\">\n<button class=\"flex-1 py-3 px-4 rounded-xl border-2 border-primary bg-primary-container text-on-primary-container font-bold transition-all\">1kg</button>\n<button class=\"flex-1 py-3 px-4 rounded-xl border border-outline bg-surface hover:bg-surface-container-high transition-all\">2kg</button>\n<button class=\"flex-1 py-3 px-4 rounded-xl border border-outline bg-surface hover:bg-surface-container-high transition-all\">5kg</button>\n</div>\n</div>\n<!-- Benefits Grid -->\n<div class=\"grid grid-cols-2 gap-4\">\n<div class=\"p-4 bg-white border border-outline-variant rounded-xl flex items-start gap-3 bento-card\">\n<div class=\"p-2 bg-primary-container rounded-lg\">\n<span class=\"material-symbols-outlined text-on-primary-container\">water_drop</span>\n</div>\n<div>\n<p class=\"font-bold text-primary font-label-md\">Milk Production</p>\n<p class=\"text-[12px] text-on-surface-variant\">Significant yield increase</p>\n</div>\n</div>\n<div class=\"p-4 bg-white border border-outline-variant rounded-xl flex items-start gap-3 bento-card\">\n<div class=\"p-2 bg-secondary-container rounded-lg\">\n<span class=\"material-symbols-outlined text-on-secondary-container\">shield</span>\n</div>\n<div>\n<p class=\"font-bold text-secondary font-label-md\">Boosts Immunity</p>\n<p class=\"text-[12px] text-on-surface-variant\">Enhanced disease resistance</p>\n</div>\n</div>\n<div class=\"p-4 bg-white border border-outline-variant rounded-xl flex items-start gap-3 bento-card\">\n<div class=\"p-2 bg-growth-green/20 rounded-lg\">\n<span class=\"material-symbols-outlined text-growth-green\">favorite</span>\n</div>\n<div>\n<p class=\"font-bold text-growth-green font-label-md\">Supports Fertility</p>\n<p class=\"text-[12px] text-on-surface-variant\">Better conception rates</p>\n</div>\n</div>\n<div class=\"p-4 bg-white border border-outline-variant rounded-xl flex items-start gap-3 bento-card\">\n<div class=\"p-2 bg-tertiary-fixed rounded-lg\">\n<span class=\"material-symbols-outlined text-on-tertiary-fixed-variant\">trending_up</span>\n</div>\n<div>\n<p class=\"font-bold text-tertiary font-label-md\">Speeds Growth</p>\n<p class=\"text-[12px] text-on-surface-variant\">Optimal weight gain</p>\n</div>\n</div>\n</div>\n<!-- Purchasing Block -->\n<div class=\"mt-4 p-6 bg-primary text-on-primary rounded-xl shadow-lg border border-primary-container\">\n<div class=\"flex items-center justify-between mb-6\">\n<div>\n<p class=\"font-label-md opacity-80 mb-1\">Buy via M-Pesa</p>\n<p class=\"font-headline-md font-bold\">Till No: 906520</p>\n</div>\n<span class=\"material-symbols-outlined text-4xl opacity-50\">payments</span>\n</div>\n<a class=\"w-full bg-secondary hover:bg-secondary-container text-white py-4 rounded-xl font-bold font-headline-md transition-all flex items-center justify-center gap-3 active:scale-95 shadow-md\" href=\"tel:+254724968847\">\n<span class=\"material-symbols-outlined\">local_shipping</span>\n                        Call for Logistics\n                    </a>\n<p class=\"text-[12px] mt-4 opacity-70 text-center italic\">Nationwide delivery available for commercial quantities.</p>\n</div>\n</div>\n</div>\n<!-- Technical Specifications Section -->\n<section class=\"mt-stack-lg grid grid-cols-1 md:grid-cols-2 gap-gutter\">\n<div class=\"bg-surface-container-low p-stack-lg rounded-xl border border-outline-variant\">\n<h3 class=\"font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2\">\n<span class=\"material-symbols-outlined\">biotech</span>\n                    Technical Specifications\n                </h3>\n<div class=\"space-y-6\">\n<div>\n<h4 class=\"font-bold text-on-surface mb-3 flex items-center gap-2\">\n<span class=\"w-1.5 h-1.5 bg-growth-green rounded-full\"></span>\n                            Ingredients\n                        </h4>\n<div class=\"flex flex-wrap gap-2\">\n<span class=\"px-3 py-1 bg-white border border-outline-variant rounded-full text-label-md\">Vitamin A</span>\n<span class=\"px-3 py-1 bg-white border border-outline-variant rounded-full text-label-md\">Vitamin D3</span>\n<span class=\"px-3 py-1 bg-white border border-outline-variant rounded-full text-label-md\">Vitamin E</span>\n<span class=\"px-3 py-1 bg-white border border-outline-variant rounded-full text-label-md\">Phosphorus</span>\n<span class=\"px-3 py-1 bg-white border border-outline-variant rounded-full text-label-md\">Calcium</span>\n<span class=\"px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-label-md font-bold text-primary\">Proprietary Micro-Nutrient Blend</span>\n</div>\n</div>\n<div class=\"p-4 bg-white rounded-lg border border-outline-variant\">\n<h4 class=\"font-bold text-on-surface mb-2 flex items-center gap-2\">\n<span class=\"material-symbols-outlined text-secondary\">info</span>\n                            Dosage Instructions\n                        </h4>\n<p class=\"text-on-surface-variant text-body-md\">\n                            Mix <span class=\"font-bold text-primary\">100g per cow per day</span> into standard feed or grain. Ensure consistent application during lactation periods for maximum result stability.\n                        </p>\n</div>\n</div>\n</div>\n\n</div>\n</section>\n<!-- CTA Section -->\n<section class=\"mt-stack-lg bg-surface-container-highest rounded-2xl p-12 text-center relative overflow-hidden\">\n<div class=\"absolute inset-0 opacity-10 pointer-events-none\" style=\"background-image: radial-gradient(circle at 2px 2px, #00512c 1px, transparent 0); background-size: 24px 24px;\"></div>\n<div class=\"relative z-10 max-w-2xl mx-auto\">\n<h2 class=\"font-headline-lg text-headline-lg text-primary mb-4\">Ready to Transform Your Herd's Productivity?</h2>\n<p class=\"text-body-lg text-on-surface-variant mb-8\">Join thousands of successful farmers across Africa who trust MolaPlus for advanced animal nutrition.</p>\n<div class=\"flex flex-col sm:flex-row items-center justify-center gap-4\">\n<a class=\"px-8 py-4 bg-primary text-on-primary rounded-full font-bold font-headline-md hover:shadow-lg transition-all active:scale-95 inline-flex items-center justify-center gap-2\" href=\"/distributors\">Find a Distributor</a>\n<a class=\"px-8 py-4 bg-white text-primary border-2 border-primary rounded-full font-bold font-headline-md hover:bg-surface-container-low transition-all inline-flex items-center justify-center gap-2\" href=\"/resources\" target=\"_blank\" rel=\"noopener\">Download Technical Guide</a>\n</div>\n</div>\n</section>\n</main>\n<!-- Footer -->\n\n\n\n\n\n";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
-export default function Page() {
-  return <StaticHtmlPage html={html} />;
+const packages = [
+  { label: "1kg", img: "/molaplus/milkbooster-1kg.png" },
+  { label: "2kg", img: "/molaplus/milkbooster-2kg.png" },
+  { label: "5kg", img: "/molaplus/milkbooster-5kg.png" },
+];
+
+const benefits = [
+  ["water_drop", "Milk Production", "Significant yield increase"],
+  ["shield", "Boosts Immunity", "Enhanced disease resistance"],
+  ["favorite", "Supports Fertility", "Better conception rates"],
+  ["trending_up", "Speeds Growth", "Optimal weight gain"],
+];
+
+const ingredients = [
+  "Vitamin A",
+  "Vitamin D3",
+  "Vitamin E",
+  "Phosphorus",
+  "Calcium",
+  "Proprietary Micro-Nutrient Blend",
+];
+
+export default function SuperMilkBoosterPage() {
+  const [active, setActive] = useState(1);
+
+  return (
+    <div className="overflow-x-hidden bg-surface text-on-surface">
+      {/* Hero / detail */}
+      <section className="bg-surface py-10 md:py-16">
+        <div className="mx-auto grid max-w-container-max-width grid-cols-1 gap-10 px-margin-mobile lg:grid-cols-2 lg:gap-16 md:px-margin-desktop">
+          {/* Image */}
+          <div className="mp-scene mp-grain relative flex items-center justify-center overflow-hidden rounded-[2rem] p-8">
+            <span className="absolute left-6 top-6 z-10 rounded-full bg-secondary-container px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white">
+              Best Seller
+            </span>
+            <div className="relative h-72 w-full md:h-96">
+              <Image
+                alt={`Super Milk Booster ${packages[active].label}`}
+                className="object-contain drop-shadow-2xl"
+                fill
+                priority
+                sizes="(min-width: 1024px) 560px, 100vw"
+                src={packages[active].img}
+              />
+            </div>
+          </div>
+
+          {/* Details */}
+          <div className="flex flex-col justify-center">
+            <nav className="flex items-center gap-2 text-sm font-semibold text-on-surface-variant">
+              <Link className="hover:text-primary" href="/products">Products</Link>
+              <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+              <span className="text-primary">Dairy Nutrition</span>
+            </nav>
+            <h1 className="mp-display-sm mt-4 text-ink-black">Super Milk Booster</h1>
+            <p className="mt-4 max-w-md text-on-surface-variant">
+              Our signature mineral and probiotic blend for more milk, better body
+              condition and healthier dairy cows.
+            </p>
+
+            {/* Size selector */}
+            <div className="mt-8">
+              <p className="mp-eyebrow mb-3 text-secondary">Select Package Size</p>
+              <div className="flex gap-3">
+                {packages.map((p, idx) => (
+                  <button
+                    className={
+                      active === idx
+                        ? "rounded-2xl border-2 border-primary bg-primary/10 px-6 py-3 font-extrabold text-primary"
+                        : "rounded-2xl border-2 border-outline-variant bg-white px-6 py-3 font-bold text-on-surface-variant transition-colors hover:border-primary/40"
+                    }
+                    key={p.label}
+                    onClick={() => setActive(idx)}
+                    type="button"
+                  >
+                    {p.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Benefits */}
+            <div className="mt-8 grid grid-cols-2 gap-3">
+              {benefits.map(([icon, title, meta]) => (
+                <div className="flex items-start gap-3 rounded-2xl border border-outline-variant bg-surface-container-lowest p-4" key={title}>
+                  <span className="material-symbols-outlined text-2xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>
+                    {icon}
+                  </span>
+                  <div>
+                    <p className="text-sm font-extrabold text-ink-black">{title}</p>
+                    <p className="text-xs text-on-surface-variant">{meta}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Buy panel */}
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl bg-primary p-5 text-white">
+                <p className="mp-eyebrow text-white/60">Buy via M-Pesa</p>
+                <p className="mt-1 text-2xl font-extrabold text-secondary-fixed-dim">Till No: 906520</p>
+              </div>
+              <a className="flex flex-col justify-center rounded-2xl border border-outline-variant bg-white p-5 transition-colors hover:border-primary/40" href="tel:+254724968847">
+                <p className="mp-eyebrow text-on-surface-variant">Call for Logistics</p>
+                <p className="mt-1 text-lg font-extrabold text-primary">+254 724 968 847</p>
+                <p className="mt-1 text-xs text-on-surface-variant">Nationwide delivery for commercial quantities.</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technical specs */}
+      <section className="bg-surface-container-low py-16 md:py-24">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mb-10" data-reveal>
+            <span className="mp-eyebrow text-secondary">Technical Specifications</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">What&apos;s inside</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-gutter lg:grid-cols-2">
+            <div className="rounded-3xl border border-outline-variant bg-white p-8" data-reveal>
+              <h3 className="text-lg font-extrabold text-ink-black">Ingredients</h3>
+              <div className="mt-5 flex flex-wrap gap-2.5">
+                {ingredients.map((ing) => (
+                  <span className="rounded-full border border-outline-variant bg-surface-container-low px-4 py-2 text-sm font-semibold text-on-surface-variant" key={ing}>
+                    {ing}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-3xl border border-outline-variant bg-white p-8" data-reveal>
+              <h3 className="text-lg font-extrabold text-ink-black">Dosage Instructions</h3>
+              <p className="mt-4 text-on-surface-variant">
+                Mix 100g per cow per day into standard feed or grain. Ensure
+                consistent application during lactation periods for maximum result
+                stability.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="pb-20 pt-4 md:pb-28">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mp-scene mp-grain relative overflow-hidden rounded-[2.5rem] p-8 text-center text-white md:p-16">
+            <div className="relative z-10 mx-auto max-w-2xl">
+              <h2 className="mp-display-sm">Ready to transform your herd&apos;s productivity?</h2>
+              <p className="text-pretty mx-auto mt-5 max-w-xl text-lg text-white/80">
+                Join farmers across Africa who trust MolaPlus for advanced animal
+                nutrition.
+              </p>
+              <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
+                <Link className="inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white shadow-xl transition-all hover:bg-secondary" href="/distributors">
+                  <span className="material-symbols-outlined">location_on</span>
+                  Find a Distributor
+                </Link>
+                <Link className="glass-effect inline-flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="/resources">
+                  Download Technical Guide
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }

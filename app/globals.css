@@ -1,4 +1,4 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 @font-face {
   font-family: "Plus Jakarta Sans";
@@ -188,6 +188,96 @@ button {
   background: rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+/* ---------------------------------------------------------------------------
+   Editorial system (homepage flagship)
+   --------------------------------------------------------------------------- */
+
+/* Oversized, tightly-set display headlines — the Farm-Minerals editorial feel. */
+.mp-display {
+  font-family: "Plus Jakarta Sans", "Segoe UI", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.03;
+  font-size: clamp(2.3rem, 5vw, 4.25rem);
+  text-wrap: balance;
+}
+
+.mp-display-sm {
+  font-family: "Plus Jakarta Sans", "Segoe UI", Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  font-size: clamp(1.8rem, 3.4vw, 2.75rem);
+  text-wrap: balance;
+}
+
+.mp-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.text-pretty {
+  text-wrap: pretty;
+}
+
+/* Deep, dimensional green scene used behind the hero and CTA bands. */
+.mp-scene {
+  background:
+    radial-gradient(120% 90% at 78% 8%, rgba(133, 216, 161, 0.28), transparent 55%),
+    radial-gradient(90% 120% at 12% 110%, rgba(253, 101, 52, 0.16), transparent 60%),
+    linear-gradient(155deg, #013a20 0%, #00512c 42%, #013d22 100%);
+}
+
+/* Fine film grain to keep large flat greens from looking plasticky. */
+.mp-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* Scrolling brand-statement marquee. Content is always visible; motion is a
+   bonus that pauses for reduced-motion users. */
+@keyframes mp-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.mp-marquee-track {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  will-change: transform;
+  animation: mp-marquee 34s linear infinite;
+}
+
+.mp-hover-lift {
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 300ms ease;
+}
+.mp-hover-lift:hover {
+  transform: translateY(-6px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-marquee-track {
+    animation: none;
+  }
+  .mp-hover-lift:hover {
+    transform: none;
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -563,3 +653,4 @@ button:active,
     padding-bottom: 72px;
   }
 }
+

@@ -1,230 +1,179 @@
-import type { Metadata } from "next";
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
-export const metadata: Metadata = {
-  title: "Products | MolaPlus Africa",
-  description:
-    "Explore MolaPlus feed supplements and probiotics: Super Milk Booster, Poultry Microbes, and Pig Microbes in every package size.",
+type Size = { size: string; blurb: string; img: string };
+
+type Group = {
+  id: string;
+  eyebrow: string;
+  name: string;
+  tagline: string;
+  sizes: Size[];
+  href: string;
 };
 
-const milkBoosterSizes = [
+const groups: Group[] = [
   {
-    name: "1KG Package",
-    description: "Ideal for small-scale dairy farms and individual homesteads.",
-    image: "/molaplus/milkbooster-1kg.png",
-    badge: "Dairy",
+    id: "super-milk-booster",
+    eyebrow: "Dairy",
+    name: "Super Milk Booster",
+    tagline:
+      "Advanced formula for enhanced milk production in dairy animals, ensuring optimal nutritional balance.",
+    href: "/products/super-milk-booster",
+    sizes: [
+      { size: "1KG Package", blurb: "Ideal for small-scale dairy farms and individual homesteads.", img: "/molaplus/milkbooster-1kg.png" },
+      { size: "2KG Package", blurb: "Perfect for medium-sized dairy operations seeking efficiency.", img: "/molaplus/milkbooster-2kg.png" },
+      { size: "5KG Package", blurb: "Designed for large commercial dairy farms and bulk buyers.", img: "/molaplus/milkbooster-5kg.png" },
+    ],
   },
   {
-    name: "2KG Package",
-    description: "Perfect for medium-sized dairy operations seeking efficiency.",
-    image: "/molaplus/milkbooster-2kg.png",
+    id: "poultry-microbes",
+    eyebrow: "Growth & Health",
+    name: "Poultry Microbes",
+    tagline:
+      "Specialized probiotic solution for optimal poultry health, weight gain, and disease resistance.",
+    href: "/product-comparison",
+    sizes: [
+      { size: "500ml Solution", blurb: "For small poultry flocks", img: "/molaplus/poultry-500ml.png" },
+      { size: "1 Litre Solution", blurb: "For medium-sized farms", img: "/molaplus/poultry-1ltr.png" },
+      { size: "5 Litre Solution", blurb: "For large operations", img: "/molaplus/poultry-5ltr.png" },
+    ],
   },
   {
-    name: "5KG Package",
-    description: "Designed for large commercial dairy farms and bulk buyers.",
-    image: "/molaplus/milkbooster-5kg.png",
-  },
-];
-
-const poultrySizes = [
-  {
-    name: "500ml Solution",
-    description: "For small poultry flocks",
-    image: "/molaplus/poultry-500ml.png",
-  },
-  {
-    name: "1 Litre Solution",
-    description: "For medium-sized farms",
-    image: "/molaplus/poultry-1ltr.png",
-  },
-  {
-    name: "5 Litre Solution",
-    description: "For large operations",
-    image: "/molaplus/poultry-5ltr.png",
-  },
-];
-
-const pigSizes = [
-  {
-    name: "1 Litre Solution",
-    overlay: "1 Litre - Small Farms",
-    image: "/molaplus/pig-1ltr.png",
-  },
-  {
-    name: "5 Litre Solution",
-    overlay: "5 Litre - Commercial",
-    image: "/molaplus/pig-5ltr.png",
-  },
-  {
-    name: "20 Litre Solution",
-    overlay: "20 Litre - Large Scale",
-    image: "/molaplus/pig-20ltr.png",
+    id: "pig-microbes",
+    eyebrow: "Livestock",
+    name: "Pig Microbes",
+    tagline:
+      "Multi-strain probiotic for pigs and livestock \u2014 improving digestion, gut health and feed efficiency.",
+    href: "/product-comparison",
+    sizes: [
+      { size: "1 Litre Solution", blurb: "1 Litre - Small Farms", img: "/molaplus/pig-1ltr.png" },
+      { size: "5 Litre Solution", blurb: "5 Litre - Commercial", img: "/molaplus/pig-5ltr.png" },
+      { size: "20 Litre Solution", blurb: "20 Litre - Large Scale", img: "/molaplus/pig-20ltr.png" },
+    ],
   },
 ];
 
 export default function ProductsPage() {
   return (
     <div className="overflow-x-hidden bg-surface text-on-surface">
-      <main>
-        <section className="border-b border-outline-variant bg-surface-container-low py-stack-lg">
-          <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-            <h1 className="font-headline-xl text-headline-xl mb-4 text-ink-black">Our Products</h1>
-            <p className="font-body-lg text-body-lg max-w-2xl text-on-surface-variant">
-              Scientifically formulated feed supplements and probiotics for dairy, poultry, and swine — available in package sizes for every scale of operation.
-            </p>
-          </div>
-        </section>
+      {/* Hero */}
+      <section className="mp-scene mp-grain relative overflow-hidden">
+        <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
+          <span className="mp-eyebrow text-primary-fixed-dim">The Range</span>
+          <h1 className="mp-display mt-5 max-w-3xl">Our Products</h1>
+          <p className="text-pretty mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
+            Scientifically formulated feed supplements and probiotics for dairy,
+            poultry, and swine &mdash; available in package sizes for every scale
+            of operation.
+          </p>
 
-        <section className="bg-surface-container-low pb-stack-md">
-          <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-            <div className="flex flex-col items-center justify-between gap-4 rounded-xl border border-outline-variant bg-white p-4 md:flex-row">
-              <div className="flex items-center gap-4">
-                <div className="rounded-lg bg-secondary-container p-3">
-                  <span className="material-symbols-outlined text-on-secondary-container">payments</span>
-                </div>
-                <div>
-                  <h3 className="font-headline-md text-label-md uppercase tracking-wider text-secondary">
-                    Buy Online &amp; Pay via MPESA
-                  </h3>
-                  <p className="font-bold text-ink-black">Till no: 906520</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="font-label-md text-on-surface-variant">Logistics &amp; Prices Call:</p>
-                <a className="text-body-lg font-bold text-primary" href="tel:+254724968847">
-                  +254 724 968 847
-                </a>
-              </div>
+          <div className="mt-10 inline-flex flex-wrap items-center gap-x-8 gap-y-4 rounded-3xl border border-white/20 bg-white/10 px-7 py-5 backdrop-blur-sm">
+            <div>
+              <p className="mp-eyebrow text-white/60">Buy online &amp; pay via M-Pesa</p>
+              <p className="text-2xl font-extrabold text-secondary-fixed-dim">Till no: 906520</p>
+            </div>
+            <div className="hidden h-10 w-px bg-white/20 sm:block" />
+            <div>
+              <p className="mp-eyebrow text-white/60">Logistics &amp; prices call</p>
+              <a className="text-2xl font-extrabold text-white transition-opacity hover:opacity-80" href="tel:+254724968847">
+                +254 724 968 847
+              </a>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-stack-lg" id="super-milk-booster">
+      {/* Product groups */}
+      {groups.map((group, i) => (
+        <section
+          className={i % 2 === 1 ? "bg-surface-container-low py-16 md:py-24" : "bg-surface py-16 md:py-24"}
+          id={group.id}
+          key={group.id}
+        >
           <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-            <div className="mb-stack-md flex flex-col">
-              <span className="font-label-md text-label-md font-bold uppercase tracking-widest text-secondary">Best Seller</span>
-              <h2 className="font-headline-lg text-headline-lg text-primary">Super Milk Booster</h2>
-              <p className="max-w-2xl text-on-surface-variant">
-                Advanced formula for enhanced milk production in dairy animals, ensuring optimal nutritional balance.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-gutter pb-4 md:grid-cols-3">
-              {milkBoosterSizes.map((size) => (
-                <div
-                  className="group min-w-0 overflow-hidden rounded-xl border border-outline-variant bg-white transition-shadow hover:shadow-lg"
-                  key={size.name}
-                >
-                  <div className="relative h-56 bg-surface-container">
-                    <Image
-                      alt={`Super Milk Booster ${size.name}`}
-                      className="object-contain p-4 transition-transform group-hover:scale-110"
-                      fill
-                      sizes="(min-width: 768px) 33vw, 280px"
-                      src={size.image}
-                    />
-                    {size.badge && (
-                      <div className="absolute right-2 top-2 rounded-full bg-primary px-2 py-1 text-[10px] font-bold uppercase text-white">
-                        {size.badge}
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h4 className="font-headline-md mb-1 text-primary">{size.name}</h4>
-                    <p className="mb-4 font-label-md text-label-md text-on-surface-variant">{size.description}</p>
-                    <Link
-                      className="block w-full rounded-full border-2 border-primary py-2 text-center font-bold text-primary transition-colors hover:bg-primary hover:text-white"
-                      href="/products/super-milk-booster"
-                    >
-                      View Details
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="bg-surface-container-low py-stack-lg" id="poultry-microbes">
-          <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-            <div className="mb-stack-md flex flex-col">
-              <span className="font-label-md text-label-md font-bold uppercase tracking-widest text-secondary">
-                Growth &amp; Health
-              </span>
-              <h2 className="font-headline-lg text-headline-lg text-primary">Poultry Microbes</h2>
-              <p className="max-w-2xl text-on-surface-variant">
-                Specialized probiotic solution for optimal poultry health, weight gain, and disease resistance.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-gutter md:grid-cols-3">
-              {poultrySizes.map((size) => (
-                <div className="flex items-center gap-4 rounded-xl border border-outline-variant bg-white p-4" key={size.name}>
-                  <div className="relative h-24 w-24 flex-shrink-0 rounded-lg bg-surface-container p-2">
-                    <Image alt={`Poultry Microbes ${size.name}`} className="object-contain p-2" fill sizes="96px" src={size.image} />
-                  </div>
-                  <div className="flex-grow">
-                    <h4 className="font-headline-md text-body-lg text-ink-black">{size.name}</h4>
-                    <p className="font-label-md text-label-md text-on-surface-variant">{size.description}</p>
-                    <Link className="mt-2 inline-block font-label-md text-label-md font-bold text-primary" href="/contact">
-                      Order Now →
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-stack-lg" id="pig-microbes">
-          <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-            <div className="mb-stack-md flex flex-col text-center">
-              <h2 className="font-headline-lg text-headline-lg text-primary">Pig Microbes</h2>
-              <div className="mx-auto mt-2 h-1 w-16 rounded-full bg-secondary" />
-            </div>
-            <div className="grid grid-cols-1 gap-gutter md:grid-cols-3">
-              {pigSizes.map((size) => (
-                <div className="group cursor-pointer" key={size.name}>
-                  <div className="relative mb-4 aspect-square overflow-hidden rounded-2xl border border-outline-variant bg-surface-container">
-                    <Image
-                      alt={`Pig Microbes ${size.name}`}
-                      className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
-                      fill
-                      sizes="(min-width: 768px) 33vw, 100vw"
-                      src={size.image}
-                    />
-                    <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 via-transparent to-transparent p-6 opacity-0 transition-opacity group-hover:opacity-100">
-                      <span className="font-bold text-white">{size.overlay}</span>
-                    </div>
-                  </div>
-                  <h4 className="font-headline-md text-center text-primary">{size.name}</h4>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="pb-stack-lg">
-          <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-            <div className="flex flex-col items-center justify-between gap-6 rounded-xl bg-secondary-container p-8 text-on-secondary-container shadow-lg md:flex-row">
-              <div className="flex items-center gap-4">
-                <span className="material-symbols-outlined text-[32px]">analytics</span>
-                <div>
-                  <p className="font-bold">Not sure which product fits your farm?</p>
-                  <p className="font-label-md text-label-md opacity-90">
-                    Compare technical specs, probiotic counts, and ROI side by side.
-                  </p>
-                </div>
+            <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end" data-reveal>
+              <div className="max-w-2xl">
+                <span className="mp-eyebrow text-secondary">{group.eyebrow}</span>
+                <h2 className="mp-display-sm mt-3 text-ink-black">{group.name}</h2>
+                <p className="mt-4 text-on-surface-variant">{group.tagline}</p>
               </div>
               <Link
-                className="rounded-lg bg-ink-black px-8 py-3 font-bold text-white transition-all hover:bg-opacity-80"
-                href="/product-comparison"
+                className="group inline-flex items-center gap-1 whitespace-nowrap font-bold text-primary underline-offset-4 hover:underline"
+                href={group.href}
               >
-                Compare Products
+                {group.id === "super-milk-booster" ? "View details" : "Compare products"}
+                <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_outward</span>
               </Link>
+            </div>
+
+            <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-stagger>
+              {group.sizes.map((s) => (
+                <div
+                  className="mp-hover-lift group flex flex-col overflow-hidden rounded-3xl border border-outline-variant bg-surface-container-lowest"
+                  key={s.size}
+                >
+                  <div className="relative h-56 w-full overflow-hidden bg-surface-container-low">
+                    <Image
+                      alt={`${group.name} ${s.size}`}
+                      className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                      fill
+                      sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
+                      src={s.img}
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-xl font-extrabold tracking-tight text-ink-black">{s.size}</h3>
+                    <p className="mt-2 flex-1 text-sm text-on-surface-variant">{s.blurb}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      <a
+                        className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-primary-container"
+                        href="tel:+254724968847"
+                      >
+                        Order now
+                        <span className="material-symbols-outlined text-[18px]">trending_flat</span>
+                      </a>
+                      <a
+                        className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-surface-container-high"
+                        href="https://wa.me/254724968847"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">chat</span>
+                        WhatsApp
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
-      </main>
+      ))}
+
+      {/* Compare CTA */}
+      <section className="bg-surface py-16 md:py-24">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="flex flex-col items-center justify-between gap-8 rounded-3xl border border-outline-variant bg-surface-container-low p-8 text-center md:flex-row md:p-12 md:text-left" data-reveal>
+            <div className="max-w-xl">
+              <span className="mp-eyebrow text-secondary">Compare</span>
+              <h2 className="mp-display-sm mt-3 text-ink-black">Not sure which product fits your farm?</h2>
+              <p className="mt-4 text-on-surface-variant">
+                Compare nutrient profiles and application methods side by side, or
+                talk to our team for a tailored recommendation.
+              </p>
+            </div>
+            <Link
+              className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-8 py-4 font-bold text-white shadow-lg transition-all hover:bg-primary-container"
+              href="/product-comparison"
+            >
+              <span className="material-symbols-outlined">analytics</span>
+              Compare products
+              <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

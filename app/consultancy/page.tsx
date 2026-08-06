@@ -1,7 +1,184 @@
-import { StaticHtmlPage } from "../_components/StaticHtmlPage";
+﻿import Link from "next/link";
 
-const html = "<style>\n        .material-symbols-outlined {\n            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;\n            display: inline-block;\n            vertical-align: middle;\n        }\n        body {\n            background-color: #f7fbf4;\n            color: #181d19;\n            overflow-x: hidden;\n        }\n        .bento-grid {\n            display: grid;\n            grid-template-columns: repeat(12, 1fr);\n            gap: 24px;\n        }\n        .glass-card {\n            background: rgba(255, 255, 255, 0.8);\n            backdrop-filter: blur(12px);\n            border: 1px solid #e1e4e1;\n            transition: all 0.3s ease;\n        }\n        .glass-card:hover {\n            transform: translateY(-4px);\n            box-shadow: 0 10px 30px -10px rgba(0, 81, 44, 0.1);\n        }\n    </style>\n\n\n<main class=\"\">\n<!-- 1. Hero Section -->\n<section class=\"relative w-full h-[600px] flex items-center overflow-hidden\">\n<div class=\"absolute inset-0 z-0\">\n<img class=\"w-full h-full object-cover\" data-alt=\"A high-resolution, wide-angle landscape shot of a modern, clean dairy farm at sunrise. Pristine Holstein cows graze in a lush green pasture in the foreground while advanced silver silos and a state-of-the-art agricultural research facility stand elegantly in the background. The lighting is soft and golden, creating a warm, hopeful, and scientifically professional atmosphere. The color palette features deep greens, crisp whites, and cool metallic tones, embodying the AgriTech Pro aesthetic.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuBo0JnKiDbAm3YuTWDbgqa5gbyFjTWs9sYbUZYH25xjjOwtBZyok8VQ8a5WGphDwt_Flz4d7Odrcy-Yo6REw36RFVqRcvjfc4DvHqJutRzLBKAZ-zNq77QzyjOYVrmYgufsswX9JCOYx_tLyWXPtvkiTatPhR3dp9st08kkg90flQvn6vztFI4trdmXyYJp4Qqz2bGCjpc9mfDdmUd5-3vRIxDr8nFjmTW_YcibbaFXiubBtPiMZ7OvGPrSFX5zrdU0w168lXiNgheN\">\n<div class=\"absolute inset-0 bg-gradient-to-r from-ink-black/80 via-ink-black/40 to-transparent\"></div>\n</div>\n<div class=\"relative z-10 max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop w-full\">\n<div class=\"max-w-2xl\">\n<span class=\"inline-block px-3 py-1 mb-4 rounded-full bg-primary/20 text-primary-fixed border border-primary/30 font-label-md text-label-md uppercase tracking-widest\">Scientific Excellence</span>\n<h2 class=\"font-headline-xl text-headline-xl text-white mb-6\">Expert Agricultural Consultancy</h2>\n<p class=\"font-body-lg text-body-lg text-white/90 mb-8\">Empowering commercial farmers through science-backed nutrition strategies and precision livestock management. We bridge the gap between laboratory innovation and field success.</p>\n<div class=\"flex flex-wrap gap-4\">\n<a class=\"px-8 py-4 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all active:scale-95 shadow-lg inline-flex items-center justify-center gap-2\" href=\"/contact\">Book a Consultation</a>\n<button class=\"px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-all active:scale-95\">View Expertise</button>\n</div>\n</div>\n</div>\n</section>\n<!-- 2. Our Expertise Section -->\n<section class=\"py-24 bg-surface-off-white\">\n<div class=\"max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop\">\n<div class=\"text-center mb-16\">\n<h2 class=\"font-headline-lg text-headline-lg text-primary mb-4\">Our Specialized Expertise</h2>\n<p class=\"font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto\">Precision-engineered solutions tailored for the unique physiological needs of high-performance livestock.</p>\n</div>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n<!-- Dairy Card -->\n<div class=\"glass-card rounded-xl overflow-hidden flex flex-col\">\n<div class=\"h-48 relative\">\n<img class=\"w-full h-full object-cover\" data-alt=\"A professional close-up of a healthy, well-groomed dairy cow in a modern stall, looking directly at the camera. The background is a clean, organized milking parlor with stainless steel equipment. The lighting is bright and laboratory-clean, emphasizing hygiene and health. The style is modern corporate photography with high contrast and natural colors.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuDzu_Vx36svzedJlSBfzLxt3UZiNj4nuVOO41m2qS-OTihsynXbij6ag0RkKPfJ-5wVZO5ORXgTS5sfr9YF1S0NPNtxQ1VsPFMyK8XDNFSk4vwlWnVe_cVsUOWv-KyPBKzbnzsJwnAGOf7w1_EcOzixUTWujYXuPk1NvolYakiQa_lsUhAOjUdQ2IYo8gLK8MF9QYFbRShVZPVRjbTz_azi2hmTTPRzh4r-EacBIjqqVnmvpKUcm7MoCKkVGymu2_-iw2ZJvjY0cDHV\">\n<div class=\"absolute top-4 left-4 bg-primary text-white p-2 rounded-lg\">\n<span class=\"material-symbols-outlined\">agriculture</span>\n</div>\n</div>\n<div class=\"p-8 flex-grow\">\n<h3 class=\"font-headline-md text-headline-md text-primary mb-4\">Dairy Herd Management</h3>\n<p class=\"font-body-md text-body-md text-on-surface-variant mb-6\">Optimizing metabolic pathways for sustained peak performance.</p>\n<ul class=\"space-y-3\">\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Milk yield &amp; quality enhancement\n                                </li>\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Fertility &amp; reproductive health\n                                </li>\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Metabolic disease prevention\n                                </li>\n</ul>\n</div>\n</div>\n<!-- Poultry Card -->\n<div class=\"glass-card rounded-xl overflow-hidden flex flex-col\">\n<div class=\"h-48 relative\">\n<img class=\"w-full h-full object-cover\" data-alt=\"A professional, bright interior view of a climate-controlled poultry facility. Focus on a group of healthy white broiler chickens with vibrant red combs. The environment is impeccably clean with modern feeding systems visible. The lighting is even and natural, conveying a sense of high-tech agricultural precision and animal welfare.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuB_aVaki4HCx62aQ9M3dr-9WN75cm25hbg6M4vFDnq0axpeuCzn5EXocknkCO0a4mqWqTi2n2aajrBG1sCNZWupDHfoCQbm2bX8n8xlRJGhJaIFYg9hKeHnzM4GZdo4DjRP_oUhfrlfPNy9TOsjQOw5m7whzQOI-y6ylYMf0JDnTNlrdSHSLKzW_7_uAfFiYzSDwnWiwVKTboCHMKFn6lthuBmIHhxsX1mLVegMXDK_jftvuGQTpPu3n-plTjJUE-wQEUMVUcvghpa9\">\n<div class=\"absolute top-4 left-4 bg-primary text-white p-2 rounded-lg\">\n<span class=\"material-symbols-outlined\">science</span>\n</div>\n</div>\n<div class=\"p-8 flex-grow\">\n<h3 class=\"font-headline-md text-headline-md text-primary mb-4\">Poultry Optimization</h3>\n<p class=\"font-body-md text-body-md text-on-surface-variant mb-6\">Precision feeding protocols for rapid growth and egg integrity.</p>\n<ul class=\"space-y-3\">\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Feed Conversion Ratio (FCR) tuning\n                                </li>\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Egg shell strength &amp; yolk quality\n                                </li>\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Immune system fortification\n                                </li>\n</ul>\n</div>\n</div>\n<!-- Pig Card -->\n<div class=\"glass-card rounded-xl overflow-hidden flex flex-col\">\n<div class=\"h-48 relative\">\n<img class=\"w-full h-full object-cover\" data-alt=\"A clean, modern swine production facility featuring healthy pink pigs in a well-ventilated, spacious environment. The shot captures the industrial efficiency and hygiene of a professional pig farm. Neutral lighting highlights the clean surfaces and healthy animals, aligned with a biotech-meets-agriculture aesthetic.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuAptN_Un80jetr1Vd1IpJHTQWdI4G1govA0TQFpWSGUzLx1HA6O7Sl7lMGlGUVsJ_ZZGvyBNl2lKh9Am05-iucbz6xKu3EHjLOClXT3Fdm6zGIeW8S49idYYuHTXxehKH32Z9RwGbuKi6-JCU4fZ3vek0SZQv3s-V62AVBs5d8e8eRCh7OhS9JrJ7JFWLeEf8MVcXc9mSskd76UPywqJwcI1iSW1amL6u60N_x6Ll35qHPsRys4GT5m56SMge3eRfnnM8bSWAmAo_bQ\">\n<div class=\"absolute top-4 left-4 bg-primary text-white p-2 rounded-lg\">\n<span class=\"material-symbols-outlined\">model_training</span>\n</div>\n</div>\n<div class=\"p-8 flex-grow\">\n<h3 class=\"font-headline-md text-headline-md text-primary mb-4\">Pig Nutrition</h3>\n<p class=\"font-body-md text-body-md text-on-surface-variant mb-6\">Advanced strategies for lean meat ratio and gut health.</p>\n<ul class=\"space-y-3\">\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Meat-to-fat ratio optimization\n                                </li>\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Disease resistance strategies\n                                </li>\n<li class=\"flex items-start gap-2 font-body-md text-body-md text-on-surface\">\n<span class=\"material-symbols-outlined text-growth-green text-sm mt-1\">check_circle</span>\n                                    Growth cycle acceleration\n                                </li>\n</ul>\n</div>\n</div>\n</div>\n</div>\n</section>\n<!-- 3. Professional Training Programs -->\n<section class=\"py-24 bg-white border-y border-outline-variant\">\n<div class=\"max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop\">\n<div class=\"flex flex-col md:flex-row gap-16 items-center\">\n<div class=\"w-full md:w-1/2\">\n<h2 class=\"font-headline-lg text-headline-lg text-primary mb-6\">Professional Training Programs</h2>\n<p class=\"font-body-lg text-body-lg text-on-surface-variant mb-8\">We provide intensive capacity building for farm managers and staff, bridging the gap between cutting-edge research and daily field operations.</p>\n<div class=\"space-y-6\">\n<div class=\"flex gap-6 p-6 rounded-xl border border-outline-variant hover:border-primary transition-colors bg-surface-container-low\">\n<div class=\"w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0\">\n<span class=\"material-symbols-outlined text-white\">biotech</span>\n</div>\n<div>\n<h4 class=\"font-headline-md text-headline-md text-primary mb-1\">Disease Control &amp; Biosecurity</h4>\n<p class=\"font-body-md text-body-md text-on-surface-variant\">Protocols for preventing outbreaks and maintaining pristine herd health.</p>\n</div>\n</div>\n<div class=\"flex gap-6 p-6 rounded-xl border border-outline-variant hover:border-primary transition-colors bg-surface-container-low\">\n<div class=\"w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0\">\n<span class=\"material-symbols-outlined text-white\">restaurant</span>\n</div>\n<div>\n<h4 class=\"font-headline-md text-headline-md text-primary mb-1\">Optimal Feeding Practices</h4>\n<p class=\"font-body-md text-body-md text-on-surface-variant\">Practical training on feed preparation, storage, and distribution schedules.</p>\n</div>\n</div>\n<div class=\"flex gap-6 p-6 rounded-xl border border-outline-variant hover:border-primary transition-colors bg-surface-container-low\">\n<div class=\"w-12 h-12 bg-primary rounded-lg flex items-center justify-center flex-shrink-0\">\n<span class=\"material-symbols-outlined text-white\">monitoring</span>\n</div>\n<div>\n<h4 class=\"font-headline-md text-headline-md text-primary mb-1\">Modern Farming Analytics</h4>\n<p class=\"font-body-md text-body-md text-on-surface-variant\">Data-driven management techniques for scaling agricultural output.</p>\n</div>\n</div>\n</div>\n</div>\n<div class=\"w-full md:w-1/2 relative\">\n<div class=\"rounded-3xl overflow-hidden shadow-2xl\">\n<img class=\"w-full h-[500px] object-cover\" data-alt=\"A diverse group of professional agricultural managers and farm owners wearing clean white lab coats and branded MolaPlus gear, gathered around a large digital tablet in a bright, modern seminar room. A specialist is pointing to a complex nutrition chart. The atmosphere is intellectual, collaborative, and professional. The background features windows looking out onto a green field. High-end, corporate-professional lighting.\" src=\"https://lh3.googleusercontent.com/aida-public/AB6AXuBWq6AYWMgDh3D1k9493v_Z50f-JBkEUEraDan39cc4IZU6ZDI5Tq7goFkSdCX2AJMRqVcGdxoJiiu7dLdT_Emdpj-dKPu8IPBXAf5Z6D-fWb5rfGdKYWXVbKbGfbvog5NzLj7-BMk3TQW6ucNh_DKLhesUzm4wq7B7r4dg5taJTTBtqG-d0oyD9Y1dfIvWuR7SF_EdzbgVAJ2F8zD8QfIyLiXx5fyhiq5mZbOkOprvh6ta_kngqjwXoBmD0u72sqQv2x6t8N8gvzTA\">\n</div>\n\n</div>\n</div>\n</div>\n</section>\n<!-- 4. Technical Support Specialized Block -->\n<section class=\"py-24 bg-primary text-white\">\n<div class=\"max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop text-center\">\n<div class=\"max-w-3xl mx-auto\">\n<h2 class=\"font-headline-lg text-headline-lg mb-6\">24/7 Technical Field Support</h2>\n<p class=\"font-body-lg text-body-lg mb-12 opacity-90\">Your success is our mission. Beyond consultancy, we provide continuous on-site support and remote assistance to ensure your farm operates at peak efficiency every single day.</p>\n<div class=\"grid grid-cols-1 md:grid-cols-3 gap-8\">\n<div class=\"p-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20\">\n<span class=\"material-symbols-outlined text-4xl mb-4\">support_agent</span>\n<h4 class=\"font-headline-md text-headline-md mb-2\">Expert Hotline</h4>\n<p class=\"font-body-md text-body-md opacity-80\">Immediate remote consultation for urgent health or nutritional queries.</p>\n</div>\n<div class=\"p-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20\">\n<span class=\"material-symbols-outlined text-4xl mb-4\">location_on</span>\n<h4 class=\"font-headline-md text-headline-md mb-2\">On-Site Visits</h4>\n<p class=\"font-body-md text-body-md opacity-80\">Regular scheduled physical inspections and environmental audits.</p>\n</div>\n<div class=\"p-8 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20\">\n<span class=\"material-symbols-outlined text-4xl mb-4\">labs</span>\n<h4 class=\"font-headline-md text-headline-md mb-2\">Lab Integration</h4>\n<p class=\"font-body-md text-body-md opacity-80\">Direct connection to our laboratory for rapid sample testing and results.</p>\n</div>\n</div>\n</div>\n</div>\n</section>\n<!-- 6. Booking & Contact Section -->\n<section class=\"py-24 bg-surface-off-white\">\n<div class=\"max-w-container-max-width mx-auto px-margin-mobile md:px-margin-desktop\">\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-16\">\n<div>\n<h2 class=\"font-headline-lg text-headline-lg text-primary mb-6\">Secure Your Strategy</h2>\n<p class=\"font-body-lg text-body-lg text-on-surface-variant mb-12\">Take the first step towards transforming your agricultural enterprise. Fill out the inquiry form, and our lead consultants will reach out to schedule a discovery session.</p>\n<div class=\"space-y-8\">\n<div class=\"flex items-center gap-6\">\n<div class=\"w-14 h-14 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center\">\n<span class=\"material-symbols-outlined\">call</span>\n</div>\n<div>\n<p class=\"font-label-md text-label-md text-primary uppercase\">Phone Support</p>\n<p class=\"font-headline-md text-headline-md text-on-surface\">+254 724 968 847</p>\n</div>\n</div>\n<div class=\"flex items-center gap-6\">\n<div class=\"w-14 h-14 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center\">\n<span class=\"material-symbols-outlined\">mail</span>\n</div>\n<div>\n<p class=\"font-label-md text-label-md text-primary uppercase\">Email Inquiry</p>\n<p class=\"font-headline-md text-headline-md text-on-surface\">info@molaplusafrica.com</p>\n</div>\n</div>\n<div class=\"flex items-center gap-6\">\n<div class=\"w-14 h-14 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center\">\n<span class=\"material-symbols-outlined\">business</span>\n</div>\n<div>\n<p class=\"font-label-md text-label-md text-primary uppercase\">Headquarters</p>\n<p class=\"font-headline-md text-headline-md text-on-surface\">Kenya</p>\n</div>\n</div>\n</div>\n</div>\n<div class=\"bg-white p-10 rounded-2xl border border-outline-variant shadow-sm\">\n<form class=\"space-y-6\">\n<div class=\"grid grid-cols-1 md:grid-cols-2 gap-6\">\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-label-md text-on-surface-variant\">Full Name</label>\n<input class=\"w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all\" placeholder=\"John Doe\" type=\"text\">\n</div>\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-label-md text-on-surface-variant\">Organization</label>\n<input class=\"w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all\" placeholder=\"Your Farm Name\" type=\"text\">\n</div>\n</div>\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-label-md text-on-surface-variant\">Email Address</label>\n<input class=\"w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all\" placeholder=\"john@example.com\" type=\"email\">\n</div>\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-label-md text-on-surface-variant\">Service Area</label>\n<select class=\"w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all bg-white\">\n<option>Dairy Management</option>\n<option>Poultry Optimization</option>\n<option>Pig Nutrition</option>\n<option>General Consultancy</option>\n</select>\n</div>\n<div class=\"space-y-2\">\n<label class=\"font-label-md text-label-md text-on-surface-variant\">Your Requirements</label>\n<textarea class=\"w-full px-4 py-3 rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none\" placeholder=\"Briefly describe your livestock or nutritional challenges...\" rows=\"4\"></textarea>\n</div>\n<button class=\"w-full py-4 bg-secondary text-white font-bold rounded-lg hover:brightness-110 transition-all active:scale-[0.98] shadow-md\" type=\"submit\">Request Discovery Call</button>\n</form>\n</div>\n</div>\n</div>\n</section>\n</main>\n<!-- Footer Shell -->\n\n<!-- Simple JavaScript for subtle micro-interactions -->\n\n\n\n\n";
+const expertise = [
+  [
+    "water_drop",
+    "Dairy Herd Management",
+    "Optimizing metabolic pathways for sustained peak performance.",
+    ["Milk yield & quality enhancement", "Fertility & reproductive health", "Metabolic disease prevention"],
+  ],
+  [
+    "egg",
+    "Poultry Optimization",
+    "Precision feeding protocols for rapid growth and egg integrity.",
+    ["Feed Conversion Ratio (FCR) tuning", "Egg shell strength & yolk quality", "Immune system fortification"],
+  ],
+  [
+    "pets",
+    "Pig Nutrition",
+    "Advanced strategies for lean meat ratio and gut health.",
+    ["Meat-to-fat ratio optimization", "Disease resistance strategies", "Growth cycle acceleration"],
+  ],
+] as const;
 
-export default function Page() {
-  return <StaticHtmlPage html={html} />;
+const training = [
+  ["health_and_safety", "Disease Control & Biosecurity", "Protocols for preventing outbreaks and maintaining pristine herd health."],
+  ["restaurant", "Optimal Feeding Practices", "Practical training on feed preparation, storage, and distribution schedules."],
+  ["insights", "Modern Farming Analytics", "Data-driven management techniques for scaling agricultural output."],
+];
+
+const support = [
+  ["support_agent", "Expert Hotline", "Immediate remote consultation for urgent health or nutritional queries."],
+  ["home_work", "On-Site Visits", "Regular scheduled physical inspections and environmental audits."],
+  ["biotech", "Lab Integration", "Direct connection to our laboratory for rapid sample testing and results."],
+];
+
+export default function ConsultancyPage() {
+  return (
+    <div className="overflow-x-hidden bg-surface text-on-surface">
+      {/* Hero */}
+      <section className="mp-scene mp-grain relative overflow-hidden">
+        <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
+          <span className="mp-eyebrow text-primary-fixed-dim">Scientific Excellence</span>
+          <h1 className="mp-display mt-4 max-w-4xl">Expert agricultural consultancy</h1>
+          <p className="text-pretty mt-4 max-w-2xl text-base text-white/80 sm:text-lg md:mt-6 md:text-xl">
+            Empowering commercial farmers through science-backed nutrition
+            strategies and precision livestock management. We bridge the gap
+            between laboratory innovation and field success.
+          </p>
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a className="inline-flex items-center justify-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white transition-all hover:bg-secondary" href="#book">
+              Book a Consultation
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </a>
+            <a className="glass-effect inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="#expertise">
+              View Expertise
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Expertise */}
+      <section className="bg-surface py-16 md:py-24" id="expertise">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mb-10 max-w-2xl" data-reveal>
+            <span className="mp-eyebrow text-secondary">Our Specialized Expertise</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">
+              Precision solutions for high-performance livestock
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
+            {expertise.map(([icon, title, blurb, bullets]) => (
+              <div className="flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" key={title}>
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
+                  <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                </div>
+                <h3 className="mt-5 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
+                <p className="mt-2 text-on-surface-variant">{blurb}</p>
+                <ul className="mt-5 space-y-2.5 border-t border-outline-variant pt-5">
+                  {bullets.map((b) => (
+                    <li className="flex items-start gap-2 text-sm text-on-surface-variant" key={b}>
+                      <span className="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Training */}
+      <section className="bg-surface-container-low py-16 md:py-24">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mb-10 max-w-2xl" data-reveal>
+            <span className="mp-eyebrow text-secondary">Professional Training Programs</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">Capacity building for your team</h2>
+            <p className="mt-4 text-on-surface-variant">
+              Intensive training for farm managers and staff, bridging the gap
+              between cutting-edge research and daily field operations.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
+            {training.map(([icon, title, body]) => (
+              <div className="rounded-3xl border border-outline-variant bg-white p-8" key={title}>
+                <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                <h3 className="mt-5 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
+                <p className="mt-3 text-on-surface-variant">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Support */}
+      <section className="bg-surface py-16 md:py-24">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mb-10 max-w-2xl" data-reveal>
+            <span className="mp-eyebrow text-secondary">Technical Field Support</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">Support that keeps farms running</h2>
+            <p className="mt-4 text-on-surface-variant">
+              Beyond consultancy, we provide continuous on-site support and remote
+              assistance to ensure your farm operates at peak efficiency.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
+            {support.map(([icon, title, body]) => (
+              <div className="rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" key={title}>
+                <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                <h3 className="mt-5 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
+                <p className="mt-3 text-on-surface-variant">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Book (no form - direct channels) */}
+      <section className="pb-20 pt-4 md:pb-28" id="book">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mp-scene mp-grain relative overflow-hidden rounded-[2.5rem] p-8 text-white md:p-14" data-reveal>
+            <div className="relative z-10">
+              <div className="max-w-2xl">
+                <span className="mp-eyebrow text-primary-fixed-dim">Secure your strategy</span>
+                <h2 className="mp-display-sm mt-3">Book a discovery session</h2>
+                <p className="text-pretty mt-4 max-w-xl text-white/80">
+                  Tell our lead consultants about your farm and goals. Message us on
+                  WhatsApp or call directly &mdash; we&apos;ll schedule your session.
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <a className="mp-hover-lift flex flex-col rounded-3xl bg-secondary-container p-6 text-white" href="https://wa.me/254724968847" rel="noopener noreferrer" target="_blank">
+                  <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>chat</span>
+                  <span className="mp-eyebrow mt-3 text-white/70">Recommended</span>
+                  <span className="text-lg font-extrabold">WhatsApp us</span>
+                </a>
+                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm" href="tel:+254724968847">
+                  <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
+                  <span className="mp-eyebrow mt-3 text-white/60">Phone Support</span>
+                  <span className="text-lg font-extrabold">+254 724 968 847</span>
+                </a>
+                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm" href="mailto:info@molaplusafrica.com">
+                  <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
+                  <span className="mp-eyebrow mt-3 text-white/60">Email Inquiry</span>
+                  <span className="break-all text-lg font-extrabold">info@molaplusafrica.com</span>
+                </a>
+              </div>
+              <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/70">
+                <span className="material-symbols-outlined text-[18px]">location_on</span>
+                Headquarters: Kenya &middot; Nationwide field support
+              </p>
+              <div className="mt-6">
+                <Link className="inline-flex items-center gap-2 font-bold text-white underline-offset-4 hover:underline" href="/distributors">
+                  Prefer to visit a stockist? Find one near you
+                  <span className="material-symbols-outlined text-[20px]">trending_flat</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
