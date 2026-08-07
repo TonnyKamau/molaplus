@@ -36,7 +36,7 @@ export default function Home() {
 
           <div className="relative z-20 mx-auto w-full max-w-container-max-width px-margin-mobile pb-10 pt-20 md:pb-14 md:px-margin-desktop">
             <div className="max-w-3xl text-white">
-              <span className="mp-eyebrow inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-white/90 backdrop-blur-sm">
+              <span className="mp-eyebrow inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 text-white/90">
                 <span className="h-1.5 w-1.5 rounded-full bg-growth-green" />
                 AgriTech Innovation &middot; East Africa
               </span>
@@ -432,7 +432,7 @@ export default function Home() {
                     src={labImage}
                   />
                   <div className="absolute inset-0 flex items-center justify-center p-8">
-                    <div className="max-w-xs rounded-3xl border border-white/60 bg-white/90 p-8 text-center shadow-2xl backdrop-blur-md">
+                    <div className="max-w-xs rounded-3xl border border-white/60 bg-white/90 p-8 text-center shadow-2xl">
                       <span
                         className="material-symbols-outlined mb-2 text-5xl text-primary"
                         style={{ fontVariationSettings: "'FILL' 1" }}
@@ -498,13 +498,13 @@ export default function Home() {
                   distributor pricing.
                 </p>
                 <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-4 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
+                  <div className="rounded-2xl border border-white/20 bg-white/10 p-6">
                     <p className="mp-eyebrow mb-2 text-white/60">Lipa na M-Pesa</p>
                     <p className="text-2xl font-extrabold text-secondary-fixed-dim">
                       Till No. 906520
                     </p>
                   </div>
-                  <div className="rounded-2xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm">
+                  <div className="rounded-2xl border border-white/20 bg-white/10 p-6">
                     <p className="mp-eyebrow mb-2 text-white/60">Direct support</p>
                     <p className="text-2xl font-extrabold text-white">
                       +254 724 968 847

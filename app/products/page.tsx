@@ -68,7 +68,7 @@ export default function ProductsPage() {
             of operation.
           </p>
 
-          <div className="mt-10 inline-flex flex-wrap items-center gap-x-8 gap-y-4 rounded-3xl border border-white/20 bg-white/10 px-7 py-5 backdrop-blur-sm">
+          <div className="mt-10 inline-flex flex-wrap items-center gap-x-8 gap-y-4 rounded-3xl border border-white/20 bg-white/10 px-7 py-5">
             <div>
               <p className="mp-eyebrow text-white/60">Buy online &amp; pay via M-Pesa</p>
               <p className="text-2xl font-extrabold text-secondary-fixed-dim">Till no: 906520</p>

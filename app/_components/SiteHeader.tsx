@@ -58,8 +58,8 @@ export function SiteHeader() {
         <div
           className={`mx-auto flex h-16 w-full max-w-container-max-width items-center justify-between rounded-full pl-4 pr-2 transition-all duration-300 md:pl-6 md:pr-3 ${
             scrolled
-              ? "border border-outline-variant/70 bg-surface/80 shadow-lg shadow-primary/5 backdrop-blur-xl"
-              : "border border-transparent bg-surface/40 backdrop-blur-md"
+              ? "border border-outline-variant/70 bg-surface shadow-lg shadow-primary/5 lg:bg-surface/80 lg:backdrop-blur-xl"
+              : "border border-transparent bg-surface lg:bg-surface/40 lg:backdrop-blur-md"
           }`}
         >
           <div className="flex items-center gap-2">
@@ -125,7 +125,7 @@ export function SiteHeader() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-0 z-[60] bg-ink-black/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-[60] bg-ink-black/50 transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setOpen(false)}

@@ -26,7 +26,7 @@ export function BottomNav() {
       aria-label="Bottom navigation"
       className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3 lg:hidden"
     >
-      <div className="mx-auto flex max-w-md items-center justify-around rounded-full border border-outline-variant/70 bg-surface/85 px-2 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.12)] backdrop-blur-xl">
+      <div className="mx-auto flex max-w-md items-center justify-around rounded-full border border-outline-variant/70 bg-surface/85 px-2 py-2 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
         {bottomLinks.map((link) => {
           const active = isActive(pathname, link.href);
           return (

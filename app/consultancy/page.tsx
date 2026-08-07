@@ -154,12 +154,12 @@ export default function ConsultancyPage() {
                   <span className="mp-eyebrow mt-3 text-white/70">Recommended</span>
                   <span className="text-lg font-extrabold">WhatsApp us</span>
                 </a>
-                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm" href="tel:+254724968847">
+                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="tel:+254724968847">
                   <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
                   <span className="mp-eyebrow mt-3 text-white/60">Phone Support</span>
                   <span className="text-lg font-extrabold">+254 724 968 847</span>
                 </a>
-                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur-sm" href="mailto:info@molaplusafrica.com">
+                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="mailto:info@molaplusafrica.com">
                   <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
                   <span className="mp-eyebrow mt-3 text-white/60">Email Inquiry</span>
                   <span className="break-all text-lg font-extrabold">info@molaplusafrica.com</span>

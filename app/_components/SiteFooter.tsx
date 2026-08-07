@@ -120,7 +120,7 @@ export function SiteFooter() {
       </div>
 
       {/* Oversized brand wordmark */}
-      <div className="pointer-events-none select-none px-margin-mobile md:px-margin-desktop">
+      <div className="hidden select-none px-margin-mobile md:block md:px-margin-desktop pointer-events-none">
         <p className="-mb-4 whitespace-nowrap text-center text-[22vw] font-extrabold leading-none tracking-tighter text-white/[0.06] md:-mb-8">
           MolaPlus
         </p>
