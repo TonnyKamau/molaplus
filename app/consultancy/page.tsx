@@ -35,7 +35,7 @@ const support = [
 
 export default function ConsultancyPage() {
   return (
-    <div className="overflow-x-hidden bg-surface text-on-surface">
+    <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">

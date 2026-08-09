@@ -5,9 +5,21 @@ import { SiteFooter } from "./_components/SiteFooter";
 import { ScrollReveal } from "./_components/ScrollReveal";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://molaplusafrica.com"),
   title: "MolaPlus Africa | Advanced Animal Nutrition",
   description:
     "Innovative animal feed supplements, probiotics, consultancy, and technical support for productive farms across East Africa.",
+  openGraph: {
+    title: "MolaPlus Africa | Healthy animals. Stronger farms.",
+    description: "Advanced animal nutrition developed for productive East African farms.",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MolaPlus Africa — Healthy animals. Stronger farms." }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MolaPlus Africa | Healthy animals. Stronger farms.",
+    description: "Advanced animal nutrition developed for productive East African farms.",
+    images: ["/og.png"],
+  },
 };
 
 export const viewport: Viewport = {

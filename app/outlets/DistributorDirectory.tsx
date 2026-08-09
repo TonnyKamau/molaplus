@@ -120,7 +120,7 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
   const locationOutOfRange = nearestDist !== null && nearestDist > 400;
 
   return (
-    <div className="min-h-screen bg-surface text-on-surface">
+    <div className="directory-page min-h-screen bg-surface text-on-surface">
       <main className="mx-auto w-full max-w-container-max-width px-margin-mobile py-stack-lg md:px-margin-desktop">
         <section className="mb-10 grid grid-cols-1 gap-gutter lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
           <div>
@@ -131,7 +131,7 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-3 rounded-3xl border border-outline-variant bg-surface-container-low p-5">
+          <div className="directory-stats grid grid-cols-3 gap-3 rounded-3xl border border-outline-variant bg-surface-container-low p-5">
             <div>
               <p className="mp-eyebrow text-on-surface-variant">Outlets</p>
               <p className="text-2xl font-extrabold text-primary">{distributors.length.toLocaleString()}</p>
@@ -176,7 +176,7 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                   }}
                   value={selectedTown}
                 >
-                  <option value="all">All towns ({classifiedCount.toLocaleString()})</option>
+                  <option value="all">All towns ({townOptions.length.toLocaleString()})</option>
                   {townOptions.map((option) => (
                     <option key={option.key} value={option.key}>
                       {option.town.name}

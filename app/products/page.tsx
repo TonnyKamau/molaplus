@@ -23,7 +23,7 @@ const groups: Group[] = [
     sizes: [
       { size: "1KG Package", blurb: "Ideal for small-scale dairy farms and individual homesteads.", img: "/molaplus/milkbooster-1kg.png" },
       { size: "2KG Package", blurb: "Perfect for medium-sized dairy operations seeking efficiency.", img: "/molaplus/milkbooster-2kg.png" },
-      { size: "5KG Package", blurb: "Designed for large commercial dairy farms and bulk buyers.", img: "/molaplus/milkbooster-5kg.png" },
+      { size: "5KG Package", blurb: "Designed for large commercial dairy farms and bulk buyers.", img: "/molaplus/milk-booster-5kg-cutout.png" },
     ],
   },
   {
@@ -37,6 +37,7 @@ const groups: Group[] = [
       { size: "500ml Solution", blurb: "For small poultry flocks", img: "/molaplus/poultry-500ml.png" },
       { size: "1 Litre Solution", blurb: "For medium-sized farms", img: "/molaplus/poultry-1ltr.png" },
       { size: "5 Litre Solution", blurb: "For large operations", img: "/molaplus/poultry-5ltr.png" },
+      { size: "10 Litre Solution", blurb: "For high-volume poultry operations", img: "/molaplus/poultry-microbes-10l.png" },
     ],
   },
   {
@@ -50,13 +51,24 @@ const groups: Group[] = [
       { size: "1 Litre Solution", blurb: "1 Litre - Small Farms", img: "/molaplus/pig-1ltr.png" },
       { size: "5 Litre Solution", blurb: "5 Litre - Commercial", img: "/molaplus/pig-5ltr.png" },
       { size: "20 Litre Solution", blurb: "20 Litre - Large Scale", img: "/molaplus/pig-20ltr.png" },
+      { size: "10 Litre Solution", blurb: "10 Litre - Growing Farms", img: "/molaplus/pig-microbes-10l.png" },
+    ],
+  },
+  {
+    id: "steaming-formula",
+    eyebrow: "Dairy support",
+    name: "MolaPlus Steaming Formula",
+    tagline: "Targeted nutritional support for dairy cows approaching calving and the demanding transition into lactation.",
+    href: "/contact",
+    sizes: [
+      { size: "5KG Bucket", blurb: "A practical dairy formula for pre-calving and transition support.", img: "/molaplus/steaming-formula-5kg.png" },
     ],
   },
 ];
 
 export default function ProductsPage() {
   return (
-    <div className="overflow-x-hidden bg-surface text-on-surface">
+    <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
@@ -102,7 +114,7 @@ export default function ProductsPage() {
                 className="group inline-flex items-center gap-1 whitespace-nowrap font-bold text-primary underline-offset-4 hover:underline"
                 href={group.href}
               >
-                {group.id === "super-milk-booster" ? "View details" : "Compare products"}
+                {group.id === "super-milk-booster" ? "View details" : group.id === "steaming-formula" ? "Ask our team" : "Compare products"}
                 <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_outward</span>
               </Link>
             </div>
@@ -113,11 +125,12 @@ export default function ProductsPage() {
                   className="mp-hover-lift group flex flex-col overflow-hidden rounded-3xl border border-outline-variant bg-surface-container-lowest"
                   key={s.size}
                 >
-                  <div className="relative h-56 w-full overflow-hidden bg-surface-container-low">
+                  <div className="product-card__media relative h-72 w-full overflow-hidden">
                     <Image
                       alt={`${group.name} ${s.size}`}
-                      className="object-contain p-6 transition-transform duration-500 group-hover:scale-105"
+                      className="object-contain p-5 transition-transform duration-500 group-hover:scale-105"
                       fill
+                      unoptimized
                       sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
                       src={s.img}
                     />

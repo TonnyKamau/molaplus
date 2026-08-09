@@ -17,7 +17,7 @@ export function ScrollReveal() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Auto-tag page sections so JSX and injected static pages both animate.
-    document.querySelectorAll<HTMLElement>("main section").forEach((el) => {
+    document.querySelectorAll<HTMLElement>("main section, .editorial-page > section, .new-home > section, .directory-page section").forEach((el) => {
       if (!el.hasAttribute("data-reveal") && !el.hasAttribute("data-reveal-stagger")) {
         el.setAttribute("data-reveal", "");
       }

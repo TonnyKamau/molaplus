@@ -9,7 +9,7 @@ const guides = [
 
 export default function ResourcesPage() {
   return (
-    <div className="overflow-x-hidden bg-surface text-on-surface">
+    <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
@@ -40,8 +40,8 @@ export default function ResourcesPage() {
             <div className="relative z-10 flex flex-col justify-between gap-8 p-8 md:flex-row md:items-end md:p-12">
               <div className="max-w-xl text-white">
                 <div className="flex flex-wrap gap-2">
-                  <span className="mp-eyebrow rounded-full bg-secondary-container px-3 py-1.5 text-white">Feeding Guide</span>
-                  <span className="mp-eyebrow rounded-full bg-white/15 px-3 py-1.5 text-white">Technical Guide</span>
+                  <span className="resource-guide-badge resource-guide-badge--primary mp-eyebrow rounded-full bg-secondary-container px-3 py-1.5 text-white">Feeding Guide</span>
+                  <span className="resource-guide-badge resource-guide-badge--secondary mp-eyebrow rounded-full bg-white/15 px-3 py-1.5 text-white">Technical Guide</span>
                 </div>
                 <h2 className="mp-display-sm mt-5">Simply Feeding Dairy</h2>
                 <p className="mt-4 text-white/80">

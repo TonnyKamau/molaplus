@@ -3,19 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const primaryNav = [
-  { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/consultancy", label: "Consultancy" },
   { href: "/resources", label: "Resources" },
-  { href: "/about-us", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/distributors", label: "Distributors" },
+  { href: "/about-us", label: "Our story" },
 ];
 
 const drawerLinks = [
-  { href: "/", label: "Home", icon: "home" },
   { href: "/products", label: "Products", icon: "science" },
   { href: "/products/super-milk-booster", label: "Super Milk Booster", icon: "water_drop" },
   { href: "/product-comparison", label: "Compare Products", icon: "compare_arrows" },
@@ -37,6 +35,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const drawerLinksRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -47,6 +46,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    if (open) drawerLinksRef.current?.scrollTo({ top: 0 });
     return () => {
       document.body.style.overflow = "";
     };
@@ -54,45 +54,33 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 w-full px-3 pt-3 md:px-margin-desktop md:pt-4">
+      <header className={`site-header fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 ${scrolled ? "is-scrolled" : ""}`}>
         <div
-          className={`mx-auto flex h-16 w-full max-w-container-max-width items-center justify-between rounded-full pl-4 pr-2 transition-all duration-300 md:pl-6 md:pr-3 ${
-            scrolled
-              ? "border border-outline-variant/70 bg-surface shadow-lg shadow-primary/5 lg:bg-surface/80 lg:backdrop-blur-xl"
-              : "border border-transparent bg-surface lg:bg-surface/40 lg:backdrop-blur-md"
-          }`}
+          className="site-header__inner"
         >
-          <div className="flex items-center gap-2">
-            <button
-              aria-label="Open menu"
-              className="-ml-1 rounded-full p-2 text-primary transition-colors hover:bg-surface-container-high active:opacity-80 lg:hidden"
-              onClick={() => setOpen(true)}
-              type="button"
-            >
-              <span className="material-symbols-outlined">menu</span>
-            </button>
-            <Link className="flex items-center" href="/">
+          <div className="site-header__brand">
+            <Link aria-label="MolaPlus home" className="site-header__logo" href="/">
               <Image
                 alt="MolaPlus Africa"
-                className="h-9 w-auto md:h-10"
+                className="h-8 w-auto sm:h-10"
                 height={243}
                 priority
-                sizes="220px"
-                src="/logo.png"
+                sizes="190px"
+                src="/molaplus-brand.png"
                 width={1028}
               />
             </Link>
           </div>
 
-          <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex">
+          <nav className="site-header__nav hidden lg:flex">
             {primaryNav.map((link) => {
               const active = isActive(pathname, link.href);
               return (
                 <Link
                   className={
                     active
-                      ? "rounded-full bg-primary/10 px-4 py-2 text-sm font-bold text-primary"
-                      : "rounded-full px-4 py-2 text-sm font-semibold text-on-surface-variant transition-colors hover:bg-surface-container-high hover:text-primary"
+                      ? "site-header__link is-active"
+                      : "site-header__link"
                   }
                   href={link.href}
                   key={link.href}
@@ -103,42 +91,34 @@ export function SiteHeader() {
             })}
           </nav>
 
-          <Link
-            className="group hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-primary-container hover:shadow-md lg:inline-flex"
-            href="/distributors"
-          >
-            <span className="material-symbols-outlined text-[18px]">location_on</span>
-            Find Distributors
-          </Link>
-
-          <a
-            className="inline-flex items-center gap-1.5 rounded-full bg-primary px-4 py-2 text-sm font-bold text-white lg:hidden"
-            href="tel:+254724968847"
-          >
-            <span className="material-symbols-outlined text-[18px]">call</span>
-            Call
-          </a>
+          <div className="flex items-center gap-2">
+            <Link className="site-header__contact hidden lg:inline-flex" href="/contact">
+              Talk to an expert <span aria-hidden>↗</span>
+            </Link>
+            <a aria-label="Call MolaPlus" className="grid h-10 w-10 place-items-center border border-[#173b2b]/20 text-[#0c432c] lg:hidden" href="tel:+254724968847"><span className="material-symbols-outlined text-[20px]">call</span></a>
+            <button aria-label="Open menu" className="grid h-10 w-10 place-items-center bg-[#0c432c] text-white transition-colors hover:bg-[#ef5b2a] lg:hidden" onClick={() => setOpen(true)} type="button"><span className="material-symbols-outlined">menu</span></button>
+          </div>
         </div>
       </header>
       {/* Spacer to offset the fixed header on every page */}
-      <div aria-hidden className="h-[76px] md:h-20" />
+      <div aria-hidden className="h-[82px]" />
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-0 z-[60] bg-ink-black/50 transition-opacity duration-300 lg:hidden ${
+        className={`mobile-drawer__backdrop fixed inset-0 z-[60] bg-ink-black/50 transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setOpen(false)}
       />
       <nav
         aria-label="Main menu"
-        className={`fixed inset-y-0 left-0 z-[65] flex h-full w-[85%] max-w-sm flex-col rounded-r-3xl bg-surface-container-lowest shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
+        className={`mobile-drawer fixed inset-y-0 left-0 z-[65] flex h-full w-[88%] max-w-sm flex-col bg-surface-container-lowest shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="flex items-center justify-between border-b border-outline-variant p-5">
+        <div className="mobile-drawer__header flex items-center justify-between border-b border-outline-variant p-5">
           <div className="flex items-center">
-            <Image alt="MolaPlus Africa" className="h-8 w-auto" height={243} sizes="200px" src="/logo.png" width={1028} />
+            <Image alt="MolaPlus Africa" className="h-8 w-auto" height={243} sizes="200px" src="/molaplus-brand.png" width={1028} />
           </div>
           <button
             aria-label="Close menu"
@@ -149,28 +129,26 @@ export function SiteHeader() {
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
-        <ul className="flex flex-1 flex-col gap-1 overflow-y-auto p-4">
-          {drawerLinks.map((link) => {
-            const active = isActive(pathname, link.href);
+        <ul className="mobile-drawer__links flex flex-1 flex-col gap-1 overflow-y-auto p-4" ref={drawerLinksRef}>
+          {drawerLinks.map((link, index) => {
+            const active = link.href === "/products" ? pathname === "/products" : isActive(pathname, link.href);
             return (
               <li key={link.href}>
                 <Link
-                  className={
-                    active
-                      ? "flex items-center gap-4 rounded-2xl bg-primary-container px-4 py-3 font-bold text-on-primary-container"
-                      : "flex items-center gap-4 rounded-2xl px-4 py-3 text-on-surface-variant transition-all hover:bg-surface-container-high"
-                  }
+                  className={`mobile-drawer__link ${active ? "is-active" : ""}`}
                   href={link.href}
                   onClick={() => setOpen(false)}
                 >
-                  <span className="material-symbols-outlined">{link.icon}</span>
-                  {link.label}
+                  <span className="mobile-drawer__index">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="material-symbols-outlined mobile-drawer__icon">{link.icon}</span>
+                  <span>{link.label}</span>
+                  <span className="material-symbols-outlined mobile-drawer__arrow">arrow_outward</span>
                 </Link>
               </li>
             );
           })}
         </ul>
-        <div className="border-t border-outline-variant p-4">
+        <div className="mobile-drawer__footer border-t border-outline-variant p-4">
           <a
             className="flex items-center justify-center gap-2 rounded-full bg-secondary-container px-5 py-3 font-bold text-white transition-opacity hover:opacity-90"
             href="tel:+254724968847"

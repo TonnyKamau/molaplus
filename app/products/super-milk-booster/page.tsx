@@ -30,12 +30,12 @@ export default function SuperMilkBoosterPage() {
   const [active, setActive] = useState(1);
 
   return (
-    <div className="overflow-x-hidden bg-surface text-on-surface">
+    <div className="editorial-page product-detail-page overflow-x-hidden bg-surface text-on-surface">
       {/* Hero / detail */}
-      <section className="bg-surface py-10 md:py-16">
-        <div className="mx-auto grid max-w-container-max-width grid-cols-1 gap-10 px-margin-mobile lg:grid-cols-2 lg:gap-16 md:px-margin-desktop">
+      <section className="product-detail-hero bg-surface py-10 md:py-16">
+        <div className="product-detail-hero__grid mx-auto grid max-w-container-max-width grid-cols-1 gap-10 px-margin-mobile lg:grid-cols-2 lg:gap-16 md:px-margin-desktop">
           {/* Image */}
-          <div className="mp-scene mp-grain relative flex items-center justify-center overflow-hidden rounded-[2rem] p-8">
+          <div className="product-detail-hero__media mp-scene mp-grain relative flex items-center justify-center overflow-hidden rounded-[2rem] p-8">
             <span className="absolute left-6 top-6 z-10 rounded-full bg-secondary-container px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white">
               Best Seller
             </span>
@@ -44,6 +44,7 @@ export default function SuperMilkBoosterPage() {
                 alt={`Super Milk Booster ${packages[active].label}`}
                 className="object-contain drop-shadow-2xl"
                 fill
+                unoptimized
                 priority
                 sizes="(min-width: 1024px) 560px, 100vw"
                 src={packages[active].img}
@@ -52,7 +53,7 @@ export default function SuperMilkBoosterPage() {
           </div>
 
           {/* Details */}
-          <div className="flex flex-col justify-center">
+          <div className="product-detail-hero__details flex flex-col justify-center">
             <nav className="flex items-center gap-2 text-sm font-semibold text-on-surface-variant">
               <Link className="hover:text-primary" href="/products">Products</Link>
               <span className="material-symbols-outlined text-[16px]">chevron_right</span>
@@ -72,7 +73,7 @@ export default function SuperMilkBoosterPage() {
                   <button
                     className={
                       active === idx
-                        ? "rounded-2xl border-2 border-primary bg-primary/10 px-6 py-3 font-extrabold text-primary"
+                        ? "rounded-2xl border-2 border-[#0c432c] bg-[#0c432c] px-6 py-3 font-extrabold text-white"
                         : "rounded-2xl border-2 border-outline-variant bg-white px-6 py-3 font-bold text-on-surface-variant transition-colors hover:border-primary/40"
                     }
                     key={p.label}

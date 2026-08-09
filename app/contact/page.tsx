@@ -8,7 +8,7 @@ const departments = [
 
 export default function ContactPage() {
   return (
-    <div className="overflow-x-hidden bg-surface text-on-surface">
+    <div className="editorial-page contact-page overflow-x-hidden bg-surface text-on-surface">
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
@@ -30,13 +30,13 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 gap-gutter lg:grid-cols-3" data-reveal data-reveal-stagger>
             {/* WhatsApp (recommended) */}
             <a
-              className="mp-hover-lift group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-secondary-container p-8 text-white sm:col-span-2 lg:col-span-1"
+              className="contact-card--recommended mp-hover-lift group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-secondary-container p-8 text-white sm:col-span-2 lg:col-span-1"
               href="https://wa.me/254724968847"
               rel="noopener noreferrer"
               target="_blank"
             >
               <div>
-                <span className="mp-eyebrow rounded-full bg-white/20 px-3 py-1.5">Recommended</span>
+                <span className="contact-card__badge mp-eyebrow rounded-full bg-white/20 px-3 py-1.5">Recommended</span>
                 <span className="material-symbols-outlined mt-6 block text-5xl" style={{ fontVariationSettings: "'FILL' 1" }}>chat</span>
                 <h2 className="mt-4 text-2xl font-extrabold tracking-tight">Chat on WhatsApp</h2>
                 <p className="mt-2 text-white/85">Message a real person on our team. Fastest way to get answers or place an order.</p>
