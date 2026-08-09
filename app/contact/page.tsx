@@ -99,8 +99,9 @@ export default function ContactPage() {
             <h2 className="mp-display-sm mt-3 text-ink-black">Reach the right team</h2>
           </div>
           <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
-            {departments.map(([icon, title, body, cta, href]) => (
-              <Link className="mp-hover-lift group flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-7" href={href} key={title}>
+            {departments.map(([icon, title, body, cta, href]) => {
+              const content = (
+                <>
                 <span className="material-symbols-outlined text-3xl text-primary">{icon}</span>
                 <h3 className="mt-4 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
                 <p className="mt-2 flex-1 text-on-surface-variant">{body}</p>
@@ -108,8 +109,16 @@ export default function ContactPage() {
                   {cta}
                   <span className="material-symbols-outlined text-[20px]">trending_flat</span>
                 </span>
-              </Link>
-            ))}
+                </>
+              );
+              const className = "mp-hover-lift group flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-7";
+
+              return href.startsWith("/") ? (
+                <Link className={className} href={href} key={title}>{content}</Link>
+              ) : (
+                <a className={className} href={href} key={title}>{content}</a>
+              );
+            })}
           </div>
         </div>
       </section>

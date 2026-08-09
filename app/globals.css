@@ -777,6 +777,9 @@ section,main,footer,header{min-width:0}
 @media(max-width:380px){.site-header__logo img{width:145px}.hero-v2 h1{font-size:2.9rem}.mobile-drawer__header img{width:165px}.mobile-drawer__links a{min-height:48px;padding-block:9px}}
 @media(prefers-reduced-motion:reduce){.site-header,.hero-v2__copy,.hero-v2__visual,.product-detail-hero__media,.product-detail-hero__details{animation:none!important}.site-header__contact:hover,.button:hover,.site-footer__primary:hover,.site-footer__secondary:hover{transform:none}}
 
+/* Fixed-header-safe targets for product, resource and consultancy deep links. */
+:where(section, article, div)[id]{scroll-margin-top:110px}
+
 /* Product detail hero must not inherit the generic dark editorial masthead */
 .editorial-page.product-detail-page>section.product-detail-hero:first-child{display:block;min-height:0;background:#f3efe5!important;color:#10251b!important;align-items:initial}
 .editorial-page.product-detail-page>section.product-detail-hero:first-child:before,.editorial-page.product-detail-page>section.product-detail-hero:first-child:after{display:none!important;content:none!important}

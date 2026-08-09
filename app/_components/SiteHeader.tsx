@@ -52,6 +52,13 @@ export function SiteHeader() {
     };
   }, [open]);
 
+  // Browser history navigation can happen without clicking a drawer link.
+  useEffect(() => {
+    const closeOnHistoryNavigation = () => setOpen(false);
+    window.addEventListener("popstate", closeOnHistoryNavigation);
+    return () => window.removeEventListener("popstate", closeOnHistoryNavigation);
+  }, []);
+
   return (
     <>
       <header className={`site-header fixed inset-x-0 top-0 z-50 w-full transition-all duration-300 ${scrolled ? "is-scrolled" : ""}`}>
@@ -117,9 +124,14 @@ export function SiteHeader() {
         }`}
       >
         <div className="mobile-drawer__header flex items-center justify-between border-b border-outline-variant p-5">
-          <div className="flex items-center">
+          <Link
+            aria-label="MolaPlus home"
+            className="flex items-center"
+            href="/"
+            onClick={() => setOpen(false)}
+          >
             <Image alt="MolaPlus Africa" className="h-8 w-auto" height={243} sizes="200px" src="/molaplus-brand.png" width={1028} />
-          </div>
+          </Link>
           <button
             aria-label="Close menu"
             className="rounded-full p-2 text-primary transition-colors hover:bg-surface-container-high"
