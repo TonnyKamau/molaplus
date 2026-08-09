@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MolaPlus Africa | Healthy animals. Stronger farms.",
     description: "Advanced animal nutrition developed for productive East African farms.",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "MolaPlus Africa — Healthy animals. Stronger farms." }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "MolaPlus Africa — Healthy animals. Stronger farms." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "MolaPlus Africa | Healthy animals. Stronger farms.",
     description: "Advanced animal nutrition developed for productive East African farms.",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
   },
 };
 

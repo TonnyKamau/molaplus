@@ -8,9 +8,9 @@ const benefits = [
 ];
 
 const services = [
-  ["/molaplus/service-cows.png", "Farm consultancy", "Nutrition and management guidance shaped around your herd and targets.", "/consultancy"],
-  ["/molaplus/service-poultry.png", "Farmer training", "Practical workshops and resources for confident day-to-day application.", "/resources"],
-  ["/molaplus/service-pigs.png", "Technical support", "Real help for farmers and distributors, before and after purchase.", "/contact"],
+  ["/molaplus/service-cows.webp", "Farm consultancy", "Nutrition and management guidance shaped around your herd and targets.", "/consultancy"],
+  ["/molaplus/service-poultry.webp", "Farmer training", "Practical workshops and resources for confident day-to-day application.", "/resources"],
+  ["/molaplus/service-pigs.webp", "Technical support", "Real help for farmers and distributors, before and after purchase.", "/contact"],
 ];
 
 export default function Home() {
@@ -32,7 +32,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-v2__visual">
-          <Image alt="MolaPlus Super Milk Booster" className="hero-v2__pack" fill loading="eager" priority sizes="(min-width: 900px) 48vw, 100vw" src="/molaplus/milk-booster-5kg-cutout.png" />
+          <Image alt="MolaPlus Super Milk Booster" className="hero-v2__pack" fetchPriority="high" fill loading="eager" sizes="(min-width: 900px) 48vw, 100vw" src="/molaplus/milk-booster-5kg-cutout.webp" />
           <div className="hero-v2__stamp"><b>MORE</b><span>MILK</span><small>BETTER CONDITION</small></div>
           <p className="hero-v2__caption">Super Milk Booster<br /><span>Minerals + probiotics</span></p>
         </div>
@@ -49,17 +49,17 @@ export default function Home() {
         <div className="product-grid-v2">
           <Link className="product-tile product-tile--milk" href="/products/super-milk-booster">
             <div className="product-tile__top"><span>01 / Dairy</span><b>Best seller</b></div>
-            <Image alt="Super Milk Booster 5kg" fill sizes="(min-width: 800px) 50vw, 100vw" src="/molaplus/milk-booster-5kg-cutout.png" />
+            <Image alt="Super Milk Booster 5kg" fill loading="eager" sizes="(min-width: 800px) 50vw, 100vw" src="/molaplus/milk-booster-5kg-cutout.webp" />
             <div className="product-tile__copy"><h3>Super Milk<br />Booster</h3><p>More milk, improved body condition and support for healthier dairy cows.</p><span className="round-arrow">↗</span></div>
           </Link>
           <Link className="product-tile product-tile--poultry" href="/products#poultry-microbes">
             <div className="product-tile__top"><span>02 / Poultry</span><b>500ml · 1L · 5L</b></div>
-            <Image alt="Poultry Microbes 10 litre" fill sizes="(min-width: 800px) 50vw, 100vw" src="/molaplus/poultry-microbes-10l.png" />
+            <Image alt="Poultry Microbes 10 litre" fill sizes="(min-width: 800px) 50vw, 100vw" src="/molaplus/poultry-microbes-10l.webp" />
             <div className="product-tile__copy"><h3>Poultry<br />Microbes</h3><p>Natural gut support for stronger broilers, layers and better feed conversion.</p><span className="round-arrow">↗</span></div>
           </Link>
           <Link className="product-tile product-tile--pig" href="/products#pig-microbes">
             <div className="product-tile__top"><span>03 / Livestock</span><b>1L · 5L · 20L</b></div>
-            <Image alt="Pig Microbes 10 litre" fill sizes="(min-width: 800px) 40vw, 100vw" src="/molaplus/pig-microbes-10l.png" />
+            <Image alt="Pig Microbes 10 litre" fill sizes="(min-width: 800px) 40vw, 100vw" src="/molaplus/pig-microbes-10l.webp" />
             <div className="product-tile__copy"><h3>Livestock<br />Microbes</h3><p>Improved digestion and reduced odour for pigs, goats, sheep and beef cattle.</p><span className="round-arrow">↗</span></div>
           </Link>
         </div>
@@ -88,7 +88,7 @@ export default function Home() {
       </section>
 
       <section className="section story-v2">
-        <div className="story-v2__visual"><Image alt="Dairy cattle supported by MolaPlus nutrition" fill sizes="(min-width: 900px) 52vw, 100vw" src="/molaplus/service-cows.png" /><div>Made in Kenya<br /><b>for the farms<br />that feed us.</b></div></div>
+        <div className="story-v2__visual"><Image alt="Dairy cattle supported by MolaPlus nutrition" fill sizes="(min-width: 900px) 52vw, 100vw" src="/molaplus/service-cows.webp" /><div>Made in Kenya<br /><b>for the farms<br />that feed us.</b></div></div>
         <div className="story-v2__copy"><p className="kicker"><span /> Why MolaPlus</p><h2>Local realities.<br /><em>Serious science.</em></h2><p>We build evidence-based animal nutrition around the challenges East African farmers face every day. Every product is backed by careful formulation, practical guidance and a team that stays close to the farm.</p><ul><li><span>Quality</span> Carefully researched nutrition</li><li><span>Innovation</span> Solutions for regional challenges</li><li><span>Reliability</span> Consistent, season after season</li></ul><Link href="/about-us">Meet MolaPlus Africa ↗</Link></div>
       </section>
 

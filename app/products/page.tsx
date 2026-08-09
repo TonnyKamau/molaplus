@@ -21,9 +21,9 @@ const groups: Group[] = [
       "Advanced formula for enhanced milk production in dairy animals, ensuring optimal nutritional balance.",
     href: "/products/super-milk-booster",
     sizes: [
-      { size: "1KG Package", blurb: "Ideal for small-scale dairy farms and individual homesteads.", img: "/molaplus/milkbooster-1kg.png" },
-      { size: "2KG Package", blurb: "Perfect for medium-sized dairy operations seeking efficiency.", img: "/molaplus/milkbooster-2kg.png" },
-      { size: "5KG Package", blurb: "Designed for large commercial dairy farms and bulk buyers.", img: "/molaplus/milk-booster-5kg-cutout.png" },
+      { size: "1KG Package", blurb: "Ideal for small-scale dairy farms and individual homesteads.", img: "/molaplus/milkbooster-1kg.webp" },
+      { size: "2KG Package", blurb: "Perfect for medium-sized dairy operations seeking efficiency.", img: "/molaplus/milkbooster-2kg.webp" },
+      { size: "5KG Package", blurb: "Designed for large commercial dairy farms and bulk buyers.", img: "/molaplus/milk-booster-5kg-cutout.webp" },
     ],
   },
   {
@@ -34,10 +34,10 @@ const groups: Group[] = [
       "Specialized probiotic solution for optimal poultry health, weight gain, and disease resistance.",
     href: "/product-comparison",
     sizes: [
-      { size: "500ml Solution", blurb: "For small poultry flocks", img: "/molaplus/poultry-500ml.png" },
-      { size: "1 Litre Solution", blurb: "For medium-sized farms", img: "/molaplus/poultry-1ltr.png" },
-      { size: "5 Litre Solution", blurb: "For large operations", img: "/molaplus/poultry-5ltr.png" },
-      { size: "10 Litre Solution", blurb: "For high-volume poultry operations", img: "/molaplus/poultry-microbes-10l.png" },
+      { size: "500ml Solution", blurb: "For small poultry flocks", img: "/molaplus/poultry-500ml.webp" },
+      { size: "1 Litre Solution", blurb: "For medium-sized farms", img: "/molaplus/poultry-1ltr.webp" },
+      { size: "5 Litre Solution", blurb: "For large operations", img: "/molaplus/poultry-5ltr.webp" },
+      { size: "10 Litre Solution", blurb: "For high-volume poultry operations", img: "/molaplus/poultry-microbes-10l.webp" },
     ],
   },
   {
@@ -48,10 +48,10 @@ const groups: Group[] = [
       "Multi-strain probiotic for pigs and livestock \u2014 improving digestion, gut health and feed efficiency.",
     href: "/product-comparison",
     sizes: [
-      { size: "1 Litre Solution", blurb: "1 Litre - Small Farms", img: "/molaplus/pig-1ltr.png" },
-      { size: "5 Litre Solution", blurb: "5 Litre - Commercial", img: "/molaplus/pig-5ltr.png" },
-      { size: "20 Litre Solution", blurb: "20 Litre - Large Scale", img: "/molaplus/pig-20ltr.png" },
-      { size: "10 Litre Solution", blurb: "10 Litre - Growing Farms", img: "/molaplus/pig-microbes-10l.png" },
+      { size: "1 Litre Solution", blurb: "1 Litre - Small Farms", img: "/molaplus/pig-1ltr.webp" },
+      { size: "5 Litre Solution", blurb: "5 Litre - Commercial", img: "/molaplus/pig-5ltr.webp" },
+      { size: "20 Litre Solution", blurb: "20 Litre - Large Scale", img: "/molaplus/pig-20ltr.webp" },
+      { size: "10 Litre Solution", blurb: "10 Litre - Growing Farms", img: "/molaplus/pig-microbes-10l.webp" },
     ],
   },
   {
@@ -61,7 +61,7 @@ const groups: Group[] = [
     tagline: "Targeted nutritional support for dairy cows approaching calving and the demanding transition into lactation.",
     href: "/contact",
     sizes: [
-      { size: "5KG Bucket", blurb: "A practical dairy formula for pre-calving and transition support.", img: "/molaplus/steaming-formula-5kg.png" },
+      { size: "5KG Bucket", blurb: "A practical dairy formula for pre-calving and transition support.", img: "/molaplus/steaming-formula-5kg.webp" },
     ],
   },
 ];
@@ -130,7 +130,6 @@ export default function ProductsPage() {
                       alt={`${group.name} ${s.size}`}
                       className="object-contain p-5 transition-transform duration-500 group-hover:scale-105"
                       fill
-                      unoptimized
                       sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
                       src={s.img}
                     />

@@ -5,7 +5,7 @@ const products = [
   {
     name: "Milk Booster",
     tag: "Dairy",
-    img: "/molaplus/milkbooster-2kg.png",
+    img: "/molaplus/milkbooster-2kg.webp",
     nutrient: "Vitamins A, D3, E + Essential Minerals",
     method: "Top-dress on fodder (50g/day)",
     href: "/products/super-milk-booster",
@@ -13,7 +13,7 @@ const products = [
   {
     name: "Poultry Microbes",
     tag: "Poultry",
-    img: "/molaplus/poultry-5ltr.png",
+    img: "/molaplus/poultry-5ltr.webp",
     nutrient: "Probiotic blend + Amino Acids",
     method: "Water medication (1ml/L)",
     href: "/products#poultry-microbes",
@@ -21,7 +21,7 @@ const products = [
   {
     name: "Pig Microbes",
     tag: "Livestock",
-    img: "/molaplus/pig-20ltr.png",
+    img: "/molaplus/pig-20ltr.webp",
     nutrient: "Concentrated Microbes + Trace Elements",
     method: "Mixed in liquid feed or water",
     href: "/products#pig-microbes",

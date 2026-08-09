@@ -5,9 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 
 const packages = [
-  { label: "1kg", img: "/molaplus/milkbooster-1kg.png" },
-  { label: "2kg", img: "/molaplus/milkbooster-2kg.png" },
-  { label: "5kg", img: "/molaplus/milkbooster-5kg.png" },
+  { label: "1kg", img: "/molaplus/milkbooster-1kg.webp" },
+  { label: "2kg", img: "/molaplus/milkbooster-2kg.webp" },
+  { label: "5kg", img: "/molaplus/milkbooster-5kg.webp" },
 ];
 
 const benefits = [
@@ -44,8 +44,8 @@ export default function SuperMilkBoosterPage() {
                 alt={`Super Milk Booster ${packages[active].label}`}
                 className="object-contain drop-shadow-2xl"
                 fill
-                unoptimized
-                priority
+                fetchPriority="high"
+                loading="eager"
                 sizes="(min-width: 1024px) 560px, 100vw"
                 src={packages[active].img}
               />

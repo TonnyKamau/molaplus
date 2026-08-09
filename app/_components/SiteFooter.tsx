@@ -63,7 +63,7 @@ export function SiteFooter() {
         <div className="site-footer__grid">
           <div className="max-w-xs">
             <Link className="site-footer__logo" href="/">
-              <Image alt="MolaPlus Africa" className="h-9 w-auto" height={243} sizes="220px" src="/molaplus-brand.png" width={1028} />
+              <Image alt="MolaPlus Africa" className="h-9 w-auto" height={243} sizes="220px" src="/molaplus-brand.webp" width={1028} />
             </Link>
             <p className="mb-6 text-sm text-white/70">
               Advanced animal nutrition, biotechnology and sustainable farming

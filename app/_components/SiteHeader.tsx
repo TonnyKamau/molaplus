@@ -70,10 +70,11 @@ export function SiteHeader() {
               <Image
                 alt="MolaPlus Africa"
                 className="h-8 w-auto sm:h-10"
+                fetchPriority="high"
                 height={243}
-                priority
+                loading="eager"
                 sizes="190px"
-                src="/molaplus-brand.png"
+                src="/molaplus-brand.webp"
                 width={1028}
               />
             </Link>
@@ -130,7 +131,7 @@ export function SiteHeader() {
             href="/"
             onClick={() => setOpen(false)}
           >
-            <Image alt="MolaPlus Africa" className="h-8 w-auto" height={243} sizes="200px" src="/molaplus-brand.png" width={1028} />
+            <Image alt="MolaPlus Africa" className="h-8 w-auto" height={243} sizes="200px" src="/molaplus-brand.webp" width={1028} />
           </Link>
           <button
             aria-label="Close menu"
