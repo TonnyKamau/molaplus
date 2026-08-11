@@ -35,9 +35,29 @@ const groups: Group[] = [
     href: "/product-comparison",
     sizes: [
       { size: "500ml Solution", blurb: "For small poultry flocks", img: "/molaplus/poultry-500ml.webp" },
-      { size: "1 Litre Solution", blurb: "For medium-sized farms", img: "/molaplus/poultry-1ltr.webp" },
+      { size: "1 Litre Solution", blurb: "For medium-sized farms", img: "/molaplus/poultry-microbes-1l-bottle.webp" },
       { size: "5 Litre Solution", blurb: "For large operations", img: "/molaplus/poultry-5ltr.webp" },
       { size: "10 Litre Solution", blurb: "For high-volume poultry operations", img: "/molaplus/poultry-microbes-10l.webp" },
+    ],
+  },
+  {
+    id: "dairy-young-stock",
+    eyebrow: "Dairy & Young Stock",
+    name: "Farm Essentials",
+    tagline:
+      "Practical mineral and early-development nutrition for productive dairy animals and stronger young stock.",
+    href: "/contact",
+    sizes: [
+      {
+        size: "Dairy Ultra Mineral Lick — 2KG",
+        blurb: "A high-fertility, high-milk mineral formula for dairy cows, heifers and bulls.",
+        img: "/molaplus/dairy-ultra-mineral-lick-2kg.webp",
+      },
+      {
+        size: "Early Calf-Weaner Meal — 10KG",
+        blurb: "Supports early rumen development, steady growth and a confident transition to solid feed.",
+        img: "/molaplus/early-calf-weaner-10kg.webp",
+      },
     ],
   },
   {
@@ -96,6 +116,35 @@ export default function ProductsPage() {
         </div>
       </section>
 
+      {/* Complete range showcase */}
+      <section className="bg-surface py-12 md:py-20">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="overflow-hidden rounded-[2rem] border border-outline-variant bg-surface-container-lowest" data-reveal>
+            <div className="relative aspect-[16/9] w-full md:aspect-[2/1]">
+              <Image
+                alt="MolaPlus complete animal nutrition product range"
+                className="object-cover"
+                fetchPriority="high"
+                fill
+                loading="eager"
+                sizes="(min-width: 1280px) 1280px, 100vw"
+                src="/molaplus/full-product-range.webp"
+              />
+            </div>
+            <div className="flex flex-col justify-between gap-5 p-7 md:flex-row md:items-center md:p-10">
+              <div>
+                <span className="mp-eyebrow text-secondary">The complete MolaPlus range</span>
+                <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-ink-black md:text-4xl">Nutrition for every stage of the farm.</h2>
+              </div>
+              <Link className="inline-flex shrink-0 items-center gap-2 font-bold text-primary" href="/contact">
+                Ask about availability
+                <span className="material-symbols-outlined">arrow_outward</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Product groups */}
       {groups.map((group, i) => (
         <section
@@ -114,7 +163,7 @@ export default function ProductsPage() {
                 className="group inline-flex items-center gap-1 whitespace-nowrap font-bold text-primary underline-offset-4 hover:underline"
                 href={group.href}
               >
-                {group.id === "super-milk-booster" ? "View details" : group.id === "steaming-formula" ? "Ask our team" : "Compare products"}
+                {group.id === "super-milk-booster" ? "View details" : group.href === "/contact" ? "Ask our team" : "Compare products"}
                 <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_outward</span>
               </Link>
             </div>
