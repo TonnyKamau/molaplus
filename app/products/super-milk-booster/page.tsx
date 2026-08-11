@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -107,9 +107,9 @@ export default function SuperMilkBoosterPage() {
                 <p className="mp-eyebrow text-white/60">Buy via M-Pesa</p>
                 <p className="mt-1 text-2xl font-extrabold text-secondary-fixed-dim">Till No: 906520</p>
               </div>
-              <a className="flex flex-col justify-center rounded-2xl border border-outline-variant bg-white p-5 transition-colors hover:border-primary/40" href="tel:+254724968847">
+              <a className="flex flex-col justify-center rounded-2xl border border-outline-variant bg-white p-5 transition-colors hover:border-primary/40" href="tel:+254722656142">
                 <p className="mp-eyebrow text-on-surface-variant">Call for Logistics</p>
-                <p className="mt-1 text-lg font-extrabold text-primary">+254 724 968 847</p>
+                <p className="mt-1 text-lg font-extrabold text-primary">+254 722 656 142</p>
                 <p className="mt-1 text-xs text-on-surface-variant">Nationwide delivery for commercial quantities.</p>
               </a>
             </div>

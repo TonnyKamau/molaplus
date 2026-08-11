@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 const expertise = [
   [
@@ -149,15 +149,15 @@ export default function ConsultancyPage() {
                 </p>
               </div>
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <a className="mp-hover-lift flex flex-col rounded-3xl bg-secondary-container p-6 text-white" href="https://wa.me/254724968847" rel="noopener noreferrer" target="_blank">
+                <a className="mp-hover-lift flex flex-col rounded-3xl bg-secondary-container p-6 text-white" href="https://wa.me/254722656142" rel="noopener noreferrer" target="_blank">
                   <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>chat</span>
                   <span className="mp-eyebrow mt-3 text-white/70">Recommended</span>
                   <span className="text-lg font-extrabold">WhatsApp us</span>
                 </a>
-                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="tel:+254724968847">
+                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="tel:+254722656142">
                   <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
                   <span className="mp-eyebrow mt-3 text-white/60">Phone Support</span>
-                  <span className="text-lg font-extrabold">+254 724 968 847</span>
+                  <span className="text-lg font-extrabold">+254 722 656 142</span>
                 </a>
                 <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="mailto:info@molaplusafrica.com">
                   <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>

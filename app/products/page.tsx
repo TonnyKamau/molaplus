@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 type Size = { size: string; blurb: string; img: string };
@@ -88,8 +88,8 @@ export default function ProductsPage() {
             <div className="hidden h-10 w-px bg-white/20 sm:block" />
             <div>
               <p className="mp-eyebrow text-white/60">Logistics &amp; prices call</p>
-              <a className="text-2xl font-extrabold text-white transition-opacity hover:opacity-80" href="tel:+254724968847">
-                +254 724 968 847
+              <a className="text-2xl font-extrabold text-white transition-opacity hover:opacity-80" href="tel:+254722656142">
+                +254 722 656 142
               </a>
             </div>
           </div>
@@ -140,14 +140,14 @@ export default function ProductsPage() {
                     <div className="mt-5 flex flex-wrap gap-2">
                       <a
                         className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-primary-container"
-                        href="tel:+254724968847"
+                        href="tel:+254722656142"
                       >
                         Order now
                         <span className="material-symbols-outlined text-[18px]">trending_flat</span>
                       </a>
                       <a
                         className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-surface-container-high"
-                        href="https://wa.me/254724968847"
+                        href="https://wa.me/254722656142"
                         rel="noopener noreferrer"
                         target="_blank"
                       >

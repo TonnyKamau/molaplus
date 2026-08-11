@@ -26,8 +26,8 @@ export default function PrivacyPage() {
           info@molaplusafrica.com
         </a>{" "}
         or call{" "}
-        <a className="font-bold text-primary underline" href="tel:+254724968847">
-          +254 724 968 847
+        <a className="font-bold text-primary underline" href="tel:+254722656142">
+          +254 722 656 142
         </a>
         .
       </p>

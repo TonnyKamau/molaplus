@@ -1,8 +1,8 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 const departments = [
-  ["engineering", "Technical Support", "Product usage, dosage and livestock nutrition advice.", "+254 724 968 847", "tel:+254724968847"],
-  ["sell", "Sales & Bulk Orders", "Pricing, bulk quantities and delivery logistics.", "+254 724 968 847", "tel:+254724968847"],
+  ["engineering", "Technical Support", "Product usage, dosage and livestock nutrition advice.", "+254 722 656 142", "tel:+254722656142"],
+  ["sell", "Sales & Bulk Orders", "Pricing, bulk quantities and delivery logistics.", "+254 722 656 142", "tel:+254722656142"],
   ["handshake", "Distributor Partnership", "Become a stockist and join our nationwide network.", "Browse the directory", "/distributors"],
 ];
 
@@ -31,7 +31,7 @@ export default function ContactPage() {
             {/* WhatsApp (recommended) */}
             <a
               className="contact-card--recommended mp-hover-lift group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-secondary-container p-8 text-white sm:col-span-2 lg:col-span-1"
-              href="https://wa.me/254724968847"
+              href="https://wa.me/254722656142"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -48,13 +48,13 @@ export default function ContactPage() {
             </a>
 
             {/* Call */}
-            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="tel:+254724968847">
+            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="tel:+254722656142">
               <div>
                 <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
                 <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-black">Call us</h2>
                 <p className="mt-2 text-on-surface-variant">Speak directly with our technical and sales team.</p>
               </div>
-              <span className="mt-6 text-lg font-extrabold text-primary">+254 724 968 847</span>
+              <span className="mt-6 text-lg font-extrabold text-primary">+254 722 656 142</span>
             </a>
 
             {/* Email */}
@@ -102,13 +102,13 @@ export default function ContactPage() {
             {departments.map(([icon, title, body, cta, href]) => {
               const content = (
                 <>
-                <span className="material-symbols-outlined text-3xl text-primary">{icon}</span>
-                <h3 className="mt-4 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
-                <p className="mt-2 flex-1 text-on-surface-variant">{body}</p>
-                <span className="mt-5 inline-flex items-center gap-2 font-bold text-primary transition-all group-hover:gap-3">
-                  {cta}
-                  <span className="material-symbols-outlined text-[20px]">trending_flat</span>
-                </span>
+                  <span className="material-symbols-outlined text-3xl text-primary">{icon}</span>
+                  <h3 className="mt-4 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
+                  <p className="mt-2 flex-1 text-on-surface-variant">{body}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 font-bold text-primary transition-all group-hover:gap-3">
+                    {cta}
+                    <span className="material-symbols-outlined text-[20px]">trending_flat</span>
+                  </span>
                 </>
               );
               const className = "mp-hover-lift group flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-7";

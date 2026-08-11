@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 function FooterColumn({
@@ -43,7 +43,7 @@ export function SiteFooter() {
           <div className="site-footer__actions">
             <a
               className="site-footer__primary"
-              href="https://wa.me/254724968847"
+              href="https://wa.me/254722656142"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -70,9 +70,9 @@ export function SiteFooter() {
               solutions across East Africa.
             </p>
             <div className="flex flex-col gap-2.5 text-sm">
-              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="tel:+254724968847">
+              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="tel:+254722656142">
                 <span className="material-symbols-outlined text-[18px] text-primary-fixed-dim">call</span>
-                +254 724 968 847
+                +254 722 656 142
               </a>
               <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="mailto:info@molaplusafrica.com">
                 <span className="material-symbols-outlined text-[18px] text-primary-fixed-dim">mail</span>
