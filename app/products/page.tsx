@@ -84,6 +84,56 @@ const groups: Group[] = [
       { size: "5KG Bucket", blurb: "A practical dairy formula for pre-calving and transition support.", img: "/molaplus/steaming-formula-5kg.webp" },
     ],
   },
+  {
+    id: "complete-feeds",
+    eyebrow: "Complete feeds",
+    name: "Farm Feeds",
+    tagline:
+      "Purpose-built rations for productive dairy animals and reliable commercial egg production.",
+    href: "/contact",
+    sizes: [
+      {
+        size: "MolaPlus Bovine Meal",
+        blurb: "A protein-rich feed for lactating cows, growing animals and breeding bulls.",
+        img: "/molaplus/molaplus-bovine-meal.webp",
+      },
+      {
+        size: "MolaPlus Layer Mash — 50KG",
+        blurb: "A complete layer ration formulated for sustained production and strong egg quality.",
+        img: "/molaplus/molaplus-layer-mash-50kg.webp",
+      },
+    ],
+  },
+  {
+    id: "crop-nutrition",
+    eyebrow: "Crop nutrition",
+    name: "MazaoBoost Crop Solutions",
+    tagline:
+      "Practical crop nutrition and beneficial microbial products for stronger plants, healthier soils and better farm yields.",
+    href: "/contact",
+    sizes: [
+      {
+        size: "Mazao Cereals — 250ML",
+        blurb: "Concentrated foliar nutrition for maize, wheat and other cereal crops.",
+        img: "/molaplus/mazao-cereals-250ml.webp",
+      },
+      {
+        size: "Mazao Cereals — 500ML",
+        blurb: "A larger cereal-crop pack for broader acreage and repeat applications.",
+        img: "/molaplus/mazao-cereals-500ml.webp",
+      },
+      {
+        size: "Mazao Organic Fertilizer",
+        blurb: "Organic planting fertilizer with beneficial soil probiotics and locked nutrient release.",
+        img: "/molaplus/mazao-organic-fertilizer.webp",
+      },
+      {
+        size: "MolaPlus V-EM Mbolea",
+        blurb: "Effective microorganisms for organic and conventional crop production.",
+        img: "/molaplus/v-em-mbolea.webp",
+      },
+    ],
+  },
 ];
 
 export default function ProductsPage() {
@@ -95,9 +145,8 @@ export default function ProductsPage() {
           <span className="mp-eyebrow text-primary-fixed-dim">The Range</span>
           <h1 className="mp-display mt-5 max-w-3xl">Our Products</h1>
           <p className="text-pretty mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
-            Scientifically formulated feed supplements and probiotics for dairy,
-            poultry, and swine &mdash; available in package sizes for every scale
-            of operation.
+            Scientifically formulated feeds, supplements, probiotics and crop
+            nutrition for livestock and farming operations of every scale.
           </p>
 
           <div className="mt-10 inline-flex flex-wrap items-center gap-x-8 gap-y-4 rounded-3xl border border-white/20 bg-white/10 px-7 py-5">
