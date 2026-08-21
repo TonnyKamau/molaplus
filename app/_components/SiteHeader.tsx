@@ -17,6 +17,7 @@ const drawerLinks = [
   { href: "/products", label: "Products", icon: "science" },
   { href: "/products/super-milk-booster", label: "Super Milk Booster", icon: "water_drop" },
   { href: "/product-comparison", label: "Compare Products", icon: "compare_arrows" },
+  { href: "/order", label: "Place an Order", icon: "shopping_bag" },
   { href: "/consultancy", label: "Consultancy", icon: "model_training" },
   { href: "/resources", label: "Resources", icon: "library_books" },
   { href: "/distributors", label: "Distributors", icon: "location_on" },
@@ -100,8 +101,8 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Link className="site-header__contact hidden lg:inline-flex" href="/contact">
-              Talk to an expert <span aria-hidden>↗</span>
+            <Link className="site-header__contact hidden lg:inline-flex" href="/order">
+              Place an order <span aria-hidden>↗</span>
             </Link>
             <a aria-label="Call MolaPlus" className="grid h-10 w-10 place-items-center border border-[#173b2b]/20 text-[#0c432c] lg:hidden" href="tel:+254722656142"><span className="material-symbols-outlined text-[20px]">call</span></a>
             <button aria-label="Open menu" className="grid h-10 w-10 place-items-center bg-[#0c432c] text-white transition-colors hover:bg-[#ef5b2a] lg:hidden" onClick={() => setOpen(true)} type="button"><span className="material-symbols-outlined">menu</span></button>

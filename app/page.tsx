@@ -92,7 +92,7 @@ export default function Home() {
         <div className="story-v2__copy"><p className="kicker"><span /> Why MolaPlus</p><h2>Local realities.<br /><em>Serious science.</em></h2><p>We build evidence-based animal nutrition around the challenges East African farmers face every day. Every product is backed by careful formulation, practical guidance and a team that stays close to the farm.</p><ul><li><span>Quality</span> Carefully researched nutrition</li><li><span>Innovation</span> Solutions for regional challenges</li><li><span>Reliability</span> Consistent, season after season</li></ul><Link href="/about-us">Meet MolaPlus Africa ↗</Link></div>
       </section>
 
-      <section className="cta-v2"><p className="kicker kicker--light"><span /> Ready to grow?</p><h2>Let’s build a<br /><em>healthier farm.</em></h2><div><a className="button button--light" href="https://wa.me/254722656142" rel="noopener noreferrer" target="_blank">Order on WhatsApp <span>↗</span></a><a className="button button--line" href="tel:+254722656142">Call +254 722 656 142</a></div><small>Lipa na M-Pesa · Till number 906520</small></section>
+      <section className="cta-v2"><p className="kicker kicker--light"><span /> Ready to grow?</p><h2>Let’s build a<br /><em>healthier farm.</em></h2><div><a className="button button--light" href="/order">Place an order <span>↗</span></a><a className="button button--line" href="tel:+254722656142">Call +254 722 656 142</a></div><small>Lipa na M-Pesa · Till number 906520</small></section>
     </main>
   );
 }

@@ -236,13 +236,13 @@ export default function ProductsPage() {
                     <h3 className="text-xl font-extrabold tracking-tight text-ink-black">{s.size}</h3>
                     <p className="mt-2 flex-1 text-sm text-on-surface-variant">{s.blurb}</p>
                     <div className="mt-5 flex flex-wrap gap-2">
-                      <a
+                      <Link
                         className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-primary-container"
-                        href="tel:+254722656142"
+                        href={`/order?product=${encodeURIComponent(s.img)}`}
                       >
                         Order now
                         <span className="material-symbols-outlined text-[18px]">trending_flat</span>
-                      </a>
+                      </Link>
                       <a
                         className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-surface-container-high"
                         href="https://wa.me/254722656142"

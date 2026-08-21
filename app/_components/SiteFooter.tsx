@@ -41,15 +41,13 @@ export function SiteFooter() {
             </p>
           </div>
           <div className="site-footer__actions">
-            <a
+            <Link
               className="site-footer__primary"
-              href="https://wa.me/254722656142"
-              rel="noopener noreferrer"
-              target="_blank"
+              href="/order"
             >
-              <span className="material-symbols-outlined text-[20px]">chat</span>
-              Order on WhatsApp
-            </a>
+              <span className="material-symbols-outlined text-[20px]">shopping_bag</span>
+              Place an order
+            </Link>
             <Link
               className="site-footer__secondary"
               href="/contact"
