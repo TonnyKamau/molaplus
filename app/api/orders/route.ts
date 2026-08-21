@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 
 type OrderPayload = Record<string, unknown>;
+type OrderItem = { name: string; quantity: number };
 const recentRequests = new Map<string, number[]>();
 
 function text(value: unknown, max = 200) {
@@ -54,20 +55,24 @@ export async function POST(request: NextRequest) {
 
   const name = text(data.name, 80);
   const phone = normalizePhone(text(data.phone, 30));
-  const product = text(data.product, 120);
-  const quantity = Number(data.quantity);
+  const items: OrderItem[] = Array.isArray(data.items) ? data.items.slice(0, 20).map((item) => {
+    const value = item && typeof item === "object" ? item as Record<string, unknown> : {};
+    return { name: text(value.name, 120), quantity: Number(value.quantity) };
+  }) : [];
   const county = text(data.county, 80);
   const town = text(data.town, 80);
   const address = text(data.address, 220);
   const coordinates = text(data.coordinates, 60);
   const notes = text(data.notes, 220);
-  if (!name || !phone || !product || !Number.isInteger(quantity) || quantity < 1 || quantity > 999 || !county || !town || !address) {
-    return Response.json({ ok: false, message: "Please provide a valid name, Kenyan phone number, product, quantity and delivery location." }, { status: 400 });
+  const validItems = items.length > 0 && items.every((item) => item.name && Number.isInteger(item.quantity) && item.quantity >= 1 && item.quantity <= 999);
+  if (!name || !phone || !validItems || !county || !town || !address) {
+    return Response.json({ ok: false, message: "Please provide a valid name, Kenyan phone number, order items and delivery location." }, { status: 400 });
   }
 
   const reference = `MP-${Date.now().toString(36).toUpperCase().slice(-7)}`;
   const location = `${county}, ${town} — ${address}${coordinates ? ` (GPS ${coordinates})` : ""}`;
-  const message = `NEW ORDER ${reference}\n${quantity} x ${product}\n${name} ${phone}\nDeliver: ${location}${notes ? `\nNotes: ${notes}` : ""}`;
+  const orderLines = items.map((item) => `${item.quantity} x ${item.name}`).join("\n");
+  const message = `NEW ORDER ${reference}\n${orderLines}\n${name} ${phone}\nDeliver: ${location}${notes ? `\nNotes: ${notes}` : ""}`;
   try {
     const sms = await sendSms(message);
     if (!sms.configured && process.env.NODE_ENV === "production") {

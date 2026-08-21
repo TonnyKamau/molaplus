@@ -28,6 +28,7 @@ const products = [
 ] as const;
 
 type Result = { ok: boolean; reference?: string; message?: string };
+type CartItem = { name: string; image: string; quantity: number };
 
 function productCategory(name: string) {
   if (name.includes("Milk") || name.includes("Dairy") || name.includes("Bovine") || name.includes("Calf") || name.includes("Steaming")) return "Dairy nutrition";
@@ -43,11 +44,14 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
   const [step, setStep] = useState(1);
   const [product, setProduct] = useState<string>(initialProduct ?? products[0][0]);
   const [quantity, setQuantity] = useState(1);
+  const initialSelection = products.find(([name]) => name === (initialProduct ?? products[0][0])) ?? products[0];
+  const [cart, setCart] = useState<CartItem[]>(initialProduct ? [{ name: initialSelection[0], image: initialSelection[1], quantity: 1 }] : []);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [productSearch, setProductSearch] = useState("");
   const [pending, setPending] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
   const [locationStatus, setLocationStatus] = useState("");
+  const [addedMessage, setAddedMessage] = useState("");
   const selected = useMemo(() => products.find(([name]) => name === product) ?? products[0], [product]);
   const matchingProducts = useMemo(() => {
     const query = productSearch.trim().toLowerCase();
@@ -55,6 +59,26 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
       ? products.filter(([name]) => `${name} ${productCategory(name)}`.toLowerCase().includes(query))
       : products;
   }, [productSearch]);
+  const totalUnits = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+  function addToCart() {
+    setCart((items) => {
+      const existing = items.find((item) => item.name === selected[0]);
+      if (existing) return items.map((item) => item.name === selected[0] ? { ...item, quantity: Math.min(999, item.quantity + quantity) } : item);
+      return [...items, { name: selected[0], image: selected[1], quantity }];
+    });
+    setQuantity(1);
+    setAddedMessage(`${selected[0]} added to your order.`);
+    window.setTimeout(() => setAddedMessage(""), 2600);
+  }
+
+  function updateCartQuantity(name: string, quantityValue: number) {
+    setCart((items) => items.map((item) => item.name === name ? { ...item, quantity: Math.max(1, Math.min(999, quantityValue)) } : item));
+  }
+
+  function removeFromCart(name: string) {
+    setCart((items) => items.filter((item) => item.name !== name));
+  }
 
   function useLocation() {
     if (!navigator.geolocation) return setLocationStatus("Location is not supported on this device.");
@@ -75,9 +99,8 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
     setPending(true);
     setResult(null);
     const form = event.currentTarget;
-    const payload = Object.fromEntries(new FormData(form));
-    payload.product = product;
-    payload.quantity = String(quantity);
+    const payload: Record<string, unknown> = Object.fromEntries(new FormData(form));
+    payload.items = cart;
     try {
       const response = await fetch("/api/orders", {
         method: "POST",
@@ -120,16 +143,16 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
   return (
     <section className="order-checkout mx-auto grid max-w-container-max-width gap-6 px-margin-mobile py-7 md:px-margin-desktop md:py-10 xl:grid-cols-[minmax(0,1fr)_360px] xl:items-start">
       <form className="order-checkout__form rounded-[1.75rem] border border-outline-variant bg-surface-container-lowest p-5 shadow-sm md:p-8" onSubmit={submit}>
-        <ol className="mb-7 grid grid-cols-3 gap-2" aria-label="Order progress">
+        <ol className="order-progress mb-7 grid grid-cols-3" aria-label="Order progress">
           {["Products", "Delivery", "Review"].map((label, index) => (
-            <li className={`border-b-4 pb-3 text-xs font-extrabold uppercase tracking-wider ${step >= index + 1 ? "border-secondary text-primary" : "border-outline-variant text-on-surface-variant"}`} key={label}>{index + 1}. {label}</li>
+            <li className={`relative flex flex-col items-center gap-2 text-center text-[10px] font-extrabold uppercase tracking-[.12em] ${step >= index + 1 ? "text-primary" : "text-on-surface-variant"}`} key={label}><span className={`relative z-10 grid h-8 w-8 place-items-center rounded-full border-2 ${step > index + 1 ? "border-primary bg-primary text-white" : step === index + 1 ? "border-secondary bg-secondary text-white" : "border-outline-variant bg-white"}`}>{step > index + 1 ? <span className="material-symbols-outlined text-base">check</span> : index + 1}</span><span>{label}</span></li>
           ))}
         </ol>
 
         {step === 1 && <div>
           <span className="mp-eyebrow text-secondary">Step 1</span>
           <h2 className="mt-2 text-3xl font-extrabold tracking-tight text-ink-black">What would you like to order?</h2>
-          <div className="relative mt-5">
+          <div className="order-product-picker relative mt-5 rounded-3xl border border-outline-variant bg-surface-container-low p-4 md:p-5">
             <p className="font-bold" id="product-picker-label">Product</p>
             <button
               aria-expanded={pickerOpen}
@@ -180,7 +203,7 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
               </div>
             )}
           </div>
-          <div className="mt-5">
+          <div className="order-quantity mt-5">
             <p className="font-bold" id="quantity-label">Quantity</p>
             <div className="mt-2 inline-grid grid-cols-[52px_76px_52px] overflow-hidden rounded-2xl border border-outline-variant bg-white" aria-labelledby="quantity-label">
               <button aria-label="Decrease quantity" className="grid place-items-center text-2xl text-primary hover:bg-surface-container-low disabled:opacity-35" disabled={quantity <= 1} onClick={() => setQuantity((value) => Math.max(1, value - 1))} type="button">−</button>
@@ -188,7 +211,18 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
               <button aria-label="Increase quantity" className="grid place-items-center text-2xl text-primary hover:bg-surface-container-low" onClick={() => setQuantity((value) => Math.min(999, value + 1))} type="button">+</button>
             </div>
           </div>
-          <button className="mt-6 w-full rounded-full bg-primary px-7 py-4 font-extrabold text-white transition hover:bg-primary-container" onClick={() => setStep(2)} type="button">Continue to delivery <span aria-hidden>→</span></button>
+          <button className="order-add-button mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-secondary px-7 py-3.5 font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-secondary/90" onClick={addToCart} type="button"><span className="material-symbols-outlined">add_shopping_cart</span>Add this product</button>
+          <p className={`mt-3 flex min-h-6 items-center justify-center gap-2 text-center text-sm font-bold text-primary transition ${addedMessage ? "opacity-100" : "opacity-0"}`} aria-live="polite"><span className="material-symbols-outlined text-lg">check_circle</span>{addedMessage || "Product added"}</p>
+
+          <div className="order-basket-inline mt-7 border-t border-outline-variant pt-6">
+            <div className="flex items-end justify-between gap-4"><div><span className="mp-eyebrow text-secondary">Your basket</span><h3 className="mt-1 text-xl font-extrabold text-ink-black">{cart.length} {cart.length === 1 ? "product" : "products"} · {totalUnits} units</h3></div></div>
+            {cart.length ? <div className="mt-4 space-y-3">{cart.map((item) => <div className="order-basket-item grid grid-cols-[58px_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl border border-outline-variant bg-white p-3" key={item.name}>
+              <span className="relative h-12 overflow-hidden rounded-xl bg-white"><Image alt="" className="object-contain p-1" fill sizes="52px" src={item.image} /></span>
+              <div className="min-w-0"><strong className="block text-sm leading-tight text-ink-black">{item.name}</strong><div className="mt-2 inline-flex items-center overflow-hidden rounded-full border border-outline-variant bg-white"><button aria-label={`Decrease ${item.name}`} className="h-8 w-9 text-primary disabled:opacity-30" disabled={item.quantity <= 1} onClick={() => updateCartQuantity(item.name, item.quantity - 1)} type="button">−</button><span className="min-w-8 text-center text-sm font-extrabold">{item.quantity}</span><button aria-label={`Increase ${item.name}`} className="h-8 w-9 text-primary" onClick={() => updateCartQuantity(item.name, item.quantity + 1)} type="button">+</button></div></div>
+              <button aria-label={`Remove ${item.name}`} className="grid h-10 w-10 place-items-center rounded-full text-on-surface-variant hover:bg-white hover:text-secondary" onClick={() => removeFromCart(item.name)} type="button"><span className="material-symbols-outlined">delete</span></button>
+            </div>)}</div> : <p className="mt-4 rounded-2xl bg-surface-container-low p-5 text-sm text-on-surface-variant">Add at least one product to continue.</p>}
+          </div>
+          <button className="order-continue-inline mt-6 w-full rounded-full bg-primary px-7 py-4 font-extrabold text-white shadow-lg shadow-primary/15 transition hover:-translate-y-0.5 hover:bg-primary-container disabled:cursor-not-allowed disabled:opacity-40" disabled={!cart.length} onClick={() => setStep(2)} type="button">Continue with {cart.length} {cart.length === 1 ? "product" : "products"} <span aria-hidden>→</span></button>
         </div>}
 
         <div className={step < 2 ? "hidden" : ""}>
@@ -212,17 +246,25 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
 
         {step === 3 && <div>
           <span className="mp-eyebrow text-secondary">Step 3</span>
-          <h2 className="mt-2 text-3xl font-extrabold text-ink-black">Double-check your order.</h2>
-          <div className="mt-7 rounded-2xl bg-surface-container-low p-5"><p className="font-extrabold text-ink-black">{quantity} × {product}</p><p className="mt-2 text-sm text-on-surface-variant">MolaPlus will call to confirm the current price, available stock, delivery cost and payment instructions.</p></div>
+          <div className="flex items-start justify-between gap-4"><div><h2 className="mt-2 text-3xl font-extrabold text-ink-black">Double-check your order.</h2><p className="mt-2 text-sm text-on-surface-variant">Review products and quantities before sending the request.</p></div><button className="mt-2 shrink-0 rounded-full border border-outline-variant px-4 py-2 text-sm font-bold text-primary hover:bg-surface-container-low" onClick={() => setStep(1)} type="button">Edit basket</button></div>
+          <div className="mt-7 rounded-2xl bg-surface-container-low p-5"><div className="space-y-3">{cart.map((item) => <div className="flex items-start justify-between gap-4 border-b border-outline-variant pb-3 last:border-0 last:pb-0" key={item.name}><p className="font-extrabold text-ink-black">{item.name}</p><strong className="shrink-0 text-primary">× {item.quantity}</strong></div>)}</div><p className="mt-4 border-t border-outline-variant pt-4 text-sm text-on-surface-variant">MolaPlus will call to confirm the current price, available stock, delivery cost and payment instructions.</p></div>
           {result && !result.ok && <p className="mt-5 rounded-2xl bg-red-50 p-4 font-semibold text-red-800" role="alert">{result.message}</p>}
           <div className="mt-8 flex gap-3"><button className="rounded-full border border-outline-variant px-6 py-3.5 font-bold text-primary" onClick={() => setStep(2)} type="button">Back</button><button className="flex-1 rounded-full bg-secondary px-6 py-3.5 font-extrabold text-white disabled:opacity-60" disabled={pending} type="submit">{pending ? "Sending order…" : "Place order"}</button></div>
           <p className="mt-4 text-center text-xs text-on-surface-variant">By placing the order, you agree that MolaPlus may contact you about this request.</p>
         </div>}
       </form>
 
-      <aside className="order-checkout__summary overflow-hidden rounded-[1.75rem] border border-outline-variant bg-surface-container-lowest xl:sticky xl:top-24">
-        <div className="product-card__media relative h-44 md:h-52"><Image alt={selected[0]} className="object-contain p-5" fill sizes="(max-width: 1279px) 100vw, 360px" src={selected[1]} /></div>
-        <div className="border-t border-outline-variant p-5 md:p-6"><span className="mp-eyebrow text-secondary">Your order</span><h3 className="mt-2 text-xl font-extrabold text-ink-black">{selected[0]}</h3><div className="mt-4 flex items-center justify-between"><span className="text-on-surface-variant">Quantity</span><strong className="text-xl text-primary">{quantity}</strong></div><p className="mt-4 border-t border-outline-variant pt-4 text-sm text-on-surface-variant"><span className="material-symbols-outlined mr-2 align-middle text-primary">sms</span>MolaPlus receives an SMS when you submit.</p></div>
+      <aside className={`order-checkout__summary overflow-hidden rounded-[1.75rem] border border-outline-variant bg-surface-container-lowest ${step === 1 ? "is-basket-step" : ""}`}>
+        <div className="p-5 md:p-6">
+          <div className="flex items-center justify-between gap-3"><div><span className="mp-eyebrow text-secondary">Your order</span><h3 className="mt-1 text-xl font-extrabold text-ink-black">{cart.length} {cart.length === 1 ? "product" : "products"}</h3></div><span className="rounded-full bg-primary px-3 py-1 text-xs font-extrabold text-white">{totalUnits} units</span></div>
+          {cart.length ? <div className="mt-5 space-y-3">{cart.map((item) => <div className="order-summary-item grid grid-cols-[52px_minmax(0,1fr)_36px] items-center gap-3 rounded-2xl border border-outline-variant p-3" key={item.name}>
+            <span className="relative h-12 overflow-hidden rounded-lg bg-surface-container-low"><Image alt="" className="object-contain p-1" fill sizes="52px" src={item.image} /></span>
+            <div className="min-w-0"><strong className="block text-sm leading-tight text-ink-black">{item.name}</strong>{step === 1 ? <div className="mt-2 inline-flex items-center overflow-hidden rounded-full border border-outline-variant"><button aria-label={`Decrease ${item.name}`} className="h-7 w-8 text-primary disabled:opacity-30" disabled={item.quantity <= 1} onClick={() => updateCartQuantity(item.name, item.quantity - 1)} type="button">−</button><span className="min-w-7 text-center text-sm font-extrabold">{item.quantity}</span><button aria-label={`Increase ${item.name}`} className="h-7 w-8 text-primary" onClick={() => updateCartQuantity(item.name, item.quantity + 1)} type="button">+</button></div> : <span className="mt-1 block text-sm font-extrabold text-primary">Quantity {item.quantity}</span>}</div>
+            {step === 1 ? <button aria-label={`Remove ${item.name}`} className="grid h-9 w-9 place-items-center rounded-full text-on-surface-variant hover:bg-surface-container-low hover:text-secondary" onClick={() => removeFromCart(item.name)} type="button"><span className="material-symbols-outlined text-xl">delete</span></button> : <span className="font-extrabold text-primary">×{item.quantity}</span>}
+          </div>)}</div> : <p className="mt-5 rounded-2xl bg-surface-container-low p-5 text-sm text-on-surface-variant">Choose a product and add it to your order.</p>}
+          {step === 1 && <button className="mt-5 w-full rounded-full bg-primary px-6 py-4 font-extrabold text-white shadow-lg shadow-primary/15 transition hover:-translate-y-0.5 hover:bg-primary-container disabled:cursor-not-allowed disabled:opacity-40" disabled={!cart.length} onClick={() => setStep(2)} type="button">Continue with {cart.length} {cart.length === 1 ? "product" : "products"} <span aria-hidden>→</span></button>}
+          <p className="mt-5 border-t border-outline-variant pt-4 text-sm text-on-surface-variant"><span className="material-symbols-outlined mr-2 align-middle text-primary">sms</span>MolaPlus receives one SMS with the complete order.</p>
+        </div>
       </aside>
     </section>
   );
