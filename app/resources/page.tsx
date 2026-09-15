@@ -1,13 +1,12 @@
 ﻿import Link from "next/link";
 
-const guides = [
-  ["DAIRY", "Calf Rearing Guide", "Early stage nutritional protocols for optimal growth.", "pets"],
-  ["POULTRY", "Layer Performance", "Maximizing egg quality through microbial gut health.", "egg"],
-  ["LIVESTOCK", "Microbial Strains", "Technical specifications of MolaPlus unique cultures.", "biotech"],
-  ["RESEARCH", "Feed Analysis Guide", "How to interpret laboratory nutritional reports.", "analytics"],
-];
+import { publishedPosts } from "../../lib/studio/db";
+import { formatDate } from "../blog/posts";
+export const dynamic = "force-dynamic";
 
 export default function ResourcesPage() {
+  const posts = publishedPosts();
+  const featured = posts[0];
   return (
     <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">
       {/* Hero */}
@@ -16,13 +15,13 @@ export default function ResourcesPage() {
           <span className="mp-eyebrow text-primary-fixed-dim">Scientific Animal Nutrition</span>
           <h1 className="mp-display mt-5 max-w-3xl">Knowledge Hub</h1>
           <p className="text-pretty mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
-            Empowering farmers and livestock professionals through science-backed
-            nutrition strategies, rigorous laboratory analysis, and industry-leading
-            technical documentation.
+            Practical articles for the daily work of farming. Explore routines,
+            record keeping and questions to discuss with your farm adviser.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+            <Link className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-primary" href="/blog">Read the blog <span aria-hidden="true">↗</span></Link>
             <a className="inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white transition-all hover:bg-secondary" href="#library">
-              Technical Documentation
+              Explore farm guides
               <span className="material-symbols-outlined">arrow_forward</span>
             </a>
             <a className="glass-effect inline-flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="#library">
@@ -35,39 +34,37 @@ export default function ResourcesPage() {
       {/* Featured */}
       <section className="bg-surface py-16 md:py-24" id="library">
         <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-          <Link className="mp-hover-lift group relative block overflow-hidden rounded-[2rem]" data-reveal href="/contact">
+          <Link className="mp-hover-lift group relative block overflow-hidden rounded-[2rem]" data-reveal href={featured ? `/blog/${featured.slug}` : "/consultancy"}>
             <div className="mp-scene mp-grain absolute inset-0" />
             <div className="relative z-10 flex flex-col justify-between gap-8 p-8 md:flex-row md:items-end md:p-12">
               <div className="max-w-xl text-white">
                 <div className="flex flex-wrap gap-2">
-                  <span className="resource-guide-badge resource-guide-badge--primary mp-eyebrow rounded-full bg-secondary-container px-3 py-1.5 text-white">Feeding Guide</span>
-                  <span className="resource-guide-badge resource-guide-badge--secondary mp-eyebrow rounded-full bg-white/15 px-3 py-1.5 text-white">Technical Guide</span>
+                  <span className="resource-guide-badge resource-guide-badge--primary mp-eyebrow rounded-full bg-secondary-container px-3 py-1.5 text-white">{featured?.category || "Farm support"}</span>
+                  <span className="resource-guide-badge resource-guide-badge--secondary mp-eyebrow rounded-full bg-white/15 px-3 py-1.5 text-white">Field Notes</span>
                 </div>
-                <h2 className="mp-display-sm mt-5">Simply Feeding Dairy</h2>
+                <h2 className="mp-display-sm mt-5">{featured?.title || "Find guidance for your farm"}</h2>
                 <p className="mt-4 text-white/80">
-                  The comprehensive 2024 manual on maximizing milk yield through
-                  precision probiotic supplementation and microbial balance. Includes
-                  updated dosage charts for Holstein and Jersey breeds.
+                  {featured?.excerpt || "Talk to our team about your animals, daily routine and goals."}
                 </p>
               </div>
               <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-primary transition-all group-hover:gap-3">
-                Read the guide
+                {featured ? "Read the story" : "Talk to our team"}
                 <span className="material-symbols-outlined">arrow_forward</span>
               </span>
             </div>
           </Link>
 
           <div className="mt-10 grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-4" data-reveal data-reveal-stagger>
-            {guides.map(([tag, title, body, icon]) => (
-              <Link className="mp-hover-lift group flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-7" href="/contact" key={title}>
+            {posts.slice(1).map((post) => (
+              <Link className="mp-hover-lift group flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-7" href={`/blog/${post.slug}`} key={post.slug}>
                 <div className="flex items-center justify-between">
-                  <span className="mp-eyebrow rounded-full bg-primary/10 px-3 py-1.5 text-primary">{tag}</span>
-                  <span className="material-symbols-outlined text-2xl text-primary">{icon}</span>
+                  <span className="mp-eyebrow rounded-full bg-primary/10 px-3 py-1.5 text-primary">{post.category}</span>
+                  <span className="material-symbols-outlined text-2xl text-primary">article</span>
                 </div>
-                <h3 className="mt-5 text-lg font-extrabold tracking-tight text-ink-black">{title}</h3>
-                <p className="mt-2 flex-1 text-sm text-on-surface-variant">{body}</p>
+                <h3 className="mt-5 text-lg font-extrabold tracking-tight text-ink-black">{post.title}</h3>
+                <p className="mt-2 flex-1 text-sm text-on-surface-variant">{post.excerpt}</p>
                 <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary transition-all group-hover:gap-3">
-                  Request access
+                  Read story · {formatDate(post.date)}
                   <span className="material-symbols-outlined text-[18px]">trending_flat</span>
                 </span>
               </Link>

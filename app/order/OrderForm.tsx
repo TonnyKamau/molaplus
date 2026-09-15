@@ -4,28 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 
-const products = [
-  ["Super Milk Booster — 1KG", "/molaplus/milkbooster-1kg.webp"],
-  ["Super Milk Booster — 2KG", "/molaplus/milkbooster-2kg.webp"],
-  ["Super Milk Booster — 5KG", "/molaplus/milk-booster-5kg-cutout.webp"],
-  ["Poultry Microbes — 500ML", "/molaplus/poultry-500ml.webp"],
-  ["Poultry Microbes — 1L", "/molaplus/poultry-microbes-1l-bottle.webp"],
-  ["Poultry Microbes — 5L", "/molaplus/poultry-5ltr.webp"],
-  ["Poultry Microbes — 10L", "/molaplus/poultry-microbes-10l.webp"],
-  ["Pig Microbes — 1L", "/molaplus/pig-1ltr.webp"],
-  ["Pig Microbes — 5L", "/molaplus/pig-5ltr.webp"],
-  ["Pig Microbes — 10L", "/molaplus/pig-microbes-10l.webp"],
-  ["Pig Microbes — 20L", "/molaplus/pig-20ltr.webp"],
-  ["Dairy Ultra Mineral Lick — 2KG", "/molaplus/dairy-ultra-mineral-lick-2kg.webp"],
-  ["Early Calf-Weaner Meal — 10KG", "/molaplus/early-calf-weaner-10kg.webp"],
-  ["MolaPlus Steaming Formula — 5KG", "/molaplus/steaming-formula-5kg.webp"],
-  ["MolaPlus Bovine Meal", "/molaplus/molaplus-bovine-meal.webp"],
-  ["MolaPlus Layer Mash — 50KG", "/molaplus/molaplus-layer-mash-50kg.webp"],
-  ["Mazao Cereals — 250ML", "/molaplus/mazao-cereals-250ml.webp"],
-  ["Mazao Cereals — 500ML", "/molaplus/mazao-cereals-500ml.webp"],
-  ["Mazao Organic Fertilizer", "/molaplus/mazao-organic-fertilizer.webp"],
-  ["MolaPlus V-EM Mbolea", "/molaplus/v-em-mbolea.webp"],
-] as const;
+import { products } from "../../lib/orders/catalog";
 
 type Result = { ok: boolean; reference?: string; message?: string };
 type CartItem = { name: string; image: string; quantity: number };
@@ -96,6 +75,7 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (pending || step !== 3 || !cart.length) return;
     setPending(true);
     setResult(null);
     const form = event.currentTarget;
@@ -108,8 +88,8 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
         body: JSON.stringify(payload),
       });
       const data = (await response.json()) as Result;
-      setResult(data);
-      if (data.ok) setStep(4);
+      setResult(response.ok ? data : { ok: false, message: data.message || "We could not send this order." });
+      if (response.ok && data.ok) setStep(4);
     } catch {
       setResult({ ok: false, message: "We could not send the order. Please call +254 722 656 142." });
     } finally {
@@ -229,7 +209,7 @@ export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
           {step === 2 && <><span className="mp-eyebrow text-secondary">Step 2</span><h2 className="mt-2 text-3xl font-extrabold text-ink-black">Where should we deliver?</h2></>}
           <div className={step === 2 ? "mt-7 grid gap-5 sm:grid-cols-2" : "hidden"}>
             <label className="block font-bold">Full name<input className={inputClass} name="name" required autoComplete="name" /></label>
-            <label className="block font-bold">Phone number<input className={inputClass} name="phone" required autoComplete="tel" inputMode="tel" placeholder="07… or +254…" /></label>
+            <label className="block font-bold">Phone number<input className={inputClass} name="phone" required pattern="[+0-9 ()-]{10,20}" title="Enter a Kenyan mobile number, for example 0722656142 or +254722656142" autoComplete="tel" inputMode="tel" placeholder="07… or +254…" /></label>
             <label className="block font-bold">County<input className={inputClass} name="county" required placeholder="e.g. Nakuru" /></label>
             <label className="block font-bold">Town / area<input className={inputClass} name="town" required placeholder="e.g. Njoro" /></label>
             <label className="block font-bold sm:col-span-2">Delivery directions<textarea className={inputClass} name="address" required rows={3} placeholder="Village, road, landmark or farm name" /></label>

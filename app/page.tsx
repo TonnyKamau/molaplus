@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import { readingMinutes } from "./blog/posts";
+import { publishedPosts } from "../lib/studio/db";
+
+export const dynamic = "force-dynamic";
 
 const benefits = [
   ["01", "Better digestion", "Beneficial microbes help animals unlock more value from everyday feed."],
@@ -14,6 +18,7 @@ const services = [
 ];
 
 export default function Home() {
+  const posts = publishedPosts();
   return (
     <main className="new-home">
       <section className="hero-v2">
@@ -92,6 +97,10 @@ export default function Home() {
         <div className="story-v2__copy"><p className="kicker"><span /> Why MolaPlus</p><h2>Local realities.<br /><em>Serious science.</em></h2><p>We build evidence-based animal nutrition around the challenges East African farmers face every day. Every product is backed by careful formulation, practical guidance and a team that stays close to the farm.</p><ul><li><span>Quality</span> Carefully researched nutrition</li><li><span>Innovation</span> Solutions for regional challenges</li><li><span>Reliability</span> Consistent, season after season</li></ul><Link href="/about-us">Meet MolaPlus Africa ↗</Link></div>
       </section>
 
+      <section className="section support-v2 home-journal" aria-labelledby="home-journal-heading">
+        <div className="section-heading"><p className="kicker"><span /> Field notes / The blog</p><h2 id="home-journal-heading">Good knowledge.<br /><em>Better farming.</em></h2><Link href="/blog">Explore all stories ↗</Link></div>
+        <div className="support-v2__grid">{posts.slice(0, 3).map((post) => <Link href={`/blog/${post.slug}`} key={post.slug}><div className="support-v2__image"><Image src={post.image} alt={post.imageAlt} fill sizes="(min-width: 800px) 30vw, 100vw" /></div><p className="home-journal__meta">{post.category} · {readingMinutes(post)} min read</p><h3>{post.title}</h3><p>{post.excerpt}</p><b>Read the story ↗</b></Link>)}</div>
+      </section>
       <section className="cta-v2"><p className="kicker kicker--light"><span /> Ready to grow?</p><h2>Let’s build a<br /><em>healthier farm.</em></h2><div><a className="button button--light" href="/order">Place an order <span>↗</span></a><a className="button button--line" href="tel:+254722656142">Call +254 722 656 142</a></div><small>Lipa na M-Pesa · Till number 906520</small></section>
     </main>
   );

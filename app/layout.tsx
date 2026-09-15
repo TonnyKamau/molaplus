@@ -1,8 +1,6 @@
 ﻿import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import { SiteHeader } from "./_components/SiteHeader";
-import { SiteFooter } from "./_components/SiteFooter";
-import { ScrollReveal } from "./_components/ScrollReveal";
+import { SiteChrome } from "./_components/SiteChrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://molaplusafrica.com"),
@@ -46,10 +44,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SiteHeader />
-        <div className="flex min-h-[60vh] flex-col overflow-x-clip">{children}</div>
-        <SiteFooter />
-        <ScrollReveal />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

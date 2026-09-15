@@ -9,6 +9,7 @@ export const primaryNav = [
   { href: "/products", label: "Products" },
   { href: "/consultancy", label: "Consultancy" },
   { href: "/resources", label: "Resources" },
+  { href: "/blog", label: "Blog" },
   { href: "/distributors", label: "Distributors" },
   { href: "/about-us", label: "Our story" },
 ];
@@ -20,6 +21,7 @@ const drawerLinks = [
   { href: "/order", label: "Place an Order", icon: "shopping_bag" },
   { href: "/consultancy", label: "Consultancy", icon: "model_training" },
   { href: "/resources", label: "Resources", icon: "library_books" },
+  { href: "/blog", label: "Blog", icon: "article" },
   { href: "/distributors", label: "Distributors", icon: "location_on" },
   { href: "/about-us", label: "About Us", icon: "info" },
   { href: "/contact", label: "Contact", icon: "contact_support" },
@@ -121,6 +123,8 @@ export function SiteHeader() {
       />
       <nav
         aria-label="Main menu"
+        aria-hidden={!open}
+        inert={!open}
         className={`mobile-drawer fixed inset-y-0 left-0 z-[65] flex h-full w-[88%] max-w-sm flex-col bg-surface-container-lowest shadow-2xl transition-transform duration-300 ease-in-out lg:hidden ${
           open ? "translate-x-0" : "-translate-x-full"
         }`}

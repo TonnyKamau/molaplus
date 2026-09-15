@@ -97,6 +97,7 @@ export function SiteFooter() {
               ["About Us", "/about-us"],
               ["Consultancy", "/consultancy"],
               ["Resources", "/resources"],
+              ["Blog", "/blog"],
               ["Distributors", "/distributors"],
               ["Contact", "/contact"],
             ]}
