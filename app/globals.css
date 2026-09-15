@@ -126,7 +126,7 @@ body {
 
 /* Logo-led navigation inspired by compact editorial commerce headers */
 .home-journal .support-v2__image{height:auto;aspect-ratio:1.45}
-.home-journal .home-journal__meta{margin-top:20px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#a03a1d}
+.home-journal .home-journal__meta{margin-top:20px;font-size:13px;font-weight:800;color:#a03a1d}
 .home-journal h3{margin-top:10px;line-height:1.2;letter-spacing:-.025em}
 .site-header{background:#f3efe5;border-bottom:1px solid rgba(16,37,27,.14)}
 .site-header.is-scrolled{box-shadow:0 10px 35px rgba(16,37,27,.09)}
