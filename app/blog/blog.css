@@ -137,6 +137,7 @@
 .journal-feedback__note { margin-top: 5px; color: var(--journal-muted); font-size: 12px; line-height: 1.5; }
 .journal-feedback__actions { display: flex; flex-wrap: wrap; gap: 8px; flex-shrink: 0; }
 .journal-feedback__actions button { display: inline-flex; align-items: center; gap: 7px; min-width: 92px; justify-content: center; padding: 10px 13px; border: 1px solid #c6d1be; border-radius: 999px; background: #fff; color: #153d2b; font-size: 13px; font-weight: 800; }
+.journal-feedback__actions button > span { font-size: 23px; line-height: 1; }
 .journal-feedback__actions button[aria-pressed="true"] { border-color: #153d2b; background: #153d2b; color: #fff; }
 .journal-feedback__actions strong { font-size: 11px; opacity: .75; }
 .journal-feedback__status { min-height: 18px; margin: 0; color: var(--journal-muted); font-size: 11px; }
