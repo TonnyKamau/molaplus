@@ -358,10 +358,10 @@
 /* Blog sharing and view-count polish. */
 .journal-article-header>.journal-share{
   margin-top:28px;
-  padding:18px;
-  border:1px solid var(--journal-line);
-  border-radius:16px;
-  background:#faf8f1;
+  padding:18px 0 14px;
+  border-top:1px solid var(--journal-line);
+  border-bottom:1px solid var(--journal-line);
+  background:transparent;
 }
 .journal-share>div{
   gap:10px;
@@ -371,11 +371,11 @@
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-height:44px;
-  padding:11px 14px;
-  border:1.5px solid #c6d1be;
-  border-radius:999px;
-  background:#fff;
+  min-height:42px;
+  padding:10px 12px;
+  border:1px solid #c6d1be;
+  border-radius:6px;
+  background:#faf8f1;
   color:#153d2b!important;
   font-size:14px!important;
   font-weight:850!important;
@@ -404,7 +404,7 @@
   color:#3f5144!important;
 }
 @media(max-width:800px){
-  .journal-article-header>.journal-share{padding:15px}
+  .journal-article-header>.journal-share{padding:16px 0 12px}
   .journal-share button,.journal-share a{font-size:13px!important;padding:10px 12px}
 }
 
@@ -438,12 +438,12 @@
   width:100%;
   max-width:760px;
   margin:32px 0 34px;
-  padding:18px 20px;
+  padding:18px 0 14px;
   clear:both;
 }
 .journal-article-header>.journal-share>div{
   display:grid!important;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-template-columns:repeat(6,minmax(0,1fr));
   justify-content:flex-start;
   align-items:center;
   gap:12px!important;
@@ -463,6 +463,13 @@
   width:100%!important;
   min-width:0;
 }
+.journal-article-header>.journal-share [role="status"]{
+  min-height:18px;
+  margin:12px 0 0;
+  padding:0;
+  color:var(--journal-muted);
+  font-size:12px;
+}
 .journal-prose{
   clear:both;
 }
@@ -475,4 +482,7 @@
 @media(max-width:560px){
   .journal-article-header>.journal-share>div{grid-template-columns:repeat(2,minmax(0,1fr));}
   .journal-share button,.journal-share a{min-width:0;width:100%!important}
+}
+@media(min-width:561px) and (max-width:800px){
+  .journal-article-header>.journal-share>div{grid-template-columns:repeat(3,minmax(0,1fr));}
 }
