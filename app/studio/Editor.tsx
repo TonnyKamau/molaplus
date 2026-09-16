@@ -66,8 +66,16 @@ export function Editor({ initialPost, media, onMedia, onChange, onClose }: Props
     const input = bodyInput.current; const body = draft.body ?? "";
     const start = input?.selectionStart ?? body.length; const end = input?.selectionEnd ?? body.length;
     const selection = body.slice(start, end) || fallback;
+    const pageScroll = window.scrollY;
+    const editorScroll = input?.scrollTop ?? 0;
     field("body", body.slice(0, start) + before + selection + after + body.slice(end));
-    requestAnimationFrame(() => { input?.focus(); input?.setSelectionRange(start + before.length, start + before.length + selection.length); });
+    requestAnimationFrame(() => {
+      if (!input) return;
+      input.focus({ preventScroll: true });
+      input.scrollTop = editorScroll;
+      input.setSelectionRange(start + before.length, start + before.length + selection.length);
+      window.scrollTo({ top: pageScroll, behavior: "instant" });
+    });
   }
   const words = (draft.body?.trim().split(/\s+/).filter(Boolean).length ?? 0);
   const unpublished = !!record.published && JSON.stringify(record.draft) !== JSON.stringify(record.published);
