@@ -55,7 +55,7 @@ async function sendSms(message: string) {
 
 export async function POST(request: NextRequest) {
   const origin = request.headers.get("origin");
-  if (origin && origin !== (process.env.STUDIO_ORIGIN || new URL(request.url).origin)) return Response.json({ ok: false, message: "Please submit your order from this website." }, { status: 403 });
+  if (origin && origin !== new URL(request.url).origin) return Response.json({ ok: false, message: "Please submit your order from this website." }, { status: 403 });
   const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
   if (rateLimited(ip)) return Response.json({ ok: false, message: "Too many order attempts. Please wait a few minutes or call us." }, { status: 429 });
 

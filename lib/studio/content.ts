@@ -1,14 +1,10 @@
 import "server-only";
 import type { Post } from "../../app/blog/posts";
 import { createPublicClient } from "../supabase/public";
-import { isSupabaseStudio } from "./backend";
-import { publishedPosts as localPublishedPosts } from "./db";
 
 type Row = { record: { published: Post | null; archived: boolean } };
 
 export async function publishedPosts() {
-  if (!isSupabaseStudio()) return localPublishedPosts();
-
   const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("blog_posts")
