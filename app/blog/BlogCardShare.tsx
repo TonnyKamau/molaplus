@@ -1,15 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 export function BlogCardShare({ title, slug }: { title: string; slug: string }) {
   const [copied, setCopied] = useState(false);
   const path = `/blog/${slug}`;
-  const [url, setUrl] = useState(path);
-
-  useEffect(() => {
-    setUrl(new URL(path, window.location.origin).toString());
-  }, [path]);
+  const url = useSyncExternalStore(() => () => {}, () => path, () => new URL(path, window.location.origin).toString());
 
   const encodedUrl = encodeURIComponent(url);
   const encodedText = encodeURIComponent(`${title}\n${url}`);

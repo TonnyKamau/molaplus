@@ -132,6 +132,14 @@
 .journal-prose > section { scroll-margin-top: 110px; margin-top: 38px; }
 .journal-prose h2 { font-size: clamp(24px, 2.5vw, 31px); font-weight: 750; line-height: 1.22; letter-spacing: -.035em; margin-bottom: 18px; }
 .journal-prose section > p { font-size: 16px; line-height: 1.9; margin: 0 0 19px; color: #354b3d; }
+.journal-feedback { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 46px 0 34px; padding: 22px 24px; border: 1px solid var(--journal-line); background: #faf8f1; }
+.journal-feedback .journal-eyebrow { margin: 0; }
+.journal-feedback__note { margin-top: 5px; color: var(--journal-muted); font-size: 12px; line-height: 1.5; }
+.journal-feedback__actions { display: flex; flex-wrap: wrap; gap: 8px; flex-shrink: 0; }
+.journal-feedback__actions button { display: inline-flex; align-items: center; gap: 7px; min-width: 92px; justify-content: center; padding: 10px 13px; border: 1px solid #c6d1be; border-radius: 999px; background: #fff; color: #153d2b; font-size: 13px; font-weight: 800; }
+.journal-feedback__actions button[aria-pressed="true"] { border-color: #153d2b; background: #153d2b; color: #fff; }
+.journal-feedback__actions strong { font-size: 11px; opacity: .75; }
+.journal-feedback__status { min-height: 18px; margin: 0; color: var(--journal-muted); font-size: 11px; }
 .journal-checklist { list-style: none; padding: 0; margin-top: 24px; border-top: 1px solid var(--journal-line); }
 .journal-checklist li { display: flex; gap: 14px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--journal-line); font-size: 15px; line-height: 1.7; }
 .journal-checklist li span { color: #43712e; }

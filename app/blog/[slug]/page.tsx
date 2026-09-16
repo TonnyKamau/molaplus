@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlogCard } from "../BlogCard";
 import { ArticleViewTracker } from "../ArticleViewTracker";
+import { ArticleFeedback } from "../ArticleFeedback";
 import { ShareArticle } from "../ShareArticle";
 import { formatDate, readingMinutes, summarize } from "../posts";
 import { publishedPosts } from "../../../lib/studio/content";
@@ -43,6 +44,7 @@ export default async function ArticlePage({ params }: Props) {
           <aside className="journal-reading-sidebar"><nav aria-label="In this article"><p className="journal-eyebrow">In this article</p><ol>{postHeadings(postBody(post)).map((section, index) => <li key={section.id}><a href={`#${section.id}`}><span>{String(index + 1).padStart(2, "0")}</span>{section.title}</a></li>)}</ol></nav><ShareArticle title={post.title} slug={post.slug} /></aside>
           <div className="journal-prose">{post.takeaway && <div className="journal-takeaway"><p className="journal-eyebrow">The takeaway</p><p>{post.takeaway}</p></div>}
             <ArticleBody body={postBody(post)} />
+            <ArticleFeedback slug={post.slug} />
             {!!post.tags?.length && <div className="journal-tags">{post.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}
             {!!post.sources?.length && <section className="journal-sources"><h2>Further reading</h2><ul>{post.sources.map((source) => <li key={source.href}><a href={source.href} target="_blank" rel="noopener noreferrer">{source.title} <span aria-label="opens in a new tab">↗</span></a></li>)}</ul></section>}
             {post.relatedHref && <div className="journal-article-cta"><p className="journal-eyebrow">Your next step</p><h2>Make it work for your farm.</h2><p>Explore the range or speak to our team about your needs.</p><Link className="journal-button" href={post.relatedHref}>{post.relatedLabel}<span aria-hidden="true">↗</span></Link></div>}
