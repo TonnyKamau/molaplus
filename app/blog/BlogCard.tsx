@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BlogCardShare } from "./BlogCardShare";
 import { formatDate, type PostSummary } from "./posts";
 
 export function BlogCard({ post }: { post: PostSummary }) {
@@ -16,7 +15,6 @@ export function BlogCard({ post }: { post: PostSummary }) {
         <p>{post.excerpt}</p>
         <time dateTime={post.date}>{formatDate(post.date)}</time>
       </Link>
-      <BlogCardShare title={post.title} slug={post.slug} />
     </article>
   );
 }
