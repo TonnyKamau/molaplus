@@ -5,7 +5,7 @@ import { useState, useSyncExternalStore } from "react";
 export function ShareArticle({ title, slug }: { title: string; slug: string }) {
   const [status, setStatus] = useState("");
   const path = `/blog/${slug}`;
-  const url = useSyncExternalStore(() => () => {}, () => path, () => new URL(path, window.location.origin).toString());
+  const url = useSyncExternalStore(() => () => {}, () => new URL(path, window.location.origin).toString(), () => path);
 
   const encodedUrl = encodeURIComponent(url);
   const encodedText = encodeURIComponent(`${title}\n${url}`);

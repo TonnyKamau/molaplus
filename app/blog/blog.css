@@ -444,15 +444,17 @@
 /* Share buttons layout fix. */
 .journal-article-header>.journal-share{
   display:block;
+  position:relative;
+  z-index:2;
   width:100%;
   max-width:760px;
-  margin:32px 0 0;
+  margin:32px 0 34px;
   padding:18px 20px;
   clear:both;
 }
-.journal-share>div{
-  display:flex!important;
-  flex-wrap:wrap;
+.journal-article-header>.journal-share>div{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr));
   justify-content:flex-start;
   align-items:center;
   gap:12px!important;
@@ -467,6 +469,11 @@
   margin:0!important;
   transform:none!important;
 }
+.journal-article-header>.journal-share button,
+.journal-article-header>.journal-share a{
+  width:100%!important;
+  min-width:0;
+}
 .journal-prose{
   clear:both;
 }
@@ -477,6 +484,6 @@
   z-index:0;
 }
 @media(max-width:560px){
-  .journal-share>div{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));}
+  .journal-article-header>.journal-share>div{grid-template-columns:repeat(2,minmax(0,1fr));}
   .journal-share button,.journal-share a{min-width:0;width:100%!important}
 }
