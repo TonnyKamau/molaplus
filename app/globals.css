@@ -209,7 +209,8 @@ body {
 
 .directory-page{padding:clamp(38px,6vw,80px) 0 100px}
 .directory-page main{max-width:1440px!important}
-.directory-page main>section:first-child{position:relative;margin:0 -16px 50px;padding:clamp(42px,7vw,84px) max(5vw,24px);background:#0c432c;color:white;overflow:hidden}
+.directory-page main>section:first-child{position:relative;isolation:isolate;margin:0 -16px 50px;padding:clamp(42px,7vw,84px) max(5vw,24px);background:#0c432c;color:white;overflow:hidden}
+.directory-page main>section:first-child>div{position:relative;z-index:1}
 .directory-page main>section:first-child:after{content:"3,800+ STOCKISTS";position:absolute;right:5%;top:22%;color:#b6dc62;font-size:clamp(2rem,4vw,4.5rem);font-weight:800;letter-spacing:-.05em;opacity:.25}
 .directory-page main>section:first-child h1{color:white!important;font-size:clamp(3rem,5.6vw,6rem);line-height:.9;letter-spacing:-.055em}
 .directory-page main>section:first-child p{color:#c7d8ce!important}
