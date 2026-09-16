@@ -21,6 +21,7 @@ export type Post = {
   sources?: { title: string; href: string }[];
   relatedHref: string;
   relatedLabel: string;
+  views?: number;
 };
 
 // Initial seed content only. After first startup, manage articles in /studio.
@@ -121,8 +122,8 @@ export function readingMinutes(post: Post) {
 export function formatDate(date: string) {
   return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(`${date}T00:00:00Z`));
 }
-export type PostSummary = Pick<Post, "slug" | "title" | "category" | "excerpt" | "image" | "imageAlt" | "date" | "tags" | "author"> & { minutes: number };
+export type PostSummary = Pick<Post, "slug" | "title" | "category" | "excerpt" | "image" | "imageAlt" | "date" | "tags" | "author" | "views"> & { minutes: number };
 export function summarize(post: Post): PostSummary {
-  const { slug, title, category, excerpt, image, imageAlt, date, tags, author } = post;
-  return { slug, title, category, excerpt, image, imageAlt, date, tags, author, minutes: readingMinutes(post) };
+  const { slug, title, category, excerpt, image, imageAlt, date, tags, author, views } = post;
+  return { slug, title, category, excerpt, image, imageAlt, date, tags, author, views, minutes: readingMinutes(post) };
 }

@@ -449,3 +449,44 @@
   }
   .studio-body-input{font-size:18px!important}
 }
+
+/* Studio list alignment fixes. */
+.studio-post-row,
+.studio-table-heading{
+  grid-template-columns:minmax(320px,1fr) 130px 130px 210px!important;
+}
+.studio-row-actions{
+  display:flex!important;
+  justify-content:flex-end!important;
+  align-items:center!important;
+  flex-wrap:nowrap!important;
+  gap:10px!important;
+}
+.studio-row-actions button{
+  width:auto!important;
+  min-width:82px!important;
+  white-space:nowrap!important;
+  word-break:normal!important;
+}
+.studio-post-title{
+  min-width:0!important;
+}
+.studio-post-title>span:last-child{
+  min-width:0!important;
+}
+.studio-post-title strong,
+.studio-post-title small{
+  overflow-wrap:break-word;
+}
+@media(max-width:1100px){
+  .studio-post-row,
+  .studio-table-heading{
+    grid-template-columns:minmax(240px,1fr) 120px 180px!important;
+  }
+  .studio-row-actions{justify-content:flex-start!important}
+}
+@media(max-width:520px){
+  .studio-post-row{grid-template-columns:1fr!important}
+  .studio-row-actions{justify-content:flex-start!important;flex-wrap:wrap!important;margin-top:4px}
+  .studio-row-actions button{min-width:96px!important}
+}

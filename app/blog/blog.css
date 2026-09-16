@@ -346,3 +346,67 @@
 .journal-help .journal-eyebrow{
   color:#d9f1ad!important;
 }
+
+/* Blog sharing and view-count polish. */
+.journal-article-header>.journal-share{
+  margin-top:28px;
+  padding:18px;
+  border:1px solid var(--journal-line);
+  border-radius:16px;
+  background:#faf8f1;
+}
+.journal-share>div{
+  gap:10px;
+}
+.journal-share button,
+.journal-share a,
+.journal-card-share button,
+.journal-card-share a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  padding:11px 14px;
+  border:1.5px solid #c6d1be;
+  border-radius:999px;
+  background:#fff;
+  color:#153d2b!important;
+  font-size:14px!important;
+  font-weight:850!important;
+  line-height:1.2;
+  white-space:nowrap;
+}
+.journal-share button:first-child,
+.journal-card-share button{
+  background:#153d2b;
+  border-color:#153d2b;
+  color:#fff!important;
+}
+.journal-share button:hover,
+.journal-share a:hover,
+.journal-card-share button:hover,
+.journal-card-share a:hover{
+  background:#e2ead6;
+  border-color:#9daf91;
+}
+.journal-share button:first-child:hover,
+.journal-card-share button:hover{
+  background:#0d3020;
+  border-color:#0d3020;
+}
+.journal-card-share{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:16px;
+}
+.journal-card .journal-meta{
+  gap:8px 12px;
+}
+.journal-card .journal-meta>span:not(:first-child){
+  color:#3f5144!important;
+}
+@media(max-width:800px){
+  .journal-article-header>.journal-share{padding:15px}
+  .journal-share button,.journal-share a,.journal-card-share button,.journal-card-share a{font-size:13px!important;padding:10px 12px}
+}

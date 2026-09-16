@@ -61,7 +61,7 @@ Provider reference: [Africa’s Talking SMS delivery stages](https://help.africa
 
 ## Backups and recovery
 
-**Publishing guide → Export content** downloads article versions and revision history from Supabase. Keep exports private. For full recovery, use Supabase backups and storage bucket backups from the Supabase dashboard or CLI.
+Use Supabase database backups and storage bucket backups from the Supabase dashboard or CLI for full content recovery.
 
 ## Verification
 
@@ -76,3 +76,4 @@ Mobbin references used for featured story/topic navigation and the editor’s wr
 
 - [Assembly blog](https://mobbin.com/screens/2ff80227-d048-4a46-954d-97c58ecdb01e)
 - [Intercom article editor](https://mobbin.com/screens/9c50cf50-347b-41bc-a9e3-e7022abde080)
+

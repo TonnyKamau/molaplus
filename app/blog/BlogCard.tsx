@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BlogCardShare } from "./BlogCardShare";
 import { formatDate, type PostSummary } from "./posts";
 
 export function BlogCard({ post }: { post: PostSummary }) {
@@ -10,11 +11,12 @@ export function BlogCard({ post }: { post: PostSummary }) {
           <Image src={post.image} alt={post.imageAlt} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 92vw" />
           <span className="journal-card__arrow" aria-hidden="true">↗</span>
         </div>
-        <div className="journal-meta"><span>{post.category}</span><span>{post.minutes} min read</span></div>
+        <div className="journal-meta"><span>{post.category}</span><span>{post.minutes} min read</span><span>{(post.views ?? 0).toLocaleString()} views</span></div>
         <h3>{post.title}</h3>
         <p>{post.excerpt}</p>
         <time dateTime={post.date}>{formatDate(post.date)}</time>
       </Link>
+      <BlogCardShare title={post.title} slug={post.slug} />
     </article>
   );
 }

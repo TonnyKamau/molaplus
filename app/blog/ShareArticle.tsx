@@ -5,9 +5,16 @@ import { useState } from "react";
 export function ShareArticle({ title, slug }: { title: string; slug: string }) {
   const [status, setStatus] = useState("");
   const url = `https://molaplusafrica.com/blog/${slug}`;
+  const encodedUrl = encodeURIComponent(url);
+  const encodedText = encodeURIComponent(`${title}\n${url}`);
   async function copy() {
     try { await navigator.clipboard.writeText(url); setStatus("Link copied."); }
     catch { setStatus("Copy the article address from your browser to share it."); }
   }
-  return <div className="journal-share"><p className="journal-eyebrow">Pass it on</p><div><button type="button" onClick={copy}>Copy link <span aria-hidden="true">↗</span></button><a href={`https://wa.me/?text=${encodeURIComponent(`${title}\n${url}`)}`} target="_blank" rel="noopener noreferrer" aria-label="Share article on WhatsApp (opens in a new tab)">WhatsApp <span aria-hidden="true">↗</span></a></div><p role="status" aria-live="polite">{status}</p></div>;
+  async function share() {
+    if (!navigator.share) return copy();
+    try { await navigator.share({ title, url }); setStatus("Share sheet opened."); }
+    catch { setStatus(""); }
+  }
+  return <div className="journal-share"><p className="journal-eyebrow">Share this story</p><div><button type="button" onClick={share}>Share <span aria-hidden="true">↗</span></button><button type="button" onClick={copy}>Copy link</button><a href={`https://wa.me/?text=${encodedText}`} target="_blank" rel="noopener noreferrer" aria-label="Share article on WhatsApp">WhatsApp</a><a href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share article on Facebook">Facebook</a><a href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodeURIComponent(title)}`} target="_blank" rel="noopener noreferrer" aria-label="Share article on X">X</a><a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share article on LinkedIn">LinkedIn</a></div><p role="status" aria-live="polite">{status}</p></div>;
 }

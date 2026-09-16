@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { BlogCard } from "../BlogCard";
+import { ArticleViewTracker } from "../ArticleViewTracker";
 import { ShareArticle } from "../ShareArticle";
 import { formatDate, readingMinutes, summarize } from "../posts";
 import { publishedPosts } from "../../../lib/studio/content";
@@ -36,7 +37,7 @@ export default async function ArticlePage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
       <nav className="journal-breadcrumb" aria-label="Breadcrumb"><Link href="/blog">← All stories</Link><span aria-hidden="true">/</span><span>{post.category}</span></nav>
       <article>
-        <header className="journal-article-header"><p className="journal-eyebrow">Field notes / {post.category}</p><h1>{post.title}</h1><p className="journal-article-deck">{post.excerpt}</p><div className="journal-byline"><span className="journal-monogram" aria-hidden="true">m<span>+</span></span><div><strong>{post.author || "MolaPlus Africa"}</strong><span><time dateTime={post.date}>{formatDate(post.date)}</time><span aria-hidden="true"> · </span>{readingMinutes(post)} min read</span></div></div></header>
+        <header className="journal-article-header"><p className="journal-eyebrow">Field notes / {post.category}</p><h1>{post.title}</h1><p className="journal-article-deck">{post.excerpt}</p><div className="journal-byline"><span className="journal-monogram" aria-hidden="true">m<span>+</span></span><div><strong>{post.author || "MolaPlus Africa"}</strong><span><time dateTime={post.date}>{formatDate(post.date)}</time><span aria-hidden="true"> · </span>{readingMinutes(post)} min read<span aria-hidden="true"> · </span><ArticleViewTracker slug={post.slug} initialViews={post.views ?? 0} /></span></div></div><ShareArticle title={post.title} slug={post.slug} /></header>
         <figure className={`journal-article-image ${post.image.includes("cutout") || post.image.includes("full-product") ? "journal-article-image--product" : ""}`}><Image src={post.image} alt={post.imageAlt} fill preload sizes="(min-width: 1400px) 1280px, 92vw" /></figure>
         <div className="journal-reading-layout">
           <aside className="journal-reading-sidebar"><nav aria-label="In this article"><p className="journal-eyebrow">In this article</p><ol>{postHeadings(postBody(post)).map((section, index) => <li key={section.id}><a href={`#${section.id}`}><span>{String(index + 1).padStart(2, "0")}</span>{section.title}</a></li>)}</ol></nav><ShareArticle title={post.title} slug={post.slug} /></aside>
