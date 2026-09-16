@@ -480,6 +480,43 @@
   color:#d0ddce!important;
   opacity:.72!important;
 }
+.studio-media-grid{
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))!important;
+  align-items:stretch;
+}
+.studio-media-item{
+  display:flex!important;
+  flex-direction:column;
+  width:100%;
+  min-width:0;
+  overflow:hidden;
+  text-align:left;
+}
+.studio-media-item picture{
+  width:100%;
+  flex:0 0 auto;
+}
+.studio-media-item>span{
+  min-height:3.2em;
+  overflow-wrap:anywhere;
+}
+.studio-media-item>small{
+  display:flex!important;
+  align-items:center;
+  justify-content:center;
+  width:100%!important;
+  max-width:100%;
+  min-height:46px;
+  margin-top:auto;
+  padding:11px 12px!important;
+  overflow-wrap:anywhere;
+  white-space:normal;
+  text-align:center;
+}
+@media(max-width:579px){
+  .studio-media-grid{grid-template-columns:1fr!important;}
+  .studio-media-item>span{min-height:0;}
+}
 @media(max-width:800px){
   .studio-editor-actions .studio-primary,
   .studio-editor-actions .studio-secondary,
@@ -531,4 +568,34 @@
   .studio-post-row{grid-template-columns:1fr!important}
   .studio-row-actions{justify-content:flex-start!important;flex-wrap:wrap!important;margin-top:4px}
   .studio-row-actions button{min-width:96px!important}
+}
+
+/* Final responsive safeguards for compact screens. */
+.studio-publishing button,
+.studio-publishing a,
+.studio-empty button,
+.studio-source button{
+  width:100%!important;
+  max-width:100%;
+  white-space:normal;
+  overflow-wrap:anywhere;
+}
+.studio-tip>button{width:max-content!important;max-width:100%;margin-left:auto!important;}
+.studio-editor-actions{flex-wrap:wrap;min-width:0;}
+.studio-editor-actions>*{max-width:100%;}
+.studio-editor-actions .studio-primary,
+.studio-editor-actions .studio-secondary{white-space:normal;}
+.studio-topbar>span{min-width:0;overflow-wrap:anywhere;}
+.studio-user{flex-shrink:0;white-space:nowrap;}
+.studio-modal-actions button{max-width:100%;white-space:normal;}
+@media(max-width:700px){
+  .studio-table-heading{display:none;}
+  .studio-post-row{grid-template-columns:1fr!important;gap:12px;}
+  .studio-row-actions{justify-content:flex-start!important;flex-wrap:wrap!important;}
+  .studio-row-actions button{min-width:96px;}
+}
+@media(max-width:800px){
+  .studio-editor-actions{justify-content:stretch!important;}
+  .studio-editor-actions>*{flex:1 1 auto;}
+  .studio-tip>button{width:100%!important;margin-left:0!important;}
 }
