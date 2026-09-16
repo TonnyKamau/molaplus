@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlogLibrary } from "./BlogLibrary";
 import { formatDate, readingMinutes, summarize } from "./posts";
-import { publishedPosts } from "../../lib/studio/db";
+import { publishedPosts } from "../../lib/studio/content";
 
 export const dynamic = "force-dynamic";
 
@@ -15,8 +15,8 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Field Notes — The MolaPlus Blog", description: "Practical ideas for the everyday work of farming.", images: ["/molaplus/service-cows.webp"] },
 };
 
-export default function BlogPage() {
-  const posts = publishedPosts();
+export default async function BlogPage() {
+  const posts = await publishedPosts();
   const featured = posts[0];
   return (
     <main className="journal-shell">

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { BlogCard } from "../BlogCard";
 import { ShareArticle } from "../ShareArticle";
 import { formatDate, readingMinutes, summarize } from "../posts";
-import { publishedPosts } from "../../../lib/studio/db";
+import { publishedPosts } from "../../../lib/studio/content";
 import { postBody, postHeadings } from "../../../lib/studio/model";
 import { ArticleBody } from "../ArticleBody";
 
@@ -14,7 +14,7 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = publishedPosts().find((p) => p.slug === slug);
+  const post = (await publishedPosts()).find((p) => p.slug === slug);
   if (!post) return { title: "Story not found | MolaPlus Africa" };
   return {
     title: `${post.seoTitle || post.title} | MolaPlus Field Notes`, description: post.seoDescription || post.excerpt,
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
-  const posts = publishedPosts();
+  const posts = await publishedPosts();
   const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();
   const related = posts.filter((item) => item.slug !== post.slug).sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category)).slice(0, 3);

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { readingMinutes } from "./blog/posts";
-import { publishedPosts } from "../lib/studio/db";
+import { publishedPosts } from "../lib/studio/content";
 
 export const dynamic = "force-dynamic";
 
@@ -17,8 +17,8 @@ const services = [
   ["/molaplus/service-pigs.webp", "Technical support", "Real help for farmers and distributors, before and after purchase.", "/contact"],
 ];
 
-export default function Home() {
-  const posts = publishedPosts();
+export default async function Home() {
+  const posts = await publishedPosts();
   return (
     <main className="new-home">
       <section className="hero-v2">

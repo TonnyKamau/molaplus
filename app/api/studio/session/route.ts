@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { apiError, checkOrigin, configured, endSession, jsonBody, limitLogin, sessionCookie, sessionSeconds, startSession, validPassword } from "../../../../lib/studio/auth";
+import { isSupabaseStudio } from "../../../../lib/studio/backend";
+import { remoteSignOut } from "../../../../lib/studio/remote";
 import { StudioError } from "../../../../lib/studio/validation";
 
 export async function POST(request: Request) {
@@ -15,6 +17,13 @@ export async function POST(request: Request) {
   } catch (error) { return apiError(error); }
 }
 export async function DELETE(request: Request) {
-  try { checkOrigin(request); await endSession(); const response = NextResponse.json({ ok: true }); response.cookies.set(sessionCookie, "", { httpOnly: true, sameSite: "strict", path: "/", maxAge: 0 }); return response; }
+  try {
+    checkOrigin(request);
+    if (isSupabaseStudio()) {
+      await remoteSignOut();
+      return NextResponse.json({ ok: true });
+    }
+    await endSession(); const response = NextResponse.json({ ok: true }); response.cookies.set(sessionCookie, "", { httpOnly: true, sameSite: "strict", path: "/", maxAge: 0 }); return response;
+  }
   catch (error) { return apiError(error); }
 }

@@ -5,7 +5,12 @@ export class StudioError extends Error { constructor(message: string, public sta
 export function safeLink(value: string) {
   return /^\/(?!\/)[a-zA-Z0-9/_?=&%#.,+-]*$/.test(value) || /^https:\/\/[^\s<>"\\]+$/.test(value);
 }
-export function validImage(value: string) { return /^\/molaplus\/[a-z0-9-]+\.webp$/.test(value) || /^\/api\/blog\/media\/[a-f0-9-]{36}$/.test(value); }
+export function validImage(value: string) {
+  const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).host : "";
+  return /^\/molaplus\/[a-z0-9-]+\.webp$/.test(value) ||
+    /^\/api\/blog\/media\/[a-f0-9-]{36}$/.test(value) ||
+    (!!supabaseHost && new RegExp(`^https://${supabaseHost.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/storage/v1/object/public/molaplus-blog-images/`).test(value));
+}
 function str(value: unknown, max: number, field: string) {
   if (typeof value !== "string" || value.length > max) throw new StudioError(`${field} must be text under ${max} characters.`);
   return value.trim();

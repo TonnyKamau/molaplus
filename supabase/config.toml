@@ -1,0 +1,4 @@
+project_id = "acgjxvqcwpeuclcfvgak"
+
+[functions.molaplus-studio]
+verify_jwt = true
