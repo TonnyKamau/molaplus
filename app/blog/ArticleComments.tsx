@@ -58,9 +58,9 @@ export function ArticleComments({ slug }: { slug: string }) {
         <span>{comments.length} {comments.length === 1 ? "comment" : "comments"}</span>
       </div>
       <form className="journal-comments__form" onSubmit={submit}>
-        <label>Name<input value={authorName} onChange={(event) => setAuthorName(event.target.value)} minLength={2} maxLength={80} required /></label>
-        <label className="journal-comments__message">Comment<textarea value={body} onChange={(event) => setBody(event.target.value)} minLength={2} maxLength={2000} rows={4} required /></label>
-        <div className="journal-comments__form-footer"><span>Be thoughtful and constructive.</span><button type="submit" disabled={submitting}>{submitting ? "Posting..." : "Post comment"}</button></div>
+        <label>Name<input value={authorName} onChange={(event) => setAuthorName(event.target.value)} minLength={2} maxLength={80} required disabled={submitting} /></label>
+        <label className="journal-comments__message">Comment<textarea value={body} onChange={(event) => setBody(event.target.value)} minLength={2} maxLength={2000} rows={4} required disabled={submitting} /></label>
+        <div className="journal-comments__form-footer"><span>Be thoughtful and constructive.</span><button type="submit" disabled={submitting}>{submitting ? <><span className="journal-comments__spinner" aria-hidden="true" />Posting…</> : "Post comment"}</button></div>
       </form>
       <p className="journal-comments__status" role="status" aria-live="polite">{status}</p>
       {comments.length > 0 && <div className="journal-comments__list">{comments.map((comment) => <article key={comment.id}><div><strong>{comment.authorName}</strong><time dateTime={comment.createdAt}>{formatCommentDate(comment.createdAt)}</time></div><p>{comment.body}</p></article>)}</div>}

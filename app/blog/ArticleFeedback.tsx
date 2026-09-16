@@ -18,6 +18,7 @@ export function ArticleFeedback({ slug }: { slug: string }) {
   const [counts, setCounts] = useState<Counts>({ helpful: 0, notHelpful: 0 });
   const [selected, setSelected] = useState<Reaction | null>(null);
   const [status, setStatus] = useState("");
+  const [pending, setPending] = useState(false);
 
   useEffect(() => {
     const selectionKey = `molaplus:article-feedback:${slug}`;
@@ -36,6 +37,7 @@ export function ArticleFeedback({ slug }: { slug: string }) {
   }, [slug]);
 
   async function react(reaction: Reaction) {
+    if (pending) return;
     const previous = selected;
     const nextCounts = { ...counts };
     if (previous && previous !== reaction) {
@@ -46,7 +48,8 @@ export function ArticleFeedback({ slug }: { slug: string }) {
     }
     setSelected(reaction);
     setCounts(nextCounts);
-    setStatus("Thanks for your feedback.");
+    setPending(true);
+    setStatus("Saving your response…");
     localStorage.setItem(`molaplus:article-feedback:${slug}`, reaction);
 
     try {
@@ -60,24 +63,27 @@ export function ArticleFeedback({ slug }: { slug: string }) {
       if (typeof data.helpful === "number" && typeof data.notHelpful === "number") {
         setCounts({ helpful: data.helpful, notHelpful: data.notHelpful });
       }
+      setStatus("Thanks for your feedback.");
     } catch {
       setSelected(previous);
       setCounts(counts);
       if (previous) localStorage.setItem(`molaplus:article-feedback:${slug}`, previous);
       else localStorage.removeItem(`molaplus:article-feedback:${slug}`);
       setStatus("Your feedback could not be saved. Please try again.");
+    } finally {
+      setPending(false);
     }
   }
 
   return (
-    <section className="journal-feedback" aria-labelledby={`feedback-${slug}`}>
+    <section className="journal-feedback" aria-labelledby={`feedback-${slug}`} aria-busy={pending}>
       <div>
         <p id={`feedback-${slug}`} className="journal-eyebrow">Was this article helpful?</p>
         <p className="journal-feedback__note">Your response helps us make Field Notes more useful.</p>
       </div>
       <div className="journal-feedback__actions">
-        <button type="button" aria-pressed={selected === "helpful"} onClick={() => react("helpful")}><span aria-hidden="true">👍</span> Yes <strong>{counts.helpful}</strong></button>
-        <button type="button" aria-pressed={selected === "not_helpful"} onClick={() => react("not_helpful")}><span aria-hidden="true">👎</span> No <strong>{counts.notHelpful}</strong></button>
+        <button type="button" aria-pressed={selected === "helpful"} onClick={() => react("helpful")} disabled={pending}><span aria-hidden="true">👍</span> Yes <strong>{counts.helpful}</strong></button>
+        <button type="button" aria-pressed={selected === "not_helpful"} onClick={() => react("not_helpful")} disabled={pending}><span aria-hidden="true">👎</span> No <strong>{counts.notHelpful}</strong></button>
       </div>
       <p className="journal-feedback__status" role="status" aria-live="polite">{status}</p>
     </section>
