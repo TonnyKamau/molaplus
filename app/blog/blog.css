@@ -321,3 +321,28 @@
     font-size:15px!important;
   }
 }
+
+/* Dark-panel contrast fixes. */
+.journal-help .journal-eyebrow,
+.journal-help .journal-eyebrow span,
+.journal-lead .journal-eyebrow,
+.journal-lead__badge,
+.journal-lead .journal-meta,
+.journal-lead .journal-meta>span,
+.journal-lead__copy,
+.journal-lead__copy p,
+.journal-lead__copy h2{
+  color:#eef6e8!important;
+}
+.journal-help .journal-eyebrow,
+.journal-lead .journal-eyebrow{
+  font-weight:900;
+}
+.journal-help .journal-eyebrow>span,
+.journal-lead .journal-eyebrow>span{
+  background:#d9f1ad!important;
+}
+.journal-help h2 em,
+.journal-help .journal-eyebrow{
+  color:#d9f1ad!important;
+}

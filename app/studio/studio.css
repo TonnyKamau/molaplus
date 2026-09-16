@@ -140,3 +140,21 @@
     font-size:13px!important;
   }
 }
+
+/* Dark-panel contrast fixes. */
+.studio-login__story .studio-brand small,
+.studio-login__story>span,
+.studio-sidebar .studio-brand small,
+.studio-sidebar>.studio-kicker,
+.studio-sidebar__bottom>span,
+.studio-sidebar__bottom a,
+.studio-sidebar__bottom button{
+  color:#eef6e8!important;
+}
+.studio-login__story .studio-kicker{
+  color:#d9f1ad!important;
+}
+.studio-sidebar .studio-brand>span,
+.studio-login__story .studio-brand>span{
+  color:#d9f1ad!important;
+}
