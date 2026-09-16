@@ -1,15 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function BlogCardShare({ title, slug }: { title: string; slug: string }) {
   const [copied, setCopied] = useState(false);
-  const url = `https://molaplusafrica.com/blog/${slug}`;
+  const path = `/blog/${slug}`;
+  const [url, setUrl] = useState(path);
+
+  useEffect(() => {
+    setUrl(new URL(path, window.location.origin).toString());
+  }, [path]);
+
   const encodedUrl = encodeURIComponent(url);
   const encodedText = encodeURIComponent(`${title}\n${url}`);
   async function copy() {
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(new URL(path, window.location.origin).toString());
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
     } catch {
