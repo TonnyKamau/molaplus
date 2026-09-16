@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { BlogCard } from "../BlogCard";
 import { ArticleViewTracker } from "../ArticleViewTracker";
 import { ArticleFeedback } from "../ArticleFeedback";
+import { ArticleComments } from "../ArticleComments";
 import { ShareArticle } from "../ShareArticle";
 import { formatDate, readingMinutes, summarize } from "../posts";
 import { publishedPosts } from "../../../lib/studio/content";
@@ -45,6 +46,7 @@ export default async function ArticlePage({ params }: Props) {
           <div className="journal-prose">{post.takeaway && <div className="journal-takeaway"><p className="journal-eyebrow">The takeaway</p><p>{post.takeaway}</p></div>}
             <ArticleBody body={postBody(post)} />
             <ArticleFeedback slug={post.slug} />
+            <ArticleComments slug={post.slug} />
             {!!post.tags?.length && <div className="journal-tags">{post.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}
             {!!post.sources?.length && <section className="journal-sources"><h2>Further reading</h2><ul>{post.sources.map((source) => <li key={source.href}><a href={source.href} target="_blank" rel="noopener noreferrer">{source.title} <span aria-label="opens in a new tab">↗</span></a></li>)}</ul></section>}
             {post.relatedHref && <div className="journal-article-cta"><p className="journal-eyebrow">Your next step</p><h2>Make it work for your farm.</h2><p>Explore the range or speak to our team about your needs.</p><Link className="journal-button" href={post.relatedHref}>{post.relatedLabel}<span aria-hidden="true">↗</span></Link></div>}
