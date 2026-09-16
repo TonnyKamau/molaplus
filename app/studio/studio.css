@@ -4,6 +4,10 @@
 .studio-inline-progress{display:inline-flex;align-items:center;gap:8px}
 .studio-action-message{display:flex;align-items:center;gap:9px;margin:0 0 18px;padding:12px 16px;border:1px solid #ceddbc;background:#e8f1dd;color:#294a34;font-size:14px;font-weight:700;line-height:1.5}
 .studio-action-message .studio-spinner{width:14px;height:14px}
+.studio-content.is-busy{position:relative;}
+.studio-content.is-busy>*:not(.studio-error):not(.studio-action-message):not(.studio-workspace-loader){pointer-events:none;}
+.studio-workspace-loader{position:absolute;z-index:20;top:50%;left:50%;display:flex;align-items:center;gap:12px;transform:translate(-50%,-50%);padding:16px 20px;border:1px solid #cbd8c3;border-radius:9px;background:#fff;color:#173f2d;font-size:15px;font-weight:800;box-shadow:0 18px 50px #173f2d24;white-space:nowrap;}
+.studio-workspace-loader:before{content:"";position:fixed;inset:-100vh;z-index:-1;background:#f7f8f4b8;backdrop-filter:blur(2px);}
 .studio-login.is-loading .studio-login__form>div{position:relative}
 .studio-login.is-loading .studio-login__form>div:after{content:"";position:absolute;inset:-24px;background:#fafbf7e8;z-index:1;pointer-events:none}
 .studio-login.is-loading form{position:relative;z-index:2}
