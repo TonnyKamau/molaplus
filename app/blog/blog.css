@@ -410,3 +410,64 @@
   .journal-article-header>.journal-share{padding:15px}
   .journal-share button,.journal-share a,.journal-card-share button,.journal-card-share a{font-size:13px!important;padding:10px 12px}
 }
+
+/* Featured hero contrast fix. */
+.journal-lead__badge{
+  background:#153d2b!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.72);
+  box-shadow:0 10px 30px rgba(7,39,24,.22);
+  text-shadow:none!important;
+}
+.journal-lead>a:after{
+  background:linear-gradient(180deg, rgba(7,39,24,.05) 10%, rgba(7,39,24,.45) 48%, rgba(7,39,24,.96) 100%)!important;
+}
+.journal-lead__copy,
+.journal-lead__copy h2,
+.journal-lead__bottom p,
+.journal-lead .journal-meta>span{
+  color:#fff!important;
+  text-shadow:0 2px 18px rgba(0,0,0,.42);
+}
+.journal-lead .journal-meta>span:first-child{
+  color:#d9f1ad!important;
+}
+
+/* Share buttons layout fix. */
+.journal-article-header>.journal-share{
+  display:block;
+  width:100%;
+  max-width:760px;
+  margin:32px 0 0;
+  padding:18px 20px;
+  clear:both;
+}
+.journal-share>div{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(128px,max-content));
+  justify-content:start;
+  align-items:center;
+  gap:12px!important;
+  margin-top:14px!important;
+}
+.journal-share button,
+.journal-share a{
+  position:static!important;
+  width:auto!important;
+  min-width:128px;
+  margin:0!important;
+  transform:none!important;
+}
+.journal-prose{
+  clear:both;
+}
+.journal-help,
+.journal-article-cta,
+.journal-related{
+  position:relative;
+  z-index:0;
+}
+@media(max-width:560px){
+  .journal-share>div{grid-template-columns:1fr 1fr!important}
+  .journal-share button,.journal-share a{min-width:0;width:100%!important}
+}
