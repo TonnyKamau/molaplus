@@ -13,3 +13,130 @@
 .studio-article-preview .journal-byline{font-size:14px}
 
 
+
+/* Readability pass: keep supporting text legible across the studio UI. */
+.studio{
+  --studio-muted:#435446;
+  font-size:15px;
+}
+.studio-kicker,
+.studio-brand small,
+.studio-sidebar>.studio-kicker,
+.studio-table-heading,
+.studio-status,
+.studio-post-title small,
+.studio-post-row>time,
+.studio-row-actions button,
+.studio-list-count,
+.studio-tip>button,
+.studio-details-heading span,
+.studio-search-preview>span,
+.studio-search-preview p,
+.studio-revision small,
+.studio-media-item>small,
+.studio-cover small,
+.studio-cover.has-image>span,
+.studio-editor-footnote,
+.studio-save-state,
+.studio-editor-notice,
+.studio-publishing>button,
+.studio-publishing>a,
+.studio-details details .studio-secondary{
+  font-size:12px!important;
+  color:#435446!important;
+  line-height:1.65;
+}
+.studio-sidebar__bottom>span,
+.studio-sidebar__bottom a,
+.studio-sidebar__bottom button,
+.studio-topbar,
+.studio-list-toolbar button,
+.studio-list-toolbar>label input,
+.studio-stats span,
+.studio-stats small,
+.studio-tip p,
+.studio-upload p,
+.studio-password-field button,
+.studio-details label,
+.studio-checkbox,
+.studio-details details summary,
+.studio-source button,
+.studio-revision,
+.studio-modal>p,
+.studio label small,
+.studio-hint{
+  font-size:13px!important;
+  color:#3f5144!important;
+  line-height:1.7;
+}
+.studio-primary,
+.studio-secondary,
+.studio label:not(.studio-checkbox),
+.studio-post-title strong,
+.studio-media-item>span,
+.studio-guide article>span,
+.studio-guide p,
+.studio-modal-actions button,
+.studio-details label input:not([type="checkbox"]),
+.studio-details label textarea,
+.studio-details label select{
+  font-size:14px!important;
+}
+.studio input:not([type="checkbox"]):not([type="file"]),
+.studio textarea,
+.studio select{
+  font-size:15px!important;
+  color:#102d20;
+}
+.studio-page-heading p:last-child,
+.studio-login__form>div>p:not(.studio-kicker),
+.studio-empty p,
+.studio-guide p,
+.studio-article-preview .journal-byline,
+.studio-article-preview .journal-byline > div,
+.studio-article-preview .journal-byline > div > span{
+  font-size:16px!important;
+  color:#405246!important;
+}
+.studio-post-row{
+  grid-template-columns:minmax(240px,1fr) 110px 115px 120px;
+}
+.studio-table-heading{
+  letter-spacing:.08em;
+  font-weight:850;
+}
+.studio-status{
+  padding:6px 10px;
+  font-weight:800;
+}
+.studio-topbar,
+.studio-sidebar__bottom a,
+.studio-sidebar__bottom button{
+  color:#e8eee2!important;
+}
+.studio-topbar{color:#415347!important}
+
+@media(max-width:520px){
+  .studio-kicker,
+  .studio-table-heading,
+  .studio-status,
+  .studio-post-title small,
+  .studio-post-row>time,
+  .studio-row-actions button,
+  .studio-list-count,
+  .studio-save-state>span:last-child,
+  .studio-writing-heading>span{
+    font-size:12px!important;
+  }
+  .studio-sidebar nav button,
+  .studio-sidebar__bottom a,
+  .studio-sidebar__bottom button,
+  .studio-user,
+  .studio-list-toolbar button,
+  .studio-media-item>span,
+  .studio-media-item>small,
+  .studio-editor-actions .studio-primary,
+  .studio-editor-actions .studio-secondary{
+    font-size:13px!important;
+  }
+}

@@ -223,3 +223,101 @@
 .journal-markdown pre{overflow-x:auto;padding:20px;background:#e9e5db}
 .journal-markdown blockquote{border-left:3px solid #bd4321;margin:24px 0;padding-left:24px}
 .journal-markdown h2{scroll-margin-top:110px}
+
+/* Readability pass: make blog metadata, controls, and article support text clear. */
+.journal{
+  --journal-muted:#3f5144;
+}
+.journal-eyebrow,
+.journal-lead__badge,
+.journal-latest__heading>span,
+.journal-latest__number,
+.journal-latest time,
+.journal-fieldnote a,
+.journal-results,
+.journal-card time,
+.journal-breadcrumb,
+.journal-reading-sidebar li a,
+.journal-reading-sidebar li span,
+.journal-share button,
+.journal-share a,
+.journal-share [role="status"],
+.journal-sources li,
+.journal-tags>span,
+.journal-library-options,
+.journal-pagination{
+  font-size:14px!important;
+  color:#3f5144!important;
+  line-height:1.65;
+}
+.journal-meta,
+.journal-card p,
+.journal-section-heading>p,
+.journal-lead__bottom p,
+.journal-article-cta>p:not(.journal-eyebrow),
+.journal-help p:last-child,
+.journal-button,
+.journal-filters button,
+.journal-search input,
+.journal-masthead__intro a{
+  font-size:15px!important;
+  line-height:1.7;
+}
+.journal-masthead__intro p,
+.journal-article-deck,
+.journal-byline>div,
+.journal-byline>div>span,
+.journal-markdown,
+.journal-prose section>p,
+.journal-checklist li{
+  font-size:17px!important;
+  color:#314539!important;
+  line-height:1.85;
+}
+.journal-byline{
+  gap:14px;
+}
+.journal-monogram{
+  width:48px;
+  height:48px;
+}
+.journal-meta>span+span,
+.journal-breadcrumb>span,
+.journal-card p,
+.journal-card time{
+  color:#3f5144!important;
+}
+.journal-meta>span:first-child{
+  color:#8f3218!important;
+}
+.journal-search{
+  min-height:48px;
+}
+.journal-reading-sidebar li a{
+  font-weight:750;
+}
+.journal-share button,
+.journal-share a,
+.journal-filters button,
+.journal-button{
+  font-weight:800;
+}
+@media(max-width:520px){
+  .journal-eyebrow,
+  .journal-lead__badge,
+  .journal-latest time,
+  .journal-card time,
+  .journal-breadcrumb,
+  .journal-share button,
+  .journal-share a,
+  .journal-tags>span{
+    font-size:13px!important;
+  }
+  .journal-meta,
+  .journal-card p,
+  .journal-filters button,
+  .journal-results,
+  .journal-reading-sidebar li a{
+    font-size:15px!important;
+  }
+}
