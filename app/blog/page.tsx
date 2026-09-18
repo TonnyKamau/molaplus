@@ -18,6 +18,7 @@ export const metadata: Metadata = {
 export default async function BlogPage() {
   const posts = await publishedPosts();
   const featured = posts[0];
+  const secondary = posts.slice(1, 3);
   return (
     <main className="journal-shell">
       <header className="journal-masthead">
@@ -33,8 +34,8 @@ export default async function BlogPage() {
             <div className="journal-lead__copy"><div className="journal-meta"><span>{featured.category}</span><span>{readingMinutes(featured)} min read</span></div><h2>{featured.title}</h2><div className="journal-lead__bottom"><p>{featured.excerpt}</p><span aria-hidden="true">↗</span></div></div>
           </Link>
         </article>
-        <aside className="journal-latest" aria-labelledby="latest-heading"><div className="journal-latest__heading"><h2 id="latest-heading">On the reading list</h2><span>{Math.min(2, Math.max(0, posts.length - 1))} stories</span></div>
-          {posts.slice(1, 3).map((post, index) => <article key={post.slug}><Link href={`/blog/${post.slug}`}><span className="journal-latest__number">0{index + 1}</span><div><div className="journal-meta"><span>{post.category}</span><span>{readingMinutes(post)} min</span></div><h3>{post.title}</h3><time dateTime={post.date}>{formatDate(post.date)}</time></div><span aria-hidden="true">↗</span></Link></article>)}
+        <aside className="journal-latest" aria-label="More reading">{secondary.length > 0 && <div className="journal-latest__heading"><h2 id="latest-heading">On the reading list</h2><span>{secondary.length} {secondary.length === 1 ? "story" : "stories"}</span></div>}
+          {secondary.map((post, index) => <article key={post.slug}><Link href={`/blog/${post.slug}`}><span className="journal-latest__number">0{index + 1}</span><div><div className="journal-meta"><span>{post.category}</span><span>{readingMinutes(post)} min</span></div><h3>{post.title}</h3><time dateTime={post.date}>{formatDate(post.date)}</time></div><span aria-hidden="true">↗</span></Link></article>)}
           <div className="journal-fieldnote"><span className="journal-eyebrow">Rooted in the everyday</span><p>Small steps.<br />Stronger farms.</p><a href="#stories">Explore the journal <span aria-hidden="true">↗</span></a><svg viewBox="0 0 100 110" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true"><path d="M50 110V23M50 81C13 81 8 58 8 47c31 0 42 14 42 34ZM50 61C87 61 92 38 92 27c-31 0-42 14-42 34ZM50 40C25 27 33 9 44 0c19 16 20 25 6 40Z" /></svg></div>
         </aside>
       </section>}
