@@ -77,7 +77,7 @@ export function ArticleFeedback({ slug }: { slug: string }) {
 
   return (
     <section className="journal-feedback" aria-labelledby={`feedback-${slug}`} aria-busy={pending}>
-      <div>
+      <div className="journal-feedback__copy">
         <p id={`feedback-${slug}`} className="journal-eyebrow">Was this article helpful?</p>
         <p className="journal-feedback__note">Your response helps us make Field Notes more useful.</p>
       </div>
