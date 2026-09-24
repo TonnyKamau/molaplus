@@ -427,10 +427,16 @@ button:active,
 }
 
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(28px);
   transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Content is only hidden once JS is ready to reveal it (html.mp-ready) and only
+   for elements not yet revealed. Pre-JS, no-JS, and slow-JS all show content
+   immediately, so a shared link never opens to a blank screen. */
+.mp-ready [data-reveal]:not(.mp-in) {
+  opacity: 0;
+  transform: translateY(28px);
 }
 
 [data-reveal].mp-in {
@@ -440,10 +446,13 @@ button:active,
 
 /* Staggered children reveal for grids/cards inside a revealed block */
 [data-reveal-stagger] > * {
-  opacity: 0;
-  transform: translateY(20px);
   transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mp-ready [data-reveal-stagger]:not(.mp-in) > * {
+  opacity: 0;
+  transform: translateY(20px);
 }
 
 [data-reveal-stagger].mp-in > * {

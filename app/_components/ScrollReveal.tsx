@@ -60,7 +60,14 @@ export function ScrollReveal() {
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
 
-    // Run the first pass after a frame so layout is measured correctly.
+    // Reveal everything already in view, THEN turn on hiding (html.mp-ready).
+    // Order matters: content stays fully visible until this runs, so a shared
+    // link — where the HTML arrives before hydration — never paints blank. Only
+    // the off-screen elements about to animate on scroll are hidden.
+    revealVisible();
+    document.documentElement.classList.add("mp-ready");
+
+    // Follow-up pass after a frame so layout is measured correctly.
     let painted = false;
     const raf = requestAnimationFrame(() => {
       painted = true;
@@ -79,6 +86,8 @@ export function ScrollReveal() {
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(raf);
       window.clearTimeout(safety);
+      // Drop the gate during navigation so the next page also starts visible.
+      document.documentElement.classList.remove("mp-ready");
     };
   }, [pathname]);
 
