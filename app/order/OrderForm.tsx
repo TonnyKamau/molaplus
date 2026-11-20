@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 
 import { products } from "../../lib/orders/catalog";
 
@@ -16,15 +16,23 @@ function productCategory(name: string) {
   return "Crop nutrition";
 }
 
-export function OrderForm({ requestedProduct }: { requestedProduct?: string }) {
-  const initialProduct = requestedProduct
-    ? products.find(([name, image]) => name === requestedProduct || image === requestedProduct)?.[0]
-    : undefined;
+export function OrderForm() {
   const [step, setStep] = useState(1);
-  const [product, setProduct] = useState<string>(initialProduct ?? products[0][0]);
+  const [product, setProduct] = useState<string>(products[0][0]);
   const [quantity, setQuantity] = useState(1);
-  const initialSelection = products.find(([name]) => name === (initialProduct ?? products[0][0])) ?? products[0];
-  const [cart, setCart] = useState<CartItem[]>(initialProduct ? [{ name: initialSelection[0], image: initialSelection[1], quantity: 1 }] : []);
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  // Preselect a product from ?product= (read client-side so the statically
+  // exported page hydrates cleanly before applying the query).
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("product");
+    if (!requested) return;
+    const match = products.find(([name, image]) => name === requested || image === requested);
+    if (match) {
+      setProduct(match[0]);
+      setCart([{ name: match[0], image: match[1], quantity: 1 }]);
+    }
+  }, []);
   const [pickerOpen, setPickerOpen] = useState(false);
   const [productSearch, setProductSearch] = useState("");
   const [pending, setPending] = useState(false);

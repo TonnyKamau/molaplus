@@ -2,9 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { BlogCard } from "./BlogCard";
-import { categories, type Category, type PostSummary } from "./posts";
+import { categories, summarize, type Category, type Post, type PostSummary } from "./posts";
 
 export function BlogLibrary({ posts }: { posts: PostSummary[] }) {
+  // Seed with the build-time list for instant paint + SEO, then refresh live
+  // from the PHP API so Studio-added posts appear in realtime (no rebuild).
+  const [livePosts, setLivePosts] = useState<PostSummary[]>(posts);
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/blog/posts", { signal: controller.signal, cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        const live: Post[] = Array.isArray(data?.posts) ? data.posts : [];
+        if (live.length) setLivePosts(live.map((p) => summarize(p)));
+      })
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
   const [category, setCategory] = useState<Category>("All stories");
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("newest");
@@ -33,7 +47,7 @@ export function BlogLibrary({ posts }: { posts: PostSummary[] }) {
     window.history.replaceState(null, "", `${window.location.pathname}${params.size ? `?${params}` : ""}#stories`);
   }
   const normalized = query.trim().toLowerCase();
-  const matches = posts.filter((post) => (category === "All stories" || post.category === category) && `${post.title} ${post.excerpt} ${post.category} ${post.author ?? ""} ${(post.tags ?? []).join(" ")}`.toLowerCase().includes(normalized)).sort((a, b) => sort === "oldest" ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
+  const matches = livePosts.filter((post) => (category === "All stories" || post.category === category) && `${post.title} ${post.excerpt} ${post.category} ${post.author ?? ""} ${(post.tags ?? []).join(" ")}`.toLowerCase().includes(normalized)).sort((a, b) => sort === "oldest" ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
   const totalPages = Math.max(1, Math.ceil(matches.length / 6));
   const currentPage = Math.min(totalPages, Math.floor(page));
   const visible = matches.slice((currentPage - 1) * 6, currentPage * 6);

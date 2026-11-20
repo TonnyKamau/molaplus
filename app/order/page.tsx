@@ -2,18 +2,11 @@ import type { Metadata } from "next";
 import { OrderForm } from "./OrderForm";
 
 export const metadata: Metadata = {
-  title: "Place an Order | MolaPlus Africa",
+  title: "Place an Order | MolaPlus",
   description: "Order MolaPlus animal nutrition and crop products for delivery across Kenya.",
 };
 
-type OrderPageProps = {
-  searchParams: Promise<{ product?: string | string[] }>;
-};
-
-export default async function OrderPage({ searchParams }: OrderPageProps) {
-  const params = await searchParams;
-  const requestedProduct = typeof params.product === "string" ? params.product : undefined;
-
+export default function OrderPage() {
   return (
     <main className="order-page min-h-screen bg-surface text-on-surface">
       <section className="order-page__intro mp-scene mp-grain overflow-hidden text-white">
@@ -31,7 +24,7 @@ export default async function OrderPage({ searchParams }: OrderPageProps) {
           </div>
         </div>
       </section>
-      <OrderForm requestedProduct={requestedProduct} />
+      <OrderForm />
     </main>
   );
 }

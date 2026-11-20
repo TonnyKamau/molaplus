@@ -3,15 +3,15 @@ import Link from "next/link";
 import { LegalPage } from "../_components/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | MolaPlus Africa",
-  description: "Terms governing the use of MolaPlus Africa products, services, and website.",
+  title: "Terms of Service | MolaPlus",
+  description: "Terms governing the use of MolaPlus products, services, and website.",
 };
 
 export default function TermsPage() {
   return (
     <LegalPage title="Terms of Service">
       <p>
-        By using this website and purchasing MolaPlus Africa products, you agree to these terms. Product information,
+        By using this website and purchasing MolaPlus products, you agree to these terms. Product information,
         feeding guides, and laboratory data are provided for guidance; results vary with animal health, feed quality,
         and farm management practices.
       </p>
@@ -28,8 +28,8 @@ export default function TermsPage() {
       <p>
         See also our <Link className="font-bold text-primary underline" href="/privacy">Privacy Policy</Link>. For any
         questions, contact{" "}
-        <a className="font-bold text-primary underline" href="mailto:info@molaplusafrica.com">
-          info@molaplusafrica.com
+        <a className="font-bold text-primary underline" href="mailto:info@molaplus.org">
+          info@molaplus.org
         </a>
         .
       </p>

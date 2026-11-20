@@ -58,13 +58,13 @@ export default function ContactPage() {
             </a>
 
             {/* Email */}
-            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="mailto:info@molaplusafrica.com">
+            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="mailto:info@molaplus.org">
               <div>
                 <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
                 <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-black">Email us</h2>
                 <p className="mt-2 text-on-surface-variant">For detailed enquiries and documentation.</p>
               </div>
-              <span className="mt-6 break-all text-lg font-extrabold text-primary">info@molaplusafrica.com</span>
+              <span className="mt-6 break-all text-lg font-extrabold text-primary">info@molaplus.org</span>
             </a>
           </div>
         </div>

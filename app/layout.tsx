@@ -3,18 +3,18 @@ import "./globals.css";
 import { SiteChrome } from "./_components/SiteChrome";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://molaplusafrica.com"),
-  title: "MolaPlus Africa | Advanced Animal Nutrition",
+  metadataBase: new URL("https://molaplus.org"),
+  title: "MolaPlus | Advanced Animal Nutrition",
   description:
     "Innovative animal feed supplements, probiotics, consultancy, and technical support for productive farms across East Africa.",
   openGraph: {
-    title: "MolaPlus Africa | Healthy animals. Stronger farms.",
+    title: "MolaPlus | Healthy animals. Stronger farms.",
     description: "Advanced animal nutrition developed for productive East African farms.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "MolaPlus Africa — Healthy animals. Stronger farms." }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "MolaPlus — Healthy animals. Stronger farms." }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MolaPlus Africa | Healthy animals. Stronger farms.",
+    title: "MolaPlus | Healthy animals. Stronger farms.",
     description: "Advanced animal nutrition developed for productive East African farms.",
     images: ["/og.jpg"],
   },

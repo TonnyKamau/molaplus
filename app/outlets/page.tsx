@@ -3,9 +3,9 @@ import { DistributorDirectory } from "./DistributorDirectory";
 import { distributors } from "./distributors";
 
 export const metadata: Metadata = {
-  title: "Distributors | MolaPlus Africa",
+  title: "Distributors | MolaPlus",
   description:
-    "Search the MolaPlus Africa distributor directory and call authorized distributors directly.",
+    "Search the MolaPlus distributor directory and call authorized distributors directly.",
 };
 
 export default function Page() {

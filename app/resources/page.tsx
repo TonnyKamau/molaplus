@@ -1,11 +1,10 @@
 ﻿import Link from "next/link";
 
-import { publishedPosts } from "../../lib/studio/content";
+import { buildTimePosts } from "../../lib/blog/published";
 import { formatDate } from "../blog/posts";
-export const dynamic = "force-dynamic";
 
-export default async function ResourcesPage() {
-  const posts = await publishedPosts();
+export default function ResourcesPage() {
+  const posts = buildTimePosts();
   const featured = posts[0];
   return (
     <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">

@@ -3,20 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlogLibrary } from "./BlogLibrary";
 import { formatDate, readingMinutes, summarize } from "./posts";
-import { publishedPosts } from "../../lib/studio/content";
-
-export const dynamic = "force-dynamic";
+import { buildTimePosts } from "../../lib/blog/published";
 
 export const metadata: Metadata = {
-  title: "Field Notes — The MolaPlus Blog | MolaPlus Africa",
-  description: "Practical reading for better farming. Explore dairy, poultry, livestock and farm management stories from MolaPlus Africa.",
+  title: "Field Notes — The MolaPlus Blog | MolaPlus",
+  description: "Practical reading for better farming. Explore dairy, poultry, livestock and farm management stories from MolaPlus.",
   alternates: { canonical: "/blog", types: { "application/rss+xml": "/blog/feed.xml" } },
   openGraph: { title: "Field Notes — The MolaPlus Blog", description: "Good knowledge. Better farming. Practical ideas for the everyday work of farming.", url: "/blog", images: [{ url: "/molaplus/service-cows.webp", alt: "A dairy cow and calf at pasture" }] },
   twitter: { card: "summary_large_image", title: "Field Notes — The MolaPlus Blog", description: "Practical ideas for the everyday work of farming.", images: ["/molaplus/service-cows.webp"] },
 };
 
-export default async function BlogPage() {
-  const posts = await publishedPosts();
+export default function BlogPage() {
+  const posts = buildTimePosts();
   const featured = posts[0];
   const secondary = posts.slice(1, 3);
   return (

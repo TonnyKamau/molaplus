@@ -1,9 +1,45 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { readingMinutes } from "./blog/posts";
-import { publishedPosts } from "../lib/studio/content";
+import { buildTimePosts } from "../lib/blog/published";
 
-export const dynamic = "force-dynamic";
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://molaplus.org/#organization",
+      name: "MolaPlus",
+      url: "https://molaplus.org",
+      logo: "https://molaplus.org/molaplus-brand.webp",
+      image: "https://molaplus.org/og.jpg",
+      description:
+        "MolaPlus develops probiotics, microbes and essential-mineral supplements that help East African farmers improve animal health, feed efficiency and yields.",
+      areaServed: "East Africa",
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+254722656142",
+        email: "info@molaplus.org",
+        contactType: "customer service",
+        areaServed: "KE",
+        availableLanguage: ["en", "sw"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://molaplus.org/#website",
+      url: "https://molaplus.org",
+      name: "MolaPlus",
+      publisher: { "@id": "https://molaplus.org/#organization" },
+      inLanguage: "en-KE",
+    },
+  ],
+};
 
 const benefits = [
   ["01", "Better digestion", "Beneficial microbes help animals unlock more value from everyday feed."],
@@ -17,10 +53,11 @@ const services = [
   ["/molaplus/service-pigs.webp", "Technical support", "Real help for farmers and distributors, before and after purchase.", "/contact"],
 ];
 
-export default async function Home() {
-  const posts = await publishedPosts();
+export default function Home() {
+  const posts = buildTimePosts();
   return (
     <main className="new-home">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema).replace(/</g, "\\u003c") }} />
       <section className="hero-v2">
         <div className="hero-v2__copy">
           <p className="kicker"><span /> Animal nutrition, made for East Africa</p>
@@ -94,7 +131,7 @@ export default async function Home() {
 
       <section className="section story-v2">
         <div className="story-v2__visual"><Image alt="Dairy cattle supported by MolaPlus nutrition" fill sizes="(min-width: 900px) 52vw, 100vw" src="/molaplus/service-cows.webp" /><div>Made in Kenya<br /><b>for the farms<br />that feed us.</b></div></div>
-        <div className="story-v2__copy"><p className="kicker"><span /> Why MolaPlus</p><h2>Local realities.<br /><em>Serious science.</em></h2><p>We build evidence-based animal nutrition around the challenges East African farmers face every day. Every product is backed by careful formulation, practical guidance and a team that stays close to the farm.</p><ul><li><span>Quality</span> Carefully researched nutrition</li><li><span>Innovation</span> Solutions for regional challenges</li><li><span>Reliability</span> Consistent, season after season</li></ul><Link href="/about-us">Meet MolaPlus Africa ↗</Link></div>
+        <div className="story-v2__copy"><p className="kicker"><span /> Why MolaPlus</p><h2>Local realities.<br /><em>Serious science.</em></h2><p>We build evidence-based animal nutrition around the challenges East African farmers face every day. Every product is backed by careful formulation, practical guidance and a team that stays close to the farm.</p><ul><li><span>Quality</span> Carefully researched nutrition</li><li><span>Innovation</span> Solutions for regional challenges</li><li><span>Reliability</span> Consistent, season after season</li></ul><Link href="/about-us">Meet MolaPlus ↗</Link></div>
       </section>
 
       <section className="section support-v2 home-journal" aria-labelledby="home-journal-heading">

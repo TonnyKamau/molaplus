@@ -21,6 +21,6 @@ export function postHeadings(body: string) {
   });
 }
 export function emptyPost(): Post {
-  return { title: "", slug: "", excerpt: "", category: "Farm management", image: "", imageAlt: "", date: new Date().toISOString().slice(0, 10), takeaway: "", body: "", sections: [], sources: [], relatedHref: "/consultancy", relatedLabel: "Talk to our team", author: "MolaPlus Africa", tags: [], seoTitle: "", seoDescription: "", featured: false };
+  return { title: "", slug: "", excerpt: "", category: "Farm management", image: "", imageAlt: "", date: new Date().toISOString().slice(0, 10), takeaway: "", body: "", sections: [], sources: [], relatedHref: "/consultancy", relatedLabel: "Talk to our team", author: "MolaPlus", tags: [], seoTitle: "", seoDescription: "", featured: false };
 }
 export function postStatus(post: StudioPost) { return post.archived ? "Archived" : post.scheduledAt ? "Scheduled" : post.published ? "Published" : "Draft"; }

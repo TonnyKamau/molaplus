@@ -43,7 +43,7 @@ export function StaticHtmlPage({ html }: { html: string }) {
       }
 
       const url = new URL(href, window.location.href);
-      if (url.hostname === "molaplusafrica.com" || url.hostname === "www.molaplusafrica.com") {
+      if (url.hostname === "molaplus.org" || url.hostname === "www.molaplus.org") {
         event.preventDefault();
         router.push("/");
         return;

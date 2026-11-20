@@ -1,0 +1,82 @@
+# =====================================================================
+#  MolaPlus — Apache config for Bluehost shared hosting
+#  Place at the web root (public_html). Serves the static site and routes
+#  extension-less /api/* requests to their PHP handlers.
+# =====================================================================
+
+Options -Indexes +FollowSymLinks
+DirectoryIndex index.html index.php
+
+# --- Protect sensitive files ----------------------------------------
+<FilesMatch "^(config\.php|.*\.sql|.*\.sample\.php)$">
+  Require all denied
+</FilesMatch>
+# Deny the shared includes (names start with underscore) from direct hits.
+<FilesMatch "^_.*\.php$">
+  Require all denied
+</FilesMatch>
+
+RewriteEngine On
+
+# --- Live sitemap: always current, includes Studio-added posts -------
+RewriteRule ^sitemap\.xml$ /sitemap.php [L]
+
+# --- Studio: article by id  /api/studio/posts/{uuid} -> post.php?id= ---
+RewriteRule ^api/studio/posts/([a-f0-9-]{36})/?$ api/studio/post.php?id=$1 [L,QSA]
+
+# --- API: map extension-less /api/foo and /api/a/b to the .php file ---
+# /api/orders            -> /api/orders.php
+# /api/blog/comments     -> /api/blog/comments.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1.php -f
+RewriteRule ^(api/.+)$ $1.php [L,QSA]
+
+# --- Static export pretty URLs (Next.js `output: export`) ------------
+# Serve /about-us from about-us.html if present (non-trailing-slash hits).
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^([^.]+?)/?$ $1.html [L]
+
+# --- Blog realtime fallback ------------------------------------------
+# Posts added in the Studio after the last build have no pre-rendered page.
+# Serve the "_" article shell; it reads the slug from the URL and fetches
+# the post from /api/blog/posts at runtime.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^blog/[^/]+/?$ /blog/_/index.html [L]
+
+# --- Compression -----------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript \
+    application/javascript application/json image/svg+xml
+</IfModule>
+
+# --- Caching for static assets --------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css                "access plus 1 year"
+  ExpiresByType application/javascript  "access plus 1 year"
+  ExpiresByType image/webp              "access plus 1 year"
+  ExpiresByType image/jpeg              "access plus 1 year"
+  ExpiresByType image/png               "access plus 1 year"
+  ExpiresByType font/ttf                "access plus 1 year"
+  ExpiresByType font/woff2              "access plus 1 year"
+  ExpiresByType text/html               "access plus 0 seconds"
+</IfModule>
+
+# Immutable hashed Next.js build assets.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|webp|woff2|ttf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# --- Force HTTPS -----------------------------------------------------
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !=https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]

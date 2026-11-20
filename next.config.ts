@@ -1,19 +1,13 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Static HTML/CSS/JS export for Bluehost shared hosting (served by Apache
+  // alongside the PHP API). No Node server required.
+  output: "export",
+  trailingSlash: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "lh3.googleusercontent.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "acgjxvqcwpeuclcfvgak.supabase.co",
-        pathname: "/storage/v1/object/public/molaplus-blog-images/**",
-      },
-    ],
+    // Apache serves the images directly; Next's image optimizer needs a server.
+    unoptimized: true,
   },
 };
 

@@ -47,3 +47,17 @@ next-env.d.ts
 /.studio/
 /.test-studio/
 /test-results/
+
+# Local backend secrets (never commit)
+backend/config.php
+
+# User-uploaded blog images (created at runtime, not committed)
+backend/public_html/uploads/
+
+# Deploy bundle (generated artifact)
+/deploy/
+/molaplus-deploy.zip
+
+# Production config (secrets)
+/molaplus-config.php
+/supabase.env

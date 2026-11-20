@@ -159,10 +159,10 @@ export default function ConsultancyPage() {
                   <span className="mp-eyebrow mt-3 text-white/60">Phone Support</span>
                   <span className="text-lg font-extrabold">+254 722 656 142</span>
                 </a>
-                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="mailto:info@molaplusafrica.com">
+                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="mailto:info@molaplus.org">
                   <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
                   <span className="mp-eyebrow mt-3 text-white/60">Email Inquiry</span>
-                  <span className="break-all text-lg font-extrabold">info@molaplusafrica.com</span>
+                  <span className="break-all text-lg font-extrabold">info@molaplus.org</span>
                 </a>
               </div>
               <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/70">

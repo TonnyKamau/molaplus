@@ -46,7 +46,7 @@ export default function AboutPage() {
           </div>
           <div className="space-y-6 text-lg text-on-surface-variant lg:col-span-8" data-reveal>
             <p>
-              MolaPlus Africa emerged from a critical need to address nutritional
+              MolaPlus emerged from a critical need to address nutritional
               gaps in regional livestock production. What started as a local
               initiative has evolved into a leading biotechnology powerhouse,
               specializing in high-performance probiotic feed additives.

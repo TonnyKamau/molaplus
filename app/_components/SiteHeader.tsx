@@ -71,7 +71,7 @@ export function SiteHeader() {
           <div className="site-header__brand">
             <Link aria-label="MolaPlus home" className="site-header__logo" href="/">
               <Image
-                alt="MolaPlus Africa"
+                alt="MolaPlus"
                 className="h-8 w-auto sm:h-10"
                 fetchPriority="high"
                 height={243}
@@ -136,7 +136,7 @@ export function SiteHeader() {
             href="/"
             onClick={() => setOpen(false)}
           >
-            <Image alt="MolaPlus Africa" className="h-8 w-auto" height={243} sizes="200px" src="/molaplus-brand.webp" width={1028} />
+            <Image alt="MolaPlus" className="h-8 w-auto" height={243} sizes="200px" src="/molaplus-brand.webp" width={1028} />
           </Link>
           <button
             aria-label="Close menu"

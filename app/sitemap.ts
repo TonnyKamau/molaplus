@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
-import { publishedPosts } from "../lib/studio/content";
+import { buildTimePosts } from "../lib/blog/published";
 
-export const dynamic = "force-dynamic";
+export const dynamic = "force-static";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const posts = await publishedPosts();
-  const base = "https://molaplusafrica.com";
+export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = buildTimePosts();
+  const base = "https://molaplus.org";
   const pages = ["", "/products", "/products/super-milk-booster", "/product-comparison", "/consultancy", "/resources", "/blog", "/distributors", "/about-us", "/contact", "/order", "/privacy", "/terms"];
   return [
     ...pages.map((path) => ({ url: `${base}${path}` })),

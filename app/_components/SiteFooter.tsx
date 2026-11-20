@@ -61,7 +61,7 @@ export function SiteFooter() {
         <div className="site-footer__grid">
           <div className="max-w-xs">
             <Link className="site-footer__logo" href="/">
-              <Image alt="MolaPlus Africa" className="h-9 w-auto" height={243} sizes="220px" src="/molaplus-brand.webp" width={1028} />
+              <Image alt="MolaPlus" className="h-9 w-auto" height={243} sizes="220px" src="/molaplus-brand.webp" width={1028} />
             </Link>
             <p className="mb-6 text-sm text-white/70">
               Advanced animal nutrition, biotechnology and sustainable farming
@@ -72,9 +72,9 @@ export function SiteFooter() {
                 <span className="material-symbols-outlined text-[18px] text-primary-fixed-dim">call</span>
                 +254 722 656 142
               </a>
-              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="mailto:info@molaplusafrica.com">
+              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="mailto:info@molaplus.org">
                 <span className="material-symbols-outlined text-[18px] text-primary-fixed-dim">mail</span>
-                info@molaplusafrica.com
+                info@molaplus.org
               </a>
               <span className="inline-flex items-center gap-2 text-white/80">
                 <span className="material-symbols-outlined text-[18px] text-primary-fixed-dim">payments</span>
@@ -113,7 +113,7 @@ export function SiteFooter() {
 
         {/* Bottom bar */}
         <div className="site-footer__bottom">
-          <p>&copy; 2026 MolaPlus Africa. Advanced Animal Nutrition.</p>
+          <p>&copy; 2026 MolaPlus. Advanced Animal Nutrition.</p>
           <p>Made in Kenya &middot; For East African farmers</p>
         </div>
       </div>
