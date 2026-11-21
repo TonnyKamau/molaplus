@@ -1,6 +1,7 @@
 ﻿import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { SiteChrome } from "./_components/SiteChrome";
+import { Toaster } from "./_components/Toaster";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://molaplus.org"),
@@ -45,6 +46,7 @@ export default function RootLayout({
       </head>
       <body>
         <SiteChrome>{children}</SiteChrome>
+        <Toaster />
       </body>
     </html>
   );

@@ -56,8 +56,20 @@ export function BlogArticle({ initialSlug, initialPost }: { initialSlug: string;
 
   if (state === "loading") {
     return (
-      <main className="journal-shell" aria-busy="true">
-        <p className="journal-eyebrow" role="status">Loading story…</p>
+      <main className="journal-shell journal-skeleton" aria-busy="true" role="status" aria-label="Loading story">
+        <div className="journal-breadcrumb"><span className="sk" style={{ width: "120px", height: "12px" }} /></div>
+        <div className="journal-article-header">
+          <span className="sk" style={{ width: "150px", height: "12px" }} />
+          <span className="sk" style={{ width: "92%", height: "42px", marginTop: "18px" }} />
+          <span className="sk" style={{ width: "68%", height: "42px" }} />
+          <span className="sk" style={{ width: "80%", height: "16px", marginTop: "20px" }} />
+        </div>
+        <span className="sk sk-image" />
+        <div className="journal-prose">
+          {["100%", "96%", "90%", "98%", "84%", "93%"].map((w, i) => (
+            <span className="sk" key={i} style={{ width: w, height: "14px", margin: "12px 0" }} />
+          ))}
+        </div>
       </main>
     );
   }
@@ -79,7 +91,7 @@ export function BlogArticle({ initialSlug, initialPost }: { initialSlug: string;
   const schema = { "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.excerpt, datePublished: `${post.date}T09:00:00+03:00`, image: `https://molaplus.org${post.image}`, mainEntityOfPage: `https://molaplus.org/blog/${post.slug}`, publisher: { "@type": "Organization", name: "MolaPlus", url: "https://molaplus.org" } };
 
   return (
-    <main className="journal-shell">
+    <main className="journal-shell journal-article-in">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
       <nav className="journal-breadcrumb" aria-label="Breadcrumb"><Link href="/blog">← All stories</Link><span aria-hidden="true">/</span><span>{post.category}</span></nav>
       <article>

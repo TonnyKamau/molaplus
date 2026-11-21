@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { toast } from "../../lib/toast";
 
 type Reaction = "helpful" | "not_helpful";
 type Counts = { helpful: number; notHelpful: number };
@@ -17,7 +18,6 @@ function visitorKey() {
 export function ArticleFeedback({ slug }: { slug: string }) {
   const [counts, setCounts] = useState<Counts>({ helpful: 0, notHelpful: 0 });
   const [selected, setSelected] = useState<Reaction | null>(null);
-  const [status, setStatus] = useState("");
   const [pending, setPending] = useState(false);
 
   useEffect(() => {
@@ -49,7 +49,6 @@ export function ArticleFeedback({ slug }: { slug: string }) {
     setSelected(reaction);
     setCounts(nextCounts);
     setPending(true);
-    setStatus("Saving your response…");
     localStorage.setItem(`molaplus:article-feedback:${slug}`, reaction);
 
     try {
@@ -63,13 +62,13 @@ export function ArticleFeedback({ slug }: { slug: string }) {
       if (typeof data.helpful === "number" && typeof data.notHelpful === "number") {
         setCounts({ helpful: data.helpful, notHelpful: data.notHelpful });
       }
-      setStatus("Thanks for your feedback.");
+      toast.success("Thanks for your feedback.");
     } catch {
       setSelected(previous);
       setCounts(counts);
       if (previous) localStorage.setItem(`molaplus:article-feedback:${slug}`, previous);
       else localStorage.removeItem(`molaplus:article-feedback:${slug}`);
-      setStatus("Your feedback could not be saved. Please try again.");
+      toast.error("Your feedback could not be saved. Please try again.");
     } finally {
       setPending(false);
     }
@@ -85,7 +84,6 @@ export function ArticleFeedback({ slug }: { slug: string }) {
         <button type="button" aria-pressed={selected === "helpful"} onClick={() => react("helpful")} disabled={pending}><span aria-hidden="true">👍</span> Yes <strong>{counts.helpful}</strong></button>
         <button type="button" aria-pressed={selected === "not_helpful"} onClick={() => react("not_helpful")} disabled={pending}><span aria-hidden="true">👎</span> No <strong>{counts.notHelpful}</strong></button>
       </div>
-      <p className="journal-feedback__status" role="status" aria-live="polite">{status}</p>
     </section>
   );
 }

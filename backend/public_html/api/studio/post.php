@@ -43,6 +43,24 @@ if (mp_method() === 'GET') {
 // -------- PATCH: mutate --------
 $input    = mp_body();
 $action   = mp_text($input['action'] ?? '', 40);
+
+// Permanent delete — handled first, unconditionally (no revision needed), and
+// tolerant of the row id vs the id stored inside the record ever differing.
+// FK cascade removes the article's revisions.
+if ($action === 'delete') {
+    try {
+        $stmt = $pdo->prepare('DELETE FROM blog_posts WHERE id = ? OR JSON_UNQUOTE(JSON_EXTRACT(record, "$.id")) = ?');
+        $stmt->execute([$id, $id]);
+        if ($stmt->rowCount() > 0) {
+            mp_json(['deleted' => true]);
+        }
+        mp_json(['error' => 'Article not found.'], 404);
+    } catch (Throwable $e) {
+        error_log('Studio delete failed: ' . $e->getMessage());
+        mp_json(['error' => 'Could not delete the article.'], 502);
+    }
+}
+
 $revision = $input['revision'] ?? null;
 if ($action === '' || !is_int($revision)) {
     mp_json(['error' => 'Missing article revision or action.'], 400);
@@ -55,6 +73,7 @@ if (!$record) {
 if ((int)$record['revision'] !== (int)$revision) {
     mp_json(['error' => 'This article changed in another window. Reload before saving to avoid overwriting changes.'], 409);
 }
+
 if (!empty($record['archived']) && $action !== 'restore') {
     mp_json(['error' => 'Restore this article before editing it.'], 400);
 }

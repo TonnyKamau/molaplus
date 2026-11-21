@@ -14,6 +14,11 @@ $pdo = mp_db($MP_CONFIG);
 switch (mp_method()) {
     case 'POST':
         $data  = mp_body();
+        // Logout via POST too — some hosts block the DELETE method.
+        if (!empty($data['logout'])) {
+            mp_logout($pdo);
+            mp_json(['ok' => true]);
+        }
         $email = mp_text($data['email'] ?? '', 190);
         $pass  = is_string($data['password'] ?? null) ? $data['password'] : '';
         if ($email === '' || $pass === '') {

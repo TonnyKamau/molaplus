@@ -933,3 +933,119 @@ h1,h2,h3,h4,p,a,button,label{overflow-wrap:anywhere}
   .contact-page .contact-card--recommended{padding:28px 24px}.contact-page .contact-card--recommended h2{font-size:28px}.contact-page .contact-card--recommended p{font-size:16px;line-height:1.6}
 }
 
+/* ---------------------------------------------------------------------------
+   Accessibility & tap-target polish
+   --------------------------------------------------------------------------- */
+/* Clear keyboard-focus indicator (mouse users are unaffected). */
+:focus-visible {
+  outline: 2px solid #0c432c;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* Use a light outline where focus lands on dark/green surfaces. */
+.hero-v2 :focus-visible,
+.how-v2 :focus-visible,
+.cta-v2 :focus-visible,
+.site-footer :focus-visible,
+.mobile-drawer :focus-visible,
+.editorial-page > section:first-child :focus-visible,
+.directory-page main > section:first-child :focus-visible,
+.order-page__intro :focus-visible {
+  outline-color: #b6dc62;
+}
+
+/* Skip-to-content link — visible only when focused by keyboard. */
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -80px;
+  z-index: 200;
+  background: #0c432c;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 0 0 8px 8px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Easier-to-tap footer links on phones. */
+@media (max-width: 640px) {
+  .site-footer__grid li a,
+  .site-footer__grid .flex a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+  }
+}
+
+
+/* Trailing-arrow nudge on primary site CTAs. */
+.button span,
+.site-footer__primary .material-symbols-outlined {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.button:hover span { transform: translateX(3px); }
+@media (prefers-reduced-motion: reduce) {
+  .button:hover span,
+  .journal-button:hover span { transform: none; }
+}
+
+/* ---------------------------------------------------------------------------
+   App-wide toast notifications
+   --------------------------------------------------------------------------- */
+.toast-stack {
+  position: fixed;
+  z-index: 1000;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: min(380px, calc(100vw - 32px));
+  pointer-events: none;
+}
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 14px;
+  border-radius: 10px;
+  background: #fff;
+  color: #10251b;
+  border: 1px solid rgba(16, 37, 27, 0.12);
+  box-shadow: 0 14px 34px rgba(16, 37, 27, 0.18);
+  font-size: 14px;
+  line-height: 1.5;
+  animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.toast--error { border-color: #e9bba9; background: #fff1ed; color: #8c2f16; }
+.toast--success { border-color: #9fd8ac; background: #eafaef; color: #0c432c; }
+.toast__icon { font-size: 20px; flex: 0 0 auto; }
+.toast__msg { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.toast__close {
+  flex: 0 0 auto;
+  background: none;
+  border: 0;
+  font-size: 18px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 0 2px;
+}
+.toast__close:hover { opacity: 1; }
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(18px); }
+  to   { opacity: 1; transform: none; }
+}
+@media (max-width: 520px) {
+  .toast-stack { top: auto; bottom: 16px; left: 16px; right: 16px; width: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast { animation: none; }
+}

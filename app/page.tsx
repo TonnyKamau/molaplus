@@ -16,7 +16,7 @@ const orgSchema = {
       "@id": "https://molaplus.org/#organization",
       name: "MolaPlus",
       url: "https://molaplus.org",
-      logo: "https://molaplus.org/molaplus-brand.webp",
+      logo: "https://molaplus.org/molaplus-logo-v2.png",
       image: "https://molaplus.org/og.jpg",
       description:
         "MolaPlus develops probiotics, microbes and essential-mineral supplements that help East African farmers improve animal health, feed efficiency and yields.",

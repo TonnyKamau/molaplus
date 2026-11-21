@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type SubmitEvent } from "react";
+import { toast } from "../../lib/toast";
 
 type Comment = { id: string; authorName: string; body: string; createdAt: string };
 
@@ -11,9 +12,9 @@ function formatCommentDate(value: string) {
 
 export function ArticleComments({ slug }: { slug: string }) {
   const [comments, setComments] = useState<Comment[]>([]);
+  const [loaded, setLoaded] = useState(false);
   const [authorName, setAuthorName] = useState("");
   const [body, setBody] = useState("");
-  const [status, setStatus] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -21,14 +22,14 @@ export function ArticleComments({ slug }: { slug: string }) {
       .then((response) => response.ok ? response.json() : null)
       .then((data) => {
         if (Array.isArray(data?.comments)) setComments(data.comments);
+        setLoaded(true);
       })
-      .catch(() => setStatus("Comments are temporarily unavailable."));
+      .catch(() => toast.error("Comments are temporarily unavailable."));
   }, [slug]);
 
-  async function submit(event: SubmitEvent<HTMLFormElement>) {
+  const submit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitting(true);
-    setStatus("");
     try {
       const response = await fetch("/api/blog/comments", {
         method: "POST",
@@ -40,13 +41,13 @@ export function ArticleComments({ slug }: { slug: string }) {
       if (data.comment) setComments((current) => [data.comment, ...current]);
       setAuthorName("");
       setBody("");
-      setStatus("Comment posted.");
+      toast.success("Comment posted.");
     } catch (error) {
-      setStatus(error instanceof Error ? error.message : "Could not save comment.");
+      toast.error(error instanceof Error ? error.message : "Could not save comment.");
     } finally {
       setSubmitting(false);
     }
-  }
+  };
 
   return (
     <section className="journal-comments" aria-labelledby={`comments-${slug}`}>
@@ -62,7 +63,12 @@ export function ArticleComments({ slug }: { slug: string }) {
         <label className="journal-comments__message">Comment<textarea value={body} onChange={(event) => setBody(event.target.value)} minLength={2} maxLength={2000} rows={4} required disabled={submitting} /></label>
         <div className="journal-comments__form-footer"><span>Be thoughtful and constructive.</span><button type="submit" disabled={submitting}>{submitting ? <><span className="journal-comments__spinner" aria-hidden="true" />Posting…</> : "Post comment"}</button></div>
       </form>
-      <p className="journal-comments__status" role="status" aria-live="polite">{status}</p>
+      {loaded && comments.length === 0 && (
+        <div className="journal-comments__empty">
+          <span className="material-symbols-outlined" aria-hidden="true">forum</span>
+          <p>No comments yet. Be the first to share your thoughts.</p>
+        </div>
+      )}
       {comments.length > 0 && <div className="journal-comments__list">{comments.map((comment) => <article key={comment.id}><div><strong>{comment.authorName}</strong><time dateTime={comment.createdAt}>{formatCommentDate(comment.createdAt)}</time></div><p>{comment.body}</p></article>)}</div>}
     </section>
   );

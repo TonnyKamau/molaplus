@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { type SubmitEvent, useEffect, useMemo, useState } from "react";
 
 import { products } from "../../lib/orders/catalog";
+import { toast } from "../../lib/toast";
 
 type Result = { ok: boolean; reference?: string; message?: string };
 type CartItem = { name: string; image: string; quantity: number };
@@ -81,7 +82,7 @@ export function OrderForm() {
     );
   }
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  const submit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (pending || step !== 3 || !cart.length) return;
     setPending(true);
@@ -96,14 +97,18 @@ export function OrderForm() {
         body: JSON.stringify(payload),
       });
       const data = (await response.json()) as Result;
-      setResult(response.ok ? data : { ok: false, message: data.message || "We could not send this order." });
-      if (response.ok && data.ok) setStep(4);
+      if (response.ok && data.ok) {
+        setResult(data);
+        setStep(4);
+      } else {
+        toast.error(data.message || "We could not send this order.");
+      }
     } catch {
-      setResult({ ok: false, message: "We could not send the order. Please call +254 722 656 142." });
+      toast.error("We could not send the order. Please call +254 722 656 142.");
     } finally {
       setPending(false);
     }
-  }
+  };
 
   const inputClass = "mt-2 w-full rounded-2xl border border-outline-variant bg-white px-4 py-3.5 text-base text-ink-black outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10";
 
@@ -236,7 +241,6 @@ export function OrderForm() {
           <span className="mp-eyebrow text-secondary">Step 3</span>
           <div className="flex items-start justify-between gap-4"><div><h2 className="mt-2 text-3xl font-extrabold text-ink-black">Double-check your order.</h2><p className="mt-2 text-sm text-on-surface-variant">Review products and quantities before sending the request.</p></div><button className="mt-2 shrink-0 rounded-full border border-outline-variant px-4 py-2 text-sm font-bold text-primary hover:bg-surface-container-low" onClick={() => setStep(1)} type="button">Edit basket</button></div>
           <div className="mt-7 rounded-2xl bg-surface-container-low p-5"><div className="space-y-3">{cart.map((item) => <div className="flex items-start justify-between gap-4 border-b border-outline-variant pb-3 last:border-0 last:pb-0" key={item.name}><p className="font-extrabold text-ink-black">{item.name}</p><strong className="shrink-0 text-primary">× {item.quantity}</strong></div>)}</div><p className="mt-4 border-t border-outline-variant pt-4 text-sm text-on-surface-variant">MolaPlus will call to confirm the current price, available stock, delivery cost and payment instructions.</p></div>
-          {result && !result.ok && <p className="mt-5 rounded-2xl bg-red-50 p-4 font-semibold text-red-800" role="alert">{result.message}</p>}
           <div className="mt-8 flex gap-3"><button className="rounded-full border border-outline-variant px-6 py-3.5 font-bold text-primary" onClick={() => setStep(2)} type="button">Back</button><button className="flex-1 rounded-full bg-secondary px-6 py-3.5 font-extrabold text-white disabled:opacity-60" disabled={pending} type="submit">{pending ? "Sending order…" : "Place order"}</button></div>
           <p className="mt-4 text-center text-xs text-on-surface-variant">By placing the order, you agree that MolaPlus may contact you about this request.</p>
         </div>}

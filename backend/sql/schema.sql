@@ -37,6 +37,15 @@ CREATE TABLE IF NOT EXISTS orders (
   KEY idx_orders_status (status)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- Brute-force protection for Studio sign-in (sliding 15-min window).
+CREATE TABLE IF NOT EXISTS login_attempts (
+  id         BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ip         VARCHAR(45)     NOT NULL,
+  created_at TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_login_ip_time (ip, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- Simple IP rate limiting for order submissions (sliding 15-min window).
 CREATE TABLE IF NOT EXISTS order_rate_limit (
   id          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

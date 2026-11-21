@@ -86,14 +86,45 @@ function mp_require_editor(PDO $pdo): array
     return $editor;
 }
 
+// Fixed valid bcrypt hash used to keep sign-in timing constant whether or not
+// the email exists (prevents account enumeration via response timing).
+const MP_DUMMY_HASH = '$2y$12$rvcYjkZXBN7QnTBPpiCQFukx9/pN3mpI8uG5cyNaKkfBgpyKOhKfK';
+
 function mp_login(PDO $pdo, string $email, string $password): array
 {
+    $ip = mp_client_ip();
+
+    // Brute-force protection: at most 10 failed attempts per IP / 15 minutes.
+    $pdo->exec(
+        'CREATE TABLE IF NOT EXISTS login_attempts (
+            id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+            ip VARCHAR(45) NOT NULL,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (id), KEY idx_login_ip_time (ip, created_at)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4'
+    );
+    $pdo->prepare('DELETE FROM login_attempts WHERE created_at < (NOW() - INTERVAL 15 MINUTE)')->execute();
+    $recent = $pdo->prepare('SELECT COUNT(*) FROM login_attempts WHERE ip = ? AND created_at >= (NOW() - INTERVAL 15 MINUTE)');
+    $recent->execute([$ip]);
+    if ((int)$recent->fetchColumn() >= 10) {
+        mp_json(['error' => 'Too many sign-in attempts. Please wait 15 minutes, then try again.'], 429);
+    }
+
     $stmt = $pdo->prepare('SELECT id, email, display_name, password_hash FROM blog_editors WHERE email = ? LIMIT 1');
     $stmt->execute([mb_strtolower(trim($email))]);
     $editor = $stmt->fetch();
-    if (!$editor || !password_verify($password, $editor['password_hash'])) {
+
+    // Always run password_verify (against a dummy hash if the email is unknown)
+    // so both cases take the same time.
+    $verified = password_verify($password, $editor['password_hash'] ?? MP_DUMMY_HASH);
+    if (!$editor || !$verified) {
+        $pdo->prepare('INSERT INTO login_attempts (ip) VALUES (?)')->execute([$ip]);
         mp_json(['error' => 'Email or password is incorrect.'], 401);
     }
+
+    // Successful login — clear this IP's failed attempts.
+    $pdo->prepare('DELETE FROM login_attempts WHERE ip = ?')->execute([$ip]);
+
     $token   = bin2hex(random_bytes(32));
     $hash    = hash('sha256', $token);
     $expires = time() + MP_SESSION_HOURS * 3600;

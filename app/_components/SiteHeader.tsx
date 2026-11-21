@@ -74,11 +74,11 @@ export function SiteHeader() {
                 alt="MolaPlus"
                 className="h-8 w-auto sm:h-10"
                 fetchPriority="high"
-                height={243}
+                height={205}
                 loading="eager"
                 sizes="190px"
-                src="/molaplus-brand.webp"
-                width={1028}
+                src="/molaplus-logo-v2.png"
+                width={720}
               />
             </Link>
           </div>
@@ -136,7 +136,7 @@ export function SiteHeader() {
             href="/"
             onClick={() => setOpen(false)}
           >
-            <Image alt="MolaPlus" className="h-8 w-auto" height={243} sizes="200px" src="/molaplus-brand.webp" width={1028} />
+            <Image alt="MolaPlus" className="h-8 w-auto" height={205} sizes="200px" src="/molaplus-logo-v2.png" width={720} />
           </Link>
           <button
             aria-label="Close menu"

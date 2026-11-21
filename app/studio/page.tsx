@@ -1,33 +1,36 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import type { Media, StudioPost } from "../../lib/studio/model";
+import type { StudioPost } from "../../lib/studio/model";
 import { Login } from "./Login";
 import { Studio } from "./Studio";
 
 type Status = "loading" | "login" | "ready";
 
+type Editor = { email: string; name: string | null };
+
 export default function StudioPage() {
   const [status, setStatus] = useState<Status>("loading");
   const [posts, setPosts] = useState<StudioPost[]>([]);
-  const [media, setMedia] = useState<Media[]>([]);
+  const [editor, setEditor] = useState<Editor | null>(null);
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (): Promise<boolean> => {
     try {
       const session = await fetch("/api/studio/session", { cache: "no-store" }).then((r) => r.json());
       if (!session?.authenticated) {
         setStatus("login");
-        return;
+        return false;
       }
-      const [postsRes, mediaRes] = await Promise.all([
-        fetch("/api/studio/posts", { cache: "no-store" }).then((r) => r.json()),
-        fetch("/api/studio/media", { cache: "no-store" }).then((r) => r.json()),
-      ]);
+      setEditor(session.editor ?? null);
+      // Load posts first so the workspace opens fast; media (heavier) loads
+      // in the background inside Studio.
+      const postsRes = await fetch("/api/studio/posts", { cache: "no-store" }).then((r) => r.json());
       setPosts(Array.isArray(postsRes?.posts) ? postsRes.posts : []);
-      setMedia(Array.isArray(mediaRes?.media) ? mediaRes.media : []);
       setStatus("ready");
+      return true;
     } catch {
       setStatus("login");
+      return false;
     }
   }, []);
 
@@ -51,5 +54,5 @@ export default function StudioPage() {
     return <Login onAuthenticated={load} />;
   }
 
-  return <Studio initialPosts={posts} initialMedia={media} onLogout={() => setStatus("login")} />;
+  return <Studio initialPosts={posts} editor={editor} onLogout={() => setStatus("login")} />;
 }
