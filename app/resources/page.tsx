@@ -21,7 +21,7 @@ export default function ResourcesPage() {
             <Link className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-4 font-bold text-primary" href="/blog">Read the blog <span aria-hidden="true">↗</span></Link>
             <a className="inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white transition-all hover:bg-secondary" href="#library">
               Explore farm guides
-              <span className="material-symbols-outlined">arrow_forward</span>
+              <span className="material-symbols-outlined notranslate">arrow_forward</span>
             </a>
             <a className="glass-effect inline-flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="#library">
               View All Resources
@@ -48,7 +48,7 @@ export default function ResourcesPage() {
               </div>
               <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 font-bold text-primary transition-all group-hover:gap-3">
                 {featured ? "Read the story" : "Talk to our team"}
-                <span className="material-symbols-outlined">arrow_forward</span>
+                <span className="material-symbols-outlined notranslate">arrow_forward</span>
               </span>
             </div>
           </Link>
@@ -58,13 +58,13 @@ export default function ResourcesPage() {
               <Link className="mp-hover-lift group flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-7" href={`/blog/${post.slug}`} key={post.slug}>
                 <div className="flex items-center justify-between">
                   <span className="mp-eyebrow rounded-full bg-primary/10 px-3 py-1.5 text-primary">{post.category}</span>
-                  <span className="material-symbols-outlined text-2xl text-primary">article</span>
+                  <span className="material-symbols-outlined notranslate text-2xl text-primary">article</span>
                 </div>
                 <h3 className="mt-5 text-lg font-extrabold tracking-tight text-ink-black">{post.title}</h3>
                 <p className="mt-2 flex-1 text-sm text-on-surface-variant">{post.excerpt}</p>
                 <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-secondary transition-all group-hover:gap-3">
                   Read story · {formatDate(post.date)}
-                  <span className="material-symbols-outlined text-[18px]">trending_flat</span>
+                  <span className="material-symbols-outlined notranslate text-[18px]">trending_flat</span>
                 </span>
               </Link>
             ))}
@@ -89,7 +89,7 @@ export default function ResourcesPage() {
                 Contact for Support
               </Link>
               <Link className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-7 py-3.5 font-bold text-primary transition-colors hover:bg-surface-container-high" href="/distributors">
-                <span className="material-symbols-outlined text-[20px]">location_on</span>
+                <span className="material-symbols-outlined notranslate text-[20px]">location_on</span>
                 Find a Distributor
               </Link>
             </div>

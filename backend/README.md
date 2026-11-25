@@ -1,9 +1,7 @@
 # MolaPlus — PHP + MySQL backend (Bluehost)
 
 This folder is the **server side** of MolaPlus, written in plain PHP + MySQL so it
-runs on standard Bluehost shared hosting (no Node server required). It replaces the
-former Supabase/Postgres backend while keeping **the exact same API contracts** the
-existing frontend already calls — so the site's JavaScript does not need to change.
+runs on standard Bluehost shared hosting (no Node server required).
 
 ```
 backend/
@@ -30,8 +28,6 @@ backend/
             ├── post.php     → GET /api/studio/posts/{id} · PATCH mutate
             └── media.php    → GET list · POST upload (→ /uploads/blog)
 ```
-
-`sql/migrate-from-supabase.php` moves existing Supabase data into MySQL.
 
 ## API contract (unchanged from the current site)
 
@@ -89,21 +85,6 @@ curl -X POST https://YOURDOMAIN/api/blog/views \
 curl "https://YOURDOMAIN/api/blog/posts"
 ```
 
-## Migrate existing Supabase data
-
-If the old site has live Supabase content, move it into MySQL after importing
-`schema.sql` (run `seed-posts.sql` only for a fresh install — skip it if migrating):
-
-```bash
-SUPABASE_URL="https://xxxx.supabase.co" \
-SUPABASE_SERVICE_KEY="eyJ...service_role..." \
-php backend/sql/migrate-from-supabase.php
-```
-
-Copies posts, view counts, reactions and comments (idempotent — safe to re-run).
-Editor logins are **not** migrated (Supabase Auth hashes can't be exported); create
-them again with `create-admin.php`.
-
 ## Local testing with XAMPP
 
 ```bash
@@ -125,17 +106,7 @@ build it as a **static export** and upload the output into the same web root. Th
 lives at `/api/*` on the same domain, so every `fetch("/api/...")` call keeps working
 with no code change.
 
-> The PHP API above already **replaces the entire Supabase backend** — orders, blog
-> engagement, and the full Studio admin (auth + posts CRUD + media), all backed by the
-> MySQL tables in `schema.sql`. The remaining **frontend** work to finish the Bluehost
-> cutover:
-> 1. `next.config.ts` → `output: "export"`, `images: { unoptimized: true }`.
-> 2. Repoint the blog + Studio screens from Supabase to this API:
->    - blog list/detail → `GET /api/blog/posts`
->    - Studio login (`Login.tsx`) → `POST /api/studio/session` (drop the Supabase client)
->    - `studio/page.tsx` → check `GET /api/studio/session` client-side instead of
->      server-side `remoteAuthenticated()`
->    The Studio's post/media calls already target `/api/studio/*`, so they work as-is.
+Deploy it with `scripts/deploy.ps1` (see the root README).
 
 ## Security notes
 - DB credentials live only in `config.php` — never committed to git.

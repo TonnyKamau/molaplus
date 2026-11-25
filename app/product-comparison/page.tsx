@@ -73,7 +73,7 @@ export default function ComparisonPage() {
 
                   <Link className="mt-7 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 font-bold text-white transition-all hover:bg-primary-container" href={p.href}>
                     View product
-                    <span className="material-symbols-outlined text-[20px]">trending_flat</span>
+                    <span className="material-symbols-outlined notranslate text-[20px]">trending_flat</span>
                   </Link>
                 </div>
               </div>

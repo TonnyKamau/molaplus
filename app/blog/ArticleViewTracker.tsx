@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 
+import { useT } from "../../lib/i18n";
+
 export function ArticleViewTracker({ slug, initialViews = 0 }: { slug: string; initialViews?: number }) {
+  const t = useT();
   const [views, setViews] = useState(initialViews);
 
   useEffect(() => {
@@ -24,5 +27,6 @@ export function ArticleViewTracker({ slug, initialViews = 0 }: { slug: string; i
     return () => controller.abort();
   }, [slug]);
 
-  return <span>{views.toLocaleString()} {views === 1 ? "view" : "views"}</span>;
+  // Live count: native French, never handed to Google.
+  return <span translate="no">{t(`${views.toLocaleString()} ${views === 1 ? "view" : "views"}`, `${views.toLocaleString("fr-FR")} ${views === 1 ? "vue" : "vues"}`)}</span>;
 }

@@ -56,7 +56,7 @@ export default function SuperMilkBoosterPage() {
           <div className="product-detail-hero__details flex flex-col justify-center">
             <nav className="flex items-center gap-2 text-sm font-semibold text-on-surface-variant">
               <Link className="hover:text-primary" href="/products">Products</Link>
-              <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+              <span className="material-symbols-outlined notranslate text-[16px]">chevron_right</span>
               <span className="text-primary">Dairy Nutrition</span>
             </nav>
             <h1 className="mp-display-sm mt-4 text-ink-black">Super Milk Booster</h1>
@@ -90,7 +90,7 @@ export default function SuperMilkBoosterPage() {
             <div className="mt-8 grid grid-cols-2 gap-3">
               {benefits.map(([icon, title, meta]) => (
                 <div className="flex items-start gap-3 rounded-2xl border border-outline-variant bg-surface-container-lowest p-4" key={title}>
-                  <span className="material-symbols-outlined text-2xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  <span className="material-symbols-outlined notranslate text-2xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>
                     {icon}
                   </span>
                   <div>
@@ -104,8 +104,8 @@ export default function SuperMilkBoosterPage() {
             {/* Buy panel */}
             <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="rounded-2xl bg-primary p-5 text-white">
-                <p className="mp-eyebrow text-white/60">Buy via M-Pesa</p>
-                <p className="mt-1 text-2xl font-extrabold text-secondary-fixed-dim">Till No: 906520</p>
+                <p className="mp-eyebrow text-white/60">Buy via <span className="whitespace-nowrap" translate="no">M-Pesa</span></p>
+                <p className="mt-1 text-2xl font-extrabold text-secondary-fixed-dim"><span className="whitespace-nowrap" translate="no">Till No: 906520</span></p>
               </div>
               <a className="flex flex-col justify-center rounded-2xl border border-outline-variant bg-white p-5 transition-colors hover:border-primary/40" href="tel:+254722656142">
                 <p className="mp-eyebrow text-on-surface-variant">Call for Logistics</p>
@@ -159,7 +159,7 @@ export default function SuperMilkBoosterPage() {
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-4">
                 <Link className="inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white shadow-xl transition-all hover:bg-secondary" href="/distributors">
-                  <span className="material-symbols-outlined">location_on</span>
+                  <span className="material-symbols-outlined notranslate">location_on</span>
                   Find a Distributor
                 </Link>
                 <Link className="glass-effect inline-flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="/resources">

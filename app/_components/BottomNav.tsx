@@ -40,7 +40,7 @@ export function BottomNav() {
               key={link.href}
             >
               <span
-                className="material-symbols-outlined text-[22px]"
+                className="material-symbols-outlined notranslate text-[22px]"
                 style={active ? { fontVariationSettings: "'FILL' 1" } : undefined}
               >
                 {link.icon}

@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { BlogCard } from "./BlogCard";
-import { categories, summarize, type Category, type Post, type PostSummary } from "./posts";
+import { plural, useT } from "../../lib/i18n";
+import { categories, categoryFr, summarize, type Category, type Post, type PostSummary } from "./posts";
 
 export function BlogLibrary({ posts }: { posts: PostSummary[] }) {
+  // Filters, counts and paging use native French; the article cards themselves
+  // are left to Google (they re-render as new elements, which it translates).
+  const t = useT();
+  const label = (item: Category) => (t.lang === "fr" ? categoryFr[item] : item);
   // Seed with the build-time list for instant paint + SEO, then refresh live
   // from the PHP API so Studio-added posts appear in realtime (no rebuild).
   const [livePosts, setLivePosts] = useState<PostSummary[]>(posts);
@@ -56,16 +61,19 @@ export function BlogLibrary({ posts }: { posts: PostSummary[] }) {
   return (
     <section className="journal-library" id="stories" aria-labelledby="stories-heading">
       <div className="journal-section-heading"><div><p className="journal-eyebrow">Ideas for your everyday</p><h2 id="stories-heading">From the field.</h2></div><p>Good habits. Useful perspectives. A little more know-how.</p></div>
-      <div className="journal-toolbar">
-        <div className="journal-filters" role="group" aria-label="Filter articles by topic">
-          {categories.map((item) => <button type="button" key={item} aria-pressed={category === item} onClick={() => update({ topic: item })}>{item}</button>)}
+      <div className="journal-toolbar" translate="no">
+        <div className="journal-filters" role="group" aria-label={t("Filter articles by topic", "Filtrer les articles par thème")}>
+          {categories.map((item) => <button type="button" key={item} aria-pressed={category === item} onClick={() => update({ topic: item })}>{label(item)}</button>)}
         </div>
-        <label className="journal-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg><span className="sr-only">Search articles</span><input type="search" placeholder="Search stories" value={query} onChange={(event) => update({ q: event.target.value })} /></label>
+        <label className="journal-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" /></svg><span className="sr-only">{t("Search articles", "Rechercher un article")}</span><input type="search" placeholder={t("Search stories", "Rechercher un article")} value={query} onChange={(event) => update({ q: event.target.value })} /></label>
       </div>
-      <div className="journal-results"><p role="status" aria-live="polite">{matches.length} {matches.length === 1 ? "story" : "stories"}{category !== "All stories" ? ` in ${category.toLowerCase()}` : " to explore"}{normalized ? ` matching “${query.trim()}”` : ""}</p>{(normalized || category !== "All stories") && <button type="button" onClick={reset}>Clear filters <span aria-hidden="true">×</span></button>}</div>
-      <div className="journal-library-options"><a href="/blog/feed.xml">Follow via RSS <span aria-hidden="true">↗</span></a><label>Sort by <select value={sort} onChange={(event) => update({ sort: event.target.value })}><option value="newest">Newest first</option><option value="oldest">Oldest first</option></select></label></div>
-      {matches.length ? <div className="journal-grid">{visible.map((post) => <BlogCard key={post.slug} post={post} />)}</div> : <div className="journal-empty"><span aria-hidden="true">↗</span><h3>No stories found.</h3><p>Try a different word or explore another topic.</p><button className="journal-button" type="button" onClick={reset}>Show all stories <span aria-hidden="true">→</span></button></div>}
-      {totalPages > 1 && <nav className="journal-pagination" aria-label="Article pages"><button disabled={currentPage === 1} onClick={() => update({ page: currentPage - 1 })}>← Previous</button><span role="status">Page {currentPage} of {totalPages}</span><button disabled={currentPage === totalPages} onClick={() => update({ page: currentPage + 1 })}>Next →</button></nav>}
+      <div className="journal-results" translate="no"><p role="status" aria-live="polite">{t(
+        `${plural(matches.length, "story", "stories")}${category !== "All stories" ? ` in ${category.toLowerCase()}` : " to explore"}${normalized ? ` matching “${query.trim()}”` : ""}`,
+        `${plural(matches.length, "article", "articles", "fr")}${category !== "All stories" ? ` · ${categoryFr[category]}` : " à découvrir"}${normalized ? ` pour « ${query.trim()} »` : ""}`,
+      )}</p>{(normalized || category !== "All stories") && <button type="button" onClick={reset}>{t("Clear filters", "Effacer les filtres")} <span aria-hidden="true">×</span></button>}</div>
+      <div className="journal-library-options" translate="no"><a href="/blog/feed.xml">{t("Follow via RSS", "Suivre via RSS")} <span aria-hidden="true">↗</span></a><label>{t("Sort by", "Trier par")} <select value={sort} onChange={(event) => update({ sort: event.target.value })}><option value="newest">{t("Newest first", "Plus récents")}</option><option value="oldest">{t("Oldest first", "Plus anciens")}</option></select></label></div>
+      {matches.length ? <div className="journal-grid">{visible.map((post) => <BlogCard key={post.slug} post={post} />)}</div> : <div className="journal-empty" translate="no"><span aria-hidden="true">↗</span><h3>{t("No stories found.", "Aucun article trouvé.")}</h3><p>{t("Try a different word or explore another topic.", "Essayez un autre mot ou explorez un autre thème.")}</p><button className="journal-button" type="button" onClick={reset}>{t("Show all stories", "Voir tous les articles")} <span aria-hidden="true">→</span></button></div>}
+      {totalPages > 1 && <nav className="journal-pagination" aria-label={t("Article pages", "Pages d’articles")} translate="no"><button disabled={currentPage === 1} onClick={() => update({ page: currentPage - 1 })}>{t("← Previous", "← Précédent")}</button><span role="status">{t(`Page ${currentPage} of ${totalPages}`, `Page ${currentPage} sur ${totalPages}`)}</span><button disabled={currentPage === totalPages} onClick={() => update({ page: currentPage + 1 })}>{t("Next →", "Suivant →")}</button></nav>}
     </section>
   );
 }

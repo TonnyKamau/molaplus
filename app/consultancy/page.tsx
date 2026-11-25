@@ -49,7 +49,7 @@ export default function ConsultancyPage() {
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a className="inline-flex items-center justify-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white transition-all hover:bg-secondary" href="#book">
               Book a Consultation
-              <span className="material-symbols-outlined">arrow_forward</span>
+              <span className="material-symbols-outlined notranslate">arrow_forward</span>
             </a>
             <a className="glass-effect inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="#expertise">
               View Expertise
@@ -71,14 +71,14 @@ export default function ConsultancyPage() {
             {expertise.map(([icon, title, blurb, bullets]) => (
               <div className="flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" key={title}>
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
-                  <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                  <span className="material-symbols-outlined notranslate text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                 </div>
                 <h3 className="mt-5 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
                 <p className="mt-2 text-on-surface-variant">{blurb}</p>
                 <ul className="mt-5 space-y-2.5 border-t border-outline-variant pt-5">
                   {bullets.map((b) => (
                     <li className="flex items-start gap-2 text-sm text-on-surface-variant" key={b}>
-                      <span className="material-symbols-outlined text-[18px] text-primary">check_circle</span>
+                      <span className="material-symbols-outlined notranslate text-[18px] text-primary">check_circle</span>
                       {b}
                     </li>
                   ))}
@@ -103,7 +103,7 @@ export default function ConsultancyPage() {
           <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
             {training.map(([icon, title, body]) => (
               <div className="rounded-3xl border border-outline-variant bg-white p-8" key={title}>
-                <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                 <h3 className="mt-5 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
                 <p className="mt-3 text-on-surface-variant">{body}</p>
               </div>
@@ -126,7 +126,7 @@ export default function ConsultancyPage() {
           <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
             {support.map(([icon, title, body]) => (
               <div className="rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" key={title}>
-                <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                 <h3 className="mt-5 text-xl font-extrabold tracking-tight text-ink-black">{title}</h3>
                 <p className="mt-3 text-on-surface-variant">{body}</p>
               </div>
@@ -150,29 +150,29 @@ export default function ConsultancyPage() {
               </div>
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
                 <a className="mp-hover-lift flex flex-col rounded-3xl bg-secondary-container p-6 text-white" href="https://wa.me/254722656142" rel="noopener noreferrer" target="_blank">
-                  <span className="material-symbols-outlined text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>chat</span>
+                  <span className="material-symbols-outlined notranslate text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>chat</span>
                   <span className="mp-eyebrow mt-3 text-white/70">Recommended</span>
                   <span className="text-lg font-extrabold">WhatsApp us</span>
                 </a>
                 <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="tel:+254722656142">
-                  <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
+                  <span className="material-symbols-outlined notranslate text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
                   <span className="mp-eyebrow mt-3 text-white/60">Phone Support</span>
                   <span className="text-lg font-extrabold">+254 722 656 142</span>
                 </a>
                 <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="mailto:info@molaplus.org">
-                  <span className="material-symbols-outlined text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
+                  <span className="material-symbols-outlined notranslate text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
                   <span className="mp-eyebrow mt-3 text-white/60">Email Inquiry</span>
                   <span className="break-all text-lg font-extrabold">info@molaplus.org</span>
                 </a>
               </div>
               <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/70">
-                <span className="material-symbols-outlined text-[18px]">location_on</span>
+                <span className="material-symbols-outlined notranslate text-[18px]">location_on</span>
                 Headquarters: Kenya &middot; Nationwide field support
               </p>
               <div className="mt-6">
                 <Link className="inline-flex items-center gap-2 font-bold text-white underline-offset-4 hover:underline" href="/distributors">
                   Prefer to visit a stockist? Find one near you
-                  <span className="material-symbols-outlined text-[20px]">trending_flat</span>
+                  <span className="material-symbols-outlined notranslate text-[20px]">trending_flat</span>
                 </Link>
               </div>
             </div>

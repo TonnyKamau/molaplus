@@ -151,8 +151,8 @@ export default function ProductsPage() {
 
           <div className="mt-10 inline-flex flex-wrap items-center gap-x-8 gap-y-4 rounded-3xl border border-white/20 bg-white/10 px-7 py-5">
             <div>
-              <p className="mp-eyebrow text-white/60">Buy online &amp; pay via M-Pesa</p>
-              <p className="text-2xl font-extrabold text-secondary-fixed-dim">Till no: 906520</p>
+              <p className="mp-eyebrow text-white/60">Buy online &amp; pay via <span className="whitespace-nowrap" translate="no">M-Pesa</span></p>
+              <p className="text-2xl font-extrabold text-secondary-fixed-dim"><span className="whitespace-nowrap" translate="no">Till no: 906520</span></p>
             </div>
             <div className="hidden h-10 w-px bg-white/20 sm:block" />
             <div>
@@ -187,7 +187,7 @@ export default function ProductsPage() {
               </div>
               <Link className="inline-flex shrink-0 items-center gap-2 font-bold text-primary" href="/contact">
                 Ask about availability
-                <span className="material-symbols-outlined">arrow_outward</span>
+                <span className="material-symbols-outlined notranslate">arrow_outward</span>
               </Link>
             </div>
           </div>
@@ -213,7 +213,7 @@ export default function ProductsPage() {
                 href={group.href}
               >
                 {group.id === "super-milk-booster" ? "View details" : group.href === "/contact" ? "Ask our team" : "Compare products"}
-                <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_outward</span>
+                <span className="material-symbols-outlined notranslate transition-transform group-hover:translate-x-1">arrow_outward</span>
               </Link>
             </div>
 
@@ -241,7 +241,7 @@ export default function ProductsPage() {
                         href={`/order?product=${encodeURIComponent(s.img)}`}
                       >
                         Order now
-                        <span className="material-symbols-outlined text-[18px]">trending_flat</span>
+                        <span className="material-symbols-outlined notranslate text-[18px]">trending_flat</span>
                       </Link>
                       <a
                         className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-surface-container-high"
@@ -249,7 +249,7 @@ export default function ProductsPage() {
                         rel="noopener noreferrer"
                         target="_blank"
                       >
-                        <span className="material-symbols-outlined text-[18px]">chat</span>
+                        <span className="material-symbols-outlined notranslate text-[18px]">chat</span>
                         WhatsApp
                       </a>
                     </div>
@@ -277,9 +277,9 @@ export default function ProductsPage() {
               className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-8 py-4 font-bold text-white shadow-lg transition-all hover:bg-primary-container"
               href="/product-comparison"
             >
-              <span className="material-symbols-outlined">analytics</span>
+              <span className="material-symbols-outlined notranslate">analytics</span>
               Compare products
-              <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+              <span className="material-symbols-outlined notranslate transition-transform group-hover:translate-x-1">arrow_forward</span>
             </Link>
           </div>
         </div>

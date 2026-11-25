@@ -37,7 +37,7 @@ export function SiteFooter() {
             </h2>
             <p>
               Talk to our technical team about the right nutrition programme for
-              your livestock, or order directly via M-Pesa.
+              your livestock, or order directly via <span className="whitespace-nowrap" translate="no">M-Pesa</span>.
             </p>
           </div>
           <div className="site-footer__actions">
@@ -45,7 +45,7 @@ export function SiteFooter() {
               className="site-footer__primary"
               href="/order"
             >
-              <span className="material-symbols-outlined text-[20px]">shopping_bag</span>
+              <span className="material-symbols-outlined notranslate text-[20px]">shopping_bag</span>
               Place an order
             </Link>
             <Link
@@ -69,16 +69,16 @@ export function SiteFooter() {
             </p>
             <div className="flex flex-col gap-2.5 text-sm">
               <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="tel:+254722656142">
-                <span className="material-symbols-outlined text-[18px] text-primary-fixed-dim">call</span>
+                <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">call</span>
                 +254 722 656 142
               </a>
               <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="mailto:info@molaplus.org">
-                <span className="material-symbols-outlined text-[18px] text-primary-fixed-dim">mail</span>
+                <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">mail</span>
                 info@molaplus.org
               </a>
               <span className="inline-flex items-center gap-2 text-white/80">
-                <span className="material-symbols-outlined text-[18px] text-primary-fixed-dim">payments</span>
-                Lipa na M-Pesa &middot; Till 906520
+                <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">payments</span>
+                Lipa na <span className="whitespace-nowrap" translate="no">M-Pesa</span> &middot; <span className="whitespace-nowrap" translate="no">Till 906520</span>
               </span>
             </div>
           </div>

@@ -1,6 +1,15 @@
 export const categories = ["All stories", "Dairy", "Poultry", "Livestock", "Farm management"] as const;
 export type Category = (typeof categories)[number];
 
+/** French labels for the category filters (the stored value stays English). */
+export const categoryFr: Record<Category, string> = {
+  "All stories": "Tous les articles",
+  Dairy: "Élevage laitier",
+  Poultry: "Volaille",
+  Livestock: "Bétail",
+  "Farm management": "Gestion de la ferme",
+};
+
 type Section = { id: string; title: string; paragraphs: string[]; checklist?: string[] };
 export type Post = {
   body?: string;

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export const primaryNav = [
   { href: "/products", label: "Products" },
@@ -102,12 +103,13 @@ export function SiteHeader() {
             })}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="site-header__actions flex items-center gap-2">
+            <LanguageSwitcher />
             <Link className="site-header__contact hidden lg:inline-flex" href="/order">
-              Place an order <span aria-hidden>↗</span>
+              <span className="site-header__contact-long">Place an order</span><span className="site-header__contact-short">Order</span> <span aria-hidden>↗</span>
             </Link>
-            <a aria-label="Call MolaPlus" className="grid h-10 w-10 place-items-center border border-[#173b2b]/20 text-[#0c432c] lg:hidden" href="tel:+254722656142"><span className="material-symbols-outlined text-[20px]">call</span></a>
-            <button aria-label="Open menu" className="grid h-10 w-10 place-items-center bg-[#0c432c] text-white transition-colors hover:bg-[#ef5b2a] lg:hidden" onClick={() => setOpen(true)} type="button"><span className="material-symbols-outlined">menu</span></button>
+            <a aria-label="Call MolaPlus" className="site-header__call grid h-10 w-10 place-items-center border border-[#173b2b]/20 text-[#0c432c] lg:hidden" href="tel:+254722656142"><span className="material-symbols-outlined notranslate text-[20px]">call</span></a>
+            <button aria-label="Open menu" className="grid h-10 w-10 place-items-center bg-[#0c432c] text-white transition-colors hover:bg-[#ef5b2a] lg:hidden" onClick={() => setOpen(true)} type="button"><span className="material-symbols-outlined notranslate">menu</span></button>
           </div>
         </div>
       </header>
@@ -144,7 +146,7 @@ export function SiteHeader() {
             onClick={() => setOpen(false)}
             type="button"
           >
-            <span className="material-symbols-outlined">close</span>
+            <span className="material-symbols-outlined notranslate">close</span>
           </button>
         </div>
         <ul className="mobile-drawer__links flex flex-1 flex-col gap-1 overflow-y-auto p-4" ref={drawerLinksRef}>
@@ -158,20 +160,23 @@ export function SiteHeader() {
                   onClick={() => setOpen(false)}
                 >
                   <span className="mobile-drawer__index">{String(index + 1).padStart(2, "0")}</span>
-                  <span className="material-symbols-outlined mobile-drawer__icon">{link.icon}</span>
+                  <span className="material-symbols-outlined notranslate mobile-drawer__icon">{link.icon}</span>
                   <span>{link.label}</span>
-                  <span className="material-symbols-outlined mobile-drawer__arrow">arrow_outward</span>
+                  <span className="material-symbols-outlined notranslate mobile-drawer__arrow">arrow_outward</span>
                 </Link>
               </li>
             );
           })}
         </ul>
+        <div className="mobile-drawer__lang border-t border-outline-variant px-5 py-3">
+          <LanguageSwitcher host={false} label />
+        </div>
         <div className="mobile-drawer__footer border-t border-outline-variant p-4">
           <a
             className="flex items-center justify-center gap-2 rounded-full bg-secondary-container px-5 py-3 font-bold text-white transition-opacity hover:opacity-90"
             href="tel:+254722656142"
           >
-            <span className="material-symbols-outlined text-[18px]">call</span>
+            <span className="material-symbols-outlined notranslate text-[18px]">call</span>
             +254 722 656 142
           </a>
         </div>

@@ -80,7 +80,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="ticker" aria-label="Product benefits"><div>MORE MILK <i>✦</i> HEALTHIER GUTS <i>✦</i> STRONGER POULTRY <i>✦</i> BETTER FEED CONVERSION <i>✦</i></div></section>
+      <section className="ticker" aria-label="Product benefits"><div className="ticker__track"><span><b>More milk</b><i>✦</i><b>Healthier guts</b><i>✦</i><b>Stronger poultry</b><i>✦</i><b>Better feed conversion</b><i>✦</i></span><span aria-hidden="true"><b>More milk</b><i>✦</i><b>Healthier guts</b><i>✦</i><b>Stronger poultry</b><i>✦</i><b>Better feed conversion</b><i>✦</i></span></div></section>
 
       <section className="section products-v2">
         <div className="section-heading">
@@ -138,7 +138,7 @@ export default function Home() {
         <div className="section-heading"><p className="kicker"><span /> Field notes / The blog</p><h2 id="home-journal-heading">Good knowledge.<br /><em>Better farming.</em></h2><Link href="/blog">Explore all stories ↗</Link></div>
         <div className="support-v2__grid">{posts.slice(0, 3).map((post) => <Link href={`/blog/${post.slug}`} key={post.slug}><div className="support-v2__image"><Image src={post.image} alt={post.imageAlt} fill sizes="(min-width: 800px) 30vw, 100vw" /></div><p className="home-journal__meta">{post.category} · {readingMinutes(post)} min read</p><h3>{post.title}</h3><p>{post.excerpt}</p><b>Read the story ↗</b></Link>)}</div>
       </section>
-      <section className="cta-v2"><p className="kicker kicker--light"><span /> Ready to grow?</p><h2>Let’s build a<br /><em>healthier farm.</em></h2><div><a className="button button--light" href="/order">Place an order <span>↗</span></a><a className="button button--line" href="tel:+254722656142">Call +254 722 656 142</a></div><small>Lipa na M-Pesa · Till number 906520</small></section>
+      <section className="cta-v2"><p className="kicker kicker--light"><span /> Ready to grow?</p><h2>Let’s build a<br /><em>healthier farm.</em></h2><div><a className="button button--light" href="/order">Place an order <span>↗</span></a><a className="button button--line" href="tel:+254722656142">Call +254 722 656 142</a></div><small>Lipa na <span className="whitespace-nowrap" translate="no">M-Pesa</span> · <span className="whitespace-nowrap" translate="no">Till number 906520</span></small></section>
     </main>
   );
 }

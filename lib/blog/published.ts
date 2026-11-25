@@ -1,7 +1,7 @@
 import { posts as seed, type Post } from "../../app/blog/posts";
 
 /**
- * Build-time published posts for static export (no Supabase, no network).
+ * Build-time published posts for static export (no network).
  * The static HTML is generated from this seed set for SEO + instant paint;
  * the browser then refreshes from the live PHP API (/api/blog/posts) so
  * posts added in the Studio appear in realtime without a rebuild.

@@ -28,7 +28,7 @@ export default function AboutPage() {
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <Link className="inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white transition-all hover:bg-secondary" href="/products">
               Explore Solutions
-              <span className="material-symbols-outlined">arrow_forward</span>
+              <span className="material-symbols-outlined notranslate">arrow_forward</span>
             </Link>
             <Link className="glass-effect inline-flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 font-bold text-white transition-all hover:bg-white hover:text-primary" href="/resources">
               Our Research
@@ -74,7 +74,7 @@ export default function AboutPage() {
           </div>
           <div className="grid grid-cols-1 gap-gutter md:grid-cols-2" data-reveal data-reveal-stagger>
             <div className="rounded-3xl border border-outline-variant bg-white p-8">
-              <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>flag</span>
+              <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>flag</span>
               <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-ink-black">Our Mission</h3>
               <p className="mt-3 text-on-surface-variant">
                 To provide innovative, cost-effective, and scientifically-proven
@@ -83,7 +83,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="rounded-3xl border border-outline-variant bg-white p-8">
-              <span className="material-symbols-outlined text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>visibility</span>
+              <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>visibility</span>
               <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-ink-black">Our Vision</h3>
               <p className="mt-3 text-on-surface-variant">
                 To be the foremost provider of biotechnology-driven animal health
@@ -106,7 +106,7 @@ export default function AboutPage() {
             {values.map(([icon, title, body]) => (
               <div className="rounded-3xl border border-outline-variant bg-surface-container-lowest p-8 text-center" key={title}>
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-                  <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                  <span className="material-symbols-outlined notranslate text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                 </div>
                 <h3 className="mt-5 text-xl font-extrabold tracking-tight text-primary">{title}</h3>
                 <p className="mt-3 text-on-surface-variant">{body}</p>
@@ -131,7 +131,7 @@ export default function AboutPage() {
           <div className="space-y-4" data-reveal>
             {impact.map(([icon, title, body]) => (
               <div className="flex items-start gap-4 rounded-2xl border border-outline-variant bg-white p-6" key={title}>
-                <span className="material-symbols-outlined text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                <span className="material-symbols-outlined notranslate text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                 <div>
                   <p className="text-lg font-extrabold text-ink-black">{title}</p>
                   <p className="mt-1 text-on-surface-variant">{body}</p>
@@ -154,7 +154,7 @@ export default function AboutPage() {
               </p>
               <Link className="mt-9 inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white shadow-xl transition-all hover:bg-secondary" href="/contact">
                 Request a Consultation
-                <span className="material-symbols-outlined">arrow_forward</span>
+                <span className="material-symbols-outlined notranslate">arrow_forward</span>
               </Link>
             </div>
           </div>

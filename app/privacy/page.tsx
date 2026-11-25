@@ -17,7 +17,7 @@ export default function PrivacyPage() {
       </p>
       <p>
         We do not sell or share your personal information with third parties, except where required to fulfil a
-        delivery or comply with the law. Payment through M-Pesa (Till No: 906520) is processed by Safaricom and subject
+        delivery or comply with the law. Payment through <span className="whitespace-nowrap" translate="no">M-Pesa</span> (<span className="whitespace-nowrap" translate="no">Till No: 906520</span>) is processed by Safaricom and subject
         to their terms.
       </p>
       <p>

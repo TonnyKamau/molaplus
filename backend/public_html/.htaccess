@@ -71,6 +71,14 @@ RewriteRule ^blog/[^/]+/?$ /blog/_/index.html [L]
   <FilesMatch "\.(css|js|webp|woff2|ttf)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+  # Pages (and Next's route payloads) must never be held by Bluehost's CDN
+  # (Cloudflare-based), or a deploy stays invisible for up to 2 hours.
+  # Browsers may keep a copy but must check for a newer one on every visit.
+  <FilesMatch "\.(html|txt|xml)$">
+    Header set Cache-Control "private, no-cache, must-revalidate"
+    Header set CDN-Cache-Control "no-store"
+    Header set Cloudflare-CDN-Cache-Control "no-store"
+  </FilesMatch>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"

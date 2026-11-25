@@ -21,7 +21,7 @@ export default function TermsPage() {
         before large-scale application.
       </p>
       <p>
-        Orders paid via M-Pesa (Till No: 906520) are confirmed by our sales team, who will arrange logistics. Delivery
+        Orders paid via <span className="whitespace-nowrap" translate="no">M-Pesa</span> (<span className="whitespace-nowrap" translate="no">Till No: 906520</span>) are confirmed by our sales team, who will arrange logistics. Delivery
         timelines depend on your location and the nearest{" "}
         <Link className="font-bold text-primary underline" href="/distributors">distribution outlet</Link>.
       </p>

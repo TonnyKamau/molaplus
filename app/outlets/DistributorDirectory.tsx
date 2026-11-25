@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import { useMemo, useState } from "react";
+import { useT } from "../../lib/i18n";
 import type { Distributor } from "./distributors";
 import { classifyTown, distanceKm, towns, type Town } from "./towns";
 
@@ -15,6 +16,10 @@ function normalize(value: string) {
 }
 
 export function DistributorDirectory({ distributors }: { distributors: Distributor[] }) {
+  // Native French (not Google): live counts stay exact and business names untouched.
+  const t = useT();
+  const fr = t.lang === "fr";
+  const num = (value: number) => value.toLocaleString(fr ? "fr-FR" : "en-US");
   const [query, setQuery] = useState("");
   const [selectedTown, setSelectedTown] = useState("all");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
@@ -120,29 +125,29 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
   const locationOutOfRange = nearestDist !== null && nearestDist > 400;
 
   return (
-    <div className="directory-page min-h-screen bg-surface text-on-surface">
+    <div className="directory-page min-h-screen bg-surface text-on-surface" translate="no">
       <main className="mx-auto w-full max-w-container-max-width px-margin-mobile py-stack-lg md:px-margin-desktop">
         <section className="mb-10 grid grid-cols-1 gap-gutter lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
           <div>
-            <span className="mp-eyebrow text-secondary">Distributor Directory</span>
-            <h1 className="mp-display-sm mt-4 text-ink-black">Find a MolaPlus distributor</h1>
+            <span className="mp-eyebrow text-secondary">{t("Distributor Directory", "Annuaire des distributeurs")}</span>
+            <h1 className="mp-display-sm mt-4 text-ink-black">{t("Find a MolaPlus distributor", "Trouver un distributeur MolaPlus")}</h1>
             <p className="mt-4 max-w-2xl text-lg text-on-surface-variant">
-              Search by name or phone, filter by town, or share your location to see the distributors nearest to you.
+              {t("Search by name or phone, filter by town, or share your location to see the distributors nearest to you.", "Recherchez par nom ou téléphone, filtrez par ville, ou partagez votre position pour voir les distributeurs les plus proches.")}
             </p>
           </div>
 
           <div className="directory-stats grid grid-cols-3 gap-3 rounded-3xl border border-outline-variant bg-surface-container-low p-5">
             <div>
-              <p className="mp-eyebrow text-on-surface-variant">Outlets</p>
-              <p className="text-2xl font-extrabold text-primary">{distributors.length.toLocaleString()}</p>
+              <p className="mp-eyebrow text-on-surface-variant">{t("Outlets", "Points de vente")}</p>
+              <p className="text-2xl font-extrabold text-primary">{num(distributors.length)}</p>
             </div>
             <div>
-              <p className="mp-eyebrow text-on-surface-variant">Towns</p>
-              <p className="text-2xl font-extrabold text-primary">{townOptions.length.toLocaleString()}</p>
+              <p className="mp-eyebrow text-on-surface-variant">{t("Towns", "Villes")}</p>
+              <p className="text-2xl font-extrabold text-primary">{num(townOptions.length)}</p>
             </div>
             <div>
-              <p className="mp-eyebrow text-on-surface-variant">Mapped</p>
-              <p className="text-2xl font-extrabold text-primary">{classifiedCount.toLocaleString()}</p>
+              <p className="mp-eyebrow text-on-surface-variant">{t("Mapped", "Localisés")}</p>
+              <p className="text-2xl font-extrabold text-primary">{num(classifiedCount)}</p>
             </div>
           </div>
         </section>
@@ -152,23 +157,23 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
             {/* Search + filters */}
             <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,1fr)_auto_auto] md:items-center">
               <div className="flex items-center gap-3 rounded-lg border border-outline-variant bg-white px-4 py-3">
-                <span className="material-symbols-outlined text-on-surface-variant">search</span>
+                <span className="material-symbols-outlined notranslate text-on-surface-variant">search</span>
                 <input
                   className="w-full bg-transparent text-body-md text-on-surface outline-none placeholder:text-on-surface-variant"
                   onChange={(event) => {
                     setQuery(event.target.value);
                     setVisibleCount(PAGE_SIZE);
                   }}
-                  placeholder="Search name, town or phone"
+                  placeholder={t("Search name, town or phone", "Nom, ville ou téléphone")}
                   type="search"
                   value={query}
                 />
               </div>
 
               <div className="flex items-center gap-2 rounded-lg border border-outline-variant bg-white px-3 py-2.5">
-                <span className="material-symbols-outlined text-on-surface-variant">location_city</span>
+                <span className="material-symbols-outlined notranslate text-on-surface-variant">location_city</span>
                 <select
-                  aria-label="Filter by town"
+                  aria-label={t("Filter by town", "Filtrer par ville")}
                   className="w-full cursor-pointer bg-transparent text-body-md text-on-surface outline-none md:w-56"
                   onChange={(event) => {
                     setSelectedTown(event.target.value);
@@ -176,14 +181,14 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                   }}
                   value={selectedTown}
                 >
-                  <option value="all">All towns ({townOptions.length.toLocaleString()})</option>
+                  <option value="all">{`${t("All towns", "Toutes les villes")} (${num(townOptions.length)})`}</option>
                   {townOptions.map((option) => (
                     <option key={option.key} value={option.key}>
                       {option.town.name}
                       {userLoc ? ` · ${Math.round(distanceKm(userLoc, option.town))} km` : ""} ({option.count})
                     </option>
                   ))}
-                  <option value="unclassified">Unclassified ({unclassifiedCount.toLocaleString()})</option>
+                  <option value="unclassified">{`${t("Unclassified", "Non classés")} (${num(unclassifiedCount)})`}</option>
                 </select>
               </div>
 
@@ -193,8 +198,8 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                   onClick={clearLocation}
                   type="button"
                 >
-                  <span className="material-symbols-outlined text-[18px]">my_location</span>
-                  Clear location
+                  <span className="material-symbols-outlined notranslate text-[18px]">my_location</span>
+                  {t("Clear location", "Effacer la position")}
                 </button>
               ) : (
                 <button
@@ -203,8 +208,8 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                   onClick={requestLocation}
                   type="button"
                 >
-                  <span className="material-symbols-outlined text-[18px]">near_me</span>
-                  {geoState === "loading" ? "Locating…" : "Distributors near me"}
+                  <span className="material-symbols-outlined notranslate text-[18px]">near_me</span>
+                  {geoState === "loading" ? t("Locating…", "Localisation…") : t("Distributors near me", "Distributeurs près de moi")}
                 </button>
               )}
             </div>
@@ -212,7 +217,7 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
             {/* Status line */}
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3 text-label-md text-on-surface-variant">
               <span>
-                Showing {visible.length.toLocaleString()} of {filtered.length.toLocaleString()} matches
+                {t(`Showing ${num(visible.length)} of ${num(filtered.length)} matches`, `${num(visible.length)} sur ${num(filtered.length)} résultats affichés`)}
               </span>
               {query || selectedTown !== "all" ? (
                 <button
@@ -224,33 +229,39 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                   }}
                   type="button"
                 >
-                  Clear filters
+                  {t("Clear filters", "Effacer les filtres")}
                 </button>
               ) : null}
             </div>
 
             {userLoc && locationOutOfRange ? (
               <p className="mt-3 flex items-start gap-2 rounded-2xl bg-error-container px-4 py-2.5 font-label-md text-label-md text-on-error-container">
-                <span className="material-symbols-outlined text-[18px]">location_off</span>
+                <span className="material-symbols-outlined notranslate text-[18px]">location_off</span>
                 <span>
-                  We couldn&apos;t pinpoint your location inside Kenya (it looks about {Math.round(nearestDist!).toLocaleString()} km away). This usually happens on a desktop browser or over a VPN &mdash; please pick your town from the list above for accurate results.
+                  {t(
+                    `We couldn’t pinpoint your location inside Kenya (it looks about ${num(Math.round(nearestDist!))} km away). This usually happens on a desktop browser or over a VPN — please pick your town from the list above for accurate results.`,
+                    `Impossible de vous situer au Kenya (votre position semble à environ ${num(Math.round(nearestDist!))} km). Cela arrive souvent sur un ordinateur ou avec un VPN — choisissez votre ville dans la liste ci-dessus pour des résultats précis.`,
+                  )}
                 </span>
               </p>
             ) : null}
             {userLoc && nearestTown && !locationOutOfRange ? (
               <p className="mt-3 inline-flex items-center gap-2 rounded-full bg-primary-container/40 px-4 py-1.5 font-label-md text-label-md text-primary">
-                <span className="material-symbols-outlined text-[18px]">where_to_vote</span>
-                Sorted by distance — nearest town is {nearestTown.town.name} (~{Math.round(distanceKm(userLoc, nearestTown.town))} km)
+                <span className="material-symbols-outlined notranslate text-[18px]">where_to_vote</span>
+                {t(
+                  `Sorted by distance — nearest town is ${nearestTown.town.name} (~${Math.round(distanceKm(userLoc, nearestTown.town))} km)`,
+                  `Triés par distance — ville la plus proche : ${nearestTown.town.name} (~${Math.round(distanceKm(userLoc, nearestTown.town))} km)`,
+                )}
               </p>
             ) : null}
             {geoState === "denied" ? (
               <p className="mt-3 font-label-md text-label-md text-error">
-                Location permission was denied. You can still filter by town using the dropdown.
+                {t("Location permission was denied. You can still filter by town using the dropdown.", "L’accès à la position a été refusé. Vous pouvez toujours filtrer par ville avec la liste déroulante.")}
               </p>
             ) : null}
             {geoState === "error" ? (
               <p className="mt-3 font-label-md text-label-md text-error">
-                Could not get your location. You can still filter by town using the dropdown.
+                {t("Could not get your location. You can still filter by town using the dropdown.", "Impossible d’obtenir votre position. Vous pouvez toujours filtrer par ville avec la liste déroulante.")}
               </p>
             ) : null}
           </div>
@@ -267,7 +278,7 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                     <button
                       className="group min-w-0 text-left"
                       onClick={() => setMapTarget({ name: distributor.name, town: distributor.town! })}
-                      title={`Show ${distributor.town.name} on the map`}
+                      title={t(`Show ${distributor.town.name} on the map`, `Voir ${distributor.town.name} sur la carte`)}
                       type="button"
                     >
                       <h2 className="truncate font-headline-md text-[18px] text-on-surface group-hover:text-primary group-hover:underline">
@@ -275,17 +286,17 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                       </h2>
                       <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 font-label-md text-label-md text-on-surface-variant">
                         <span className="inline-flex items-center gap-1">
-                          <span className="material-symbols-outlined text-[16px] text-primary">location_on</span>
+                          <span className="material-symbols-outlined notranslate text-[16px] text-primary">location_on</span>
                           {distributor.town.name}, {distributor.town.county}
                         </span>
                         {dist !== null ? (
                           <span className="rounded-full bg-primary-container/40 px-2 py-0.5 font-bold text-primary">
-                            ~{dist} km away
+                            {t(`~${dist} km away`, `à ~${dist} km`)}
                           </span>
                         ) : null}
                         <span className="inline-flex items-center gap-0.5 text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                          <span className="material-symbols-outlined text-[16px]">map</span>
-                          View on map
+                          <span className="material-symbols-outlined notranslate text-[16px]">map</span>
+                          {t("View on map", "Voir sur la carte")}
                         </span>
                       </div>
                     </button>
@@ -294,8 +305,8 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                       <h2 className="truncate font-headline-md text-[18px] text-on-surface">{distributor.name}</h2>
                       <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 font-label-md text-label-md text-on-surface-variant">
                         <span className="inline-flex items-center gap-1 text-outline">
-                          <span className="material-symbols-outlined text-[16px]">help</span>
-                          Town not classified
+                          <span className="material-symbols-outlined notranslate text-[16px]">help</span>
+                          {t("Town not classified", "Ville non classée")}
                         </span>
                       </div>
                     </div>
@@ -307,8 +318,8 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                         onClick={() => setMapTarget({ name: distributor.name, town: distributor.town! })}
                         type="button"
                       >
-                        <span className="material-symbols-outlined text-[18px]">map</span>
-                        Map
+                        <span className="material-symbols-outlined notranslate text-[18px]">map</span>
+                        {t("Map", "Carte")}
                       </button>
                     ) : null}
                     {distributor.phones.length > 0 ? (
@@ -318,14 +329,14 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                           href={`tel:${phone.tel}`}
                           key={phone.display}
                         >
-                          <span className="material-symbols-outlined text-[18px]">call</span>
+                          <span className="material-symbols-outlined notranslate text-[18px]">call</span>
                           {phone.display}
                         </a>
                       ))
                     ) : (
                       <span className="inline-flex items-center gap-2 rounded-lg border border-outline-variant px-3 py-2 font-label-md text-label-md text-on-surface-variant">
-                        <span className="material-symbols-outlined text-[18px]">phone_disabled</span>
-                        Phone not listed
+                        <span className="material-symbols-outlined notranslate text-[18px]">phone_disabled</span>
+                        {t("Phone not listed", "Téléphone non renseigné")}
                       </span>
                     )}
                   </div>
@@ -335,9 +346,9 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
 
             {visible.length === 0 ? (
               <div className="p-10 text-center">
-                <span className="material-symbols-outlined mb-3 text-4xl text-on-surface-variant">search_off</span>
-                <p className="font-headline-md text-headline-md text-primary">No distributors found</p>
-                <p className="mt-2 text-on-surface-variant">Try a different town or a shorter search term.</p>
+                <span className="material-symbols-outlined notranslate mb-3 text-4xl text-on-surface-variant">search_off</span>
+                <p className="font-headline-md text-headline-md text-primary">{t("No distributors found", "Aucun distributeur trouvé")}</p>
+                <p className="mt-2 text-on-surface-variant">{t("Try a different town or a shorter search term.", "Essayez une autre ville ou une recherche plus courte.")}</p>
               </div>
             ) : null}
           </div>
@@ -349,7 +360,7 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                 onClick={() => setVisibleCount((count) => count + PAGE_SIZE)}
                 type="button"
               >
-                Show more distributors
+                {t("Show more distributors", "Afficher plus de distributeurs")}
               </button>
             </div>
           ) : null}
@@ -362,7 +373,7 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
           onClick={() => setMapTarget(null)}
           role="dialog"
           aria-modal="true"
-          aria-label={`Map for ${mapTarget.name}`}
+          aria-label={t(`Map for ${mapTarget.name}`, `Carte pour ${mapTarget.name}`)}
         >
           <div
             className="flex max-h-[90vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-surface-container-lowest shadow-2xl"
@@ -372,18 +383,18 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
               <div className="min-w-0">
                 <h2 className="truncate font-headline-md text-headline-md text-on-surface">{mapTarget.name}</h2>
                 <p className="mt-1 inline-flex items-center gap-1 font-label-md text-label-md text-on-surface-variant">
-                  <span className="material-symbols-outlined text-[18px] text-primary">location_on</span>
-                  {mapTarget.town.name}, {mapTarget.town.county} County
-                  {userLoc ? ` · ~${Math.round(distanceKm(userLoc, mapTarget.town))} km away` : ""}
+                  <span className="material-symbols-outlined notranslate text-[18px] text-primary">location_on</span>
+                  {fr ? `${mapTarget.town.name}, comté de ${mapTarget.town.county}` : `${mapTarget.town.name}, ${mapTarget.town.county} County`}
+                  {userLoc ? (fr ? ` · à ~${Math.round(distanceKm(userLoc, mapTarget.town))} km` : ` · ~${Math.round(distanceKm(userLoc, mapTarget.town))} km away`) : ""}
                 </p>
               </div>
               <button
-                aria-label="Close map"
+                aria-label={t("Close map", "Fermer la carte")}
                 className="shrink-0 rounded-full p-2 text-on-surface-variant transition-colors hover:bg-surface-container-high"
                 onClick={() => setMapTarget(null)}
                 type="button"
               >
-                <span className="material-symbols-outlined">close</span>
+                <span className="material-symbols-outlined notranslate">close</span>
               </button>
             </div>
             <div className="relative aspect-[4/3] w-full bg-surface-container">
@@ -392,13 +403,13 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                 className="absolute inset-0 h-full w-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                src={`https://maps.google.com/maps?q=${mapTarget.town.lat},${mapTarget.town.lng}&z=12&hl=en&output=embed`}
-                title={`Map of ${mapTarget.town.name}`}
+                src={`https://maps.google.com/maps?q=${mapTarget.town.lat},${mapTarget.town.lng}&z=12&hl=${t.lang}&output=embed`}
+                title={t(`Map of ${mapTarget.town.name}`, `Carte de ${mapTarget.town.name}`)}
               />
             </div>
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-outline-variant p-4">
               <p className="font-label-md text-label-md text-on-surface-variant">
-                Approximate town location — call the distributor for exact directions.
+                {t("Approximate town location — call the distributor for exact directions.", "Emplacement approximatif de la ville — appelez le distributeur pour l’itinéraire exact.")}
               </p>
               <a
                 className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 font-label-md text-label-md font-bold text-on-primary transition-opacity hover:opacity-90"
@@ -406,8 +417,8 @@ export function DistributorDirectory({ distributors }: { distributors: Distribut
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                <span className="material-symbols-outlined text-[18px]">open_in_new</span>
-                Open in Google Maps
+                <span className="material-symbols-outlined notranslate text-[18px]">open_in_new</span>
+                {t("Open in Google Maps", "Ouvrir dans Google Maps")}
               </a>
             </div>
           </div>
