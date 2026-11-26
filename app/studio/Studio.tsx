@@ -8,8 +8,17 @@ import { Editor } from "./Editor";
 import { MediaLibrary } from "./MediaLibrary";
 import { toast } from "../../lib/toast";
 
+/**
+ * Unique URL for reads, so a cached copy (Bluehost CDN) can never answer a
+ * Studio request: a stored "not signed in" reply once locked every editor out.
+ */
+export function freshUrl(url: string) {
+  return `${url}${url.includes("?") ? "&" : "?"}_=${Date.now()}`;
+}
+
 export async function studioRequest(url: string, options?: RequestInit) {
-  const response = await fetch(url, options);
+  const read = !options?.method || options.method.toUpperCase() === "GET";
+  const response = await fetch(read ? freshUrl(url) : url, { cache: "no-store", ...options });
   const data = await response.json();
   if (!response.ok) throw new Error(data.error || "The request failed. Please try again.");
   return data;
@@ -18,7 +27,7 @@ export function Studio({ initialPosts, editor, onLogout }: { initialPosts: Studi
   const [posts, setPosts] = useState(initialPosts); const [media, setMedia] = useState<Media[]>([]);
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/api/studio/media", { cache: "no-store", signal: controller.signal })
+    fetch(freshUrl("/api/studio/media"), { cache: "no-store", signal: controller.signal })
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => { if (Array.isArray(d?.media)) setMedia(d.media); })
       .catch(() => {});

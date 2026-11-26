@@ -31,13 +31,20 @@ export function writeLang(lang: Lang) {
       document.cookie = `googtrans=/en/${lang}; max-age=31536000; ${scope}`;
     }
   }
+  // Tell every component using useLang()/useT() to re-render now, in place.
+  window.dispatchEvent(new Event(LANG_EVENT));
 }
 
-const noSubscribe = () => () => {};
+const LANG_EVENT = "mp-lang-change";
 
-/** Current language; "en" during prerender, the cookie value after hydration. */
+function subscribe(onChange: () => void) {
+  window.addEventListener(LANG_EVENT, onChange);
+  return () => window.removeEventListener(LANG_EVENT, onChange);
+}
+
+/** Current language; "en" during prerender, then live (switches without reload). */
 export function useLang(): Lang {
-  return useSyncExternalStore<Lang>(noSubscribe, readLang, () => "en");
+  return useSyncExternalStore<Lang>(subscribe, readLang, () => "en");
 }
 
 /** `t("English", "Français")` picks the string for the current language. */

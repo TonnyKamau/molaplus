@@ -3,8 +3,9 @@ import Link from "next/link";
 import { LegalPage } from "../_components/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | MolaPlus",
+  title: "Terms of Service",
   description: "Terms governing the use of MolaPlus products, services, and website.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

@@ -79,6 +79,13 @@ RewriteRule ^blog/[^/]+/?$ /blog/_/index.html [L]
     Header set CDN-Cache-Control "no-store"
     Header set Cloudflare-CDN-Cache-Control "no-store"
   </FilesMatch>
+  # Studio sign-in and editing must never be cached by the CDN or browser,
+  # or a stored "not signed in" answer locks every editor out.
+  <If "%{REQUEST_URI} =~ m#^/api/studio/#">
+    Header always set Cache-Control "private, no-store, no-cache, must-revalidate, max-age=0"
+    Header always set CDN-Cache-Control "no-store"
+    Header always set Cloudflare-CDN-Cache-Control "no-store"
+  </If>
   Header always set X-Content-Type-Options "nosniff"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"

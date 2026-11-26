@@ -13,9 +13,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = buildTimePosts().find((p) => p.slug === slug);
-  if (!post) return { title: "MolaPlus Field Notes | MolaPlus" };
+  if (!post) return { title: { absolute: "MolaPlus Field Notes" } };
   return {
-    title: `${post.seoTitle || post.title} | MolaPlus Field Notes`,
+    title: { absolute: `${post.seoTitle || post.title} | MolaPlus Field Notes` },
     description: post.seoDescription || post.excerpt,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: { type: "article", title: post.title, description: post.excerpt, url: `/blog/${post.slug}`, publishedTime: post.date, images: [{ url: post.image, alt: post.imageAlt }] },

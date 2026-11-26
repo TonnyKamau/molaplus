@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-import { type Lang, readLang, useLang, writeLang } from "../../lib/i18n";
+import { type Lang, useLang, writeLang } from "../../lib/i18n";
 
 /**
  * EN / FR switcher for the Côte d'Ivoire audience.
@@ -198,6 +198,57 @@ function loadTranslator() {
   document.body.appendChild(script);
 }
 
+/** Google's hidden language <select>, once its widget has loaded. */
+function waitForGoogleCombo(timeoutMs = 12000): Promise<HTMLSelectElement | null> {
+  return new Promise((resolve) => {
+    const started = Date.now();
+    const tick = () => {
+      const combo = document.querySelector<HTMLSelectElement>("select.goog-te-combo");
+      if (combo && combo.options.length > 0) return resolve(combo);
+      if (Date.now() - started > timeoutMs) return resolve(null);
+      window.setTimeout(tick, 100);
+    };
+    tick();
+  });
+}
+
+/**
+ * Translate (or restore) the page in place through Google's own selector,
+ * so switching never reloads the page or moves the scroll position.
+ * Returns false when Google could not do it.
+ */
+async function switchGoogle(lang: Lang): Promise<boolean> {
+  if (lang === "en") return restoreGoogle();
+  const combo = await waitForGoogleCombo();
+  if (!combo) return false;
+  const option = [...combo.options].find((o) => o.value === lang);
+  if (!option) return false;
+  combo.value = lang;
+  combo.dispatchEvent(new Event("change"));
+  return true;
+}
+
+/**
+ * Back to English without a reload: press Google's own (hidden) "Show
+ * original" button, then confirm the page really is untranslated.
+ */
+async function restoreGoogle(): Promise<boolean> {
+  const translated = () => /translated-(ltr|rtl)/.test(document.documentElement.className);
+  if (!translated()) return true;
+  const frame = [...document.querySelectorAll<HTMLIFrameElement>("iframe")].find((f) => f.id.endsWith(".container"));
+  let restore: HTMLElement | null = null;
+  try {
+    restore = frame?.contentDocument?.querySelector<HTMLElement>("[id$=\".restore\"]") ?? null;
+  } catch {
+    restore = null;
+  }
+  restore?.click();
+  for (let waited = 0; waited < 2000 && translated(); waited += 100) {
+    await new Promise((r) => window.setTimeout(r, 100));
+  }
+  return !translated();
+}
+
 type Props = {
   className?: string;
   /** Visible "Language" caption, used inside the mobile menu. */
@@ -212,19 +263,38 @@ type Props = {
 export function LanguageSwitcher({ className = "", label = false, host = true }: Props) {
   const lang = useLang();
 
+  const firstRun = useRef(true);
+
   useEffect(() => {
     if (!host) return;
-    const current = readLang();
-    // Only pull in Google's script when a translation is actually wanted.
-    if (current === "en") return;
+    const initial = firstRun.current;
+    firstRun.current = false;
+
+    if (lang === "en") {
+      // Switched back to English: restore Google's translation in place. If the
+      // page was never translated there is nothing to undo.
+      if (!initial && document.getElementById("google-translate-script")) {
+        switchGoogle("en").then((ok) => {
+          if (!ok) window.location.reload();
+        });
+      }
+      return;
+    }
+
     patchDomForTranslation();
     // Mark product names before Google's script reads the page.
     const productObserver = watchProductNames();
     loadTranslator();
+    // On first load Google reads the cookie itself; after a click we drive it.
+    if (!initial) {
+      switchGoogle("fr").then((ok) => {
+        if (!ok) window.location.reload();
+      });
+    }
 
-    // Google only translates the DOM on page load, so Next's client-side
-    // route changes would show untranslated English. While translated, turn
-    // internal link clicks and back/forward into full page loads instead.
+    // Google only translates what is on the page, so Next's client-side route
+    // changes would show untranslated English. While translated, turn internal
+    // link clicks and back/forward into full page loads instead.
     const onClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const anchor = (event.target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
@@ -244,12 +314,13 @@ export function LanguageSwitcher({ className = "", label = false, host = true }:
       document.removeEventListener("click", onClick, true);
       window.removeEventListener("popstate", onPopState);
     };
-  }, [host]);
+  }, [host, lang]);
 
+  // No reload: the cookie is saved, every native-French component re-renders
+  // at once, and the header switcher translates the rest of the page in place.
   const choose = (next: Lang) => {
     if (next === lang) return;
     writeLang(next);
-    window.location.reload();
   };
 
   return (

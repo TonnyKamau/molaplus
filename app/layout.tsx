@@ -2,21 +2,50 @@
 import "./globals.css";
 import { SiteChrome } from "./_components/SiteChrome";
 import { Toaster } from "./_components/Toaster";
+import { SITE_KEYWORDS, SITE_NAME, SITE_URL } from "../lib/seo";
+
+const defaultDescription =
+  "MolaPlus makes animal feed supplements, livestock feeds, probiotics and organic crop fertilizers for dairy, poultry and pig farmers in Kenya and Côte d'Ivoire, with farm consultancy and technical support.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://molaplus.org"),
-  title: "MolaPlus | Advanced Animal Nutrition",
-  description:
-    "Innovative animal feed supplements, probiotics, consultancy, and technical support for productive farms across East Africa.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "MolaPlus | Animal Feed Supplements, Livestock Feeds & Organic Fertilizers",
+    template: "%s | MolaPlus",
+  },
+  description: defaultDescription,
+  keywords: SITE_KEYWORDS,
+  applicationName: SITE_NAME,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "Agriculture",
+  alternates: { canonical: "/" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
+  // Paste the codes from Google Search Console / Bing Webmaster Tools into .env
+  // (GOOGLE_SITE_VERIFICATION, BING_SITE_VERIFICATION) and rebuild.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
+  },
   openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    url: "/",
+    locale: "en_KE",
+    alternateLocale: ["fr_CI"],
     title: "MolaPlus | Healthy animals. Stronger farms.",
-    description: "Advanced animal nutrition developed for productive East African farms.",
+    description: defaultDescription,
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "MolaPlus — Healthy animals. Stronger farms." }],
   },
   twitter: {
     card: "summary_large_image",
     title: "MolaPlus | Healthy animals. Stronger farms.",
-    description: "Advanced animal nutrition developed for productive East African farms.",
+    description: defaultDescription,
     images: ["/og.jpg"],
   },
 };

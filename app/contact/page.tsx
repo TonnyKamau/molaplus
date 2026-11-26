@@ -1,14 +1,31 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { MAIN_CONTACT, TEAM } from "../../lib/contacts";
+import { breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
 const departments = [
-  ["engineering", "Technical Support", "Product usage, dosage and livestock nutrition advice.", "+254 722 656 142", "tel:+254722656142"],
-  ["sell", "Sales & Bulk Orders", "Pricing, bulk quantities and delivery logistics.", "+254 722 656 142", "tel:+254722656142"],
+  ["engineering", "Technical Support", "Product usage, dosage and livestock nutrition advice.", "+254 724 968 847", "tel:+254724968847"],
+  ["sell", "Sales & Bulk Orders", "Pricing, bulk quantities and delivery logistics.", "+254 724 968 847", "tel:+254724968847"],
   ["handshake", "Distributor Partnership", "Become a stockist and join our nationwide network.", "Browse the directory", "/distributors"],
 ];
+
+export const metadata: Metadata = pageMetadata({
+  title: "Contact MolaPlus — Orders, Farm Advice & Distributor Enquiries",
+  description: "Contact MolaPlus by WhatsApp, phone (+254 724 968 847) or email (info@molaplus.org) to order feed supplements and fertilizers, get farm advice or become a distributor. M-Pesa Till 906520.",
+  path: "/contact",
+  keywords: ["MolaPlus contact","MolaPlus phone number","become a distributor","buy feed supplements"],
+});
+
+const pageSchema = jsonLd({
+  "@graph": [
+    breadcrumbSchema([["Contact", "/contact"]]),
+  ],
+});
 
 export default function ContactPage() {
   return (
     <div className="editorial-page contact-page overflow-x-hidden bg-surface text-on-surface">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: pageSchema }} />
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
@@ -31,7 +48,7 @@ export default function ContactPage() {
             {/* WhatsApp (recommended) */}
             <a
               className="contact-card--recommended mp-hover-lift group relative flex flex-col justify-between overflow-hidden rounded-3xl bg-secondary-container p-8 text-white sm:col-span-2 lg:col-span-1"
-              href="https://wa.me/254722656142"
+              href="https://wa.me/254724968847"
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -48,13 +65,13 @@ export default function ContactPage() {
             </a>
 
             {/* Call */}
-            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="tel:+254722656142">
+            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="tel:+254724968847">
               <div>
                 <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
                 <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-black">Call us</h2>
                 <p className="mt-2 text-on-surface-variant">Speak directly with our technical and sales team.</p>
               </div>
-              <span className="mt-6 text-lg font-extrabold text-primary">+254 722 656 142</span>
+              <span className="mt-6 text-lg font-extrabold text-primary">{MAIN_CONTACT.display}</span>
             </a>
 
             {/* Email */}
@@ -67,6 +84,41 @@ export default function ContactPage() {
               <span className="mt-6 break-all text-lg font-extrabold text-primary">info@molaplus.org</span>
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Direct lines: team numbers only (no names or roles, by request) */}
+      <section className="direct-lines mp-scene mp-grain relative overflow-hidden" id="team">
+        <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 md:px-margin-desktop md:py-20">
+          <div className="direct-lines__head" data-reveal>
+            <div>
+              <span className="mp-eyebrow text-primary-fixed-dim">Direct lines</span>
+              <h2 className="mp-display-sm mt-3 text-white">
+                More lines. <em>Less waiting.</em>
+              </h2>
+            </div>
+            <p className="direct-lines__intro">
+              Line busy? Try the next one. Every line reaches the MolaPlus team for orders, prices, delivery and payments, by call or WhatsApp.
+            </p>
+          </div>
+          <ol className="direct-lines__grid" data-reveal data-reveal-stagger>
+            {TEAM.map((line, index) => (
+              <li className="direct-line" key={line.tel}>
+                <span className="direct-line__index">Line {String(index + 1).padStart(2, "0")}</span>
+                <a className="direct-line__number" href={`tel:+${line.tel}`} aria-label={`Call ${line.display}`}>
+                  {line.display}
+                </a>
+                <div className="direct-line__actions">
+                  <a className="direct-line__btn direct-line__btn--call" href={`tel:+${line.tel}`} aria-label={`Call ${line.display}`}>
+                    <span className="material-symbols-outlined notranslate text-[18px]">call</span>Call
+                  </a>
+                  <a className="direct-line__btn direct-line__btn--chat" href={`https://wa.me/${line.tel}`} rel="noopener noreferrer" target="_blank" aria-label={`WhatsApp ${line.display}`}>
+                    <span className="material-symbols-outlined notranslate text-[18px]">chat</span>WhatsApp
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 

@@ -11,6 +11,7 @@ import { ShareArticle } from "./ShareArticle";
 import { ArticleBody } from "./ArticleBody";
 import { formatDate, readingMinutes, summarize, type Post } from "./posts";
 import { postBody, postHeadings } from "../../lib/studio/model";
+import { freshUrl, minuteUrl } from "../../lib/blog/live";
 
 /** Derive the slug from the URL when a fallback shell renders an unknown post. */
 function slugFromLocation(fallback: string) {
@@ -32,15 +33,26 @@ export function BlogArticle({ initialSlug, initialPost }: { initialSlug: string;
   }, [initialSlug]);
 
   useEffect(() => {
-    if (!slug) return;
+    // "_" is the placeholder of the shared article shell, not a real article:
+    // wait for the real slug from the address bar instead of looking it up.
+    if (!slug || slug === "_") return;
     const controller = new AbortController();
     if (!post) setState("loading");
-    fetch("/api/blog/posts", { signal: controller.signal, cache: "no-store" })
+    fetch(minuteUrl("/api/blog/posts"), { signal: controller.signal, cache: "no-store" })
       .then((r) => (r.ok ? r.json() : { posts: [] }))
-      .then((data) => {
+      .then(async (data) => {
         const live: Post[] = Array.isArray(data?.posts) ? data.posts : [];
         if (live.length) setPosts(live);
-        const found = live.find((p) => p.slug === slug) ?? null;
+        let found = live.find((p) => p.slug === slug) ?? null;
+        // Published moments ago? The shared list may be up to a minute old,
+        // so ask for this one article directly before saying it is missing.
+        if (!found) {
+          const direct = await fetch(freshUrl(`/api/blog/posts?slug=${encodeURIComponent(slug)}`), { signal: controller.signal, cache: "no-store" })
+            .then((r) => (r.ok ? r.json() : null))
+            .catch(() => null);
+          if (direct?.post?.slug === slug) found = direct.post as Post;
+        }
+        if (controller.signal.aborted) return;
         if (found) {
           setPost(found);
           setState("idle");
@@ -49,6 +61,8 @@ export function BlogArticle({ initialSlug, initialPost }: { initialSlug: string;
         }
       })
       .catch(() => {
+        // A cancelled lookup (the page moved on) is not a missing article.
+        if (controller.signal.aborted) return;
         if (!post) setState("missing");
       });
     return () => controller.abort();

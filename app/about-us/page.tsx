@@ -1,4 +1,6 @@
 ﻿import Link from "next/link";
+import type { Metadata } from "next";
+import { breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
 const values = [
   ["science", "Scientific Rigor", "Every formulation is grounded in research, fermentation science and testing."],
@@ -11,9 +13,23 @@ const impact = [
   ["eco", "Sustainability", "Promoting animal health through natural probiotics rather than prophylactic antibiotics."],
 ];
 
+export const metadata: Metadata = pageMetadata({
+  title: "About MolaPlus — Science-Driven Animal Nutrition for African Farms",
+  description: "MolaPlus develops animal feed supplements, livestock feeds, probiotics and crop nutrition for African farmers, guided by quality, innovation and reliability. Now serving Kenya and Côte d'Ivoire.",
+  path: "/about-us",
+  keywords: ["about MolaPlus","animal nutrition company Kenya","feed supplement manufacturer"],
+});
+
+const pageSchema = jsonLd({
+  "@graph": [
+    breadcrumbSchema([["About Us", "/about-us"]]),
+  ],
+});
+
 export default function AboutPage() {
   return (
     <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: pageSchema }} />
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">

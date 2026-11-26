@@ -108,7 +108,7 @@ export function SiteHeader() {
             <Link className="site-header__contact hidden lg:inline-flex" href="/order">
               <span className="site-header__contact-long">Place an order</span><span className="site-header__contact-short">Order</span> <span aria-hidden>↗</span>
             </Link>
-            <a aria-label="Call MolaPlus" className="site-header__call grid h-10 w-10 place-items-center border border-[#173b2b]/20 text-[#0c432c] lg:hidden" href="tel:+254722656142"><span className="material-symbols-outlined notranslate text-[20px]">call</span></a>
+            <a aria-label="Call MolaPlus" className="site-header__call grid h-10 w-10 place-items-center border border-[#173b2b]/20 text-[#0c432c] lg:hidden" href="tel:+254724968847"><span className="material-symbols-outlined notranslate text-[20px]">call</span></a>
             <button aria-label="Open menu" className="grid h-10 w-10 place-items-center bg-[#0c432c] text-white transition-colors hover:bg-[#ef5b2a] lg:hidden" onClick={() => setOpen(true)} type="button"><span className="material-symbols-outlined notranslate">menu</span></button>
           </div>
         </div>
@@ -174,10 +174,10 @@ export function SiteHeader() {
         <div className="mobile-drawer__footer border-t border-outline-variant p-4">
           <a
             className="flex items-center justify-center gap-2 rounded-full bg-secondary-container px-5 py-3 font-bold text-white transition-opacity hover:opacity-90"
-            href="tel:+254722656142"
+            href="tel:+254724968847"
           >
             <span className="material-symbols-outlined notranslate text-[18px]">call</span>
-            +254 722 656 142
+            +254 724 968 847
           </a>
         </div>
       </nav>

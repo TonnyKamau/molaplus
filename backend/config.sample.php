@@ -30,7 +30,7 @@ return [
     'sms' => [
         'username'  => '',
         'api_key'   => '',
-        'recipients'=> '',      // e.g. +254722656142
+        'recipients'=> '',      // e.g. +254724968847
         'sender_id' => '',      // optional short code / alphanumeric
     ],
 

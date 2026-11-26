@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import type { StudioPost } from "../../lib/studio/model";
 import { Login } from "./Login";
-import { Studio } from "./Studio";
+import { Studio, freshUrl } from "./Studio";
 
 type Status = "loading" | "login" | "ready";
 
@@ -16,7 +16,7 @@ export default function StudioPage() {
 
   const load = useCallback(async (): Promise<boolean> => {
     try {
-      const session = await fetch("/api/studio/session", { cache: "no-store" }).then((r) => r.json());
+      const session = await fetch(freshUrl("/api/studio/session"), { cache: "no-store", credentials: "same-origin" }).then((r) => r.json());
       if (!session?.authenticated) {
         setStatus("login");
         return false;
@@ -24,7 +24,7 @@ export default function StudioPage() {
       setEditor(session.editor ?? null);
       // Load posts first so the workspace opens fast; media (heavier) loads
       // in the background inside Studio.
-      const postsRes = await fetch("/api/studio/posts", { cache: "no-store" }).then((r) => r.json());
+      const postsRes = await fetch(freshUrl("/api/studio/posts"), { cache: "no-store", credentials: "same-origin" }).then((r) => r.json());
       setPosts(Array.isArray(postsRes?.posts) ? postsRes.posts : []);
       setStatus("ready");
       return true;

@@ -6,8 +6,8 @@ import { formatDate, readingMinutes, summarize } from "./posts";
 import { buildTimePosts } from "../../lib/blog/published";
 
 export const metadata: Metadata = {
-  title: "Field Notes — The MolaPlus Blog | MolaPlus",
-  description: "Practical reading for better farming. Explore dairy, poultry, livestock and farm management stories from MolaPlus.",
+  title: { absolute: "Field Notes — Farming Tips for Dairy, Poultry, Pigs & Crops | MolaPlus Blog" },
+  description: "Practical farming tips from MolaPlus: dairy feeding routines, poultry house checklists, livestock nutrition and farm management advice for African farmers.",
   alternates: { canonical: "/blog", types: { "application/rss+xml": "/blog/feed.xml" } },
   openGraph: { title: "Field Notes — The MolaPlus Blog", description: "Good knowledge. Better farming. Practical ideas for the everyday work of farming.", url: "/blog", images: [{ url: "/molaplus/service-cows.webp", alt: "A dairy cow and calf at pasture" }] },
   twitter: { card: "summary_large_image", title: "Field Notes — The MolaPlus Blog", description: "Practical ideas for the everyday work of farming.", images: ["/molaplus/service-cows.webp"] },

@@ -1,5 +1,7 @@
 ﻿import Link from "next/link";
 import Image from "next/image";
+import type { Metadata } from "next";
+import { breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
 const products = [
   {
@@ -28,9 +30,23 @@ const products = [
   },
 ];
 
+export const metadata: Metadata = pageMetadata({
+  title: "Compare MolaPlus Products — Dairy, Poultry, Pig & Crop Nutrition",
+  description: "Compare MolaPlus feed supplements side by side: Super Milk Booster, Poultry Microbes, Pig Microbes and more. See which product fits your animals, farm size and goals.",
+  path: "/product-comparison",
+  keywords: ["compare feed supplements","best dairy supplement","poultry vs pig probiotics"],
+});
+
+const pageSchema = jsonLd({
+  "@graph": [
+    breadcrumbSchema([["Compare Products", "/product-comparison"]]),
+  ],
+});
+
 export default function ComparisonPage() {
   return (
     <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: pageSchema }} />
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { SITE_URL, breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
 const expertise = [
   [
@@ -33,9 +35,36 @@ const support = [
   ["biotech", "Lab Integration", "Direct connection to our laboratory for rapid sample testing and results."],
 ];
 
+export const metadata: Metadata = pageMetadata({
+  title: "Farm Consultancy, Farmer Training & Technical Support",
+  description: "MolaPlus farm consultancy: livestock nutrition and management advice for dairy, poultry and pig farms, practical farmer training and technical support before and after purchase.",
+  path: "/consultancy",
+  keywords: ["farm consultancy Kenya","livestock nutrition advice","dairy farm consultant","poultry farm advice","farmer training"],
+});
+
+const pageSchema = jsonLd({
+  "@graph": [
+    breadcrumbSchema([["Consultancy", "/consultancy"]]),
+    ...[
+      ["Farm consultancy", "Nutrition and management guidance shaped around your herd and targets."],
+      ["Farmer training", "Practical workshops and resources for confident day-to-day application."],
+      ["Technical support", "Real help for farmers and distributors, before and after purchase."],
+    ].map(([name, description]) => ({
+      "@type": "Service",
+      name,
+      description,
+      serviceType: name,
+      provider: { "@id": `${SITE_URL}/#organization` },
+      areaServed: [{ "@type": "Country", name: "Kenya" }, { "@type": "Country", name: "Côte d'Ivoire" }],
+      url: `${SITE_URL}/consultancy`,
+    })),
+  ],
+});
+
 export default function ConsultancyPage() {
   return (
     <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: pageSchema }} />
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
@@ -149,15 +178,15 @@ export default function ConsultancyPage() {
                 </p>
               </div>
               <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-                <a className="mp-hover-lift flex flex-col rounded-3xl bg-secondary-container p-6 text-white" href="https://wa.me/254722656142" rel="noopener noreferrer" target="_blank">
+                <a className="mp-hover-lift flex flex-col rounded-3xl bg-secondary-container p-6 text-white" href="https://wa.me/254724968847" rel="noopener noreferrer" target="_blank">
                   <span className="material-symbols-outlined notranslate text-3xl" style={{ fontVariationSettings: "'FILL' 1" }}>chat</span>
                   <span className="mp-eyebrow mt-3 text-white/70">Recommended</span>
                   <span className="text-lg font-extrabold">WhatsApp us</span>
                 </a>
-                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="tel:+254722656142">
+                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="tel:+254724968847">
                   <span className="material-symbols-outlined notranslate text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>call</span>
                   <span className="mp-eyebrow mt-3 text-white/60">Phone Support</span>
-                  <span className="text-lg font-extrabold">+254 722 656 142</span>
+                  <span className="text-lg font-extrabold">+254 724 968 847</span>
                 </a>
                 <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="mailto:info@molaplus.org">
                   <span className="material-symbols-outlined notranslate text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>

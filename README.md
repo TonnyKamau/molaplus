@@ -57,7 +57,7 @@ MolaPlus is based in Kenya and has a branch in **Côte d'Ivoire**. That's why th
 
 | | |
 |---|---|
-| 📞 Phone / WhatsApp | **+254 722 656 142** |
+| 📞 Phone / WhatsApp | **+254 724 968 847** |
 | ✉️ Email | **info@molaplus.org** |
 | 💳 M‑Pesa | **Till No. 906520** |
 | 🌐 Web | **[molaplus.org](https://molaplus.org)** |

@@ -10,6 +10,16 @@
       ],
       "port": 3000,
       "autoPort": true
+    },
+    {
+      "name": "static",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/Users/USER/AppData/Local/Temp/claude/4548e1f784305ff1/1c4ea6de-20f2-4864-bdde-d3310c2b34c3/scratchpad/static.js",
+        "out",
+        "3001"
+      ],
+      "port": 3001
     }
   ]
 }

@@ -110,7 +110,7 @@ export function OrderForm() {
         toast.error(data.message || t("We could not send this order.", "Impossible d’envoyer cette commande."));
       }
     } catch {
-      toast.error(t("We could not send the order. Please call +254 722 656 142.", "Impossible d’envoyer la commande. Appelez le +254 722 656 142."));
+      toast.error(t("We could not send the order. Please call +254 724 968 847.", "Impossible d’envoyer la commande. Appelez le +254 724 968 847."));
     } finally {
       setPending(false);
     }
@@ -132,7 +132,7 @@ export function OrderForm() {
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link className="rounded-full bg-primary px-7 py-3.5 font-bold text-white" href="/products">{t("Continue browsing", "Continuer mes achats")}</Link>
-            <a className="rounded-full border border-outline-variant px-7 py-3.5 font-bold text-primary" href="tel:+254722656142">{t("Call MolaPlus", "Appeler MolaPlus")}</a>
+            <a className="rounded-full border border-outline-variant px-7 py-3.5 font-bold text-primary" href="tel:+254724968847">{t("Call MolaPlus", "Appeler MolaPlus")}</a>
           </div>
         </div>
       </section>
@@ -228,7 +228,7 @@ export function OrderForm() {
           {step === 2 && <><span className="mp-eyebrow text-secondary">{t("Step 2", "Étape 2")}</span><h2 className="mt-2 text-3xl font-extrabold text-ink-black">{t("Where should we deliver?", "Où devons-nous livrer ?")}</h2></>}
           <div className={step === 2 ? "mt-7 grid gap-5 sm:grid-cols-2" : "hidden"}>
             <label className="block font-bold">{t("Full name", "Nom complet")}<input className={inputClass} name="name" required autoComplete="name" /></label>
-            <label className="block font-bold">{t("Phone number", "Numéro de téléphone")}<input className={inputClass} name="phone" required pattern="[+0-9 ()-]{10,20}" title={t("Enter a Kenyan mobile number, for example 0722656142 or +254722656142", "Saisissez un numéro mobile kényan, par exemple 0722656142 ou +254722656142")} autoComplete="tel" inputMode="tel" placeholder="07… or +254…" /></label>
+            <label className="block font-bold">{t("Phone number", "Numéro de téléphone")}<input className={inputClass} name="phone" required pattern="[+0-9 ()-]{10,20}" title={t("Enter a Kenyan mobile number, for example 0724968847 or +254724968847", "Saisissez un numéro mobile kényan, par exemple 0724968847 ou +254724968847")} autoComplete="tel" inputMode="tel" placeholder="07… or +254…" /></label>
             <label className="block font-bold">{t("County", "Comté / région")}<input className={inputClass} name="county" required placeholder={t("e.g. Nakuru", "ex. Nakuru")} /></label>
             <label className="block font-bold">{t("Town / area", "Ville / quartier")}<input className={inputClass} name="town" required placeholder={t("e.g. Njoro", "ex. Njoro")} /></label>
             <label className="block font-bold sm:col-span-2">{t("Delivery directions", "Indications de livraison")}<textarea className={inputClass} name="address" required rows={3} placeholder={t("Village, road, landmark or farm name", "Village, route, point de repère ou nom de la ferme")} /></label>

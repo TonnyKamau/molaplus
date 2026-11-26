@@ -611,12 +611,24 @@
 /* ---------------------------------------------------------------------------
    Article list — fit Edit / Copy / Delete without clipping the date (desktop)
    --------------------------------------------------------------------------- */
-@media (min-width: 701px) {
+@media (min-width: 1101px) {
   .studio-table-heading,
   .studio-post-row {
-    grid-template-columns: minmax(220px, 1fr) 100px 124px 186px !important;
+    grid-template-columns: minmax(220px, 1fr) 104px 124px 262px !important;
     gap: 14px !important;
   }
+}
+/* Medium screens hide the date column: lay the row out in 3 columns so the
+   buttons get their own space instead of spilling over the status label. */
+@media (min-width: 701px) and (max-width: 1100px) {
+  .studio-table-heading,
+  .studio-post-row {
+    grid-template-columns: minmax(200px, 1fr) 104px 262px !important;
+    gap: 14px !important;
+  }
+}
+@media (min-width: 701px) {
+  .studio-post-row > .studio-status { white-space: nowrap; justify-self: start; }
   .studio-post-row > time {
     font-size: 12px !important;
     white-space: nowrap !important;

@@ -15,10 +15,13 @@ export function BlogCard({ post }: { post: PostSummary }) {
           <Image src={post.image} alt={post.imageAlt} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 46vw, 92vw" />
           <span className="journal-card__arrow" aria-hidden="true">↗</span>
         </div>
-        <div className="journal-meta" translate="no"><span>{fr ? categoryFr[post.category] ?? post.category : post.category}</span><span>{t(`${post.minutes} min read`, `${post.minutes} min de lecture`)}</span><span>{fr ? plural(post.views ?? 0, "vue", "vues", "fr") : `${(post.views ?? 0).toLocaleString()} views`}</span></div>
+        <div className="journal-meta" translate="no"><span>{fr ? categoryFr[post.category] ?? post.category : post.category}</span><span>{t(`${post.minutes} min read`, `${post.minutes} min de lecture`)}</span></div>
         <h3>{post.title}</h3>
         <p>{post.excerpt}</p>
-        <time dateTime={post.date}>{formatDate(post.date)}</time>
+        <div className="journal-card__foot" translate="no">
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          <span>{fr ? plural(post.views ?? 0, "vue", "vues", "fr") : plural(post.views ?? 0, "view", "views")}</span>
+        </div>
       </Link>
     </article>
   );

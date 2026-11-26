@@ -68,9 +68,13 @@ export function SiteFooter() {
               solutions across East Africa.
             </p>
             <div className="flex flex-col gap-2.5 text-sm">
-              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="tel:+254722656142">
+              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="tel:+254724968847">
                 <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">call</span>
-                +254 722 656 142
+                0724 968 847
+              </a>
+              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="/contact#team">
+                <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">groups</span>
+                More direct lines
               </a>
               <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="mailto:info@molaplus.org">
                 <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">mail</span>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useT } from "../../lib/i18n";
 import { toast } from "../../lib/toast";
+import { freshUrl } from "../../lib/blog/live";
 
 type Reaction = "helpful" | "not_helpful";
 type Counts = { helpful: number; notHelpful: number };
@@ -28,7 +29,7 @@ export function ArticleFeedback({ slug }: { slug: string }) {
     Promise.resolve(saved).then((value) => {
       if (value === "helpful" || value === "not_helpful") setSelected(value);
     });
-    fetch(`/api/blog/reactions?slug=${encodeURIComponent(slug)}`)
+    fetch(freshUrl(`/api/blog/reactions?slug=${encodeURIComponent(slug)}`), { cache: "no-store" })
       .then((response) => response.ok ? response.json() : null)
       .then((data) => {
         if (typeof data?.helpful === "number" && typeof data?.notHelpful === "number") {

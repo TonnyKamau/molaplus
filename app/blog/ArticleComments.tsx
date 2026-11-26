@@ -3,6 +3,7 @@
 import { useEffect, useState, type SubmitEvent } from "react";
 import { plural, type Lang, useT } from "../../lib/i18n";
 import { toast } from "../../lib/toast";
+import { freshUrl } from "../../lib/blog/live";
 
 type Comment = { id: string; authorName: string; body: string; createdAt: string };
 
@@ -20,7 +21,7 @@ export function ArticleComments({ slug }: { slug: string }) {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    fetch(`/api/blog/comments?slug=${encodeURIComponent(slug)}`)
+    fetch(freshUrl(`/api/blog/comments?slug=${encodeURIComponent(slug)}`), { cache: "no-store" })
       .then((response) => response.ok ? response.json() : null)
       .then((data) => {
         if (Array.isArray(data?.comments)) setComments(data.comments);

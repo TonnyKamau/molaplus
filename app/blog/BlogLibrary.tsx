@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { BlogCard } from "./BlogCard";
 import { plural, useT } from "../../lib/i18n";
 import { categories, categoryFr, summarize, type Category, type Post, type PostSummary } from "./posts";
+import { minuteUrl } from "../../lib/blog/live";
 
 export function BlogLibrary({ posts }: { posts: PostSummary[] }) {
   // Filters, counts and paging use native French; the article cards themselves
@@ -15,7 +16,7 @@ export function BlogLibrary({ posts }: { posts: PostSummary[] }) {
   const [livePosts, setLivePosts] = useState<PostSummary[]>(posts);
   useEffect(() => {
     const controller = new AbortController();
-    fetch("/api/blog/posts", { signal: controller.signal, cache: "no-store" })
+    fetch(minuteUrl("/api/blog/posts"), { signal: controller.signal, cache: "no-store" })
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         const live: Post[] = Array.isArray(data?.posts) ? data.posts : [];

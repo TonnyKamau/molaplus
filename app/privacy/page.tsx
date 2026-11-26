@@ -3,8 +3,9 @@ import Link from "next/link";
 import { LegalPage } from "../_components/LegalPage";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | MolaPlus",
+  title: "Privacy Policy",
   description: "How MolaPlus collects, uses, and protects your information.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
@@ -26,8 +27,8 @@ export default function PrivacyPage() {
           info@molaplus.org
         </a>{" "}
         or call{" "}
-        <a className="font-bold text-primary underline" href="tel:+254722656142">
-          +254 722 656 142
+        <a className="font-bold text-primary underline" href="tel:+254724968847">
+          +254 724 968 847
         </a>
         .
       </p>

@@ -182,7 +182,7 @@ try {
     ]);
 } catch (Throwable $e) {
     error_log('Order insert failed: ' . $e->getMessage());
-    mp_fail(500, 'We could not save your order. Please call +254 722 656 142.');
+    mp_fail(500, 'We could not save your order. Please call +254 724 968 847.');
 }
 
 // Then notify the team by email + SMS. The order is already saved, so we

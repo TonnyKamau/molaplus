@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/seo";
 import { T } from "../_components/T";
 import { OrderForm } from "./OrderForm";
 
-export const metadata: Metadata = {
-  title: "Place an Order | MolaPlus",
-  description: "Order MolaPlus animal nutrition and crop products for delivery across Kenya.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Order Feed Supplements & Fertilizers Online",
+  description:
+    "Order MolaPlus animal feed supplements, livestock feeds and crop fertilizers online. Choose products, share your delivery location and our team confirms stock, price and delivery by phone. Pay via M-Pesa Till 906520.",
+  path: "/order",
+  keywords: ["order animal feed online", "buy milk booster", "buy layer mash", "buy organic fertilizer"],
+});
 
 export default function OrderPage() {
   return (

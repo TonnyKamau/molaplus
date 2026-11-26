@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
+import { SITE_NAME, SITE_URL, breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
 type Size = { size: string; blurb: string; img: string };
 
@@ -136,9 +138,55 @@ const groups: Group[] = [
   },
 ];
 
+export const metadata: Metadata = pageMetadata({
+  title: "Animal Feed Supplements, Livestock Feeds & Crop Fertilizers",
+  description:
+    "Shop MolaPlus products: Super Milk Booster for dairy cows, Poultry and Pig Microbes probiotics, mineral lick, calf weaner meal, bovine meal, layer mash, steaming formula and Mazao organic and foliar crop fertilizers.",
+  path: "/products",
+  keywords: ["buy animal feed supplements", "dairy cow supplements", "poultry probiotics Kenya", "pig microbes", "layer mash 50kg", "organic fertilizer"],
+  image: "/molaplus/full-product-range.webp",
+  imageAlt: "The MolaPlus range of animal feed supplements, feeds and crop fertilizers",
+});
+
+/** Pack names like "1KG Package" get the range name in front; product names stay as they are. */
+function productName(group: Group, size: Size) {
+  return /Package|Solution|Bucket/.test(size.size) ? `${group.name} ${size.size}` : size.size;
+}
+
+const productsSchema = jsonLd({
+  "@graph": [
+    breadcrumbSchema([["Products", "/products"]]),
+    {
+      "@type": "OfferCatalog",
+      "@id": `${SITE_URL}/products#catalog`,
+      name: "MolaPlus animal nutrition and crop products",
+      url: `${SITE_URL}/products`,
+      provider: { "@id": `${SITE_URL}/#organization` },
+      itemListElement: groups.map((group) => ({
+        "@type": "OfferCatalog",
+        name: group.name,
+        description: group.tagline,
+        itemListElement: group.sizes.map((size) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Product",
+            name: productName(group, size),
+            description: `${size.blurb} ${group.tagline}`,
+            image: `${SITE_URL}${size.img}`,
+            category: group.eyebrow,
+            brand: { "@type": "Brand", name: SITE_NAME },
+            url: `${SITE_URL}${group.href === "/contact" ? `/products#${group.id}` : group.href}`,
+          },
+        })),
+      })),
+    },
+  ],
+});
+
 export default function ProductsPage() {
   return (
     <div className="editorial-page overflow-x-hidden bg-surface text-on-surface">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: productsSchema }} />
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
@@ -157,8 +205,8 @@ export default function ProductsPage() {
             <div className="hidden h-10 w-px bg-white/20 sm:block" />
             <div>
               <p className="mp-eyebrow text-white/60">Logistics &amp; prices call</p>
-              <a className="text-2xl font-extrabold text-white transition-opacity hover:opacity-80" href="tel:+254722656142">
-                +254 722 656 142
+              <a className="text-2xl font-extrabold text-white transition-opacity hover:opacity-80" href="tel:+254724968847">
+                +254 724 968 847
               </a>
             </div>
           </div>
@@ -245,7 +293,7 @@ export default function ProductsPage() {
                       </Link>
                       <a
                         className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-surface-container-high"
-                        href="https://wa.me/254722656142"
+                        href="https://wa.me/254724968847"
                         rel="noopener noreferrer"
                         target="_blank"
                       >

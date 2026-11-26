@@ -43,7 +43,9 @@ export function ScrollReveal() {
     let ticking = false;
     const revealVisible = () => {
       ticking = false;
-      const line = window.innerHeight * 0.9;
+      // Reveal as soon as any part enters the screen, so there is never a blank
+      // band at the bottom that looks like the end of the page.
+      const line = window.innerHeight;
       pending().forEach((el) => {
         if (el.getBoundingClientRect().top < line) {
           el.classList.add("mp-in");

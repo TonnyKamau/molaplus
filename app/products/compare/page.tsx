@@ -1,1 +1,1 @@
-export { default } from "../../product-comparison/page";
+export { default, metadata } from "../../product-comparison/page";

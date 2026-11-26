@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { readingMinutes } from "./blog/posts";
+import { summarize } from "./blog/posts";
+import { HomeJournal } from "./_components/HomeJournal";
 import { buildTimePosts } from "../lib/blog/published";
 
 export const metadata: Metadata = {
@@ -19,15 +20,32 @@ const orgSchema = {
       logo: "https://molaplus.org/molaplus-logo-v2.png",
       image: "https://molaplus.org/og.jpg",
       description:
-        "MolaPlus develops probiotics, microbes and essential-mineral supplements that help East African farmers improve animal health, feed efficiency and yields.",
-      areaServed: "East Africa",
+        "MolaPlus develops animal feed supplements, livestock feeds, probiotics and crop fertilizers that help African farmers improve animal health, feed efficiency and yields.",
+      slogan: "Healthy animals. Stronger farms.",
+      email: "info@molaplus.org",
+      telephone: "+254724968847",
+      areaServed: [
+        { "@type": "Country", name: "Kenya" },
+        { "@type": "Country", name: "Côte d'Ivoire" },
+      ],
+      knowsAbout: [
+        "Animal feed supplements",
+        "Dairy cow nutrition",
+        "Poultry feed and probiotics",
+        "Pig nutrition",
+        "Livestock mineral supplements",
+        "Organic fertilizer",
+        "Foliar crop nutrition",
+        "Effective microorganisms",
+        "Farm consultancy",
+      ],
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+254722656142",
+        telephone: "+254724968847",
         email: "info@molaplus.org",
         contactType: "customer service",
-        areaServed: "KE",
-        availableLanguage: ["en", "sw"],
+        areaServed: ["KE", "CI"],
+        availableLanguage: ["en", "fr", "sw"],
       },
     },
     {
@@ -36,7 +54,7 @@ const orgSchema = {
       url: "https://molaplus.org",
       name: "MolaPlus",
       publisher: { "@id": "https://molaplus.org/#organization" },
-      inLanguage: "en-KE",
+      inLanguage: ["en-KE", "fr-CI"],
     },
   ],
 };
@@ -136,9 +154,9 @@ export default function Home() {
 
       <section className="section support-v2 home-journal" aria-labelledby="home-journal-heading">
         <div className="section-heading"><p className="kicker"><span /> Field notes / The blog</p><h2 id="home-journal-heading">Good knowledge.<br /><em>Better farming.</em></h2><Link href="/blog">Explore all stories ↗</Link></div>
-        <div className="support-v2__grid">{posts.slice(0, 3).map((post) => <Link href={`/blog/${post.slug}`} key={post.slug}><div className="support-v2__image"><Image src={post.image} alt={post.imageAlt} fill sizes="(min-width: 800px) 30vw, 100vw" /></div><p className="home-journal__meta">{post.category} · {readingMinutes(post)} min read</p><h3>{post.title}</h3><p>{post.excerpt}</p><b>Read the story ↗</b></Link>)}</div>
+        <HomeJournal initialPosts={posts.map((post) => summarize(post))} />
       </section>
-      <section className="cta-v2"><p className="kicker kicker--light"><span /> Ready to grow?</p><h2>Let’s build a<br /><em>healthier farm.</em></h2><div><a className="button button--light" href="/order">Place an order <span>↗</span></a><a className="button button--line" href="tel:+254722656142">Call +254 722 656 142</a></div><small>Lipa na <span className="whitespace-nowrap" translate="no">M-Pesa</span> · <span className="whitespace-nowrap" translate="no">Till number 906520</span></small></section>
+      <section className="cta-v2"><p className="kicker kicker--light"><span /> Ready to grow?</p><h2>Let’s build a<br /><em>healthier farm.</em></h2><div><a className="button button--light" href="/order">Place an order <span>↗</span></a><a className="button button--line" href="tel:+254724968847">Call +254 724 968 847</a></div><small>Lipa na <span className="whitespace-nowrap" translate="no">M-Pesa</span> · <span className="whitespace-nowrap" translate="no">Till number 906520</span></small></section>
     </main>
   );
 }

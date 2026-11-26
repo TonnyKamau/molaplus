@@ -56,8 +56,36 @@ function mp_json($data, int $status = 200): void
 {
     http_response_code($status);
     header('Content-Type: application/json; charset=utf-8');
+    mp_cache_headers();
     echo json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     exit;
+}
+
+/**
+ * Bluehost's CDN caches API responses for a day unless told otherwise. That
+ * froze the Studio's "am I signed in?" answer as "no" for everyone, so logins
+ * never stuck. Studio/auth responses and anything that is not a plain read
+ * must never be stored; public reads (blog posts, comments, reactions) may be
+ * cached for at most a minute so new content shows up quickly.
+ */
+function mp_cache_headers(): void
+{
+    $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+    $path   = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?: '';
+    // Signed-in editors (mp_admin cookie) always get fresh, unshared answers.
+    $private = $method !== 'GET' || strpos($path, '/api/studio/') === 0 || isset($_COOKIE['mp_admin']);
+
+    if ($private) {
+        header('Cache-Control: private, no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
+        header('Expires: 0');
+        header('CDN-Cache-Control: no-store');
+        header('Cloudflare-CDN-Cache-Control: no-store');
+    } else {
+        header('Cache-Control: public, max-age=60');
+        header('CDN-Cache-Control: max-age=60');
+        header('Cloudflare-CDN-Cache-Control: max-age=60');
+    }
 }
 
 function mp_fail(int $status, string $message): void
