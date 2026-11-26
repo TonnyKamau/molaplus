@@ -1097,9 +1097,11 @@ body{top:0!important}
 .direct-line__btn--chat{border-color:#ffffff66;color:#fff}
 .direct-line__btn--chat:hover{background:#fff;color:#0b3d28;border-color:#fff}
 
-/* Pulling past the end of a page (phone bounce) shows the footer green,
-   not a cream strip. The page itself keeps its cream background on <body>. */
-html{background-color:#0a3424}
+/* While a page loads the browser shows the <html> background, so it stays
+   cream (no green flash on every link). Once the page is ready, pulling past
+   the end (phone bounce) shows the footer green instead of a cream strip. */
+html{background-color:#f3efe5}
+html.mp-ready{background-color:#0a3424}
 body{min-height:100vh}
 
 /* Phones: less dead space between sections so the next one is always in view. */
