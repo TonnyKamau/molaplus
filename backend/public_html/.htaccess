@@ -19,6 +19,8 @@ DirectoryIndex index.html index.php
 RewriteEngine On
 
 # --- Live sitemap: always current, includes Studio-added posts -------
+# Bluehost blocks /sitemap.xml (429), so search engines use /sitemap-index.xml.
+RewriteRule ^sitemap-index\.xml$ /sitemap.php [L]
 RewriteRule ^sitemap\.xml$ /sitemap.php [L]
 
 # --- Studio: article by id  /api/studio/posts/{uuid} -> post.php?id= ---

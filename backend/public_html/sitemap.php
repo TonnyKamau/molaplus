@@ -1,14 +1,23 @@
 <?php
 /**
  * Live XML sitemap — always current, including posts added in the Studio.
- * Routed from /sitemap.xml via .htaccess so search engines always see the
- * latest published articles without waiting for a site rebuild.
+ * Routed from /sitemap-index.xml (and /sitemap.xml) via .htaccess so search
+ * engines always see the latest published articles without a site rebuild.
+ * Bluehost blocks /sitemap.xml itself with "429 Too Many Requests", so
+ * robots.txt and Search Console use /sitemap-index.xml.
+ *
+ * URLs end with "/" to match each page's canonical address (no redirects),
+ * and duplicate aliases (/outlets, /about, /products/compare) are left out.
  */
 
 declare(strict_types=1);
 require __DIR__ . '/api/_bootstrap.php';
 
 header('Content-Type: application/xml; charset=utf-8');
+// New articles should reach search engines within the hour, not a CDN day.
+header('Cache-Control: public, max-age=3600');
+header('CDN-Cache-Control: max-age=3600');
+header('Cloudflare-CDN-Cache-Control: max-age=3600');
 
 $base = rtrim((string)($MP_CONFIG['site_origin'] ?? 'https://molaplus.org'), '/');
 
@@ -21,7 +30,6 @@ $staticPages = [
     ['/resources', '0.7'],
     ['/blog', '0.8'],
     ['/distributors', '0.7'],
-    ['/outlets', '0.6'],
     ['/about-us', '0.6'],
     ['/contact', '0.6'],
     ['/order', '0.7'],
@@ -31,7 +39,7 @@ $staticPages = [
 
 $urls = '';
 foreach ($staticPages as [$path, $priority]) {
-    $loc = htmlspecialchars($base . $path, ENT_XML1);
+    $loc = htmlspecialchars($base . $path . '/', ENT_XML1);
     $urls .= "<url><loc>$loc</loc><changefreq>weekly</changefreq><priority>$priority</priority></url>";
 }
 
@@ -41,7 +49,7 @@ try {
         'SELECT slug, published_at, updated_at FROM blog_posts WHERE published = 1 AND archived = 0 AND slug IS NOT NULL ORDER BY published_at DESC'
     )->fetchAll();
     foreach ($rows as $row) {
-        $loc = htmlspecialchars($base . '/blog/' . $row['slug'], ENT_XML1);
+        $loc = htmlspecialchars($base . '/blog/' . $row['slug'] . '/', ENT_XML1);
         $lastmod = '';
         $date = $row['updated_at'] ?: $row['published_at'];
         if ($date) {
