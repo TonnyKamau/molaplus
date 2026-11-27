@@ -4,6 +4,10 @@
  */
 export type Contact = { name: string; role: string; display: string; tel: string };
 
+/** Email: the Gmail address is primary (as in the dealer guide); both are shown. */
+export const EMAIL_PRIMARY = "molaplus7@gmail.com";
+export const EMAIL_SECONDARY = "info@molaplus.org";
+
 /** Main contact: used for the header, footer, call buttons and WhatsApp. */
 export const MAIN_CONTACT: Contact = { name: "Geofrey Kamau", role: "Main contact", display: "0724 968 847", tel: "254724968847" };
 

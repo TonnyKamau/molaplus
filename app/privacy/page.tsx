@@ -23,6 +23,10 @@ export default function PrivacyPage() {
       </p>
       <p>
         For questions about your data, or to request correction or deletion, contact us at{" "}
+        <a className="font-bold text-primary underline" href="mailto:molaplus7@gmail.com">
+          molaplus7@gmail.com
+        </a>{" "}
+        or{" "}
         <a className="font-bold text-primary underline" href="mailto:info@molaplus.org">
           info@molaplus.org
         </a>{" "}

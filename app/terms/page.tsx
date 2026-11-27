@@ -29,6 +29,10 @@ export default function TermsPage() {
       <p>
         See also our <Link className="font-bold text-primary underline" href="/privacy">Privacy Policy</Link>. For any
         questions, contact{" "}
+        <a className="font-bold text-primary underline" href="mailto:molaplus7@gmail.com">
+          molaplus7@gmail.com
+        </a>{" "}
+        or{" "}
         <a className="font-bold text-primary underline" href="mailto:info@molaplus.org">
           info@molaplus.org
         </a>

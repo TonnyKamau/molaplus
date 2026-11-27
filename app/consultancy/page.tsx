@@ -188,11 +188,12 @@ export default function ConsultancyPage() {
                   <span className="mp-eyebrow mt-3 text-white/60">Phone Support</span>
                   <span className="text-lg font-extrabold">+254 724 968 847</span>
                 </a>
-                <a className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6" href="mailto:info@molaplus.org">
+                <div className="mp-hover-lift flex flex-col rounded-3xl border border-white/20 bg-white/10 p-6">
                   <span className="material-symbols-outlined notranslate text-3xl text-primary-fixed-dim" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
                   <span className="mp-eyebrow mt-3 text-white/60">Email Inquiry</span>
-                  <span className="break-all text-lg font-extrabold">info@molaplus.org</span>
-                </a>
+                  <a className="break-all text-lg font-extrabold hover:underline" href="mailto:molaplus7@gmail.com">molaplus7@gmail.com</a>
+                  <a className="mt-1 break-all text-sm font-bold text-white/75 hover:text-white hover:underline" href="mailto:info@molaplus.org">info@molaplus.org</a>
+                </div>
               </div>
               <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/70">
                 <span className="material-symbols-outlined notranslate text-[18px]">location_on</span>

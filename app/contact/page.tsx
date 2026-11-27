@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { MAIN_CONTACT, TEAM } from "../../lib/contacts";
+import { EMAIL_PRIMARY, EMAIL_SECONDARY, MAIN_CONTACT, TEAM } from "../../lib/contacts";
 import { breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
 const departments = [
@@ -11,7 +11,7 @@ const departments = [
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact MolaPlus — Orders, Farm Advice & Distributor Enquiries",
-  description: "Contact MolaPlus by WhatsApp, phone (+254 724 968 847) or email (info@molaplus.org) to order feed supplements and fertilizers, get farm advice or become a distributor. M-Pesa Till 906520.",
+  description: "Contact MolaPlus by WhatsApp, phone (+254 724 968 847) or email (molaplus7@gmail.com, info@molaplus.org) to order feed supplements and fertilizers, get farm advice or become a distributor. M-Pesa Till 906520.",
   path: "/contact",
   keywords: ["MolaPlus contact","MolaPlus phone number","become a distributor","buy feed supplements"],
 });
@@ -75,14 +75,17 @@ export default function ContactPage() {
             </a>
 
             {/* Email */}
-            <a className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" href="mailto:info@molaplus.org">
+            <div className="mp-hover-lift group flex flex-col justify-between rounded-3xl border border-outline-variant bg-surface-container-lowest p-8">
               <div>
                 <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>mail</span>
                 <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-ink-black">Email us</h2>
                 <p className="mt-2 text-on-surface-variant">For detailed enquiries and documentation.</p>
               </div>
-              <span className="mt-6 break-all text-lg font-extrabold text-primary">info@molaplus.org</span>
-            </a>
+              <div className="mt-6">
+                <a className="block break-all text-lg font-extrabold text-primary hover:underline" href={`mailto:${EMAIL_PRIMARY}`}>{EMAIL_PRIMARY}</a>
+                <a className="mt-1 block break-all text-sm font-bold text-on-surface-variant hover:text-primary hover:underline" href={`mailto:${EMAIL_SECONDARY}`}>{EMAIL_SECONDARY}</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

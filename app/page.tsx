@@ -22,7 +22,7 @@ const orgSchema = {
       description:
         "MolaPlus develops animal feed supplements, livestock feeds, probiotics and crop fertilizers that help African farmers improve animal health, feed efficiency and yields.",
       slogan: "Healthy animals. Stronger farms.",
-      email: "info@molaplus.org",
+      email: "molaplus7@gmail.com",
       telephone: "+254724968847",
       areaServed: [
         { "@type": "Country", name: "Kenya" },
@@ -42,7 +42,7 @@ const orgSchema = {
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+254724968847",
-        email: "info@molaplus.org",
+        email: "molaplus7@gmail.com",
         contactType: "customer service",
         areaServed: ["KE", "CI"],
         availableLanguage: ["en", "fr", "sw"],

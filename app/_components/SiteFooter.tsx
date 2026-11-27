@@ -76,8 +76,12 @@ export function SiteFooter() {
                 <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">groups</span>
                 More direct lines
               </a>
-              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="mailto:info@molaplus.org">
+              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="mailto:molaplus7@gmail.com">
                 <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">mail</span>
+                molaplus7@gmail.com
+              </a>
+              <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="mailto:info@molaplus.org">
+                <span className="material-symbols-outlined notranslate text-[18px] text-primary-fixed-dim">alternate_email</span>
                 info@molaplus.org
               </a>
               <span className="inline-flex items-center gap-2 text-white/80">
