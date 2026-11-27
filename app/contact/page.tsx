@@ -4,7 +4,7 @@ import { EMAIL_PRIMARY, EMAIL_SECONDARY, MAIN_CONTACT, TEAM } from "../../lib/co
 import { breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
 const departments = [
-  ["engineering", "Technical Support", "Product usage, dosage and livestock nutrition advice.", "+254 724 968 847", "tel:+254724968847"],
+  ["engineering", "Technical Support", "Product usage, dosage, and livestock and crop nutrition advice.", "+254 724 968 847", "tel:+254724968847"],
   ["sell", "Sales & Bulk Orders", "Pricing, bulk quantities and delivery logistics.", "+254 724 968 847", "tel:+254724968847"],
   ["handshake", "Distributor Partnership", "Become a stockist and join our nationwide network.", "Browse the directory", "/distributors"],
 ];

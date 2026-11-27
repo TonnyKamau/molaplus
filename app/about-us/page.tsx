@@ -24,7 +24,7 @@ const impact = [
 ];
 
 export const metadata: Metadata = pageMetadata({
-  title: "About MolaPlus — Science-Driven Animal Nutrition for African Farms",
+  title: "About MolaPlus — Animal & Crop Nutrition for African Farms",
   description: "MolaPlus Group develops animal feeds, supplements, probiotics and crop nutrition for African farmers. Our mission, vision, mandate and values, and where we work: Kenya, Tanzania, Uganda, Zambia and Côte d'Ivoire.",
   path: "/about-us",
   keywords: ["about MolaPlus","animal nutrition company Kenya","feed supplement manufacturer"],
@@ -48,8 +48,8 @@ export default function AboutPage() {
             Science-driven nutrition for a sustainable future
           </h1>
           <p className="text-pretty mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
-            Pioneering biotechnology and probiotic solutions to empower East
-            Africa&apos;s livestock industry.
+            Animal and crop nutrition, probiotics and farm advice for Africa&apos;s
+            livestock and crop farmers.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
             <Link className="inline-flex items-center gap-2 rounded-full bg-secondary-container px-8 py-4 font-bold text-white transition-all hover:bg-secondary" href="/products">
@@ -68,14 +68,15 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-container-max-width grid-cols-1 gap-12 px-margin-mobile lg:grid-cols-12 md:px-margin-desktop">
           <div className="lg:col-span-4" data-reveal>
             <span className="mp-eyebrow text-secondary">Our Evolution</span>
-            <h2 className="mp-display-sm mt-3 text-ink-black">Innovation in animal nutrition</h2>
+            <h2 className="mp-display-sm mt-3 text-ink-black">Innovation in animal &amp; plant nutrition</h2>
           </div>
           <div className="space-y-6 text-lg text-on-surface-variant lg:col-span-8" data-reveal>
             <p>
               MolaPlus emerged from a critical need to address nutritional
-              gaps in regional livestock production. What started as a local
-              initiative has evolved into a leading biotechnology powerhouse,
-              specializing in high-performance probiotic feed additives.
+              gaps in livestock and crop production. What started as a local
+              initiative has grown into the MolaPlus Group, making feeds,
+              supplements, probiotics and crop nutrition for farmers in Kenya,
+              East and Southern Africa and Côte d&apos;Ivoire.
             </p>
             <p>
               Our journey has been defined by a commitment to the &apos;One
@@ -178,11 +179,11 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-container-max-width grid-cols-1 gap-12 px-margin-mobile lg:grid-cols-2 md:px-margin-desktop">
           <div data-reveal>
             <span className="mp-eyebrow text-secondary">Global standards, local impact</span>
-            <h2 className="mp-display-sm mt-3 text-ink-black">Built for East African farming</h2>
+            <h2 className="mp-display-sm mt-3 text-ink-black">Built for African farming</h2>
             <p className="mt-5 text-lg text-on-surface-variant">
               While we adhere to strict manufacturing and biotechnology safety
               practices, our focus remains localized. We understand the specific
-              challenges of East African climates, forages, and breeds.
+              challenges of African climates, soils, forages, crops and breeds.
             </p>
           </div>
           <div className="space-y-4" data-reveal>

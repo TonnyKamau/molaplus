@@ -26,6 +26,9 @@ const orgSchema = {
       telephone: "+254724968847",
       areaServed: [
         { "@type": "Country", name: "Kenya" },
+        { "@type": "Country", name: "Tanzania" },
+        { "@type": "Country", name: "Uganda" },
+        { "@type": "Country", name: "Zambia" },
         { "@type": "Country", name: "Côte d'Ivoire" },
       ],
       knowsAbout: [
@@ -44,7 +47,7 @@ const orgSchema = {
         telephone: "+254724968847",
         email: "molaplus7@gmail.com",
         contactType: "customer service",
-        areaServed: ["KE", "CI"],
+        areaServed: ["KE", "TZ", "UG", "ZM", "CI"],
         availableLanguage: ["en", "fr", "sw"],
       },
     },
@@ -62,11 +65,11 @@ const orgSchema = {
 const benefits = [
   ["01", "Better digestion", "Beneficial microbes help animals unlock more value from everyday feed."],
   ["02", "Stronger performance", "Support steadier weight gain, healthier poultry and improved milk output."],
-  ["03", "Practical by design", "Simple feed-and-water routines developed for East African farm conditions."],
+  ["03", "Practical by design", "Simple feed-and-water routines developed for African farm conditions."],
 ];
 
 const services = [
-  ["/molaplus/service-cows.webp", "Farm consultancy", "Nutrition and management guidance shaped around your herd and targets.", "/consultancy"],
+  ["/molaplus/service-cows.webp", "Farm consultancy", "Nutrition and management guidance for your herd, flock or crops, shaped around your targets.", "/consultancy"],
   ["/molaplus/service-poultry.webp", "Farmer training", "Practical workshops and resources for confident day-to-day application.", "/resources"],
   ["/molaplus/service-pigs.webp", "Technical support", "Real help for farmers and distributors, before and after purchase.", "/contact"],
 ];
@@ -78,17 +81,17 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema).replace(/</g, "\\u003c") }} />
       <section className="hero-v2">
         <div className="hero-v2__copy">
-          <p className="kicker"><span /> Animal nutrition, made for East Africa</p>
+          <p className="kicker"><span /> Animal &amp; crop nutrition for African farms</p>
           <h1>Healthy animals.<br /><em>Stronger farms.</em></h1>
-          <p className="hero-v2__intro">MolaPlus combines probiotics, microbes and essential minerals to help farmers get better health, better feed efficiency and better yields—naturally.</p>
+          <p className="hero-v2__intro">MolaPlus makes supplements, feeds, probiotics and crop fertilizers that help farmers raise healthier animals, grow stronger crops and get better yields.</p>
           <div className="hero-v2__actions">
             <Link className="button button--light" href="/products">Explore our range <span>↗</span></Link>
             <Link className="button button--line" href="/distributors">Find a stockist</Link>
           </div>
           <div className="hero-v2__proof">
             <div><strong>3,800+</strong><span>stockists nationwide</span></div>
-            <div><strong>3 species</strong><span>dairy, poultry &amp; pigs</span></div>
-            <div><strong>Local support</strong><span>when farmers need it</span></div>
+            <div><strong>25 products</strong><span>for livestock, poultry &amp; crops</span></div>
+            <div><strong>5 countries</strong><span>Kenya to Côte d&apos;Ivoire</span></div>
           </div>
         </div>
         <div className="hero-v2__visual">
@@ -98,12 +101,12 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="ticker" aria-label="Product benefits"><div className="ticker__track"><span><b>More milk</b><i>✦</i><b>Healthier guts</b><i>✦</i><b>Stronger poultry</b><i>✦</i><b>Better feed conversion</b><i>✦</i></span><span aria-hidden="true"><b>More milk</b><i>✦</i><b>Healthier guts</b><i>✦</i><b>Stronger poultry</b><i>✦</i><b>Better feed conversion</b><i>✦</i></span></div></section>
+      <section className="ticker" aria-label="Product benefits"><div className="ticker__track"><span><b>More milk</b><i>✦</i><b>Healthier guts</b><i>✦</i><b>Stronger poultry</b><i>✦</i><b>Better feed conversion</b><i>✦</i><b>Stronger crops</b><i>✦</i><b>Healthier soils</b><i>✦</i></span><span aria-hidden="true"><b>More milk</b><i>✦</i><b>Healthier guts</b><i>✦</i><b>Stronger poultry</b><i>✦</i><b>Better feed conversion</b><i>✦</i><b>Stronger crops</b><i>✦</i><b>Healthier soils</b><i>✦</i></span></div></section>
 
       <section className="section products-v2">
         <div className="section-heading">
           <p className="kicker"><span /> Products</p>
-          <h2>One farm.<br /><em>Three powerful solutions.</em></h2>
+          <h2>One farm.<br /><em>Every stage covered.</em></h2>
           <Link href="/products">View all products ↗</Link>
         </div>
         <div className="product-grid-v2">
@@ -123,6 +126,12 @@ export default function Home() {
             <div className="product-tile__copy"><h3>Pig<br />Microbes</h3><p>Faster growth, stronger immunity and better feed use, with help against aflatoxin.</p><span className="round-arrow">↗</span></div>
           </Link>
         </div>
+        <Link className="crops-band" href="/products#crops">
+          <span className="crops-band__label">Crops &amp; soil health</span>
+          <span className="crops-band__names">Mazao Cereals · Mazao Planting · V-EM Mbolea · Biochar+</span>
+          <span className="crops-band__text">Foliar fertilizers, organic planting fertilizer and biochar for stronger crops and healthier soils.</span>
+          <span className="round-arrow" aria-hidden="true">↗</span>
+        </Link>
       </section>
 
       <section className="section how-v2">
@@ -149,7 +158,7 @@ export default function Home() {
 
       <section className="section story-v2">
         <div className="story-v2__visual"><Image alt="Dairy cattle supported by MolaPlus nutrition" fill sizes="(min-width: 900px) 52vw, 100vw" src="/molaplus/service-cows.webp" /><div>Made in Kenya<br /><b>for the farms<br />that feed us.</b></div></div>
-        <div className="story-v2__copy"><p className="kicker"><span /> Why MolaPlus</p><h2>Local realities.<br /><em>Serious science.</em></h2><p>We build evidence-based animal nutrition around the challenges East African farmers face every day. Every product is backed by careful formulation, practical guidance and a team that stays close to the farm.</p><ul><li><span>Quality</span> Carefully researched nutrition</li><li><span>Innovation</span> Solutions for regional challenges</li><li><span>Reliability</span> Consistent, season after season</li></ul><Link href="/about-us">Meet MolaPlus ↗</Link></div>
+        <div className="story-v2__copy"><p className="kicker"><span /> Why MolaPlus</p><h2>Local realities.<br /><em>Serious science.</em></h2><p>We build evidence-based animal and crop nutrition around the challenges African farmers face every day. Every product is backed by careful formulation, practical guidance and a team that stays close to the farm.</p><ul><li><span>Integrity</span> Honesty and teamwork in everything we do</li><li><span>Innovation</span> Results-driven supplements and services</li><li><span>Service</span> Helping smallholder farmers create wealth</li></ul><Link href="/about-us">Meet MolaPlus ↗</Link></div>
       </section>
 
       <section className="section support-v2 home-journal" aria-labelledby="home-journal-heading">

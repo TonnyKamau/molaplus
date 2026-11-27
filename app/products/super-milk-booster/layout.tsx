@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { SITE_NAME, SITE_URL, breadcrumbSchema, jsonLd, pageMetadata } from "../../../lib/seo";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Super Milk Booster — Dairy Cow Supplement for More Milk (1, 2 & 5 kg)",
+  title: "Super Milk Booster — Dairy Cow Supplement for More Milk (1 to 20 kg)",
   description:
-    "Super Milk Booster is a MolaPlus dairy supplement with minerals and probiotics for better milk production and condition in dairy cows. Available in 1 kg, 2 kg and 5 kg packs. Order online or find a stockist.",
+    "Super Milk Booster is a MolaPlus dairy supplement with minerals and probiotics for better milk production and condition in dairy cows. Available in 1, 2, 5, 10 and 20 kg packs. Order online or find a stockist.",
   path: "/products/super-milk-booster",
   keywords: ["milk booster for cows", "dairy supplement Kenya", "increase milk production", "dairy minerals"],
   image: "/molaplus/milk-booster-5kg-cutout.webp",

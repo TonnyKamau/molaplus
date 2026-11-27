@@ -5,7 +5,7 @@ import { Toaster } from "./_components/Toaster";
 import { SITE_KEYWORDS, SITE_NAME, SITE_URL } from "../lib/seo";
 
 const defaultDescription =
-  "MolaPlus makes animal feed supplements, livestock feeds, probiotics and organic crop fertilizers for dairy, poultry and pig farmers in Kenya and Côte d'Ivoire, with farm consultancy and technical support.";
+  "MolaPlus makes animal feed supplements, livestock feeds, probiotics and organic crop fertilizers for livestock, poultry and crop farmers in Kenya, Tanzania, Uganda, Zambia and Côte d'Ivoire, with farm consultancy and technical support.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -55,8 +55,8 @@ export default function SuperMilkBoosterPage() {
             </nav>
             <h1 className="mp-display-sm mt-4 text-ink-black">Super Milk Booster</h1>
             <p className="mt-4 max-w-md text-on-surface-variant">
-              Our signature mineral and probiotic blend for more milk, better body
-              condition and healthier dairy cows.
+              A premium powder supplying energy, protein, minerals and vitamins for
+              more milk, better body condition and healthier dairy cows.
             </p>
 
             {/* Size selector */}

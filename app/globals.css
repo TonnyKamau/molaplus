@@ -1154,3 +1154,12 @@ a.guide-row:hover{background:#fff}
   .guide-row{grid-template-columns:1fr;gap:8px}
   .guide-row [data-label]::before{content:attr(data-label);display:block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#a03a1d;margin-bottom:2px}
 }
+
+/* Homepage: crops & soil band under the product tiles */
+.crops-band{position:relative;display:grid;grid-template-columns:auto 1fr auto;grid-template-areas:"label names arrow" "label text arrow";column-gap:28px;row-gap:4px;align-items:center;margin-top:12px;padding:28px 32px;background:#0c432c;color:#fff;transition:background-color .3s}
+.crops-band:hover{background:#0e4a31}
+.crops-band__label{grid-area:label;padding:8px 12px;background:#b6dc62;color:#0b3d28;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.crops-band__names{grid-area:names;font-size:clamp(18px,2vw,24px);font-weight:800;letter-spacing:-.02em}
+.crops-band__text{grid-area:text;color:#ffffffcc;font-size:14px;line-height:1.5}
+.crops-band .round-arrow{grid-area:arrow;position:static;border-color:#ffffff66;color:#fff}
+@media(max-width:700px){.crops-band{grid-template-columns:1fr auto;grid-template-areas:"label arrow" "names names" "text text";row-gap:10px;padding:22px 20px}.crops-band__label{justify-self:start}}

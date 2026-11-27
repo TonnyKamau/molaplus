@@ -21,6 +21,12 @@ const expertise = [
     "Advanced strategies for lean meat ratio and gut health.",
     ["Meat-to-fat ratio optimization", "Disease resistance strategies", "Growth cycle acceleration"],
   ],
+  [
+    "eco",
+    "Crop & Soil Nutrition",
+    "Plant nutrition programmes from planting to harvest.",
+    ["Planting fertilizer & soil health", "Foliar feeding for cereals, vegetables & fruit", "Flowering & grain-filling support"],
+  ],
 ] as const;
 
 const training = [
@@ -37,7 +43,7 @@ const support = [
 
 export const metadata: Metadata = pageMetadata({
   title: "Farm Consultancy, Farmer Training & Technical Support",
-  description: "MolaPlus farm consultancy: livestock nutrition and management advice for dairy, poultry and pig farms, practical farmer training and technical support before and after purchase.",
+  description: "MolaPlus farm consultancy: animal and plant nutrition advice for dairy, poultry, pig and crop farmers, practical farmer training and technical support before and after purchase.",
   path: "/consultancy",
   keywords: ["farm consultancy Kenya","livestock nutrition advice","dairy farm consultant","poultry farm advice","farmer training"],
 });
@@ -55,7 +61,7 @@ const pageSchema = jsonLd({
       description,
       serviceType: name,
       provider: { "@id": `${SITE_URL}/#organization` },
-      areaServed: [{ "@type": "Country", name: "Kenya" }, { "@type": "Country", name: "Côte d'Ivoire" }],
+      areaServed: ["Kenya", "Tanzania", "Uganda", "Zambia", "Côte d'Ivoire"].map((name) => ({ "@type": "Country", name })),
       url: `${SITE_URL}/consultancy`,
     })),
   ],
@@ -72,7 +78,7 @@ export default function ConsultancyPage() {
           <h1 className="mp-display mt-4 max-w-4xl">Expert agricultural consultancy</h1>
           <p className="text-pretty mt-4 max-w-2xl text-base text-white/80 sm:text-lg md:mt-6 md:text-xl">
             Empowering commercial farmers through science-backed nutrition
-            strategies and precision livestock management. We bridge the gap
+            strategies for livestock and crops. We bridge the gap
             between laboratory innovation and field success.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
@@ -93,10 +99,10 @@ export default function ConsultancyPage() {
           <div className="mb-10 max-w-2xl" data-reveal>
             <span className="mp-eyebrow text-secondary">Our Specialized Expertise</span>
             <h2 className="mp-display-sm mt-3 text-ink-black">
-              Precision solutions for high-performance livestock
+              Precision solutions for livestock and crops
             </h2>
           </div>
-          <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
+          <div className="grid grid-cols-1 gap-gutter md:grid-cols-2 xl:grid-cols-4" data-reveal data-reveal-stagger>
             {expertise.map(([icon, title, blurb, bullets]) => (
               <div className="flex flex-col rounded-3xl border border-outline-variant bg-surface-container-lowest p-8" key={title}>
                 <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
@@ -197,7 +203,7 @@ export default function ConsultancyPage() {
               </div>
               <p className="mt-6 inline-flex items-center gap-2 text-sm text-white/70">
                 <span className="material-symbols-outlined notranslate text-[18px]">location_on</span>
-                Headquarters: Kenya &middot; Nationwide field support
+                Headquarters: Nakuru, Kenya &middot; Field support across Kenya and the region
               </p>
               <div className="mt-6">
                 <Link className="inline-flex items-center gap-2 font-bold text-white underline-offset-4 hover:underline" href="/distributors">

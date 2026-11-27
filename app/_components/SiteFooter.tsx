@@ -64,8 +64,8 @@ export function SiteFooter() {
               <Image alt="MolaPlus" className="h-9 w-auto" height={205} sizes="220px" src="/molaplus-logo-v2.png" width={720} />
             </Link>
             <p className="mb-6 text-sm text-white/70">
-              Advanced animal nutrition, biotechnology and sustainable farming
-              solutions across East Africa.
+              Animal and crop nutrition, probiotics and farm advice for farmers in
+              Kenya, East &amp; Southern Africa and Côte d&apos;Ivoire.
             </p>
             <div className="flex flex-col gap-2.5 text-sm">
               <a className="inline-flex items-center gap-2 text-white/80 transition-colors hover:text-white" href="tel:+254724968847">
@@ -122,7 +122,7 @@ export function SiteFooter() {
         {/* Bottom bar */}
         <div className="site-footer__bottom">
           <p>&copy; 2026 MolaPlus. Advanced Animal Nutrition.</p>
-          <p>Made in Kenya &middot; For East African farmers</p>
+          <p>Made in Kenya &middot; For farmers across Africa</p>
         </div>
       </div>
 

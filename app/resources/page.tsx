@@ -27,7 +27,7 @@ export default function ResourcesPage() {
       {/* Hero */}
       <section className="mp-scene mp-grain relative overflow-hidden">
         <div className="relative z-10 mx-auto max-w-container-max-width px-margin-mobile py-14 text-white md:px-margin-desktop md:py-20">
-          <span className="mp-eyebrow text-primary-fixed-dim">Scientific Animal Nutrition</span>
+          <span className="mp-eyebrow text-primary-fixed-dim">Animal &amp; crop knowledge</span>
           <h1 className="mp-display mt-5 max-w-3xl">Knowledge Hub</h1>
           <p className="text-pretty mt-6 max-w-2xl text-lg text-white/80 md:text-xl">
             Practical articles for the daily work of farming. Explore routines,
@@ -61,7 +61,7 @@ export default function ResourcesPage() {
               <span className="mp-eyebrow text-secondary">Support</span>
               <h2 className="mp-display-sm mt-3 text-ink-black">Need expert guidance?</h2>
               <p className="mt-4 text-on-surface-variant">
-                Connect with our livestock specialists to develop a tailored
+                Connect with our livestock and crop specialists to develop a tailored
                 nutritional strategy for your farm.
               </p>
             </div>
