@@ -92,7 +92,7 @@ export function SiteFooter() {
             items={[
               ["All Products", "/products"],
               ["Super Milk Booster", "/products/super-milk-booster"],
-              ["Compare Products", "/product-comparison"],
+              ["Product Guide", "/product-comparison"],
             ]}
           />
           <FooterColumn

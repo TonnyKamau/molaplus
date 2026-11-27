@@ -128,7 +128,8 @@ export default function ContactPage() {
           <div className="rounded-3xl border border-outline-variant bg-white p-7">
             <span className="material-symbols-outlined notranslate text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>location_on</span>
             <p className="mp-eyebrow mt-3 text-on-surface-variant">Head Office</p>
-            <p className="text-xl font-extrabold text-ink-black">Kenya</p>
+            <p className="text-xl font-extrabold text-ink-black">Sungura Road, Nakuru</p>
+            <p className="mt-1 text-sm text-on-surface-variant">Between Bidco and Comply · P.O. Box 18100-20100, Kenya</p>
           </div>
           <div className="rounded-3xl border border-outline-variant bg-white p-7">
             <span className="material-symbols-outlined notranslate text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>schedule</span>

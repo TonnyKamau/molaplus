@@ -18,7 +18,7 @@ export const primaryNav = [
 const drawerLinks = [
   { href: "/products", label: "Products", icon: "science" },
   { href: "/products/super-milk-booster", label: "Super Milk Booster", icon: "water_drop" },
-  { href: "/product-comparison", label: "Compare Products", icon: "compare_arrows" },
+  { href: "/product-comparison", label: "Product Guide", icon: "compare_arrows" },
   { href: "/order", label: "Place an Order", icon: "shopping_bag" },
   { href: "/consultancy", label: "Consultancy", icon: "model_training" },
   { href: "/resources", label: "Resources", icon: "library_books" },

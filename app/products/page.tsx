@@ -1,157 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+
+import { categories, products, productsIn } from "../../lib/products";
 import { SITE_NAME, SITE_URL, breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
-type Size = { size: string; blurb: string; img: string };
-
-type Group = {
-  id: string;
-  eyebrow: string;
-  name: string;
-  tagline: string;
-  sizes: Size[];
-  href: string;
-};
-
-const groups: Group[] = [
-  {
-    id: "super-milk-booster",
-    eyebrow: "Dairy",
-    name: "Super Milk Booster",
-    tagline:
-      "Advanced formula for enhanced milk production in dairy animals, ensuring optimal nutritional balance.",
-    href: "/products/super-milk-booster",
-    sizes: [
-      { size: "1KG Package", blurb: "Ideal for small-scale dairy farms and individual homesteads.", img: "/molaplus/milkbooster-1kg.webp" },
-      { size: "2KG Package", blurb: "Perfect for medium-sized dairy operations seeking efficiency.", img: "/molaplus/milkbooster-2kg.webp" },
-      { size: "5KG Package", blurb: "Designed for large commercial dairy farms and bulk buyers.", img: "/molaplus/milk-booster-5kg-cutout.webp" },
-    ],
-  },
-  {
-    id: "poultry-microbes",
-    eyebrow: "Growth & Health",
-    name: "Poultry Microbes",
-    tagline:
-      "Specialized probiotic solution for optimal poultry health, weight gain, and disease resistance.",
-    href: "/product-comparison",
-    sizes: [
-      { size: "500ml Solution", blurb: "For small poultry flocks", img: "/molaplus/poultry-500ml.webp" },
-      { size: "1 Litre Solution", blurb: "For medium-sized farms", img: "/molaplus/poultry-microbes-1l-bottle.webp" },
-      { size: "5 Litre Solution", blurb: "For large operations", img: "/molaplus/poultry-5ltr.webp" },
-      { size: "10 Litre Solution", blurb: "For high-volume poultry operations", img: "/molaplus/poultry-microbes-10l.webp" },
-    ],
-  },
-  {
-    id: "dairy-young-stock",
-    eyebrow: "Dairy & Young Stock",
-    name: "Farm Essentials",
-    tagline:
-      "Practical mineral and early-development nutrition for productive dairy animals and stronger young stock.",
-    href: "/contact",
-    sizes: [
-      {
-        size: "Dairy Ultra Mineral Lick — 2KG",
-        blurb: "A high-fertility, high-milk mineral formula for dairy cows, heifers and bulls.",
-        img: "/molaplus/dairy-ultra-mineral-lick-2kg.webp",
-      },
-      {
-        size: "Early Calf-Weaner Meal — 10KG",
-        blurb: "Supports early rumen development, steady growth and a confident transition to solid feed.",
-        img: "/molaplus/early-calf-weaner-10kg.webp",
-      },
-    ],
-  },
-  {
-    id: "pig-microbes",
-    eyebrow: "Livestock",
-    name: "Pig Microbes",
-    tagline:
-      "Multi-strain probiotic for pigs and livestock \u2014 improving digestion, gut health and feed efficiency.",
-    href: "/product-comparison",
-    sizes: [
-      { size: "1 Litre Solution", blurb: "1 Litre - Small Farms", img: "/molaplus/pig-1ltr.webp" },
-      { size: "5 Litre Solution", blurb: "5 Litre - Commercial", img: "/molaplus/pig-5ltr.webp" },
-      { size: "20 Litre Solution", blurb: "20 Litre - Large Scale", img: "/molaplus/pig-20ltr.webp" },
-      { size: "10 Litre Solution", blurb: "10 Litre - Growing Farms", img: "/molaplus/pig-microbes-10l.webp" },
-    ],
-  },
-  {
-    id: "steaming-formula",
-    eyebrow: "Dairy support",
-    name: "MolaPlus Steaming Formula",
-    tagline: "Targeted nutritional support for dairy cows approaching calving and the demanding transition into lactation.",
-    href: "/contact",
-    sizes: [
-      { size: "5KG Bucket", blurb: "A practical dairy formula for pre-calving and transition support.", img: "/molaplus/steaming-formula-5kg.webp" },
-    ],
-  },
-  {
-    id: "complete-feeds",
-    eyebrow: "Complete feeds",
-    name: "Farm Feeds",
-    tagline:
-      "Purpose-built rations for productive dairy animals and reliable commercial egg production.",
-    href: "/contact",
-    sizes: [
-      {
-        size: "MolaPlus Bovine Meal",
-        blurb: "A protein-rich feed for lactating cows, growing animals and breeding bulls.",
-        img: "/molaplus/molaplus-bovine-meal.webp",
-      },
-      {
-        size: "MolaPlus Layer Mash — 50KG",
-        blurb: "A complete layer ration formulated for sustained production and strong egg quality.",
-        img: "/molaplus/molaplus-layer-mash-50kg.webp",
-      },
-    ],
-  },
-  {
-    id: "crop-nutrition",
-    eyebrow: "Crop nutrition",
-    name: "MazaoBoost Crop Solutions",
-    tagline:
-      "Practical crop nutrition and beneficial microbial products for stronger plants, healthier soils and better farm yields.",
-    href: "/contact",
-    sizes: [
-      {
-        size: "Mazao Cereals — 250ML",
-        blurb: "Concentrated foliar nutrition for maize, wheat and other cereal crops.",
-        img: "/molaplus/mazao-cereals-250ml.webp",
-      },
-      {
-        size: "Mazao Cereals — 500ML",
-        blurb: "A larger cereal-crop pack for broader acreage and repeat applications.",
-        img: "/molaplus/mazao-cereals-500ml.webp",
-      },
-      {
-        size: "Mazao Organic Fertilizer",
-        blurb: "Organic planting fertilizer with beneficial soil probiotics and locked nutrient release.",
-        img: "/molaplus/mazao-organic-fertilizer.webp",
-      },
-      {
-        size: "MolaPlus V-EM Mbolea",
-        blurb: "Effective microorganisms for organic and conventional crop production.",
-        img: "/molaplus/v-em-mbolea.webp",
-      },
-    ],
-  },
-];
-
 export const metadata: Metadata = pageMetadata({
-  title: "Animal Feed Supplements, Livestock Feeds & Crop Fertilizers",
+  title: "Animal Feeds, Supplements, Probiotics & Crop Fertilizers",
   description:
-    "Shop MolaPlus products: Super Milk Booster for dairy cows, Poultry and Pig Microbes probiotics, mineral lick, calf weaner meal, bovine meal, layer mash, steaming formula and Mazao organic and foliar crop fertilizers.",
+    "The full MolaPlus range: Super Milk Booster, dairy and beef minerals, High Yield Dairy Meal, Ranch Cubes, Premium DDGS, calf feeds, layer, broiler and Kienyeji mash, Poultry and Pig Microbes, Sheep Mineral Salts, Carbovet, Mazao fertilizers and Biochar+.",
   path: "/products",
-  keywords: ["buy animal feed supplements", "dairy cow supplements", "poultry probiotics Kenya", "pig microbes", "layer mash 50kg", "organic fertilizer"],
+  keywords: [
+    "buy animal feed supplements", "dairy cow supplements", "dairy meal", "ranch cubes", "DDGS animal feed",
+    "calf pellets", "layer mash", "broiler starter", "kienyeji mash", "poultry probiotics", "pig microbes",
+    "sheep mineral salts", "activated charcoal for livestock", "organic fertilizer", "biochar",
+  ],
   image: "/molaplus/full-product-range.webp",
-  imageAlt: "The MolaPlus range of animal feed supplements, feeds and crop fertilizers",
+  imageAlt: "The MolaPlus range of animal feeds, supplements and crop fertilizers",
 });
 
-/** Pack names like "1KG Package" get the range name in front; product names stay as they are. */
-function productName(group: Group, size: Size) {
-  return /Package|Solution|Bucket/.test(size.size) ? `${group.name} ${size.size}` : size.size;
-}
+/** First pack size of a product, used to preselect it on the order form. */
+const orderHref = (name: string, size: string) => `/order?product=${encodeURIComponent(`${name} — ${size}`)}`;
 
 const productsSchema = jsonLd({
   "@graph": [
@@ -168,14 +37,14 @@ const productsSchema = jsonLd({
       mainEntity: {
         "@type": "ItemList",
         name: `${SITE_NAME} product range`,
-        numberOfItems: groups.reduce((n, g) => n + g.sizes.length, 0),
-        itemListElement: groups.flatMap((group) => group.sizes.map((size) => ({ group, size }))).map(({ group, size }, index) => ({
+        numberOfItems: products.length,
+        itemListElement: products.map((product, index) => ({
           "@type": "ListItem",
           position: index + 1,
-          name: productName(group, size),
-          description: `${size.blurb} ${group.tagline}`,
-          image: `${SITE_URL}${size.img}`,
-          url: `${SITE_URL}${group.href === "/contact" ? `/products/#${group.id}` : `${group.href}/`}`,
+          name: `MolaPlus ${product.name}`,
+          description: product.summary,
+          image: `${SITE_URL}${product.image}`,
+          url: `${SITE_URL}${product.detailHref ? `${product.detailHref}/` : `/products/#${product.id}`}`,
         })),
       },
     },
@@ -241,67 +110,88 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      {/* Product groups */}
-      {groups.map((group, i) => (
+      {/* Jump to a category */}
+      <nav aria-label="Product categories" className="product-cats bg-surface pb-4">
+        <div className="mx-auto flex max-w-container-max-width flex-wrap gap-2 px-margin-mobile md:px-margin-desktop">
+          {categories.map((category) => (
+            <a className="product-cats__chip" href={`#${category.id}`} key={category.id}>
+              {category.eyebrow}
+              <span className="product-cats__count">{productsIn(category.id).length}</span>
+            </a>
+          ))}
+        </div>
+      </nav>
+
+      {/* Products by category */}
+      {categories.map((category, i) => (
         <section
           className={i % 2 === 1 ? "bg-surface-container-low py-16 md:py-24" : "bg-surface py-16 md:py-24"}
-          id={group.id}
-          key={group.id}
+          id={category.id}
+          key={category.id}
         >
           <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
-            <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end" data-reveal>
-              <div className="max-w-2xl">
-                <span className="mp-eyebrow text-secondary">{group.eyebrow}</span>
-                <h2 className="mp-display-sm mt-3 text-ink-black">{group.name}</h2>
-                <p className="mt-4 text-on-surface-variant">{group.tagline}</p>
-              </div>
-              <Link
-                className="group inline-flex items-center gap-1 whitespace-nowrap font-bold text-primary underline-offset-4 hover:underline"
-                href={group.href}
-              >
-                {group.id === "super-milk-booster" ? "View details" : group.href === "/contact" ? "Ask our team" : "Compare products"}
-                <span className="material-symbols-outlined notranslate transition-transform group-hover:translate-x-1">arrow_outward</span>
-              </Link>
+            <div className="mb-10 max-w-2xl" data-reveal>
+              <span className="mp-eyebrow text-secondary">{category.eyebrow}</span>
+              <h2 className="mp-display-sm mt-3 text-ink-black">{category.name}</h2>
+              <p className="mt-4 text-on-surface-variant">{category.tagline}</p>
             </div>
 
-            <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-3" data-reveal data-reveal-stagger>
-              {group.sizes.map((s) => (
-                <div
-                  className="mp-hover-lift group flex flex-col overflow-hidden rounded-3xl border border-outline-variant bg-surface-container-lowest"
-                  key={s.size}
-                >
-                  <div className="product-card__media relative h-72 w-full overflow-hidden">
+            <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-3">
+              {productsIn(category.id).map((product) => (
+                <article className="range-card" id={product.id} key={product.id}>
+                  <div className="range-card__media">
                     <Image
-                      alt={`${group.name} ${s.size}`}
-                      className="object-contain p-5 transition-transform duration-500 group-hover:scale-105"
+                      alt={`MolaPlus ${product.name}`}
+                      className="object-contain p-6"
                       fill
                       sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 100vw"
-                      src={s.img}
+                      src={product.image}
                     />
                   </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h3 className="text-xl font-extrabold tracking-tight text-ink-black">{s.size}</h3>
-                    <p className="mt-2 flex-1 text-sm text-on-surface-variant">{s.blurb}</p>
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      <Link
-                        className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white transition-all hover:bg-primary-container"
-                        href={`/order?product=${encodeURIComponent(s.img)}`}
-                      >
+                  <div className="range-card__body">
+                    <h3 className="range-card__title">{product.name}</h3>
+                    <ul className="range-card__sizes" aria-label="Pack sizes">
+                      {product.sizes.map((size) => (
+                        <li key={size}>{size}</li>
+                      ))}
+                    </ul>
+                    <p className="range-card__summary">{product.summary}</p>
+                    <ul className="range-card__results">
+                      {product.results.slice(0, 3).map((result) => (
+                        <li key={result}>{result}</li>
+                      ))}
+                    </ul>
+                    <details className="range-card__usage">
+                      <summary>How to use</summary>
+                      <ul>
+                        {product.usage.map((step) => (
+                          <li key={step}>{step}</li>
+                        ))}
+                      </ul>
+                    </details>
+                    <div className="range-card__actions">
+                      <Link className="range-card__btn range-card__btn--order" href={orderHref(product.name, product.sizes[0])}>
                         Order now
                         <span className="material-symbols-outlined notranslate text-[18px]">trending_flat</span>
                       </Link>
-                      <a
-                        className="inline-flex items-center gap-2 rounded-full border border-outline-variant px-5 py-2.5 text-sm font-bold text-primary transition-colors hover:bg-surface-container-high"
-                        href="https://wa.me/254724968847"
-                        rel="noopener noreferrer"
-                        target="_blank"
-                      >
-                        <span className="material-symbols-outlined notranslate text-[18px]">chat</span>
-                        WhatsApp
-                      </a>
+                      {product.detailHref ? (
+                        <Link className="range-card__btn" href={product.detailHref}>
+                          Details
+                        </Link>
+                      ) : (
+                        <a
+                          className="range-card__btn"
+                          href={`https://wa.me/254724968847?text=${encodeURIComponent(`Hello MolaPlus, I'd like to ask about ${product.name}.`)}`}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                        >
+                          <span className="material-symbols-outlined notranslate text-[18px]">chat</span>
+                          Ask on WhatsApp
+                        </a>
+                      )}
                     </div>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>
@@ -313,19 +203,19 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
           <div className="flex flex-col items-center justify-between gap-8 rounded-3xl border border-outline-variant bg-surface-container-low p-8 text-center md:flex-row md:p-12 md:text-left" data-reveal>
             <div className="max-w-xl">
-              <span className="mp-eyebrow text-secondary">Compare</span>
+              <span className="mp-eyebrow text-secondary">Product guide</span>
               <h2 className="mp-display-sm mt-3 text-ink-black">Not sure which product fits your farm?</h2>
               <p className="mt-4 text-on-surface-variant">
-                Compare nutrient profiles and application methods side by side, or
-                talk to our team for a tailored recommendation.
+                See every product at a glance by animal or crop: what it is for,
+                pack sizes and how it is used. Or talk to our team for advice.
               </p>
             </div>
             <Link
               className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-primary px-8 py-4 font-bold text-white shadow-lg transition-all hover:bg-primary-container"
               href="/product-comparison"
             >
-              <span className="material-symbols-outlined notranslate">analytics</span>
-              Compare products
+              <span className="material-symbols-outlined notranslate">menu_book</span>
+              Open the product guide
               <span className="material-symbols-outlined notranslate transition-transform group-hover:translate-x-1">arrow_forward</span>
             </Link>
           </div>

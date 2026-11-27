@@ -17,14 +17,8 @@ const benefits = [
   ["trending_up", "Speeds Growth", "Optimal weight gain"],
 ];
 
-const ingredients = [
-  "Vitamin A",
-  "Vitamin D3",
-  "Vitamin E",
-  "Phosphorus",
-  "Calcium",
-  "Proprietary Micro-Nutrient Blend",
-];
+// As described in the MolaPlus Group dealer guide (2026).
+const ingredients = ["Energy", "Protein", "Minerals", "Vitamins"];
 
 export default function SuperMilkBoosterPage() {
   const [active, setActive] = useState(1);
@@ -68,7 +62,7 @@ export default function SuperMilkBoosterPage() {
             {/* Size selector */}
             <div className="mt-8">
               <p className="mp-eyebrow mb-3 text-secondary">Select Package Size</p>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 {packages.map((p, idx) => (
                   <button
                     className={
@@ -84,6 +78,7 @@ export default function SuperMilkBoosterPage() {
                   </button>
                 ))}
               </div>
+              <p className="mt-3 text-sm font-semibold text-on-surface-variant">Also available in 10 kg and 20 kg packs.</p>
             </div>
 
             {/* Benefits */}
@@ -137,11 +132,11 @@ export default function SuperMilkBoosterPage() {
             </div>
             <div className="rounded-3xl border border-outline-variant bg-white p-8" data-reveal>
               <h3 className="text-lg font-extrabold text-ink-black">Dosage Instructions</h3>
-              <p className="mt-4 text-on-surface-variant">
-                Mix 100g per cow per day into standard feed or grain. Ensure
-                consistent application during lactation periods for maximum result
-                stability.
-              </p>
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-on-surface-variant">
+                <li>Put a handful (about 60 g) in the trough at every milking and let the cow lick it, then give the dairy meal.</li>
+                <li>Feed twice a day if the cow is milked twice, three times if milked three times.</li>
+                <li>Designed to be fed on its own; if you need to mix it, blend 2.5 kg into 70 kg of dairy meal.</li>
+              </ul>
             </div>
           </div>
         </div>

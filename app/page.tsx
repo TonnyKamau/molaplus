@@ -94,7 +94,7 @@ export default function Home() {
         <div className="hero-v2__visual">
           <Image alt="MolaPlus Super Milk Booster" className="hero-v2__pack" fetchPriority="high" fill loading="eager" sizes="(min-width: 900px) 48vw, 100vw" src="/molaplus/milk-booster-5kg-cutout.webp" />
           <div className="hero-v2__stamp"><b>MORE</b><span>MILK</span><small>BETTER CONDITION</small></div>
-          <p className="hero-v2__caption">Super Milk Booster<br /><span>Minerals + probiotics</span></p>
+          <p className="hero-v2__caption">Super Milk Booster<br /><span>Energy · protein · minerals · vitamins</span></p>
         </div>
       </section>
 
@@ -113,14 +113,14 @@ export default function Home() {
             <div className="product-tile__copy"><h3>Super Milk<br />Booster</h3><p>More milk, improved body condition and support for healthier dairy cows.</p><span className="round-arrow">↗</span></div>
           </Link>
           <Link className="product-tile product-tile--poultry" href="/products#poultry-microbes">
-            <div className="product-tile__top"><span>02 / Poultry</span><b>500ml · 1L · 5L</b></div>
+            <div className="product-tile__top"><span>02 / Poultry</span><b>500ml · 1L · 5L · 10L · 20L</b></div>
             <Image alt="Poultry Microbes 10 litre" fill sizes="(min-width: 800px) 50vw, 100vw" src="/molaplus/poultry-microbes-10l.webp" />
             <div className="product-tile__copy"><h3>Poultry<br />Microbes</h3><p>Natural gut support for stronger broilers, layers and better feed conversion.</p><span className="round-arrow">↗</span></div>
           </Link>
           <Link className="product-tile product-tile--pig" href="/products#pig-microbes">
-            <div className="product-tile__top"><span>03 / Livestock</span><b>1L · 5L · 20L</b></div>
+            <div className="product-tile__top"><span>03 / Pigs</span><b>1L · 5L · 10L · 20L</b></div>
             <Image alt="Pig Microbes 10 litre" fill sizes="(min-width: 800px) 40vw, 100vw" src="/molaplus/pig-microbes-10l.webp" />
-            <div className="product-tile__copy"><h3>Livestock<br />Microbes</h3><p>Improved digestion and reduced odour for pigs, goats, sheep and beef cattle.</p><span className="round-arrow">↗</span></div>
+            <div className="product-tile__copy"><h3>Pig<br />Microbes</h3><p>Faster growth, stronger immunity and better feed use, with help against aflatoxin.</p><span className="round-arrow">↗</span></div>
           </Link>
         </div>
       </section>

@@ -2,10 +2,20 @@
 import type { Metadata } from "next";
 import { breadcrumbSchema, jsonLd, pageMetadata } from "../../lib/seo";
 
+// Core values as stated in the MolaPlus Group dealer guide (2026 edition).
 const values = [
-  ["science", "Scientific Rigor", "Every formulation is grounded in research, fermentation science and testing."],
-  ["diversity_3", "Farmer-Centricity", "Solutions designed around the real needs of East African farmers."],
-  ["verified", "Integrity & Transparency", "Honest guidance and dependable products, season after season."],
+  ["verified_user", "Integrity"],
+  ["handshake", "Honesty"],
+  ["groups", "Teamwork"],
+  ["volunteer_activism", "Service to humanity"],
+  ["lightbulb", "Innovation"],
+];
+
+const reach = [
+  ["location_on", "Head office", "Sungura Road, between Bidco and Comply, Nakuru, Kenya · P.O. Box 18100-20100"],
+  ["map", "Across Kenya", "Sales representatives covering the Rift Valley, Western, Nyanza, Central, Eastern, Nairobi and the Coast."],
+  ["public", "East & Southern Africa", "Representatives in Tanzania, Uganda and Zambia."],
+  ["flag", "West Africa", "A branch in Côte d'Ivoire, with this website available in French."],
 ];
 
 const impact = [
@@ -15,7 +25,7 @@ const impact = [
 
 export const metadata: Metadata = pageMetadata({
   title: "About MolaPlus — Science-Driven Animal Nutrition for African Farms",
-  description: "MolaPlus develops animal feed supplements, livestock feeds, probiotics and crop nutrition for African farmers, guided by quality, innovation and reliability. Now serving Kenya and Côte d'Ivoire.",
+  description: "MolaPlus Group develops animal feeds, supplements, probiotics and crop nutrition for African farmers. Our mission, vision, mandate and values, and where we work: Kenya, Tanzania, Uganda, Zambia and Côte d'Ivoire.",
   path: "/about-us",
   keywords: ["about MolaPlus","animal nutrition company Kenya","feed supplement manufacturer"],
 });
@@ -88,23 +98,31 @@ export default function AboutPage() {
               The principles that guide our research, production, and partnerships
             </h2>
           </div>
-          <div className="grid grid-cols-1 gap-gutter md:grid-cols-2" data-reveal data-reveal-stagger>
+          <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
             <div className="rounded-3xl border border-outline-variant bg-white p-8">
               <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>flag</span>
               <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-ink-black">Our Mission</h3>
               <p className="mt-3 text-on-surface-variant">
-                To provide innovative, cost-effective, and scientifically-proven
-                nutritional solutions that enhance livestock productivity and
-                farmer livelihoods.
+                To develop and lead the African market for livestock and crop
+                supplements and advisory services, exceeding customer expectations
+                with the most innovative, results-driven supplements and services.
               </p>
             </div>
             <div className="rounded-3xl border border-outline-variant bg-white p-8">
               <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>visibility</span>
               <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-ink-black">Our Vision</h3>
               <p className="mt-3 text-on-surface-variant">
-                To be the foremost provider of biotechnology-driven animal health
-                solutions in Africa, setting the standard for sustainable
-                agriculture.
+                To be Africa&apos;s preferred consultant in animal and plant
+                nutrition, and a manufacturer of animal and crop supplements.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-outline-variant bg-white p-8">
+              <span className="material-symbols-outlined notranslate text-4xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>agriculture</span>
+              <h3 className="mt-5 text-2xl font-extrabold tracking-tight text-ink-black">Our Mandate</h3>
+              <p className="mt-3 text-on-surface-variant">
+                To support African smallholder livestock and crop farmers in
+                creating wealth through innovation and the efficient use of
+                resources.
               </p>
             </div>
           </div>
@@ -118,14 +136,37 @@ export default function AboutPage() {
             <span className="mp-eyebrow text-secondary">Core Values</span>
             <h2 className="mp-display-sm mx-auto mt-3 max-w-2xl text-ink-black">What we stand for</h2>
           </div>
-          <div className="grid grid-cols-1 gap-gutter md:grid-cols-3" data-reveal data-reveal-stagger>
-            {values.map(([icon, title, body]) => (
-              <div className="rounded-3xl border border-outline-variant bg-surface-container-lowest p-8 text-center" key={title}>
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
+          <div className="grid grid-cols-2 gap-gutter sm:grid-cols-3 lg:grid-cols-5" data-reveal data-reveal-stagger>
+            {values.map(([icon, title]) => (
+              <div className="rounded-3xl border border-outline-variant bg-surface-container-lowest p-7 text-center" key={title}>
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
                   <span className="material-symbols-outlined notranslate text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
                 </div>
-                <h3 className="mt-5 text-xl font-extrabold tracking-tight text-primary">{title}</h3>
-                <p className="mt-3 text-on-surface-variant">{body}</p>
+                <h3 className="mt-4 text-lg font-extrabold tracking-tight text-primary">{title}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Where we work */}
+      <section className="bg-surface-container-low py-20 md:py-28">
+        <div className="mx-auto max-w-container-max-width px-margin-mobile md:px-margin-desktop">
+          <div className="mb-12 max-w-2xl" data-reveal>
+            <span className="mp-eyebrow text-secondary">MolaPlus Group</span>
+            <h2 className="mp-display-sm mt-3 text-ink-black">Where we work</h2>
+            <p className="mt-4 text-lg text-on-surface-variant">
+              From our base in Nakuru, MolaPlus serves farmers and stockists across
+              Kenya and the region, with field representatives ready to help with
+              products, orders, distribution and on-farm support.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-4" data-reveal data-reveal-stagger>
+            {reach.map(([icon, title, body]) => (
+              <div className="rounded-3xl border border-outline-variant bg-white p-7" key={title}>
+                <span className="material-symbols-outlined notranslate text-3xl text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>{icon}</span>
+                <h3 className="mt-4 text-lg font-extrabold tracking-tight text-ink-black">{title}</h3>
+                <p className="mt-2 text-on-surface-variant">{body}</p>
               </div>
             ))}
           </div>

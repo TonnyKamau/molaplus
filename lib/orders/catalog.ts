@@ -1,22 +1,22 @@
-export const products = [
-  ["Super Milk Booster — 1KG", "/molaplus/milkbooster-1kg.webp"],
-  ["Super Milk Booster — 2KG", "/molaplus/milkbooster-2kg.webp"],
-  ["Super Milk Booster — 5KG", "/molaplus/milk-booster-5kg-cutout.webp"],
-  ["Poultry Microbes — 500ML", "/molaplus/poultry-500ml.webp"],
-  ["Poultry Microbes — 1L", "/molaplus/poultry-microbes-1l-bottle.webp"],
-  ["Poultry Microbes — 5L", "/molaplus/poultry-5ltr.webp"],
-  ["Poultry Microbes — 10L", "/molaplus/poultry-microbes-10l.webp"],
-  ["Pig Microbes — 1L", "/molaplus/pig-1ltr.webp"],
-  ["Pig Microbes — 5L", "/molaplus/pig-5ltr.webp"],
-  ["Pig Microbes — 10L", "/molaplus/pig-microbes-10l.webp"],
-  ["Pig Microbes — 20L", "/molaplus/pig-20ltr.webp"],
-  ["Dairy Ultra Mineral Lick — 2KG", "/molaplus/dairy-ultra-mineral-lick-2kg.webp"],
-  ["Early Calf-Weaner Meal — 10KG", "/molaplus/early-calf-weaner-10kg.webp"],
-  ["MolaPlus Steaming Formula — 5KG", "/molaplus/steaming-formula-5kg.webp"],
-  ["MolaPlus Bovine Meal", "/molaplus/molaplus-bovine-meal.webp"],
-  ["MolaPlus Layer Mash — 50KG", "/molaplus/molaplus-layer-mash-50kg.webp"],
-  ["Mazao Cereals — 250ML", "/molaplus/mazao-cereals-250ml.webp"],
-  ["Mazao Cereals — 500ML", "/molaplus/mazao-cereals-500ml.webp"],
-  ["Mazao Organic Fertilizer", "/molaplus/mazao-organic-fertilizer.webp"],
-  ["MolaPlus V-EM Mbolea", "/molaplus/v-em-mbolea.webp"],
-] as const;
+import { orderItems, products as range, type CategoryId } from "../products";
+
+/**
+ * Orderable items: one per product pack size, built from lib/products.ts.
+ * The server accepts exactly these names (backend/public_html/api/_catalog.php,
+ * regenerated with `node scripts/sync-catalog.mjs`).
+ */
+export const products = orderItems();
+
+const categoryLabels: Record<CategoryId, [en: string, fr: string]> = {
+  dairy: ["Dairy & cattle", "Bovins laitiers et de boucherie"],
+  poultry: ["Poultry", "Volaille"],
+  livestock: ["Pigs, sheep & livestock", "Porcs, ovins et bétail"],
+  crops: ["Crops & soil", "Cultures et sols"],
+};
+
+/** Category label for an order item such as "Ranch Cubes — 10KG". */
+export function itemCategory(itemName: string, fr = false) {
+  const product = range.find((p) => itemName.startsWith(`${p.name} — `));
+  const [en, frLabel] = categoryLabels[product?.category ?? "dairy"];
+  return fr ? frLabel : en;
+}

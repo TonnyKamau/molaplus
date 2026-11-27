@@ -149,7 +149,7 @@ function patchDomForTranslation() {
  * attribute is safe for React, unlike rewriting its text nodes.
  */
 const PRODUCT_NAME =
-  /Super\s*Milk\s*Booster|Poultry\s*Microbes|Pig\s*Microbes|Livestock\s*Microbes|Mazao|Mineral\s*Lick|Calf-?\s*Weaner|Layer\s*Mash|Bovine\s*Meal|Steaming\s*Formula|V-EM|Mbolea/i;
+  /Super\s*Milk\s*Booster|Poultry\s*Microbes|Pig\s*Microbes|Livestock\s*Microbes|Mazao|Mineral\s*Lick|Calf-?\s*Weaner|Layer\s*Mash|Bovine\s*Meal|Steaming\s*Formula|V-EM|Mbolea|Calf\s*Pellets|Dairy\s*Meal|Ranch\s*Cubes|DDGS|Livestock\s*Yeast|Mineral\s*Salts|Pullet\s*Mash|Grower\s*Mash|Kienyeji|Broiler\s*Starter|Carbovet|Biochar/i;
 const LABEL_TAGS = "h1,h2,h3,h4,h5,h6,p,span,a,button,li,option,label,td,th,strong,b,em,figcaption,small,dt,dd";
 
 function protectProductNames(root: ParentNode) {

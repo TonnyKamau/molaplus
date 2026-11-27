@@ -4,19 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { type SubmitEvent, useEffect, useMemo, useState } from "react";
 
-import { products } from "../../lib/orders/catalog";
+import { itemCategory, products } from "../../lib/orders/catalog";
 import { plural, useT } from "../../lib/i18n";
 import { toast } from "../../lib/toast";
 
 type Result = { ok: boolean; reference?: string; message?: string };
 type CartItem = { name: string; image: string; quantity: number };
 
-function productCategory(name: string, fr = false) {
-  if (name.includes("Milk") || name.includes("Dairy") || name.includes("Bovine") || name.includes("Calf") || name.includes("Steaming")) return fr ? "Nutrition laitière" : "Dairy nutrition";
-  if (name.includes("Poultry") || name.includes("Layer")) return fr ? "Volaille" : "Poultry";
-  if (name.includes("Pig")) return fr ? "Porcs et bétail" : "Pig & livestock";
-  return fr ? "Nutrition des cultures" : "Crop nutrition";
-}
+const productCategory = itemCategory;
 
 export function OrderForm() {
   // Native French (not Google) so counts, totals and messages stay exact.
