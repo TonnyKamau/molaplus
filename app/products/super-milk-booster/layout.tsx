@@ -19,20 +19,17 @@ const schema = jsonLd({
       ["Super Milk Booster", "/products/super-milk-booster"],
     ]),
     {
-      "@type": "Product",
-      "@id": `${SITE_URL}/products/super-milk-booster#product`,
-      name: "Super Milk Booster",
+      // Described as a product page rather than a priced "Product" (Google
+      // requires a price, rating or review for those; none are published).
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/products/super-milk-booster/#page`,
+      url: `${SITE_URL}/products/super-milk-booster/`,
+      name: `Super Milk Booster | ${SITE_NAME}`,
       description:
         "Advanced formula for enhanced milk production in dairy animals, ensuring optimal nutritional balance. Available in 1 kg, 2 kg and 5 kg packages.",
-      image: [
-        `${SITE_URL}/molaplus/milk-booster-5kg-cutout.webp`,
-        `${SITE_URL}/molaplus/milkbooster-2kg.webp`,
-        `${SITE_URL}/molaplus/milkbooster-1kg.webp`,
-      ],
-      brand: { "@type": "Brand", name: SITE_NAME },
-      category: "Dairy nutrition",
-      url: `${SITE_URL}/products/super-milk-booster`,
-      manufacturer: { "@id": `${SITE_URL}/#organization` },
+      primaryImageOfPage: { "@type": "ImageObject", url: `${SITE_URL}/molaplus/milk-booster-5kg-cutout.webp` },
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      publisher: { "@id": `${SITE_URL}/#organization` },
     },
   ],
 });

@@ -157,28 +157,27 @@ const productsSchema = jsonLd({
   "@graph": [
     breadcrumbSchema([["Products", "/products"]]),
     {
-      "@type": "OfferCatalog",
-      "@id": `${SITE_URL}/products#catalog`,
+      // A plain catalogue list. Not typed as "Product": Google requires a
+      // price, rating or review for those and flags every item without one.
+      "@type": "CollectionPage",
+      "@id": `${SITE_URL}/products/#page`,
+      url: `${SITE_URL}/products/`,
       name: "MolaPlus animal nutrition and crop products",
-      url: `${SITE_URL}/products`,
-      provider: { "@id": `${SITE_URL}/#organization` },
-      itemListElement: groups.map((group) => ({
-        "@type": "OfferCatalog",
-        name: group.name,
-        description: group.tagline,
-        itemListElement: group.sizes.map((size) => ({
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Product",
-            name: productName(group, size),
-            description: `${size.blurb} ${group.tagline}`,
-            image: `${SITE_URL}${size.img}`,
-            category: group.eyebrow,
-            brand: { "@type": "Brand", name: SITE_NAME },
-            url: `${SITE_URL}${group.href === "/contact" ? `/products#${group.id}` : group.href}`,
-          },
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      mainEntity: {
+        "@type": "ItemList",
+        name: `${SITE_NAME} product range`,
+        numberOfItems: groups.reduce((n, g) => n + g.sizes.length, 0),
+        itemListElement: groups.flatMap((group) => group.sizes.map((size) => ({ group, size }))).map(({ group, size }, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: productName(group, size),
+          description: `${size.blurb} ${group.tagline}`,
+          image: `${SITE_URL}${size.img}`,
+          url: `${SITE_URL}${group.href === "/contact" ? `/products/#${group.id}` : `${group.href}/`}`,
         })),
-      })),
+      },
     },
   ],
 });

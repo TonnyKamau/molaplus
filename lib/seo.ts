@@ -82,7 +82,7 @@ export function breadcrumbSchema(trail: [string, string][]) {
       "@type": "ListItem",
       position: index + 1,
       name,
-      item: `${SITE_URL}${path === "/" ? "" : path}`,
+      item: `${SITE_URL}${path === "/" ? "/" : `${path.replace(/\/$/, "")}/`}`,
     })),
   };
 }
